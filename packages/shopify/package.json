@@ -7,9 +7,9 @@
         "build": "scandipwa-scripts build"
     },
     "dependencies": {
-        "@scandipwa/scandipwa-scripts": "2.2.0",
         "@scandipwa/framework": "0.0.3",
-        "@scandipwa/router": "0.0.3"
+        "@scandipwa/router": "0.0.3",
+        "@scandipwa/scandipwa-scripts": "^2.2.1"
     },
     "scandipwa": {
         "themeAlias": "Blank",
