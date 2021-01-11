@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "name": "create-scandipwa-app",
+    "scripts": {
+        "eslint": "eslint ./packages --resolve-plugins-relative-to . --cache --no-error-on-unmatched-pattern --ext .js,.ts,.tsx",
+        "csa": "create-scandipwa-app packages/test",
+        "postinstall": "lerna bootstrap",
+        "clean": "lerna clean --yes"
+    },
+    "devDependencies": {
+        "@scandipwa/eslint-config": "^0.1.10",
+        "eslint": "^7.11.0",
+        "husky": "^4.3.0",
+        "lerna": "^3.22.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run eslint"
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa",
+        "ignorePatterns": [
+            "**/node_modules/**",
+            "**/Magento_Theme/**"
+        ]
+    },
+    "workspaces": [
+        "packages/*"
+    ]
+}
