@@ -2473,7 +2473,13 @@
 "@scandipwa/shopify-api@file:packages/shopify/packages/@scandipwa/shopify-api":
   version "0.0.0"
 
+"@scandipwa/shopify-collections-products@file:packages/shopify/packages/@scandipwa/shopify-collections-products":
+  version "0.0.0"
+
 "@scandipwa/shopify-collections@file:packages/shopify/packages/@scandipwa/shopify-collections":
+  version "0.0.0"
+
+"@scandipwa/shopify-pages@file:packages/shopify/packages/@scandipwa/shopify-pages":
   version "0.0.0"
 
 "@scandipwa/shopify-products@file:packages/shopify/packages/@scandipwa/shopify-products":

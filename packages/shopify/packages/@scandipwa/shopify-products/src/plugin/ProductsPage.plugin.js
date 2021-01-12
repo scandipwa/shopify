@@ -1,20 +1,22 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/jsx-no-props-destruction */
 import { lazy, Suspense } from 'react';
 
-import CollectionsFallbackPage from '../component/CollectionsFallbackPage';
+import ProductsFallbackPage from '../component/ProductsFallbackPage';
 
-const CollectionsPage = lazy(() => import('../component/CollectionsPage'));
+const ProductsPage = lazy(() => import('../component/ProductsPage'));
 
-const addCollectionsPage = (member) => [
+const addProductsPage = (member) => [
     ...member,
     {
-        position: 100,
-        path: '/collections',
+        position: 90,
+        path: [
+            '/collections/all'
+        ],
         exact: true,
         render: (props) => (
             // eslint-disable-next-line react/jsx-no-bind
-            <Suspense fallback={ <CollectionsFallbackPage /> }>
-                <CollectionsPage { ...props } />
+            <Suspense fallback={ <ProductsFallbackPage /> }>
+                <ProductsPage { ...props } />
             </Suspense>
         )
     }
@@ -23,7 +25,7 @@ const addCollectionsPage = (member) => [
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            switchRoutesList: addCollectionsPage
+            switchRoutesList: addProductsPage
         }
     }
 };

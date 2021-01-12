@@ -8,7 +8,7 @@ const CollectionPage = lazy(() => import('../component/CollectionPage'));
 const addCollectionsPage = (member) => [
     ...member,
     {
-        position: 10,
+        position: 100,
         path: '/collections/:handle',
         exact: true,
         render: (props) => (

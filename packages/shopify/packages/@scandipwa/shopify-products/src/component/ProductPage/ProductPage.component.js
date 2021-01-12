@@ -1,11 +1,11 @@
 import { Fragment, PureComponent } from 'react';
 
-import { CollectionType } from '../../api/Collections.type';
+import { ProductType } from '../../api/Products.type';
 
-/** @namespace ShopifyCollections/Component/CollectionPage/Component/CollectionPageComponent */
-export class CollectionPageComponent extends PureComponent {
+/** @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent */
+export class ProductPageComponent extends PureComponent {
     static propTypes = {
-        collection: CollectionType.isRequired
+        product: ProductType.isRequired
     };
 
     renderMap = {
@@ -15,30 +15,31 @@ export class CollectionPageComponent extends PureComponent {
     };
 
     renderDescription() {
-        const { collection: { descriptionHtml } } = this.props;
+        const { product: { descriptionHtml } } = this.props;
 
         // TODO: use HTML component here
-        return <div dangerouslySetInnerHTML={ descriptionHtml } />;
+        return descriptionHtml;
+        // return <div dangerouslySetInnerHTML={ descriptionHtml } />;
     }
 
     renderMedia() {
-        const { collection: { image: { transformedSrc, altText } } } = this.props;
+        const { product: { image: { transformedSrc, altText } } } = this.props;
 
         // TODO: use Image component here
         return <img src={ transformedSrc } alt={ altText } />;
     }
 
     renderTitle() {
-        const { collection: { title } } = this.props;
+        const { product: { title } } = this.props;
 
         // TODO: use Typography component here
         return <h2>{ title }</h2>;
     }
 
     renderContentParts = ([key, render]) => {
-        const { collection } = this.props;
+        const { product } = this.props;
 
-        if (!collection[key]) {
+        if (!product[key]) {
             return null;
         }
 
@@ -55,11 +56,11 @@ export class CollectionPageComponent extends PureComponent {
 
     render() {
         return (
-            <div block="CollectionPage">
+            <div block="ProductPage">
                 { this.renderContent() }
             </div>
         );
     }
 }
 
-export default CollectionPageComponent;
+export default ProductPageComponent;

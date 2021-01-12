@@ -12,7 +12,12 @@ export const processCollection = (collection) => {
     };
 };
 
-/** @namespace ShopifyCollections/Api/Collections/Processor/processCollections */
-export const processCollections = ({ edges }) => {
+/** @namespace ShopifyCollections/Api/Collections/Processor/collectionsResponseProcessor */
+export const collectionsResponseProcessor = ({ collections }) => {
+    const { edges } = collections;
     edges.forEach(({ node }) => processCollection(node));
+    return collections;
 };
+
+/** @namespace ShopifyCollections/Api/Collections/Processor/processCollectionByHandleResponse */
+export const processCollectionByHandleResponse = ({ collectionByHandle }) => collectionByHandle;

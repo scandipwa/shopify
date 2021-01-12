@@ -5,6 +5,8 @@ import { createContext } from 'react';
 export class ApiClient {
     displayName = 'ShopifyAPIContext';
 
+    // TODO: impleent runtime chache here
+
     config = {
         token: process.env.REACT_APP_SHOPIFY_TOKEN,
         domain: process.env.REACT_APP_SHOPIFY_DOMAIN

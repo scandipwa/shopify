@@ -1,20 +1,20 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/jsx-no-props-destruction */
 import { lazy, Suspense } from 'react';
 
-import CollectionsFallbackPage from '../component/CollectionsFallbackPage';
+import PageFallbackPage from '../component/PageFallbackPage';
 
-const CollectionsPage = lazy(() => import('../component/CollectionsPage'));
+const PagePage = lazy(() => import('../component/PagePage'));
 
 const addCollectionsPage = (member) => [
     ...member,
     {
         position: 100,
-        path: '/collections',
+        path: '/pages/:handle',
         exact: true,
         render: (props) => (
             // eslint-disable-next-line react/jsx-no-bind
-            <Suspense fallback={ <CollectionsFallbackPage /> }>
-                <CollectionsPage { ...props } />
+            <Suspense fallback={ <PageFallbackPage /> }>
+                <PagePage { ...props } />
             </Suspense>
         )
     }

@@ -18,20 +18,24 @@ export class PaginatedConnectionContainer extends PureComponent {
         renderPage: PropTypes.func.isRequired,
         amount: PropTypes.number,
         queryGetter: PropTypes.func.isRequired,
-        queryProcessor: PropTypes.func
+        responseProcessor: PropTypes.func.isRequired
     };
 
     static defaultProps = {
         amount: 20,
         renderNextPageButton: null,
-        renderPrevPageButton: null,
-        queryProcessor: (q) => q
+        renderPrevPageButton: null
     };
 
     containerFunctions = {
         onNextPageClick: this.onNextPageClick.bind(this),
         onPrevPageClick: this.onPrevPageClick.bind(this)
     };
+
+    componentDidMount() {
+        // make initial request from current cursor position
+        this.requestNodes(this.getCurrentCursorFromUrl());
+    }
 
     __construct(props) {
         super.__construct(props);
@@ -45,9 +49,6 @@ export class PaginatedConnectionContainer extends PureComponent {
             firstCursor: '',
             nodes: []
         };
-
-        // make initial request from current cursor position
-        this.requestNodes(this.getCurrentCursorFromUrl());
     }
 
     getCurrentCursorFromUrl() {
@@ -68,7 +69,8 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     setCurrentCursorToUrl({ after, before }) {
         const { location: { state } } = history;
-        const urlParams = new URLSearchParams(window.location.search);
+        const initialSearch = window.location.search;
+        const urlParams = new URLSearchParams(initialSearch);
 
         if (after) {
             urlParams.set('after', after);
@@ -82,8 +84,14 @@ export class PaginatedConnectionContainer extends PureComponent {
             urlParams.delete('before');
         }
 
+        const newSearch = urlParams.toString();
+
+        if (newSearch === initialSearch) {
+            return;
+        }
+
         history.push({
-            search: `?${urlParams.toString() }`,
+            search: `?${newSearch}`,
             state
         });
     }
@@ -130,11 +138,8 @@ export class PaginatedConnectionContainer extends PureComponent {
     }
 
     processResponse(response) {
-        const { queryProcessor } = this.props;
-
-        const [{ edges, pageInfo }] = Object.values(response);
-        queryProcessor({ edges, pageInfo });
-
+        const { responseProcessor } = this.props;
+        const { edges, pageInfo } = responseProcessor(response);
         const { hasNextPage, hasPreviousPage } = pageInfo;
 
         const {

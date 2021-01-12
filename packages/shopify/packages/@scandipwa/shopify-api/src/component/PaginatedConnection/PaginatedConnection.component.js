@@ -30,6 +30,8 @@ export class PaginatedConnectionComponent extends PureComponent {
     renderDefaultNextButton() {
         const { onNextPageClick } = this.props;
 
+        // TODO: use Button component here
+
         return (
             <button onClick={ onNextPageClick }>
                 Next
@@ -59,6 +61,8 @@ export class PaginatedConnectionComponent extends PureComponent {
 
     renderDefaultPrevButton() {
         const { onPrevPageClick } = this.props;
+
+        // TODO: use Button component here
 
         return (
             <button onClick={ onPrevPageClick }>

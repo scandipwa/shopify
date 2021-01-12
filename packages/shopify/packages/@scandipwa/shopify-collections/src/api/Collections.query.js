@@ -1,4 +1,5 @@
 import { Field } from '@scandipwa/graphql';
+import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
 /** @namespace ShopifyCollections/Api/Collections/Query/CollectionsQuery */
 export class CollectionsQuery {
@@ -23,38 +24,27 @@ export class CollectionsQuery {
 
     _getEdgesField() {
         return new Field('edges').addFieldList([
-            new Field('cursor'),
+            'cursor',
             this._getCollectionField()
-        ]);
-    }
-
-    _getPageInfoField() {
-        return new Field('pageInfo').addFieldList([
-            'hasNextPage',
-            'hasPreviousPage'
         ]);
     }
 
     _getCollectionsFields() {
         return [
             this._getEdgesField(),
-            this._getPageInfoField()
+            getPageInfoField()
         ];
     }
 
-    getCollectionsQuery({ first, after, before }) {
-        return new Field('collections')
-            .addFieldList(this._getCollectionsFields())
-            .addArgument('before', 'String', before)
-            .addArgument('after', 'String', after)
-            .addArgument('first', 'Int', first);
-    }
+    getCollectionsField = ({ first, after, before }) => new Field('collections')
+        .addFieldList(this._getCollectionsFields())
+        .addArgument('before', 'String', before)
+        .addArgument('after', 'String', after)
+        .addArgument('first', 'Int', first);
 
-    getCollectionByHandleQuery({ handle }) {
-        return new Field('collectionByHandle')
-            .addArgument('handle', 'String!', handle)
-            .addFieldList(this._getCollectionFields());
-    }
+    getCollectionByHandleField = ({ handle }) => new Field('collectionByHandle')
+        .addArgument('handle', 'String!', handle)
+        .addFieldList(this._getCollectionFields());
 }
 
 export default new CollectionsQuery();
