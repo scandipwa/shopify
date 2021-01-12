@@ -40,6 +40,11 @@ export class Field {
     }
 
     addArgument(name: string, type: string, value: string): Field {
+        if (value === undefined) {
+            // allow passing in all potential arguments
+            return this;
+        }
+
         this.args.push({
             name,
             type,

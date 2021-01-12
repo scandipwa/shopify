@@ -15,6 +15,11 @@ export class CollectionPageContainer extends PureComponent {
 
     static contextType = ApiClientContext;
 
+    componentDidMount() {
+        // even if the collection is in state, update the data
+        this.getCollectionByHandler();
+    }
+
     __construct(props) {
         super.__construct(props);
 
@@ -25,9 +30,6 @@ export class CollectionPageContainer extends PureComponent {
             isLoading: !collection,
             isError: false
         };
-
-        // even if the collection is in state, update the data
-        this.getCollectionByHandler();
     }
 
     getCollectionFromHistoryState() {
@@ -60,8 +62,10 @@ export class CollectionPageContainer extends PureComponent {
                 CollectionsQuery.getCollectionByHandleQuery({ handle })
             );
 
+            processCollection(collection);
+
             this.setState({
-                collection: processCollection(collection),
+                collection,
                 isLoading: false,
                 isError: false
             });

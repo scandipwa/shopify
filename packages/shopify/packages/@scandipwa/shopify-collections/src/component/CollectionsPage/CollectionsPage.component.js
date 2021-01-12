@@ -1,43 +1,34 @@
-import PropTypes from 'prop-types';
+import PaginatedConnection from '@scandipwa/shopify-api/src/component/PaginatedConnection';
 import { PureComponent } from 'react';
 
-import { CollectionsResponseType } from '../../api/Collections.type';
+import { processCollections } from '../../api/Collections.processor';
+import CollectionsQuery from '../../api/Collections.query';
 import CollectionCard from '../CollectionCard';
 import CollectionsFallbackPage from '../CollectionsFallbackPage';
 
 /** @namespace ShopifyCollections/Component/CollectionsPage/Component/CollectionsPageComponent */
 export class CollectionsPageComponent extends PureComponent {
-    static propTypes = {
-        isLoading: PropTypes.bool.isRequired,
-        collections: CollectionsResponseType.isRequired
-    };
+    renderCards = (collection, i) => (
+        <CollectionCard
+          key={ i }
+          collection={ collection }
+        />
+    );
 
-    renderCollection({ cursor, node }) {
-        return (
-            <CollectionCard
-              key={ cursor }
-              collection={ node }
-            />
-        );
-    }
+    renderPage = (nodes) => nodes.map(this.renderCards);
 
-    renderCollections() {
-        const { collections: { edges = [] } } = this.props;
-        return edges.map(this.renderCollection);
-    }
+    renderPlaceholder = () => (
+        <CollectionsFallbackPage />
+    );
 
     render() {
-        const { isLoading } = this.props;
-
-        if (isLoading) {
-            // the same placeholder which shows while app is loading
-            return <CollectionsFallbackPage />;
-        }
-
         return (
-            <div block="CollectionsPage">
-                { this.renderCollections() }
-            </div>
+            <PaginatedConnection
+              renderPage={ this.renderPage }
+              renderPlaceholder={ this.renderPlaceholder }
+              queryGetter={ CollectionsQuery.getCollectionsQuery }
+              queryProcessor={ processCollections }
+            />
         );
     }
 }

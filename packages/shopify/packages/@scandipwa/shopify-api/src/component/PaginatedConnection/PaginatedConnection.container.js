@@ -10,16 +10,22 @@ export class PaginatedConnectionContainer extends PureComponent {
     static contextType = ApiClientContext;
 
     static propTypes = {
+        // eslint-disable-next-line react/forbid-prop-types
+        renderNextPageButton: PropTypes.any,
+        // eslint-disable-next-line react/forbid-prop-types
+        renderPrevPageButton: PropTypes.any,
+        renderPlaceholder: PropTypes.func.isRequired,
+        renderPage: PropTypes.func.isRequired,
         amount: PropTypes.number,
         queryGetter: PropTypes.func.isRequired,
-        NextPageButton: PropTypes.node.isRequired,
-        PrevPageButton: PropTypes.node.isRequired,
-        PagePlaceholderComponent: PropTypes.node.isRequired,
-        PageComponent: PropTypes.node.isRequired
+        queryProcessor: PropTypes.func
     };
 
     static defaultProps = {
-        amount: 20
+        amount: 20,
+        renderNextPageButton: null,
+        renderPrevPageButton: null,
+        queryProcessor: (q) => q
     };
 
     containerFunctions = {
@@ -27,8 +33,8 @@ export class PaginatedConnectionContainer extends PureComponent {
         onPrevPageClick: this.onPrevPageClick.bind(this)
     };
 
-    __constructor(props) {
-        super.__constructor(props);
+    __construct(props) {
+        super.__construct(props);
 
         this.state = {
             isLoading: true,
@@ -97,6 +103,7 @@ export class PaginatedConnectionContainer extends PureComponent {
         });
 
         this.setCurrentCursorToUrl(cursor);
+        this.setState({ isLoading: true });
 
         try {
             const response = await postQuery(query);
@@ -107,7 +114,7 @@ export class PaginatedConnectionContainer extends PureComponent {
     }
 
     processError(error) {
-        console.log(error);
+        console.error(error);
 
         this.setState({
             isLoading: false,
@@ -123,7 +130,11 @@ export class PaginatedConnectionContainer extends PureComponent {
     }
 
     processResponse(response) {
+        const { queryProcessor } = this.props;
+
         const [{ edges, pageInfo }] = Object.values(response);
+        queryProcessor({ edges, pageInfo });
+
         const { hasNextPage, hasPreviousPage } = pageInfo;
 
         const {
@@ -171,10 +182,10 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     containerProps = () => {
         const {
-            NextPageButton,
-            PrevPageButton,
-            PagePlaceholderComponent,
-            PageComponent
+            renderPage,
+            renderPlaceholder,
+            renderNextPageButton,
+            renderPrevPageButton
         } = this.props;
 
         const {
@@ -186,10 +197,10 @@ export class PaginatedConnectionContainer extends PureComponent {
         } = this.state;
 
         return {
-            NextPageButton,
-            PrevPageButton,
-            PagePlaceholderComponent,
-            PageComponent,
+            renderPage,
+            renderPlaceholder,
+            renderNextPageButton,
+            renderPrevPageButton,
             isHasNextPage,
             isHasPrevPage,
             isLoading,

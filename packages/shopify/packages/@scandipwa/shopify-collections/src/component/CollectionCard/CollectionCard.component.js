@@ -1,4 +1,4 @@
-import { PureComponent, Fragment } from 'react';
+import { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CollectionType } from '../../api/Collections.type';

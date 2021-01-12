@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent, Fragment } from 'react';
+import { Fragment, PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
 import CollectionFallbackPage from '../CollectionFallbackPage';

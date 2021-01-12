@@ -28,23 +28,26 @@ export class CollectionsQuery {
         ]);
     }
 
+    _getPageInfoField() {
+        return new Field('pageInfo').addFieldList([
+            'hasNextPage',
+            'hasPreviousPage'
+        ]);
+    }
+
     _getCollectionsFields() {
         return [
-            this._getEdgesField()
+            this._getEdgesField(),
+            this._getPageInfoField()
         ];
     }
 
-    getCollectionsQuery({ amount, after }) {
-        const collections = new Field('collections')
-            .addArgument('first', 'Int', amount)
-            .addFieldList(this._getCollectionsFields());
-
-        if (after) {
-            // add after only if it is set by request
-            collections.addArgument('after', 'String', after);
-        }
-
-        return collections;
+    getCollectionsQuery({ first, after, before }) {
+        return new Field('collections')
+            .addFieldList(this._getCollectionsFields())
+            .addArgument('before', 'String', before)
+            .addArgument('after', 'String', after)
+            .addArgument('first', 'Int', first);
     }
 
     getCollectionByHandleQuery({ handle }) {

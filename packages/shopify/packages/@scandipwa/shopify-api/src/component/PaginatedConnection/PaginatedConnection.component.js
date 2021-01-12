@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
-import { createElement, PureComponent } from 'react';
+import { PureComponent } from 'react';
 
 /** @namespace ShopifyApi/Component/PaginatedConnection/Component/PaginatedConnectionComponent */
 export class PaginatedConnectionComponent extends PureComponent {
     static propTypes = {
-        NextPageButton: PropTypes.node.isRequired,
-        PrevPageButton: PropTypes.node.isRequired,
-        PagePlaceholderComponent: PropTypes.node.isRequired,
-        PageComponent: PropTypes.node.isRequired,
+        renderNextPageButton: PropTypes.func,
+        renderPrevPageButton: PropTypes.func,
+        renderPlaceholder: PropTypes.func.isRequired,
+        renderPage: PropTypes.func.isRequired,
         onNextPageClick: PropTypes.func.isRequired,
         onPrevPageClick: PropTypes.func.isRequired,
         isHasNextPage: PropTypes.bool.isRequired,
@@ -16,17 +16,30 @@ export class PaginatedConnectionComponent extends PureComponent {
         nodes: PropTypes.arrayOf(PropTypes.shape({})).isRequired
     };
 
+    static defaultProps = {
+        renderNextPageButton: null,
+        renderPrevPageButton: null
+    };
+
     renderPlaceholder() {
-        const { PagePlaceholderComponent } = this.props;
+        const { renderPlaceholder } = this.props;
+
+        return renderPlaceholder();
+    }
+
+    renderDefaultNextButton() {
+        const { onNextPageClick } = this.props;
 
         return (
-            <PagePlaceholderComponent />
+            <button onClick={ onNextPageClick }>
+                Next
+            </button>
         );
     }
 
     renderNextPageTrigger() {
         const {
-            NextPageButton,
+            renderNextPageButton,
             onNextPageClick,
             isHasNextPage
         } = this.props;
@@ -37,16 +50,26 @@ export class PaginatedConnectionComponent extends PureComponent {
             return null;
         }
 
+        if (!renderNextPageButton) {
+            return this.renderDefaultNextButton();
+        }
+
+        return renderNextPageButton(onNextPageClick);
+    }
+
+    renderDefaultPrevButton() {
+        const { onPrevPageClick } = this.props;
+
         return (
-            <NextPageButton
-              onClick={ onNextPageClick }
-            />
+            <button onClick={ onPrevPageClick }>
+                Prev
+            </button>
         );
     }
 
     renderPrevPageTrigger() {
         const {
-            PrevPageButton,
+            renderPrevPageButton,
             onPrevPageClick,
             isHasPrevPage
         } = this.props;
@@ -57,25 +80,21 @@ export class PaginatedConnectionComponent extends PureComponent {
             return null;
         }
 
-        return (
-            <PrevPageButton
-              onClick={ onPrevPageClick }
-            />
-        );
+        return renderPrevPageButton(onPrevPageClick);
     }
 
     renderPage() {
         const {
             nodes,
             isLoading,
-            PageComponent
+            renderPage
         } = this.props;
 
         if (isLoading) {
             return this.renderPlaceholder();
         }
 
-        return createElement(PageComponent, { nodes });
+        return renderPage(nodes);
     }
 
     render() {
