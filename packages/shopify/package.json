@@ -4,19 +4,29 @@
     "version": "0.0.0",
     "scripts": {
         "start": "scandipwa-scripts start",
-        "build": "scandipwa-scripts build"
+        "build": "scandipwa-scripts build",
+        "postinstall": "scandipwa-scripts link",
+        "postupdate": "scandipwa-scripts link"
     },
     "dependencies": {
         "@scandipwa/framework": "0.0.3",
         "@scandipwa/router": "0.0.3",
-        "@scandipwa/scandipwa-scripts": "^2.2.1"
+        "@scandipwa/scandipwa-scripts": "^2.2.1",
+        "@scandipwa/shopify-collections": "file:packages/@scandipwa/shopify-collections",
+        "@scandipwa/shopify-api": "file:packages/@scandipwa/shopify-api",
+        "@scandipwa/graphql": "file:packages/@scandipwa/graphql",
+        "@scandipwa/shopify-products": "file:packages/@scandipwa/shopify-products"
     },
     "scandipwa": {
         "themeAlias": "Blank",
         "type": "theme",
         "extensions": {
             "@scandipwa/framework": true,
-            "@scandipwa/router": true
+            "@scandipwa/router": true,
+            "@scandipwa/shopify-collections": true,
+            "@scandipwa/shopify-api": true,
+            "@scandipwa/graphql": true,
+            "@scandipwa/shopify-products": true
         }
     },
     "browserslist": {
