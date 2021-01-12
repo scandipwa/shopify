@@ -1,18 +1,16 @@
-import { createElement } from 'react';
-
 import ApiClientContext, { ApiClient } from '../apiClient';
 
 const addApiClientProvider = (member) => [
     ...member,
-    (children) => createElement(
-        ApiClientContext.Provider,
-        { value: new ApiClient() },
-        children
+    (children) => (
+        <ApiClientContext.Provider value={ new ApiClient() }>
+            { children }
+        </ApiClientContext.Provider>
     )
 ];
 
 export default {
-    'Framework/Component/App/Component': {
+    'Framework/Component/App/Component/AppComponent': {
         'member-property': {
             contextProviders: addApiClientProvider
         }

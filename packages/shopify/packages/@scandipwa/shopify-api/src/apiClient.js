@@ -3,8 +3,6 @@ import { createContext } from 'react';
 
 /** @namespace ShopifyApi/ApiClient/ApiClient */
 export class ApiClient {
-    displayName = 'ShopifyAPIContext';
-
     // TODO: impleent runtime chache here
 
     config = {
@@ -30,4 +28,7 @@ export class ApiClient {
     postQuery = (queries) => postQuery(queries, this._getFormattedOptions());
 }
 
-export default createContext(new ApiClient());
+// eslint-disable-next-line @scandipwa/scandipwa-guidelines/export-level-one
+const context = createContext(new ApiClient());
+context.displayName = 'ShopifyAPIContext';
+export default context;

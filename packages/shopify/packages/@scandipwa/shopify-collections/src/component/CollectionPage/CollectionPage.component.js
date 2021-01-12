@@ -22,10 +22,10 @@ export class CollectionPageComponent extends PureComponent {
     }
 
     renderMedia() {
-        const { collection: { image: { transformedSrc, altText } } } = this.props;
+        const { collection: { image: { src, alt } } } = this.props;
 
         // TODO: use Image component here
-        return <img src={ transformedSrc } alt={ altText } />;
+        return <img src={ src } alt={ alt } />;
     }
 
     renderTitle() {

@@ -10,8 +10,8 @@ export class CollectionsQuery {
             'handle',
             'title',
             new Field('image').addFieldList([
-                'altText',
-                'transformedSrc'
+                new Field('transformedSrc').setAlias('src'),
+                new Field('altText').setAlias('alt')
             ])
         ];
     }

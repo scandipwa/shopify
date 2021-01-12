@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
 export const ImageType = PropTypes.shape({
-    altText: PropTypes.string,
-    transformedSrc: PropTypes.string
+    alt: PropTypes.string,
+    src: PropTypes.string
 });
 
 export const PageInfoType = PropTypes.shape({

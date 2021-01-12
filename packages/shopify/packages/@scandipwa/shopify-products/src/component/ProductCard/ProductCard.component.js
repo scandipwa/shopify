@@ -9,21 +9,29 @@ export class ProductCardComponent extends PureComponent {
         product: ProductType.isRequired
     };
 
-    renderMap = {
-        image: this.renderMedia.bind(this),
-        title: this.renderTitle.bind(this),
-        description: this.renderDescription.bind(this)
-    };
+    contentList = [
+        this.renderMedia.bind(this),
+        this.renderTitle.bind(this),
+        this.renderDescription.bind(this)
+    ];
 
     renderMedia() {
-        const { product: { image: { transformedSrc, altText } } } = this.props;
+        const { product: { images: [{ src, alt }] = [] } } = this.props;
+
+        if (!src) {
+            return null;
+        }
 
         // TODO: use Image component here
-        return <img src={ transformedSrc } alt={ altText } />;
+        return <img src={ src } alt={ alt } />;
     }
 
     renderTitle() {
         const { product: { title } } = this.props;
+
+        if (!title) {
+            return null;
+        }
 
         // TODO: use Typography component here
         return <h2>{ title }</h2>;
@@ -32,26 +40,22 @@ export class ProductCardComponent extends PureComponent {
     renderDescription() {
         const { product: { description } } = this.props;
 
+        if (!description) {
+            return null;
+        }
+
         // TODO: use Typography component here
         return <p>{ description }</p>;
     }
 
-    renderContentParts = ([key, render]) => {
-        const { product } = this.props;
-
-        if (!product[key]) {
-            return null;
-        }
-
-        return (
-            <Fragment key={ key }>
-                { render() }
-            </Fragment>
-        );
-    };
+    renderContentPart = (render, i) => (
+        <Fragment key={ i }>
+            { render() }
+        </Fragment>
+    );
 
     renderContent() {
-        return Object.entries(this.renderMap).map(this.renderContentParts);
+        return this.contentList.map(this.renderContentPart);
     }
 
     renderLink() {

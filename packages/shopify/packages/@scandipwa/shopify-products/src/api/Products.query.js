@@ -3,6 +3,23 @@ import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
 /** @namespace ShopifyProducts/Api/Products/Query/ProductsQuery */
 export class ProductsQuery {
+    _getImagesFields() {
+        return [
+            new Field('transformedSrc').setAlias('src'),
+            new Field('altText').setAlias('alt')
+        ];
+    }
+
+    _getImagesField() {
+        const MAX_IMAGES = 15;
+
+        return new Field('images')
+            .addArgument('first', 'Int', MAX_IMAGES)
+            .addField(new Field('edges')
+                .addField(new Field('node')
+                    .addFieldList(this._getImagesFields())));
+    }
+
     _getProductFields() {
         return [
             'id',
@@ -10,7 +27,8 @@ export class ProductsQuery {
             'handle',
             'title',
             'description',
-            'descriptionHtml'
+            'descriptionHtml',
+            this._getImagesField()
         ];
     }
 
