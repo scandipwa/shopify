@@ -1,7 +1,7 @@
 import { postMutation, postQuery } from '@scandipwa/graphql';
 import { createContext } from 'react';
 
-/** @namespace ShopifyApi/ApiClient/ApiClient */
+/** @namespace ShopifyApi/Context/ApiClient/ApiClient */
 export class ApiClient {
     // TODO: impleent runtime chache here
 

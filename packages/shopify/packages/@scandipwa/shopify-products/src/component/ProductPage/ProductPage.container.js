@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 
 import { processProductByHandleResponse } from '../../api/Products.processor';
 import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
-import ProductContext, { Product } from '../../product';
+import ProductContext, { Product } from '../../context/product';
 import ProductFallbackPage from '../ProductFallbackPage';
 import ProductPageComponent from './ProductPage.component';
 

@@ -1,5 +1,5 @@
 import { Field } from '@scandipwa/graphql';
-import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api';
 import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '@scandipwa/shopify-products/src/api/Products.query';
 
 export const SINGLE_PRODUCT_COLLECTION = 'single';

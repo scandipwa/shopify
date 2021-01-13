@@ -1,5 +1,6 @@
 import { Field } from '@scandipwa/graphql';
-import { getPageInfoField, mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api';
+import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
 export const PAGINATED_PRODUCTS = 'paginated';
 export const SINGLE_PRODUCT = 'single';

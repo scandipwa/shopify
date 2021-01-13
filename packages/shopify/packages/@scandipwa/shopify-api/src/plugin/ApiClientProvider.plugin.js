@@ -1,4 +1,4 @@
-import ApiClientContext, { ApiClient } from '../apiClient';
+import ApiClientContext, { ApiClient } from '../context/apiClient';
 
 const addApiClientProvider = (member) => [
     ...member,

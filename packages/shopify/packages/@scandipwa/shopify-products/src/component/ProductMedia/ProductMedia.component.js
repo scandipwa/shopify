@@ -1,6 +1,6 @@
 import { PureComponent } from 'react';
 
-import ProductContext from '../../product';
+import ProductContext from '../../context/product';
 
 /** @namespace ShopifyProducts/Component/ProductMedia/Component/ProductMediaComponent */
 export class ProductMediaComponent extends PureComponent {

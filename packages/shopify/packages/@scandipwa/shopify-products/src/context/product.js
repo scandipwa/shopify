@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-/** @namespace ShopifyProducts/Product/Product */
+/** @namespace ShopifyProducts/Context/Product/Product */
 export class Product {
     __construct(product = {}) {
         this.product = product;

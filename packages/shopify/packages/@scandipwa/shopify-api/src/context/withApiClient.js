@@ -1,6 +1,6 @@
 import ApiClientContext from './apiClient';
 
-/** @namespace ShopifyApi/WithApiClient/withApiClient */
+/** @namespace ShopifyApi/Context/WithApiClient/withApiClient */
 export const withApiClient = (Component) => (props) => (
     <ApiClientContext.Consumer>
         { (consumerProps) => <Component props={ { ...props, consumerProps } } /> }

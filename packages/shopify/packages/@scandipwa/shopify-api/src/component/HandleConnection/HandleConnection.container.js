@@ -1,4 +1,4 @@
-import ApiClientContext from '@scandipwa/shopify-api/src/apiClient';
+import { ApiClientContext } from '@scandipwa/shopify-api';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 

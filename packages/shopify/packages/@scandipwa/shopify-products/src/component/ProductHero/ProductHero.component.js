@@ -1,6 +1,6 @@
 import { Fragment, PureComponent } from 'react';
 
-import ProductContext from '../../product';
+import ProductContext from '../../context/product';
 import ProductMedia from '../ProductMedia';
 
 /** @namespace ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent */

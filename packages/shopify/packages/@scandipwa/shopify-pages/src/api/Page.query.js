@@ -1,5 +1,5 @@
 import { Field } from '@scandipwa/graphql';
-import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api';
 
 export const SINGLE_PAGE = 'single';
 
