@@ -4,7 +4,8 @@ import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnect
 
 import { processProductByHandleResponse } from '../../api/Products.processor';
 import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
-import ProductContext, { Product } from '../../context/product';
+import ProductContext from '../../context/product';
+import ProductProvider from '../../context/provider';
 import ProductFallbackPage from '../ProductFallbackPage';
 import { PRODUCT_COMPONENT_PAGE, PRODUCT_FALLBACK_PAGE } from './PagePage.config';
 import ProductPageComponent from './ProductPage.component';
@@ -28,9 +29,9 @@ export class ProductPageContainer extends HigherOrderComponent {
     }
 
     renderProductProvider = (node) => (
-        <ProductContext.Provider value={ new Product(node) }>
+        <ProductProvider product={ node }>
             { this.renderProductComponent() }
-        </ProductContext.Provider>
+        </ProductProvider>
     );
 
     renderProductPlaceholder = () => {
@@ -52,6 +53,7 @@ export class ProductPageContainer extends HigherOrderComponent {
               renderNodePlaceholder={ this.renderProductPlaceholder }
               queryGetter={ getProductsQueryOfType(SINGLE_PRODUCT) }
               responseProcessor={ processProductByHandleResponse }
+
             />
         );
     }

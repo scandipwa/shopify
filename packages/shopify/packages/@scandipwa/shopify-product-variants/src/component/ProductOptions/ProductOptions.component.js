@@ -1,15 +1,39 @@
 import ProductContext from '@scandipwa/shopify-products/src/context/product';
 import { PureComponent } from 'react';
 
+import ProductOption from '../ProductOption';
+
 /** @namespace ShopifyProduct-Variants/Component/ProductOptions/Component/ProductOptionsComponent */
 export class ProductOptionsComponent extends PureComponent {
     static contextType = ProductContext;
 
-    render() {
-        // const { selectOption } = this.context;
-        // selectOption('Size', '4');
+    renderOption({ name, values }) {
+        return (
+            <ProductOption
+              key={ name }
+              name={ name }
+              values={ values }
+            />
+        );
+    }
 
-        return 'test';
+    renderOptions() {
+        const { product: { options } } = this.context;
+        return options.map(this.renderOption);
+    }
+
+    render() {
+        const { isHasOnlyOneVariant } = this.context;
+
+        if (isHasOnlyOneVariant) {
+            return null;
+        }
+
+        return (
+            <div block="ProductOptions">
+                { this.renderOptions() }
+            </div>
+        );
     }
 }
 
