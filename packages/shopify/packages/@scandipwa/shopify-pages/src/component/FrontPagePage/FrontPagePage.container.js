@@ -1,7 +1,7 @@
 import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnection';
 
 import { processPageByHandleResponse } from '../../api/Page.processor';
-import PageQuery from '../../api/Page.query';
+import getPageQueryOfType, { SINGLE_PAGE } from '../../api/Page.query';
 import FrontPageFallbackPage from '../FrontPageFallbackPage';
 import { PagePageContainer } from '../PagePage/PagePage.container';
 import FrontPagePageComponent from './FrontPagePage.component';
@@ -34,7 +34,7 @@ export class FrontPagePageContainer extends PagePageContainer {
               defaultNode={ this.getPageFromHistoryState() }
               renderNode={ this.renderPageComponent }
               renderNodePlaceholder={ this.renderPagePlaceholder }
-              queryGetter={ PageQuery.getPageByHandleField }
+              queryGetter={ getPageQueryOfType(SINGLE_PAGE) }
               responseProcessor={ processPageByHandleResponse }
             />
         );

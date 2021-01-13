@@ -1,8 +1,16 @@
 import { Field } from '@scandipwa/graphql';
-import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
+import { getPageInfoField, mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+
+export const PAGINATED_COLLECTIONS = 'paginated';
+export const SINGLE_COLLECTION = 'single';
 
 /** @namespace ShopifyCollections/Api/Collections/Query/CollectionsQuery */
-export class CollectionsQuery {
+export class CollectionsQuery extends TypedQuery {
+    typeMap = {
+        [PAGINATED_COLLECTIONS]: this.getCollectionsField.bind(this),
+        [SINGLE_COLLECTION]: this.getCollectionByHandleField.bind(this)
+    };
+
     _getCollectionFields() {
         return [
             'description',
@@ -36,15 +44,19 @@ export class CollectionsQuery {
         ];
     }
 
-    getCollectionsField = ({ first, after, before }) => new Field('collections')
-        .addFieldList(this._getCollectionsFields())
-        .addArgument('before', 'String', before)
-        .addArgument('after', 'String', after)
-        .addArgument('first', 'Int', first);
+    getCollectionsField({ first, after, before }) {
+        return new Field('collections')
+            .addFieldList(this._getCollectionsFields())
+            .addArgument('before', 'String', before)
+            .addArgument('after', 'String', after)
+            .addArgument('first', 'Int', first);
+    }
 
-    getCollectionByHandleField = ({ handle }) => new Field('collectionByHandle')
-        .addArgument('handle', 'String!', handle)
-        .addFieldList(this._getCollectionFields());
+    getCollectionByHandleField({ handle }) {
+        return new Field('collectionByHandle')
+            .addArgument('handle', 'String!', handle)
+            .addFieldList(this._getCollectionFields());
+    }
 }
 
-export default new CollectionsQuery();
+export default mapQueryToType(CollectionsQuery);

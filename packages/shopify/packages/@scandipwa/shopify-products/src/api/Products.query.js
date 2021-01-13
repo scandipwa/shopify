@@ -1,8 +1,16 @@
 import { Field } from '@scandipwa/graphql';
-import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
+import { getPageInfoField, mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+
+export const PAGINATED_PRODUCTS = 'paginated';
+export const SINGLE_PRODUCT = 'single';
 
 /** @namespace ShopifyProducts/Api/Products/Query/ProductsQuery */
-export class ProductsQuery {
+export class ProductsQuery extends TypedQuery {
+    typeMap = {
+        [PAGINATED_PRODUCTS]: this.getProductsField.bind(this),
+        [SINGLE_PRODUCT]: this.getProductByHandleField.bind(this)
+    };
+
     _getImagesFields() {
         return [
             new Field('transformedSrc').setAlias('src'),
@@ -51,15 +59,19 @@ export class ProductsQuery {
         ];
     }
 
-    getProductsField = ({ before, after, first }) => new Field('products')
-        .addFieldList(this._getProductsFields())
-        .addArgument('before', 'String', before)
-        .addArgument('after', 'String', after)
-        .addArgument('first', 'Int', first);
+    getProductsField({ before, after, first }) {
+        return new Field('products')
+            .addFieldList(this._getProductsFields())
+            .addArgument('before', 'String', before)
+            .addArgument('after', 'String', after)
+            .addArgument('first', 'Int', first);
+    }
 
-    getProductByHandleField = ({ handle }) => new Field('productByHandle')
-        .addFieldList(this._getProductFields())
-        .addArgument('handle', 'String!', handle);
+    getProductByHandleField({ handle }) {
+        return new Field('productByHandle')
+            .addFieldList(this._getProductFields())
+            .addArgument('handle', 'String!', handle);
+    }
 }
 
-export default new ProductsQuery();
+export default mapQueryToType(ProductsQuery);

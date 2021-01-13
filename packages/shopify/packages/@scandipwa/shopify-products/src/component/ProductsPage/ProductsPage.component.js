@@ -3,7 +3,7 @@ import ProductCard from '@scandipwa/shopify-products/src/component/ProductCard';
 import { PureComponent } from 'react';
 
 import { processProductsResponse } from '../../api/Products.processor';
-import ProductsQuery from '../../api/Products.query';
+import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '../../api/Products.query';
 import ProductsFallbackPage from '../ProductsFallbackPage';
 
 /** @namespace ShopifyProducts/Component/ProductsPage/Component/ProductsPageComponent */
@@ -26,7 +26,7 @@ export class ProductsPageComponent extends PureComponent {
             <PaginatedConnection
               renderPage={ this.renderPage }
               renderPlaceholder={ this.renderPlaceholder }
-              queryGetter={ ProductsQuery.getProductsField }
+              queryGetter={ getProductsQueryOfType(PAGINATED_PRODUCTS) }
               responseProcessor={ processProductsResponse }
             />
         );

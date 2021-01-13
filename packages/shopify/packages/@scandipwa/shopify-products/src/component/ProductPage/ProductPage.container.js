@@ -3,7 +3,7 @@ import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnect
 import { PureComponent } from 'react';
 
 import { processProductByHandleResponse } from '../../api/Products.processor';
-import ProductsQuery from '../../api/Products.query';
+import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
 import ProductContext, { Product } from '../../product';
 import ProductFallbackPage from '../ProductFallbackPage';
 import ProductPageComponent from './ProductPage.component';
@@ -46,7 +46,7 @@ export class ProductPageContainer extends PureComponent {
               defaultNode={ this.getProductFromHistoryState() }
               renderNode={ this.renderProductProvider }
               renderNodePlaceholder={ this.renderProductPlaceholder }
-              queryGetter={ ProductsQuery.getProductByHandleField }
+              queryGetter={ getProductsQueryOfType(SINGLE_PRODUCT) }
               responseProcessor={ processProductByHandleResponse }
             />
         );

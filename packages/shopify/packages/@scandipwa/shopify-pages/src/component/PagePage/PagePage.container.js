@@ -3,7 +3,7 @@ import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnect
 import { PureComponent } from 'react';
 
 import { processPageByHandleResponse } from '../../api/Page.processor';
-import PageQuery from '../../api/Page.query';
+import getPageQueryOfType, { SINGLE_PAGE } from '../../api/Page.query';
 import PageFallbackPage from '../PageFallbackPage';
 import PagePageComponent from './PagePage.component';
 
@@ -41,7 +41,7 @@ export class PagePageContainer extends PureComponent {
               defaultNode={ this.getPageFromHistoryState() }
               renderNode={ this.renderPageComponent }
               renderNodePlaceholder={ this.renderPagePlaceholder }
-              queryGetter={ PageQuery.getPageByHandleField }
+              queryGetter={ getPageQueryOfType(SINGLE_PAGE) }
               responseProcessor={ processPageByHandleResponse }
             />
         );

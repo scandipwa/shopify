@@ -2,7 +2,7 @@ import PaginatedConnection from '@scandipwa/shopify-api/src/component/PaginatedC
 import { PureComponent } from 'react';
 
 import { collectionsResponseProcessor } from '../../api/Collections.processor';
-import CollectionsQuery from '../../api/Collections.query';
+import getCollectionsQueryOfType, { PAGINATED_COLLECTIONS } from '../../api/Collections.query';
 import CollectionCard from '../CollectionCard';
 import CollectionsFallbackPage from '../CollectionsFallbackPage';
 
@@ -26,7 +26,7 @@ export class CollectionsPageComponent extends PureComponent {
             <PaginatedConnection
               renderPage={ this.renderPage }
               renderPlaceholder={ this.renderPlaceholder }
-              queryGetter={ CollectionsQuery.getCollectionsField }
+              queryGetter={ getCollectionsQueryOfType(PAGINATED_COLLECTIONS) }
               responseProcessor={ collectionsResponseProcessor }
             />
         );

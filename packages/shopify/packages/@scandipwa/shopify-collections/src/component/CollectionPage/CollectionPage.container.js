@@ -3,7 +3,7 @@ import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnect
 import { PureComponent } from 'react';
 
 import { processCollectionByHandleResponse } from '../../api/Collections.processor';
-import CollectionsQuery from '../../api/Collections.query';
+import getCollectionsQueryOfType, { SINGLE_COLLECTION } from '../../api/Collections.query';
 import CollectionFallbackPage from '../CollectionFallbackPage';
 import CollectionPageComponent from './CollectionPage.component';
 
@@ -41,7 +41,7 @@ export class CollectionPageContainer extends PureComponent {
               defaultNode={ this.getCollectionFromHistoryState() }
               renderNode={ this.renderCollectionComponent }
               renderNodePlaceholder={ this.renderCollectionPlaceholder }
-              queryGetter={ CollectionsQuery.getCollectionByHandleField }
+              queryGetter={ getCollectionsQueryOfType(SINGLE_COLLECTION) }
               responseProcessor={ processCollectionByHandleResponse }
             />
         );

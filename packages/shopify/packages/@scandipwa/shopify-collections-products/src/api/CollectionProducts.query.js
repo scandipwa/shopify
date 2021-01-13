@@ -1,22 +1,29 @@
 import { Field } from '@scandipwa/graphql';
-import ProductsQuery from '@scandipwa/shopify-products/src/api/Products.query';
+import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/api/query';
+import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '@scandipwa/shopify-products/src/api/Products.query';
+
+export const SINGLE_PRODUCT_COLLECTION = 'single';
 
 /** @namespace ShopifyCollection-Products/Api/CollectionProducts/Query/CollectionProductsQuery */
-export class CollectionProductsQuery {
+export class CollectionProductsQuery extends TypedQuery {
+    typeMap = {
+        [SINGLE_PRODUCT_COLLECTION]: this.getCollectionProducts.bind(this)
+    };
+
     _getCollectionProductsFields(options) {
         return [
-            ProductsQuery.getProductsField(options),
+            getProductsQueryOfType(PAGINATED_PRODUCTS)(options),
             'handle'
         ];
     }
 
-    getCollectionProducts = (options) => {
+    getCollectionProducts(options) {
         const { handle, ...restOptions } = options;
 
         return new Field('collectionByHandle')
             .addFieldList(this._getCollectionProductsFields(restOptions))
             .addArgument('handle', 'String!', handle);
-    };
+    }
 }
 
-export default new CollectionProductsQuery();
+export default mapQueryToType(CollectionProductsQuery);

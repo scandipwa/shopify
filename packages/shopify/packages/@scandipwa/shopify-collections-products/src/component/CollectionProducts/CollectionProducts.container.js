@@ -2,7 +2,7 @@ import { MatchType } from '@scandipwa/router/src/type/Router.type';
 import { PureComponent } from 'react';
 import { withRouter } from 'react-router';
 
-import ProductsQuery from '../../api/CollectionProducts.query';
+import getCollectionProductsQueryOfType, { SINGLE_PRODUCT_COLLECTION } from '../../api/CollectionProducts.query';
 import CollectionProductsComponent from './CollectionProducts.component';
 
 /** @namespace ShopifyCollection-Products/Component/CollectionProducts/Container/CollectionProductsContainer */
@@ -31,7 +31,7 @@ export class CollectionProductsContainer extends PureComponent {
     getQuery(options) {
         const collectionHandle = this.getCollectionHandle();
 
-        return ProductsQuery.getCollectionProducts({
+        return getCollectionProductsQueryOfType(SINGLE_PRODUCT_COLLECTION)({
             ...options,
             handle: collectionHandle
         });
