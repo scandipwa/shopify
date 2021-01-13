@@ -20,10 +20,15 @@ export class ProductsQuery extends TypedQuery {
     }
 
     _getImagesField() {
-        const MAX_IMAGES = 15;
+        const SINGLE_PRODUCTS_IMAGES = 15;
+        const PAGINATED_PRODUCTS_IMAGES = 1;
+
+        const first = this.currentType === SINGLE_PRODUCT
+            ? SINGLE_PRODUCTS_IMAGES
+            : PAGINATED_PRODUCTS_IMAGES;
 
         return new Field('images')
-            .addArgument('first', 'Int', MAX_IMAGES)
+            .addArgument('first', 'Int', first)
             .addField(new Field('edges')
                 .addField(new Field('node')
                     .addFieldList(this._getImagesFields())));

@@ -1,16 +1,18 @@
+import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
 import { Fragment, PureComponent } from 'react';
 
 import ProductContext from '../../context/product';
 import ProductMedia from '../ProductMedia';
+import { PRODUCT_HERO_DESCRIPTION, PRODUCT_HERO_TITLE } from './ProductHero.config';
 
 /** @namespace ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent */
 export class ProductHeroComponent extends PureComponent {
     static contextType = ProductContext;
 
-    contentList = [
-        this.renderTitle.bind(this),
-        this.renderDescription.bind(this)
-    ];
+    sortedRenderMap = createSortedMap({
+        [PRODUCT_HERO_TITLE]: this.renderTitle.bind(this),
+        [PRODUCT_HERO_DESCRIPTION]: this.renderDescription.bind(this)
+    });
 
     renderMedia() {
         return (
@@ -49,7 +51,7 @@ export class ProductHeroComponent extends PureComponent {
     );
 
     renderContent() {
-        return this.contentList.map(this.renderContentPart);
+        return this.sortedRenderMap.map(this.renderContentPart);
     }
 
     render() {
