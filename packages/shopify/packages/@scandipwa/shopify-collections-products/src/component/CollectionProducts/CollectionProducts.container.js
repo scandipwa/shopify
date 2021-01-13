@@ -1,12 +1,12 @@
 import { MatchType } from '@scandipwa/router/src/type/Router.type';
-import { PureComponent } from 'react';
+import { HigherOrderComponent, withHOC } from '@scandipwa/shopify-api';
 import { withRouter } from 'react-router';
 
 import getCollectionProductsQueryOfType, { SINGLE_PRODUCT_COLLECTION } from '../../api/CollectionProducts.query';
 import CollectionProductsComponent from './CollectionProducts.component';
 
 /** @namespace ShopifyCollection-Products/Component/CollectionProducts/Container/CollectionProductsContainer */
-export class CollectionProductsContainer extends PureComponent {
+export class CollectionProductsContainer extends HigherOrderComponent {
     static propTypes = {
         match: MatchType.isRequired
     };
@@ -36,15 +36,6 @@ export class CollectionProductsContainer extends PureComponent {
             handle: collectionHandle
         });
     }
-
-    render() {
-        return (
-            <CollectionProductsComponent
-              { ...this.containerProps() }
-              { ...this.containerFunctions }
-            />
-        );
-    }
 }
 
-export default withRouter(CollectionProductsContainer);
+export default withHOC(withRouter(CollectionProductsContainer), CollectionProductsComponent);

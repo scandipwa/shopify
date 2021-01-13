@@ -1,16 +1,18 @@
 import { HistoryType, MatchType } from '@scandipwa/router/src/type/Router.type';
+import { HigherOrderComponent, withHOC } from '@scandipwa/shopify-api';
 import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnection';
-import { PureComponent } from 'react';
 
 import { processProductByHandleResponse } from '../../api/Products.processor';
 import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
 import ProductContext, { Product } from '../../context/product';
 import ProductFallbackPage from '../ProductFallbackPage';
+import { PRODUCT_COMPONENT_PAGE, PRODUCT_FALLBACK_PAGE } from './PagePage.config';
 import ProductPageComponent from './ProductPage.component';
 
 /** @namespace ShopifyProducts/Component/ProductPage/Container/ProductPageContainer */
-export class ProductPageContainer extends PureComponent {
+export class ProductPageContainer extends HigherOrderComponent {
     static propTypes = {
+        ...HigherOrderComponent.propTypes,
         match: MatchType.isRequired,
         history: HistoryType.isRequired
     };
@@ -31,13 +33,15 @@ export class ProductPageContainer extends PureComponent {
         </ProductContext.Provider>
     );
 
-    renderProductComponent = () => (
-        <ProductPageComponent />
-    );
+    renderProductPlaceholder = () => {
+        const Fallback = this._getComponentByKey(PRODUCT_FALLBACK_PAGE);
+        return <Fallback />;
+    };
 
-    renderProductPlaceholder = () => (
-        <ProductFallbackPage />
-    );
+    renderProductComponent = () => {
+        const Component = this._getComponentByKey(PRODUCT_COMPONENT_PAGE);
+        return <Component />;
+    };
 
     render() {
         return (
@@ -53,4 +57,7 @@ export class ProductPageContainer extends PureComponent {
     }
 }
 
-export default ProductPageContainer;
+export default withHOC(ProductPageContainer, {
+    [PRODUCT_FALLBACK_PAGE]: ProductFallbackPage,
+    [PRODUCT_COMPONENT_PAGE]: ProductPageComponent
+});
