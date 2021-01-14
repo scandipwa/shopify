@@ -1,20 +1,69 @@
 /* eslint-disable no-param-reassign */
 
-const addSelectedOptions = (args, callback, instance) => {
-    callback(...args);
+const _getVariantCountFromOptions = (options) => options.reduce(
+    (acc, { values }) => values.length * acc, 1
+);
 
-    const [{ product: { variants } }] = args;
-    const [variant, ...restVariants] = variants;
+const _getStateFromProduct = ({ variants, options }) => {
+    if (!variants || !variants.length) {
+        return {
+            isHasOptions: false,
+            isHasOnlyOneVariant: false,
+            selectedVariant: {},
+            selectedOptions: {}
+        };
+    }
+
+    const [variant] = variants;
     const { selectedOptions } = variant;
 
-    instance.state = {
-        ...instance.state,
+    return {
+        // needed, if maybe the variants were not returned at all
+        isHasOptions: true,
         selectedVariant: variant,
-        isHasOnlyOneVariant: !restVariants.length,
+        // using options as they also persist on listing page
+        isHasOnlyOneVariant: _getVariantCountFromOptions(options) === 1,
         selectedOptions: selectedOptions.reduce(
             (acc, { name, value }) => ({ ...acc, [name]: value }),
             {}
         )
+    };
+};
+
+const onUpdateAddSelectedOptions = (args, callback, instance) => {
+    callback(...args);
+
+    const [{
+        product: {
+            id: prevId,
+            variants: prevVariants = []
+        }
+    }] = args;
+
+    const {
+        product,
+        product: {
+            id,
+            variants = []
+        }
+    } = instance.props;
+
+    if (
+        id !== prevId // if the product has chnaged
+        || variants.length !== prevVariants.length // variant count changed
+    ) {
+        instance.setState(_getStateFromProduct(product));
+    }
+};
+
+const addSelectedOptions = (args, callback, instance) => {
+    callback(...args);
+
+    const { product } = instance.props;
+
+    instance.state = {
+        ...instance.state || {},
+        ..._getStateFromProduct(product)
     };
 };
 
@@ -23,6 +72,7 @@ const addFieldsToContext = (args, callback, instance) => {
 
     const {
         selectedVariant,
+        isHasOptions,
         isHasOnlyOneVariant,
         selectedOptions
     } = instance.state;
@@ -30,6 +80,7 @@ const addFieldsToContext = (args, callback, instance) => {
     return {
         ...fields,
         selectedVariant,
+        isHasOptions,
         isHasOnlyOneVariant,
         selectedOptions,
         selectOption: instance.selectOption.bind(instance)
@@ -39,12 +90,12 @@ const addFieldsToContext = (args, callback, instance) => {
 const addSelectOptionFunction = (args, callback, instance) => {
     callback(args);
 
-    const { state: { product, selectedOptions } } = instance;
+    const { selectedOptions } = instance.state;
+    const { product: { variants } } = instance.props;
 
     const [name, value] = args;
     const newSelectedOptions = { ...selectedOptions, [name]: value };
 
-    const { variants } = product;
     const variant = variants.find(({ selectedOptions }) => (
         selectedOptions.every(({ name, value }) => (
             newSelectedOptions[name] === value
@@ -66,6 +117,7 @@ export default {
     'ShopifyProducts/Context/Provider/ProductProvider': {
         'member-function': {
             __construct: addSelectedOptions,
+            componentDidUpdate: onUpdateAddSelectedOptions,
             getContextValue: addFieldsToContext,
             selectOption: addSelectOptionFunction
         }

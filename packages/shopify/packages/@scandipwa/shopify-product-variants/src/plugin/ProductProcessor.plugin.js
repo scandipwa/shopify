@@ -4,7 +4,12 @@ const processVariants = ([product], callback) => {
     // process with original processor
     callback(product);
 
-    const { variants: { edges } } = product;
+    const { variants: { edges } = {} } = product;
+
+    if (!edges) {
+        return;
+    }
+
     product.variants = edges.map(({ node }) => node);
 };
 

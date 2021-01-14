@@ -18,14 +18,17 @@ export class ProductOptionsComponent extends PureComponent {
     }
 
     renderOptions() {
-        const { product: { options } } = this.context;
+        const { product: { options = [] } } = this.context;
         return options.map(this.renderOption);
     }
 
     render() {
-        const { isHasOnlyOneVariant } = this.context;
+        const {
+            isHasOnlyOneVariant,
+            isHasOptions
+        } = this.context;
 
-        if (isHasOnlyOneVariant) {
+        if (!isHasOptions || isHasOnlyOneVariant) {
             return null;
         }
 

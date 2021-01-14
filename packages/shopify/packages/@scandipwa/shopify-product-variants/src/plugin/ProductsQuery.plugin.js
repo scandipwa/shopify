@@ -4,15 +4,17 @@ import ProductsVariantsQuery from '../api/ProductVariants.query';
 
 const addVariantsField = (args, callback, instance) => {
     const originalProductFields = callback(...args);
+    const isFromProductsPage = instance.currentType === PAGINATED_PRODUCTS;
 
-    if (instance.currentType === PAGINATED_PRODUCTS) {
-        return originalProductFields;
-    }
+    const ONE_VARINAT = 1;
+    const ALL_VARINATS = 100;
 
     return [
         ...originalProductFields,
         ProductsVariantsQuery.getOptionsField(),
-        ProductsVariantsQuery.getVariantsField()
+        ProductsVariantsQuery.getVariantsField({
+            first: isFromProductsPage ? ONE_VARINAT : ALL_VARINATS
+        })
     ];
 };
 

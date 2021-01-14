@@ -45,11 +45,9 @@ export class ProductVariantsQuery {
         ];
     }
 
-    getVariantsField() {
-        const PRODUCT_VARIANTS_COUNT = 100;
-
+    getVariantsField({ first }) {
         return new Field('variants')
-            .addArgument('first', 'Int', PRODUCT_VARIANTS_COUNT)
+            .addArgument('first', 'Int', first)
             .addFieldList(this._getVariantsFields());
     }
 

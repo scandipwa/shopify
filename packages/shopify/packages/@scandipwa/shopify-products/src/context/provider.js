@@ -13,24 +13,8 @@ export class ProductProvider extends PureComponent {
         product: ProductType.isRequired
     };
 
-    componentDidUpdate() {
-        const { product } = this.props;
-        const { product: stateProduct } = this.state;
-
-        if (product.id !== stateProduct.id) {
-            this.setState({ product });
-        }
-    }
-
-    __construct(props) {
-        super.__construct(props);
-
-        const { product = {} } = props;
-        this.state = { product };
-    }
-
     getContextValue() {
-        const { product } = this.state;
+        const { product } = this.props;
         return { product };
     }
 

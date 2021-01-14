@@ -2482,6 +2482,9 @@
 "@scandipwa/shopify-pages@file:packages/shopify/packages/@scandipwa/shopify-pages":
   version "0.0.0"
 
+"@scandipwa/shopify-product-prices@file:packages/shopify/packages/@scandipwa/shopify-product-prices":
+  version "0.0.0"
+
 "@scandipwa/shopify-product-variants@file:packages/shopify/packages/@scandipwa/shopify-product-variants":
   version "0.0.0"
 

@@ -1,10 +1,10 @@
 import { PRODUCT_HERO_DESCRIPTION } from '@scandipwa/shopify-products/src/component/ProductHero/ProductHero.config';
 
-import ProductOptions from '../component/ProductOptions';
+import ProductHeroPrice from '../component/ProductHeroPrice';
 
 const addOptionsRender = (member) => {
-    member.insertEntryBefore(PRODUCT_HERO_DESCRIPTION, ['options', () => (
-        <ProductOptions />
+    member.insertEntryBefore(PRODUCT_HERO_DESCRIPTION, ['price', () => (
+        <ProductHeroPrice />
     )]);
 
     return member;

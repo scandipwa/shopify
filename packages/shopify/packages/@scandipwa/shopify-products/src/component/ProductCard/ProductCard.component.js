@@ -1,22 +1,21 @@
+import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
 import { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ProductType } from '../../api/Products.type';
+import ProductContext from '../../context/product';
+import { PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from './ProductCard.config';
 
 /** @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
 export class ProductCardComponent extends PureComponent {
-    static propTypes = {
-        product: ProductType.isRequired
-    };
+    static contextType = ProductContext;
 
-    contentList = [
-        this.renderMedia.bind(this),
-        this.renderTitle.bind(this),
-        this.renderDescription.bind(this)
-    ];
+    sortedRenderMap = createSortedMap({
+        [PRODUCT_CARD_IMAGE]: this.renderImage.bind(this),
+        [PRODUCT_CARD_TITLE]: this.renderTitle.bind(this)
+    });
 
-    renderMedia() {
-        const { product: { images: [{ src, alt }] = [] } } = this.props;
+    renderImage() {
+        const { product: { images: [{ src, alt }] = [] } } = this.context;
 
         if (!src) {
             return null;
@@ -27,7 +26,7 @@ export class ProductCardComponent extends PureComponent {
     }
 
     renderTitle() {
-        const { product: { title } } = this.props;
+        const { product: { title } } = this.context;
 
         if (!title) {
             return null;
@@ -37,17 +36,6 @@ export class ProductCardComponent extends PureComponent {
         return <h2>{ title }</h2>;
     }
 
-    renderDescription() {
-        const { product: { description } } = this.props;
-
-        if (!description) {
-            return null;
-        }
-
-        // TODO: use Typography component here
-        return <p>{ description }</p>;
-    }
-
     renderContentPart = (render, i) => (
         <Fragment key={ i }>
             { render() }
@@ -55,11 +43,11 @@ export class ProductCardComponent extends PureComponent {
     );
 
     renderContent() {
-        return this.contentList.map(this.renderContentPart);
+        return this.sortedRenderMap.map(this.renderContentPart);
     }
 
     renderLink() {
-        const { product: { linkTo } } = this.props;
+        const { product: { linkTo } } = this.context;
 
         return (
             <Link to={ linkTo } block="ProductCard">
