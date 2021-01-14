@@ -1,7 +1,7 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/shopify-api';
 
 import { ProductType } from '../../api/Products.type';
-import ProductProvider from '../../context/provider';
+import ProductProvider from '../../context/Products.provider';
 import ProductCardComponent from './ProductCard.component';
 
 /** @namespace ShopifyProducts/Component/ProductCard/Container/ProductCardContainer */

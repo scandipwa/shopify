@@ -1,7 +1,7 @@
 import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
 import { Fragment, PureComponent } from 'react';
 
-import ProductContext from '../../context/product';
+import ProductContext from '../../context/Products.context';
 import ProductMedia from '../ProductMedia';
 import { PRODUCT_HERO_DESCRIPTION, PRODUCT_HERO_TITLE } from './ProductHero.config';
 

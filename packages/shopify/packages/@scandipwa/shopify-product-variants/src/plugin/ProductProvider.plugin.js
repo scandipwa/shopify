@@ -114,7 +114,7 @@ const addSelectOptionFunction = (args, callback, instance) => {
 };
 
 export default {
-    'ShopifyProducts/Context/Provider/ProductProvider': {
+    'ShopifyProducts/Context/Products/Provider/ProductsProvider': {
         'member-function': {
             __construct: addSelectedOptions,
             componentDidUpdate: onUpdateAddSelectedOptions,

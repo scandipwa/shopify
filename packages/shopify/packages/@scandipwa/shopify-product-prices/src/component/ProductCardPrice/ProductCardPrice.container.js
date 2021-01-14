@@ -1,5 +1,5 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/shopify-api';
-import ProductContext from '@scandipwa/shopify-products/src/context/product';
+import ProductContext from '@scandipwa/shopify-products/src/context/Products.context';
 
 import ProductCardPriceComponent from './ProductCardPrice.component';
 

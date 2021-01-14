@@ -1,4 +1,4 @@
-import ProductContext from '@scandipwa/shopify-products/src/context/product';
+import ProductContext from '@scandipwa/shopify-products/src/context/Products.context';
 import { PureComponent } from 'react';
 
 import ProductOption from '../ProductOption';

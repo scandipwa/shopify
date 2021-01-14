@@ -2,7 +2,7 @@ import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
 import { Fragment, PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import ProductContext from '../../context/product';
+import ProductContext from '../../context/Products.context';
 import { PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from './ProductCard.config';
 
 /** @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */

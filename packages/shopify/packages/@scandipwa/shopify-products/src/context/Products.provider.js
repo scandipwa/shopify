@@ -1,13 +1,11 @@
-/* eslint-disable react/no-did-update-set-state */
-
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
 import { ProductType } from '../api/Products.type';
-import ProductContext from './product';
+import ProductContext from './Products.context';
 
-/** @namespace ShopifyProducts/Context/Provider/ProductProvider */
-export class ProductProvider extends PureComponent {
+/** @namespace ShopifyProducts/Context/Products/Provider/ProductsProvider */
+export class ProductsProvider extends PureComponent {
     static propTypes = {
         children: PropTypes.node.isRequired,
         product: ProductType.isRequired
@@ -29,4 +27,4 @@ export class ProductProvider extends PureComponent {
     }
 }
 
-export default ProductProvider;
+export default ProductsProvider;

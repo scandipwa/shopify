@@ -1,11 +1,11 @@
-import ApiClientContext, { ApiClient } from '../context/apiClient';
+import ShopifyApiProvider from '../context/ShopifyApi.provider';
 
 const addApiClientProvider = (member) => [
     ...member,
     (children) => (
-        <ApiClientContext.Provider value={ new ApiClient() }>
+        <ShopifyApiProvider>
             { children }
-        </ApiClientContext.Provider>
+        </ShopifyApiProvider>
     )
 ];
 
