@@ -1,18 +1,17 @@
-import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
-import { Fragment, PureComponent } from 'react';
+import { createSortedRenderList } from '@scandipwa/shopify-api/src/util/SortedMap';
+import { PureComponent } from 'react';
 
 import ProductContext from '../../context/Products.context';
 import ProductMedia from '../ProductMedia';
-import { PRODUCT_HERO_DESCRIPTION, PRODUCT_HERO_TITLE } from './ProductHero.config';
 
 /** @namespace ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent */
 export class ProductHeroComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderMap = createSortedMap({
-        [PRODUCT_HERO_TITLE]: this.renderTitle.bind(this),
-        [PRODUCT_HERO_DESCRIPTION]: this.renderDescription.bind(this)
-    });
+    sortedRenderList = createSortedRenderList([
+        this.renderTitle.bind(this),
+        this.renderDescription.bind(this)
+    ]);
 
     renderMedia() {
         return (
@@ -44,14 +43,8 @@ export class ProductHeroComponent extends PureComponent {
         return descriptionHtml;
     }
 
-    renderContentPart = (render, i) => (
-        <Fragment key={ i }>
-            { render() }
-        </Fragment>
-    );
-
     renderContent() {
-        return this.sortedRenderMap.map(this.renderContentPart);
+        return this.sortedRenderList.render();
     }
 
     render() {

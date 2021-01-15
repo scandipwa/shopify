@@ -21,7 +21,7 @@ export class CollectionsPageComponent extends PureComponent {
         <CollectionsFallbackPage />
     );
 
-    render() {
+    renderContent() {
         return (
             <PaginatedConnection
               renderPage={ this.renderPage }
@@ -29,6 +29,14 @@ export class CollectionsPageComponent extends PureComponent {
               queryGetter={ getCollectionsQueryOfType(PAGINATED_COLLECTIONS) }
               responseProcessor={ collectionsResponseProcessor }
             />
+        );
+    }
+
+    render() {
+        return (
+            <div block="CollectionsPage">
+                { this.renderContent() }
+            </div>
         );
     }
 }

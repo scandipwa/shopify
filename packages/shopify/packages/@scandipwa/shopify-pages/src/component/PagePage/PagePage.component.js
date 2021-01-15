@@ -1,4 +1,5 @@
-import { Fragment, PureComponent } from 'react';
+import { createSortedRenderList } from '@scandipwa/shopify-api/src/util/SortedMap';
+import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';
 
@@ -8,13 +9,17 @@ export class PagePageComponent extends PureComponent {
         page: PageType.isRequired
     };
 
-    renderMap = {
-        title: this.renderTitle.bind(this),
-        body: this.renderBody.bind(this)
-    };
+    sortedRenderList = createSortedRenderList([
+        this.renderTitle.bind(this),
+        this.renderBody.bind(this)
+    ]);
 
     renderBody() {
         const { page: { body } } = this.props;
+
+        if (!body) {
+            return null;
+        }
 
         // TODO: use HTML component here
         return body;
@@ -28,22 +33,8 @@ export class PagePageComponent extends PureComponent {
         return <h2>{ title }</h2>;
     }
 
-    renderContentParts = ([key, render]) => {
-        const { page } = this.props;
-
-        if (!page[key]) {
-            return null;
-        }
-
-        return (
-            <Fragment key={ key }>
-                { render() }
-            </Fragment>
-        );
-    };
-
     renderContent() {
-        return Object.entries(this.renderMap).map(this.renderContentParts);
+        return this.renderBody();
     }
 
     render() {

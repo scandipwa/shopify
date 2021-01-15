@@ -1,19 +1,17 @@
-import { PRODUCT_HERO_DESCRIPTION } from '@scandipwa/shopify-products/src/component/ProductHero/ProductHero.config';
+import { createElement } from 'react';
 
 import ProductHeroPrice from '../component/ProductHeroPrice';
 
 const addOptionsRender = (member) => {
-    member.insertEntryBefore(PRODUCT_HERO_DESCRIPTION, ['price', () => (
-        <ProductHeroPrice />
-    )]);
-
+    const PRICE_POSITION = 1100;
+    member.addRendererToPosition(() => createElement(ProductHeroPrice), PRICE_POSITION);
     return member;
 };
 
 export default {
     'ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent': {
         'member-property': {
-            sortedRenderMap: addOptionsRender
+            sortedRenderList: addOptionsRender
         }
     }
 };

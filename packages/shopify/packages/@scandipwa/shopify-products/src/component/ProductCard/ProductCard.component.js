@@ -1,18 +1,17 @@
-import { createSortedMap } from '@scandipwa/shopify-api/src/util/SortedMap';
-import { Fragment, PureComponent } from 'react';
+import { createSortedRenderList } from '@scandipwa/shopify-api/src/util/SortedMap';
+import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import ProductContext from '../../context/Products.context';
-import { PRODUCT_CARD_IMAGE, PRODUCT_CARD_TITLE } from './ProductCard.config';
 
 /** @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderMap = createSortedMap({
-        [PRODUCT_CARD_IMAGE]: this.renderImage.bind(this),
-        [PRODUCT_CARD_TITLE]: this.renderTitle.bind(this)
-    });
+    sortedRenderList = createSortedRenderList([
+        this.renderImage.bind(this),
+        this.renderTitle.bind(this)
+    ]);
 
     renderImage() {
         const { product: { images: [{ src, alt }] = [] } } = this.context;
@@ -36,14 +35,8 @@ export class ProductCardComponent extends PureComponent {
         return <h2>{ title }</h2>;
     }
 
-    renderContentPart = (render, i) => (
-        <Fragment key={ i }>
-            { render() }
-        </Fragment>
-    );
-
     renderContent() {
-        return this.sortedRenderMap.map(this.renderContentPart);
+        return this.sortedRenderList.render();
     }
 
     renderLink() {

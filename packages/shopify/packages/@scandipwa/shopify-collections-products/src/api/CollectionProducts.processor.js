@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { processProduct } from '@scandipwa/shopify-products/src/api/Products.processor';
 
-/** @namespace ShopifyCollection-Products/Api/CollectionProducts/Processor/processCollectionProduct */
+/** @namespace ShopifyCollections-Products/Api/CollectionProducts/Processor/processCollectionProduct */
 export const processCollectionProduct = (product, collectionHandle) => {
     const { handle } = product;
 
@@ -13,7 +13,7 @@ export const processCollectionProduct = (product, collectionHandle) => {
     };
 };
 
-/** @namespace ShopifyCollection-Products/Api/CollectionProducts/Processor/collectionProductsResponseProcessor */
+/** @namespace ShopifyCollections-Products/Api/CollectionProducts/Processor/collectionProductsResponseProcessor */
 export const collectionProductsResponseProcessor = ({ collectionByHandle }) => {
     const { products, handle } = collectionByHandle;
     const { edges } = products;

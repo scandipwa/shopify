@@ -1,35 +1,32 @@
-/** @namespace ShopifyApi/Util/SortedMap/createSortedMap */
-export const createSortedMap = (mapOrObject) => {
-    const map = mapOrObject instanceof Map
-        ? mapOrObject
-        : new Map(Object.entries(mapOrObject));
+/* eslint-disable no-param-reassign */
+import { Fragment } from 'react';
 
-    map.map = (...mapArgs) => Array.from(
-        map.values(),
-        ...mapArgs
-    );
+/** @namespace ShopifyApi/Util/SortedMap/createSortedRenderList */
+export const createSortedRenderList = (array) => {
+    const DEFAULT_POSITION = 1000;
 
-    map.insertEntryBefore = (existingKey, newEntry) => {
-        const entries = Array.from(map.entries());
-        const keyIndex = entries.findIndex(([key]) => key === existingKey);
+    const sortedArray = array.map((renderer, i) => ({
+        renderer,
+        // start position with 1000
+        position: (i + 1) * DEFAULT_POSITION
+    }));
 
-        if (keyIndex === -1) {
-            console.warn(
-                `Tried inserting into sorted object before the existing key "${ existingKey }". `
-                + 'Failed finding key to insert before. Appending to the end.'
+    return {
+        render: () => sortedArray.sort(
+            (a, b) => a.position - b.position
+        ).map((renderer, i) => {
+            const render = renderer.renderer || renderer;
+
+            return (
+                // eslint-disable-next-line react/no-array-index-key
+                <Fragment key={ i }>
+                    { render() }
+                </Fragment>
             );
+        }),
 
-            map.set(...newEntry);
-            return;
+        addRendererToPosition: (renderer, position = DEFAULT_POSITION) => {
+            sortedArray.push({ position, renderer });
         }
-
-        entries.splice(keyIndex, 0, newEntry);
-        map.clear();
-
-        entries.forEach(([key, value]) => {
-            map.set(key, value);
-        });
     };
-
-    return map;
 };

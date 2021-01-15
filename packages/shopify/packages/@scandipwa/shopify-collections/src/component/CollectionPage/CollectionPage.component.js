@@ -1,4 +1,5 @@
-import { Fragment, PureComponent } from 'react';
+import { createSortedRenderList } from '@scandipwa/shopify-api/src/util/SortedMap';
+import { PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
 
@@ -8,22 +9,32 @@ export class CollectionPageComponent extends PureComponent {
         collection: CollectionType.isRequired
     };
 
-    renderMap = {
-        image: this.renderMedia.bind(this),
-        title: this.renderTitle.bind(this),
-        descriptionHtml: this.renderDescription.bind(this)
-    };
+    sortedRenderList = createSortedRenderList([
+        this.renderImage.bind(this),
+        this.renderTitle.bind(this),
+        this.renderDescription.bind(this)
+    ]);
 
     renderDescription() {
         const { collection: { descriptionHtml } } = this.props;
+
+        if (!descriptionHtml) {
+            return null;
+        }
 
         // TODO: use HTML component here
         return descriptionHtml;
         // return <div dangerouslySetInnerHTML={ descriptionHtml } />;
     }
 
-    renderMedia() {
-        const { collection: { image: { src, alt } } } = this.props;
+    renderImage() {
+        const { collection: { image } } = this.props;
+
+        if (!image) {
+            return null;
+        }
+
+        const { src, alt } = image;
 
         // TODO: use Image component here
         return <img src={ src } alt={ alt } />;
@@ -32,26 +43,16 @@ export class CollectionPageComponent extends PureComponent {
     renderTitle() {
         const { collection: { title } } = this.props;
 
+        if (!title) {
+            return null;
+        }
+
         // TODO: use Typography component here
         return <h2>{ title }</h2>;
     }
 
-    renderContentParts = ([key, render]) => {
-        const { collection } = this.props;
-
-        if (!collection[key]) {
-            return null;
-        }
-
-        return (
-            <Fragment key={ key }>
-                { render() }
-            </Fragment>
-        );
-    };
-
     renderContent() {
-        return Object.entries(this.renderMap).map(this.renderContentParts);
+        return this.sortedRenderList.render();
     }
 
     render() {

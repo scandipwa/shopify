@@ -6,10 +6,9 @@ import { PureComponent } from 'react';
 import { collectionProductsResponseProcessor } from '../../api/CollectionProducts.processor';
 import CollectionProductsFallback from '../CollectionProductsFallback';
 
-/** @namespace ShopifyCollection-Products/Component/CollectionProducts/Component/CollectionProductsComponent */
+/** @namespace ShopifyCollections-Products/Component/CollectionProducts/Component/CollectionProductsComponent */
 export class CollectionProductsComponent extends PureComponent {
     static propTypes = {
-        isCollectionLoading: PropTypes.bool.isRequired,
         getQuery: PropTypes.func.isRequired
     };
 
@@ -26,15 +25,8 @@ export class CollectionProductsComponent extends PureComponent {
         <CollectionProductsFallback />
     );
 
-    render() {
-        const {
-            isCollectionLoading,
-            getQuery
-        } = this.props;
-
-        if (isCollectionLoading) {
-            return this.renderPlaceholder();
-        }
+    renderContent() {
+        const { getQuery } = this.props;
 
         return (
             <PaginatedConnection
@@ -43,6 +35,14 @@ export class CollectionProductsComponent extends PureComponent {
               queryGetter={ getQuery }
               responseProcessor={ collectionProductsResponseProcessor }
             />
+        );
+    }
+
+    render() {
+        return (
+            <div block="CollectionProducts">
+                { this.renderContent() }
+            </div>
         );
     }
 }

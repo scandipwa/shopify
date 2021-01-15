@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import getCollectionProductsQueryOfType, { SINGLE_PRODUCT_COLLECTION } from '../../api/CollectionProducts.query';
 import CollectionProductsComponent from './CollectionProducts.component';
 
-/** @namespace ShopifyCollection-Products/Component/CollectionProducts/Container/CollectionProductsContainer */
+/** @namespace ShopifyCollections-Products/Component/CollectionProducts/Container/CollectionProductsContainer */
 export class CollectionProductsContainer extends HigherOrderComponent {
     static propTypes = {
         match: MatchType.isRequired
@@ -13,14 +13,6 @@ export class CollectionProductsContainer extends HigherOrderComponent {
 
     containerFunctions = {
         getQuery: this.getQuery.bind(this)
-    };
-
-    containerProps = () => {
-        const collectionHandle = this.getCollectionHandle();
-
-        return {
-            isCollectionLoading: !collectionHandle
-        };
     };
 
     getCollectionHandle() {
