@@ -3,6 +3,7 @@ import BrowserDatabase from '@scandipwa/shopify-api/src/util/BrowserDatabase';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import { processCheckout } from '../api/Checkout.processor';
 import getCheckoutQueryOfType, { CREATE_CHECKOUT, FETCH_CHECKOUT } from '../api/Checkout.query';
 import CheckoutContext from './Checkout.context';
 
@@ -59,6 +60,7 @@ export class CheckoutProvider extends PureComponent {
     }
 
     updateCheckout(checkout) {
+        processCheckout(checkout);
         BrowserDatabase.setItem(CHECKOUT_FROM_STORAGE, checkout);
         this.setState({ checkout, isCheckoutProcessStarted: true });
     }
