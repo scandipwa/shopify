@@ -18,7 +18,8 @@ export class CollectionPageComponent extends PureComponent {
         const { collection: { descriptionHtml } } = this.props;
 
         // TODO: use HTML component here
-        return <div dangerouslySetInnerHTML={ descriptionHtml } />;
+        return descriptionHtml;
+        // return <div dangerouslySetInnerHTML={ descriptionHtml } />;
     }
 
     renderMedia() {

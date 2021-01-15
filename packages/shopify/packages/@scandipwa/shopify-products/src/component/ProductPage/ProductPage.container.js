@@ -4,7 +4,6 @@ import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnect
 
 import { processProductByHandleResponse } from '../../api/Products.processor';
 import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
-import ProductContext from '../../context/Products.context';
 import ProductProvider from '../../context/Products.provider';
 import ProductFallbackPage from '../ProductFallbackPage';
 import { PRODUCT_COMPONENT_PAGE, PRODUCT_FALLBACK_PAGE } from './PagePage.config';

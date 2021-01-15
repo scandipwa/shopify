@@ -2473,6 +2473,9 @@
 "@scandipwa/shopify-api@file:packages/shopify/packages/@scandipwa/shopify-api":
   version "0.0.0"
 
+"@scandipwa/shopify-checkout-line-items@file:packages/shopify/packages/@scandipwa/shopify-checkout-line-items":
+  version "0.0.0"
+
 "@scandipwa/shopify-checkout@file:packages/shopify/packages/@scandipwa/shopify-checkout":
   version "0.0.0"
 
@@ -2483,6 +2486,9 @@
   version "0.0.0"
 
 "@scandipwa/shopify-pages@file:packages/shopify/packages/@scandipwa/shopify-pages":
+  version "0.0.0"
+
+"@scandipwa/shopify-product-checkout@file:packages/shopify/packages/@scandipwa/shopify-product-checkout":
   version "0.0.0"
 
 "@scandipwa/shopify-product-prices@file:packages/shopify/packages/@scandipwa/shopify-product-prices":

@@ -1,4 +1,5 @@
 import { ApiClientContext } from '@scandipwa/shopify-api';
+import BrowserDatabase from '@scandipwa/shopify-api/src/util/BrowserDatabase';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
@@ -18,7 +19,7 @@ export class CheckoutProvider extends PureComponent {
     __construct(props) {
         super.__construct(props);
 
-        const checkoutFromStorage = localStorage.getItem(CHECKOUT_FROM_STORAGE);
+        const checkoutFromStorage = BrowserDatabase.getItem(CHECKOUT_FROM_STORAGE);
 
         this.state = {
             checkout: checkoutFromStorage || {},
@@ -46,6 +47,7 @@ export class CheckoutProvider extends PureComponent {
         const mutation = getCheckoutQueryOfType(FETCH_CHECKOUT)({ id });
         const { checkout } = await postQuery(mutation);
         this.updateCheckout(checkout);
+        return checkout;
     }
 
     async createNewCheckout() {
@@ -53,10 +55,11 @@ export class CheckoutProvider extends PureComponent {
         const mutation = getCheckoutQueryOfType(CREATE_CHECKOUT)();
         const { checkoutCreate: { checkout } } = await postMutation(mutation);
         this.updateCheckout(checkout);
+        return checkout;
     }
 
     updateCheckout(checkout) {
-        localStorage.setItem(CHECKOUT_FROM_STORAGE, checkout);
+        BrowserDatabase.setItem(CHECKOUT_FROM_STORAGE, checkout);
         this.setState({ checkout, isCheckoutProcessStarted: true });
     }
 
@@ -68,8 +71,7 @@ export class CheckoutProvider extends PureComponent {
 
         return {
             checkout,
-            isCheckoutProcessStarted,
-            createNewCheckout: this.createNewCheckout.bind(this)
+            isCheckoutProcessStarted
         };
     }
 

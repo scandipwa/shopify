@@ -38,7 +38,17 @@ export class FrontPagePageComponent extends PureComponent {
         return Object.entries(this.renderMap).map(this.renderContentParts);
     }
 
+    renderDefaultFrontpage() {
+        return 'default frontpage!';
+    }
+
     render() {
+        const { page } = this.props;
+
+        if (!page) {
+            return this.renderDefaultFrontpage();
+        }
+
         return (
             <div block="FrontPagePage">
                 { this.renderContent() }
