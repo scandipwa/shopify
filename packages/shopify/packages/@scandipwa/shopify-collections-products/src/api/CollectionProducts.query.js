@@ -4,7 +4,7 @@ import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '@scandipwa/shopify-p
 
 export const SINGLE_PRODUCT_COLLECTION = 'single';
 
-/** @namespace ShopifyCollection-Products/Api/CollectionProducts/Query/CollectionProductsQuery */
+/** @namespace ShopifyCollections-Products/Api/CollectionProducts/Query/CollectionProductsQuery */
 export class CollectionProductsQuery extends TypedQuery {
     typeMap = {
         [SINGLE_PRODUCT_COLLECTION]: this.getCollectionProducts.bind(this)
