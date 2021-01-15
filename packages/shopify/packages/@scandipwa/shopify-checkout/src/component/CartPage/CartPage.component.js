@@ -2,8 +2,16 @@ import { PureComponent } from 'react';
 
 /** @namespace ShopifyCheckout/Component/CartPage/Component/CartPageComponent */
 export class CartPageComponent extends PureComponent {
+    renderContent() {
+        return null;
+    }
+
     render() {
-        return 'cart page???';
+        return (
+            <div block="CartPage">
+                { this.renderContent() }
+            </div>
+        );
     }
 }
 
