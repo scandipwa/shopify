@@ -15,7 +15,7 @@
 - [ ] Implement `checkout-discounts`
 - [ ] Implement `checkout-shipping`
 - [ ] Implement `checkout-billing`
-- [ ] Implement `checkout-billing`
+- [ ] Implement `checkout-gift-cards`
 - [x] Implement `collections`
 - [x] Implement `collection-products`
 - [x] Implement `products`
