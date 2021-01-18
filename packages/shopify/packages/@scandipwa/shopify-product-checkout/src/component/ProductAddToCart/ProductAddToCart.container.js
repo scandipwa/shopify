@@ -10,20 +10,34 @@ import ProductAddToCartComponent from './ProductAddToCart.component';
 /** @namespace ShopifyProduct-Checkout/Component/ProductAddToCart/Container/ProductAddToCartContainer */
 export class ProductAddToCartContainer extends HigherOrderComponent {
     static propTypes = {
-        product: ProductType.isRequired,
-        quantity: PropTypes.number.isRequired
+        [ProductContext.displayName]: PropTypes.shape({
+            product: ProductType.isRequired,
+            quantity: PropTypes.number.isRequired
+        }),
+        [CheckoutContext.displayName]: PropTypes.shape({
+            addVariantToCart: PropTypes.func.isRequired
+        })
     };
 
     getIsVisible() {
-        const { product: { availableForSale } } = this.props;
+        const {
+            [ProductContext.displayName]: {
+                product: {
+                    availableForSale
+                }
+            }
+        } = this.props;
+
         return !!availableForSale;
     }
 
     getIsDisabled() {
         const {
-            selectedVariant: {
-                availableForSale,
-                currentlyNotInStock
+            [ProductContext.displayName]: {
+                selectedVariant: {
+                    availableForSale,
+                    currentlyNotInStock
+                }
             }
         } = this.props;
 
@@ -31,8 +45,16 @@ export class ProductAddToCartContainer extends HigherOrderComponent {
     }
 
     onAddToCartClick() {
-        const { selectedVariant, addVariantToCart } = this.props;
-        const { quantity } = this.props;
+        const {
+            [ProductContext.displayName]: {
+                selectedVariant,
+                quantity
+            },
+            [CheckoutContext.displayName]: {
+                addVariantToCart
+            }
+        } = this.props;
+
         addVariantToCart(selectedVariant, quantity);
     }
 

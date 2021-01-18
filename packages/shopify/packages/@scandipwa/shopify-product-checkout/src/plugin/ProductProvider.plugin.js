@@ -7,7 +7,7 @@ const onProductUpdateQuantity = (args, callback, instance) => {
     const { selectedVariant: { id } } = instance.state;
 
     if (prevId !== id) {
-        this.setState({
+        instance.setState({
             quantity: 1
         });
     }
@@ -16,9 +16,12 @@ const onProductUpdateQuantity = (args, callback, instance) => {
 const addQuantity = (args, callback, instance) => {
     callback(...args);
 
+    // Allow passing quantity as a prop for context provider
+    const [{ quantity = 1 }] = args;
+
     instance.state = {
         ...instance.state || {},
-        quantity: 1
+        quantity
     };
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const processVariants = ([checkout], callback) => {
+const processLineItems = ([checkout], callback) => {
     // process with original processor
     callback(checkout);
 
@@ -15,6 +15,6 @@ const processVariants = ([checkout], callback) => {
 
 export default {
     'ShopifyCheckout/Api/Checkout/Processor/processCheckout': {
-        function: processVariants
+        function: processLineItems
     }
 };

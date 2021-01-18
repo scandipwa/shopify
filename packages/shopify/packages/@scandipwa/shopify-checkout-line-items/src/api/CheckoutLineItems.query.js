@@ -104,7 +104,7 @@ export class CheckoutLineItemsQuery extends TypedQuery {
 
     getLineItemsUpdateField({ checkoutId, lineItems }) {
         return new Field('checkoutLineItemsUpdate')
-            .addArgument('lineItems', '[CheckoutLineItemInput!]!', lineItems)
+            .addArgument('lineItems', '[CheckoutLineItemUpdateInput!]!', lineItems)
             .addArgument('checkoutId', 'ID!', checkoutId)
             .addFieldList(this._getLineItemsUpdateFields());
     }

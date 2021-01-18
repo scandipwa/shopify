@@ -46,7 +46,7 @@ const addRemoveLineItemByIdFunction = async (args, callback, instance) => {
     // Arguments are: lineItemId
     const [lineItemId] = args;
     const { checkout: { id: checkoutId } } = instance.state;
-    const queryParams = { checkoutId, lineItemIds: [lineItemId] };
+    const queryParams = { checkoutId, lineItemsIds: [lineItemId] };
 
     const { postMutation } = instance.context;
     const mutation = getCheckoutLineItemsQueryOfType(REMOVE_LINE_ITEMS)(queryParams);
