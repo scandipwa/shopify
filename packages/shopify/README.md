@@ -30,4 +30,5 @@
 - [ ] Implement `article-author`
 - [ ] Implement `article-comments`
 - [ ] Add proper dependencies for modules
+- [ ] Fix bundle size (async import / export)
 - [ ] Implement styled theme
