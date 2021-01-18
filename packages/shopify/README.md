@@ -1,40 +1,33 @@
-# Getting Started with Create ScandiPWA App
+# ScandiPWA Shopify plan
 
-This package contains new ScandiPWA theme sources. Your parent theme is `@scandipwa/scandipwa`.
-
-## Installation
-
-Before you start, make sure to install package dependencies.
-
-To do this, use `yarn` or `npm i` command.
-
-### Recommended packages
-
-For the best expirience, install `scandipwa-cli` package globally. To do this, run:
-
-```bash
-npm i -g scandipwa-cli
-```
-
-## Available Scripts
-
-### `npm run start` or `yarn start`
-
-Starts the development server.
-
-**Features**:
-- The page will reload if you make edits.
-- You will also see any lint errors in the console.
-
-### `npm run build` or `yarn build`
-
-Bundles the app into static files for production.
-
-**Features**:
-- The build is minified and the filenames include the hashes.
-- The build is optimized for the best performance
-
-## Learn more
-
-Visit the documentation for [development guides](https://scandipwa.gitbook.io/create-scandipwa-app/).
-
+- [ ] Add UI module
+- [ ] Add HTML parsing module
+- [x] Add GraphQL module
+- [ ] Implement `store`
+- [x] Implement `api`
+- [ ] Implement `customer`
+- [ ] Implement `customer-address`
+- [ ] Implement `customer-orders`
+- [x] Implement `checkout`
+- [x] Implement `checkout-line-items`
+- [ ] Implement `checkout-customer`
+- [ ] Implement `checkout-page`
+- [ ] Implement `checkout-discounts`
+- [ ] Implement `checkout-shipping`
+- [ ] Implement `checkout-billing`
+- [ ] Implement `checkout-billing`
+- [x] Implement `collections`
+- [x] Implement `collection-products`
+- [x] Implement `products`
+- [x] Implement `product-checkout`
+- [x] Implement `product-prices`
+- [x] Implement `product-variants`
+- [ ] Implement `product-recommendations`
+- [ ] Implement `product-recommendations`
+- [x] Implement `pages`
+- [ ] Implement `blog`
+- [ ] Implement `articles`
+- [ ] Implement `article-author`
+- [ ] Implement `article-comments`
+- [ ] Add proper dependencies for modules
+- [ ] Implement styled theme
