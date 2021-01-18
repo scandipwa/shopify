@@ -3,6 +3,7 @@ import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
 import LineItemsContext from '../../context/LineItems.context';
+import LineItemPrice from '../LineItemPrice';
 import LineItemQuantity from '../LineItemQuantity';
 
 /** @namespace ShopifyCheckout-Cart/Component/LineItem/Component/LineItemComponent */
@@ -13,6 +14,7 @@ export class LineItemComponent extends PureComponent {
         this.renderDelete.bind(this),
         this.renderImage.bind(this),
         this.renderTitle.bind(this),
+        this.renderPrice.bind(this),
         this.renderQuantity.bind(this)
     ]);
 
@@ -41,6 +43,12 @@ export class LineItemComponent extends PureComponent {
 
         // TODO: use Image component here
         return <img src={ src } alt={ alt } />;
+    }
+
+    renderPrice() {
+        return (
+            <LineItemPrice />
+        );
     }
 
     renderTitle() {
