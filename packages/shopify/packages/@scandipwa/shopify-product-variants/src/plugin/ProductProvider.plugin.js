@@ -88,7 +88,7 @@ const addFieldsToContext = (args, callback, instance) => {
 };
 
 const addSelectOptionFunction = (args, callback, instance) => {
-    callback(args);
+    callback(...args);
 
     const { selectedOptions } = instance.state;
     const { product: { variants } } = instance.props;

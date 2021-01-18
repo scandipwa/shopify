@@ -3,17 +3,15 @@ import { withContexts } from '@scandipwa/shopify-api/src/util/Context';
 import CheckoutContext from '@scandipwa/shopify-checkout/src/context/Checkout.context';
 import { ProductType } from '@scandipwa/shopify-products/src/api/Products.type';
 import ProductContext from '@scandipwa/shopify-products/src/context/Products.context';
+import PropTypes from 'prop-types';
 
 import ProductAddToCartComponent from './ProductAddToCart.component';
 
 /** @namespace ShopifyProduct-Checkout/Component/ProductAddToCart/Container/ProductAddToCartContainer */
 export class ProductAddToCartContainer extends HigherOrderComponent {
     static propTypes = {
-        product: ProductType.isRequired
-    };
-
-    state = {
-        quantity: 1
+        product: ProductType.isRequired,
+        quantity: PropTypes.number.isRequired
     };
 
     getIsVisible() {
@@ -32,19 +30,14 @@ export class ProductAddToCartContainer extends HigherOrderComponent {
         return !availableForSale || !!currentlyNotInStock;
     }
 
-    onQuantityChange(quantity) {
-        this.setState({ quantity });
-    }
-
     onAddToCartClick() {
         const { selectedVariant, addVariantToCart } = this.props;
-        const { quantity } = this.state;
+        const { quantity } = this.props;
         addVariantToCart(selectedVariant, quantity);
     }
 
     containerFunctions = {
-        onAddToCartClick: this.onAddToCartClick.bind(this),
-        onQuantityChange: this.onQuantityChange.bind(this)
+        onAddToCartClick: this.onAddToCartClick.bind(this)
     };
 
     containerProps = () => ({

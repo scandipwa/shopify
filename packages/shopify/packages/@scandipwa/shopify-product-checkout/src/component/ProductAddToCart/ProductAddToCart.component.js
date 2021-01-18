@@ -7,12 +7,7 @@ export class ProductAddToCartComponent extends PureComponent {
         isVisible: PropTypes.bool.isRequired,
         isDisabled: PropTypes.bool.isRequired,
         onAddToCartClick: PropTypes.func.isRequired
-        // onQuantityChange: PropTypes.func.isRequired
     };
-
-    renderQuantity() {
-        return 'qty';
-    }
 
     renderButton() {
         const {
@@ -40,7 +35,6 @@ export class ProductAddToCartComponent extends PureComponent {
 
         return (
             <div block="ProductAddToCart">
-                { this.renderQuantity() }
                 { this.renderButton() }
             </div>
         );

@@ -16,7 +16,7 @@ const addFieldsToContext = (args, callback, instance) => {
 };
 
 const addAddVariantToCartFunction = async (args, callback, instance) => {
-    callback(args);
+    callback(...args);
 
     const { isCheckoutProcessStarted } = instance.state;
 
@@ -41,7 +41,7 @@ const addAddVariantToCartFunction = async (args, callback, instance) => {
 };
 
 const addRemoveLineItemByIdFunction = async (args, callback, instance) => {
-    callback(args);
+    callback(...args);
 
     // Arguments are: lineItemId
     const [lineItemId] = args;
@@ -55,7 +55,7 @@ const addRemoveLineItemByIdFunction = async (args, callback, instance) => {
 };
 
 const addUpdateLineItemQtyByIdFunction = async (args, callback, instance) => {
-    callback(args);
+    callback(...args);
 
     // Arguments are: lineItemId, qty
     const [lineItemId, quantity] = args;

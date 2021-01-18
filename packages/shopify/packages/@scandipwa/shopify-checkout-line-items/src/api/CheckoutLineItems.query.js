@@ -3,6 +3,7 @@ import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api';
 import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 import { CheckoutQuery } from '@scandipwa/shopify-checkout/src/api/Checkout.query';
 import { ProductVariantsQuery } from '@scandipwa/shopify-product-variants/src/api/ProductVariants.query';
+import { ProductsQuery } from '@scandipwa/shopify-products/src/api/Products.query';
 
 export const CHECKOUT_LINE_ITEMS = 'checkout';
 export const ADD_LINE_ITEMS = 'add';
@@ -18,11 +19,28 @@ export class CheckoutLineItemsQuery extends TypedQuery {
         [REMOVE_LINE_ITEMS]: this.getLineItemsRemoveField.bind(this)
     };
 
-    _getVariantField() {
+    _getVariantProductFields() {
+        const query = new ProductsQuery();
+        return query._getProductFields();
+    }
+
+    _getVariantProductField() {
+        return new Field('product')
+            .addFieldList(this._getVariantProductFields());
+    }
+
+    _getVariantFields() {
         const query = new ProductVariantsQuery();
 
+        return [
+            ...query._getVariantFields(),
+            this._getVariantProductField()
+        ];
+    }
+
+    _getVariantField() {
         return new Field('variant')
-            .addFieldList(query._getVariantFields());
+            .addFieldList(this._getVariantFields());
     }
 
     _getLineItemFields() {
