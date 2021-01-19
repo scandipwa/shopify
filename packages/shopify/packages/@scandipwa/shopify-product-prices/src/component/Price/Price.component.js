@@ -1,34 +1,41 @@
+import ShopContext from '@scandipwa/shopify-shop/src/context/Shop.context';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import { PRICE_TEMPLATE } from './Price.config';
+
 /** @namespace ShopifyProduct-Prices/Component/Price/Component/PriceComponent */
 export class PriceComponent extends PureComponent {
+    static contextType = ShopContext;
+
     static propTypes = {
-        amount: PropTypes.string.isRequired,
-        currency: PropTypes.string.isRequired
+        amount: PropTypes.string.isRequired
     };
 
     renderPrice() {
+        const { shop: { moneyFormat } = {} } = this.context;
         const { amount } = this.props;
-        return amount;
-    }
 
-    renderCurrency() {
-        const { currency } = this.props;
-        return currency;
+        return moneyFormat.replace(
+            PRICE_TEMPLATE,
+            parseFloat(amount).toFixed(2)
+        );
     }
 
     render() {
+        const { shop: { moneyFormat } = {} } = this.context;
         const { amount } = this.props;
 
-        if (amount === undefined) {
+        if (
+            amount === undefined
+            || !moneyFormat
+        ) {
             return null;
         }
 
         return (
             <p block="Price">
                 { this.renderPrice() }
-                { this.renderCurrency() }
             </p>
         );
     }

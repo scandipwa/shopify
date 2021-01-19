@@ -22,7 +22,8 @@
         "@scandipwa/shopify-product-prices": "file:packages/@scandipwa/shopify-product-prices",
         "@scandipwa/shopify-checkout": "file:packages/@scandipwa/shopify-checkout",
         "@scandipwa/shopify-checkout-line-items": "file:packages/@scandipwa/shopify-checkout-line-items",
-        "@scandipwa/shopify-product-checkout": "file:packages/@scandipwa/shopify-product-checkout"
+        "@scandipwa/shopify-product-checkout": "file:packages/@scandipwa/shopify-product-checkout",
+        "@scandipwa/shopify-shop": "file:packages/@scandipwa/shopify-shop"
     },
     "scandipwa": {
         "themeAlias": "Blank",
@@ -40,7 +41,8 @@
             "@scandipwa/shopify-product-prices": true,
             "@scandipwa/shopify-checkout": true,
             "@scandipwa/shopify-checkout-line-items": true,
-            "@scandipwa/shopify-product-checkout": true
+            "@scandipwa/shopify-product-checkout": true,
+            "@scandipwa/shopify-shop": true
         }
     },
     "browserslist": {

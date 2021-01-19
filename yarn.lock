@@ -2500,6 +2500,9 @@
 "@scandipwa/shopify-products@file:packages/shopify/packages/@scandipwa/shopify-products":
   version "0.0.0"
 
+"@scandipwa/shopify-shop@file:packages/shopify/packages/@scandipwa/shopify-shop":
+  version "0.0.0"
+
 "@scandipwa/webpack-extension-import-loader@0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@scandipwa/webpack-extension-import-loader/-/webpack-extension-import-loader-0.0.16.tgz#1daf4209cf74d33efb7d3b447d448a20830fc8ba"
