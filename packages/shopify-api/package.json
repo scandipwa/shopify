@@ -12,14 +12,14 @@
         "@scandipwa/graphql": "0.0.0"
     },
     "scandipwa": {
-        "type": "extension"
-    },
-    "eslintConfig": {
-        "extends": "@scandipwa",
+        "type": "extension",
         "extensions": {
             "@scandipwa/framework": true,
             "@scandipwa/router": true,
             "@scandipwa/graphql": true
         }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
     }
 }

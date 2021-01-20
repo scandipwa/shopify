@@ -3,7 +3,12 @@
     "version": "0.0.0",
     "license": "OSL-3.0",
     "scandipwa": {
-        "type": "extension"
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/framework": true,
+            "@scandipwa/graphql": true,
+            "@scandipwa/shopify-api": true
+        }
     },
     "peerDependencies": {
         "@scandipwa/framework": "^0.0.0",
@@ -15,11 +20,6 @@
         "@scandipwa/shopify-api": "0.0.0"
     },
     "eslintConfig": {
-        "extends": "@scandipwa",
-        "extensions": {
-            "@scandipwa/framework": true,
-            "@scandipwa/graphql": true,
-            "@scandipwa/shopify-api": true
-        }
+        "extends": "@scandipwa"
     }
 }

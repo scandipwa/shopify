@@ -1,5 +1,5 @@
-import ApiContext from '@scandipwa/shopify-api/src/context/ShopifyApi.context';
 import BrowserDatabase from '@scandipwa/framework/src/util/BrowserDatabase';
+import ApiContext from '@scandipwa/shopify-api/src/context/ShopifyApi.context';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 

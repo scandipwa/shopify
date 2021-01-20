@@ -1,5 +1,5 @@
-import { HistoryType, MatchType } from '@scandipwa/router/src/type/Router.type';
 import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC';
+import { HistoryType, MatchType } from '@scandipwa/router/src/type/Router.type';
 import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnection';
 
 import { processCollectionByHandleResponse } from '../../api/Collections.processor';
