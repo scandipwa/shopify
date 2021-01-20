@@ -2485,6 +2485,9 @@
 "@scandipwa/shopify-collections@file:packages/shopify/packages/@scandipwa/shopify-collections":
   version "0.0.0"
 
+"@scandipwa/shopify-customer@file:packages/shopify/packages/@scandipwa/shopify-customer":
+  version "0.0.0"
+
 "@scandipwa/shopify-pages@file:packages/shopify/packages/@scandipwa/shopify-pages":
   version "0.0.0"
 

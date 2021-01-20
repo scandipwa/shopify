@@ -2,7 +2,7 @@
 
 # By priority
 
-- [ ] Implement `shop`
+- [x] Implement `shop`
 - [ ] Implement `customer`
 - [ ] Implement `customer-address`
 - [ ] Implement `checkout-customer`
