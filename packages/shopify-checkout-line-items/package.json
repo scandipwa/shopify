@@ -1,0 +1,32 @@
+{
+    "name": "@scandipwa/shopify-checkout-line-items",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "peerDependencies": {
+        "@scandipwa/shopify-checkout": "^0.0.0"
+    },
+    "dependencies": {
+        "@scandipwa/framework": "0.0.4",
+        "@scandipwa/shopify-api": "0.0.0",
+        "@scandipwa/graphql": "0.0.0",
+        "@scandipwa/shopify-products": "0.0.0",
+        "@scandipwa/shopify-product-variants": "0.0.0",
+        "@scandipwa/shopify-product-prices": "0.0.0",
+        "@scandipwa/shopify-checkout": "0.0.0"
+    },
+    "scandipwa": {
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/framework": true,
+            "@scandipwa/shopify-api": true,
+            "@scandipwa/graphql": true,
+            "@scandipwa/shopify-products": true,
+            "@scandipwa/shopify-product-variants": true,
+            "@scandipwa/shopify-product-prices": true,
+            "@scandipwa/shopify-checkout": true
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}

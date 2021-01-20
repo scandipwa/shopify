@@ -1,7 +1,8 @@
+import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
 import { createBrowserHistory } from 'history';
-import { createElement, PureComponent } from 'react';
+import { PureComponent } from 'react';
 import { Router as ReactRouter } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 export const history = createBrowserHistory({ basename: '/' });
 
@@ -10,81 +11,34 @@ export class RouterComponent extends PureComponent {
     static propTypes = {
     };
 
-    /**
-     * @type {Array.<{ position: Number, render: Function }>}
-     * @memberof Router
-     */
-    beforeSwitchList = [];
+    _beforeSwitchRenderList = createSortedRenderList([]);
 
-    /**
-     * @type {Array.<{ position: Number, render: Function, path: String, exact: Boolean }>}
-     * @memberof Router
-     */
-    switchRoutesList = [];
+    _switchRenderList = createSortedRenderList([], {
+        renderItem: this.renderRoute.bind(this)
+    });
 
-    /**
-     * @type {Array.<{ position: Number, render: Function }>}
-     * @memberof Router
-     */
-    afterSwitchList = [];
+    _afterSwitchRenderList = createSortedRenderList([]);
 
-    renderBeforeComponents() {
-        return this.renderSortedList(
-            this.beforeSwitchList,
-            this.renderComponent
-        );
-    }
+    contentRenderList = createSortedRenderList([
+        this._beforeSwitchRenderList.render,
+        this.renderSwitch.bind(this),
+        this._afterSwitchRenderList.render
+    ]);
 
-    renderAfterComponents() {
-        return this.renderSortedList(
-            this.afterSwitchList,
-            this.renderComponent
-        );
-    }
-
-    renderSwitchRoutes() {
-        return this.renderSortedList(
-            this.switchRoutesList,
-            this.renderSwitchRoute
-        );
-    }
-
-    renderComponent({ render }) {
-        if (!render) {
-            return null;
-        }
-
-        return render;
-    }
-
-    renderSortedList(items, renderer) {
-        return items.sort(
-            (a, b) => a.position - b.position
-        ).map(
-            ({ position, ...props }) => renderer({ key: position, ...props })
-        );
-    }
-
-    renderSwitchRoute(props) {
-        return createElement(Route, props);
+    renderRoute({ renderer }) {
+        return renderer();
     }
 
     renderSwitch() {
         return (
             <Switch>
-                { this.renderSwitchRoutes() }
+                { this._switchRenderList.render() }
             </Switch>
         );
     }
 
     renderRouterContent() {
-        return (
-            <>
-                { this.renderBeforeComponents() }
-                { this.renderSwitch() }
-                { this.renderAfterComponents() }
-            </>
-        );
+        return this.contentRenderList.render();
     }
 
     render() {

@@ -2388,26 +2388,6 @@
     eslint-traverse "^1.0.0"
     requireindex "~1.1.0"
 
-"@scandipwa/framework@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@scandipwa/framework/-/framework-0.0.3.tgz#4d3f2d23de541154403226cd46f989a1482802b9"
-  integrity sha512-Gmjj4LTPj5sToS1U8kj/873xCFHL8MGgeIZgdfl2rgQtajLEgTxFBXMMOVgCmmjS44/IhOQMR055J1kMbUtN6g==
-  dependencies:
-    react "^16.13.1"
-    react-dom "^16.13.1"
-
-"@scandipwa/graphql@file:packages/shopify/packages/@scandipwa/graphql":
-  version "0.0.0"
-
-"@scandipwa/router@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@scandipwa/router/-/router-0.0.3.tgz#8da7081911fb10c9aa4c592be5c782a118bb168b"
-  integrity sha512-rCtLCUBItAzcMtwLsRQ7jYQTiUiojgDjJSY1e2vUbilP/2AXnUDAcX8pfEr5WooNsOR7oJWwbzAmIDxFA7XwgQ==
-  dependencies:
-    history "^4.9.0"
-    react-router "^5.2.0"
-    react-router-dom "^5.2.0"
-
 "@scandipwa/scandipwa-dev-utils@0.0.19":
   version "0.0.19"
   resolved "https://registry.yarnpkg.com/@scandipwa/scandipwa-dev-utils/-/scandipwa-dev-utils-0.0.19.tgz#21e07cba1bd992130a22b22f7de2a2b11ea38be1"
@@ -2469,42 +2449,6 @@
     react-dev-utils "^10.2.1"
     react-scripts "4.0.1"
     tree-kill "^1.2.2"
-
-"@scandipwa/shopify-api@file:packages/shopify/packages/@scandipwa/shopify-api":
-  version "0.0.0"
-
-"@scandipwa/shopify-checkout-line-items@file:packages/shopify/packages/@scandipwa/shopify-checkout-line-items":
-  version "0.0.0"
-
-"@scandipwa/shopify-checkout@file:packages/shopify/packages/@scandipwa/shopify-checkout":
-  version "0.0.0"
-
-"@scandipwa/shopify-collections-products@file:packages/shopify/packages/@scandipwa/shopify-collections-products":
-  version "0.0.0"
-
-"@scandipwa/shopify-collections@file:packages/shopify/packages/@scandipwa/shopify-collections":
-  version "0.0.0"
-
-"@scandipwa/shopify-customer@file:packages/shopify/packages/@scandipwa/shopify-customer":
-  version "0.0.0"
-
-"@scandipwa/shopify-pages@file:packages/shopify/packages/@scandipwa/shopify-pages":
-  version "0.0.0"
-
-"@scandipwa/shopify-product-checkout@file:packages/shopify/packages/@scandipwa/shopify-product-checkout":
-  version "0.0.0"
-
-"@scandipwa/shopify-product-prices@file:packages/shopify/packages/@scandipwa/shopify-product-prices":
-  version "0.0.0"
-
-"@scandipwa/shopify-product-variants@file:packages/shopify/packages/@scandipwa/shopify-product-variants":
-  version "0.0.0"
-
-"@scandipwa/shopify-products@file:packages/shopify/packages/@scandipwa/shopify-products":
-  version "0.0.0"
-
-"@scandipwa/shopify-shop@file:packages/shopify/packages/@scandipwa/shopify-shop":
-  version "0.0.0"
 
 "@scandipwa/webpack-extension-import-loader@0.0.16":
   version "0.0.16"

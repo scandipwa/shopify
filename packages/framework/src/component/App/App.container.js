@@ -1,9 +1,8 @@
-import { PureComponent } from 'react';
-
-import App from './App.component';
+import { HigherOrderComponent, withHOC } from '../../util/HOC';
+import AppComponent from './App.component';
 
 /** @namespace Framework/Component/App/Container/AppContainer */
-export class AppContainer extends PureComponent {
+export class AppContainer extends HigherOrderComponent {
     productionFunctions = [
         this.disableReactDevTools.bind(this),
         this.injectComment.bind(this)
@@ -11,40 +10,9 @@ export class AppContainer extends PureComponent {
 
     developmentFunctions = [];
 
-    state = {
-        isSomethingWentWrong: false,
-        errorDetails: {}
-    };
-
-    containerFunctions = {
-        handleErrorReset: this.handleErrorReset.bind(this)
-    };
-
-    componentDidCatch(err, info) {
-        this.setState({
-            isSomethingWentWrong: true,
-            errorDetails: { err, info }
-        });
-    }
-
-    handleErrorReset() {
-        this.setState({ isSomethingWentWrong: false });
-    }
-
-    containerProps = () => {
-        const {
-            isSomethingWentWrong,
-            errorDetails
-        } = this.state;
-
-        return {
-            isSomethingWentWrong,
-            errorDetails
-        };
-    };
-
-    __construct(props) {
-        super.__construct(props);
+    // eslint-disable-next-line @scandipwa/scandipwa-guidelines/use-magic-construct
+    constructor(props) {
+        super(props);
 
         this.configureAppBasedOnEnvironment();
     }
@@ -71,15 +39,6 @@ export class AppContainer extends PureComponent {
 
         functionsToRun.forEach((func) => func());
     }
-
-    render() {
-        return (
-            <App
-              { ...this.containerFunctions }
-              { ...this.containerProps() }
-            />
-        );
-    }
 }
 
-export default AppContainer;
+export default withHOC(AppContainer, AppComponent);

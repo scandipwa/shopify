@@ -1,1 +1,1 @@
-export { default } from './Router.container';
+export { default } from './Router.component';

@@ -12,7 +12,7 @@
             "env": {
                 "BROWSER": "none"
             },
-            "cwd": "${workspaceFolder}/packages/scandipwa"
+            "cwd": "${workspaceFolder}/packages/shopify-blank-theme"
         },
         {
             "command": "npm run build",
@@ -22,18 +22,7 @@
             "env": {
                 "BROWSER": "none"
             },
-            "cwd": "${workspaceFolder}/packages/scandipwa"
-        },
-        {
-            "command": "npm run build",
-            "name": "Run npm build (MAGENTO)",
-            "request": "launch",
-            "type": "node-terminal",
-            "env": {
-                "BROWSER": "none",
-                "BUILD_MODE": "magento"
-            },
-            "cwd": "${workspaceFolder}/packages/scandipwa"
+            "cwd": "${workspaceFolder}/packages/shopify-blank-theme"
         }
     ]
 }

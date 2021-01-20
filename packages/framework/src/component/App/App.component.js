@@ -1,49 +1,19 @@
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import SomethingWentWrong from '../SomethingWentWrong/SomethingWentWrong.component';
+import { createSortedRenderList } from '../../util/SortedMap';
 
 /** @namespace Framework/Component/App/Component/AppComponent */
 export class AppComponent extends PureComponent {
-    static propTypes = {
-        // eslint-disable-next-line react/forbid-prop-types
-        errorDetails: PropTypes.object.isRequired,
-        isSomethingWentWrong: PropTypes.bool.isRequired,
-        handleErrorReset: PropTypes.func.isRequired
-    };
+    rootComponentsRenderList = createSortedRenderList([]);
 
-    rootComponents = [];
-
-    contextProviders = [];
-
-    renderRootComponents = () => this.rootComponents.map((render) => render());
+    contextProvidersRenderList = createSortedRenderList([]);
 
     renderContextProviders() {
-        const { isSomethingWentWrong } = this.props;
-
-        const child = isSomethingWentWrong
-            ? this.renderSomethingWentWrong
-            : this.renderRootComponents;
-
-        return this.contextProviders.reduce(
-            (acc, render) => render(acc),
-            [child()]
+        return this.contextProvidersRenderList.getSortedArray().reduce(
+            (acc, { renderer }) => renderer(acc),
+            [this.rootComponentsRenderList.render()]
         );
     }
-
-    renderSomethingWentWrong = () => {
-        const {
-            handleErrorReset,
-            errorDetails
-        } = this.props;
-
-        return (
-            <SomethingWentWrong
-              onClick={ handleErrorReset }
-              errorDetails={ errorDetails }
-            />
-        );
-    };
 
     render() {
         return this.renderContextProviders();

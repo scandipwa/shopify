@@ -1,0 +1,61 @@
+{
+    "name": "@scandipwa/shopify-blank-theme",
+    "description": "Blank app source-code used by CSA.",
+    "version": "0.0.0",
+    "scripts": {
+        "start": "scandipwa-scripts start",
+        "build": "scandipwa-scripts build"
+    },
+    "dependencies": {
+        "@scandipwa/scandipwa-scripts": "^2.2.1",
+        "@scandipwa/shopify-api": "0.0.0",
+        "@scandipwa/shopify-shop": "0.0.0",
+        "@scandipwa/shopify-pages": "0.0.0",
+        "@scandipwa/shopify-collections": "0.0.0",
+        "@scandipwa/shopify-collections-products": "0.0.0",
+        "@scandipwa/shopify-products": "0.0.0",
+        "@scandipwa/shopify-product-variants": "0.0.0",
+        "@scandipwa/shopify-product-prices": "0.0.0",
+        "@scandipwa/shopify-product-checkout": "0.0.0",
+        "@scandipwa/shopify-checkout": "0.0.0",
+        "@scandipwa/shopify-checkout-line-items": "0.0.0",
+        "@scandipwa/shopify-customer": "0.0.0"
+    },
+    "scandipwa": {
+        "themeAlias": "Blank",
+        "type": "theme",
+        "extensions": {
+            "@scandipwa/shopify-api": true,
+            "@scandipwa/shopify-shop": true,
+            "@scandipwa/shopify-pages": true,
+            "@scandipwa/shopify-collections": true,
+            "@scandipwa/shopify-collections-products": true,
+            "@scandipwa/shopify-products": true,
+            "@scandipwa/shopify-product-variants": true,
+            "@scandipwa/shopify-product-prices": true,
+            "@scandipwa/shopify-product-checkout": true,
+            "@scandipwa/shopify-checkout": true,
+            "@scandipwa/shopify-checkout-line-items": true,
+            "@scandipwa/shopify-customer": true
+        }
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    },
+    "license": "OSL-3.0",
+    "publishConfig": {
+        "access": "public"
+    }
+}
