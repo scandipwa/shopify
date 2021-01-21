@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import { withUseForm } from '../../util/withUseForm';
+
 /** @namespace Form/Component/Form/Component/FormComponent */
 export class FormComponent extends PureComponent {
     static propTypes = {
+        // Use "formConfig" to configure "useForm" options
+        onSubmit: PropTypes.func,
         children: PropTypes.node.isRequired,
         handleSubmit: PropTypes.func.isRequired
     };
 
-    onSubmit = () => {
-        // TODO: implement
+    static defaultProps = {
+        onSubmit: () => {}
     };
 
     renderContent() {
@@ -23,14 +27,14 @@ export class FormComponent extends PureComponent {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, onSubmit } = this.props;
 
         return (
-            <form onSubmit={ handleSubmit(this.onSubmit) }>
+            <form onSubmit={ handleSubmit(onSubmit) }>
                 { this.renderContent() }
             </form>
         );
     }
 }
 
-export default FormComponent;
+export default withUseForm(FormComponent);

@@ -1,1 +1,1 @@
-export { default } from './LoginForm.component';
+export { default } from './LoginForm.container';

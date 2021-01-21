@@ -31,7 +31,7 @@ export class CheckoutProvider extends PureComponent {
     }
 
     async initializeCheckout() {
-        const { id } = this.state;
+        const { checkout: { id } } = this.state;
 
         if (!id) {
             // Do not create new checkout while user have not
@@ -40,10 +40,11 @@ export class CheckoutProvider extends PureComponent {
             return;
         }
 
-        this.fetchExisingCheckout(id);
+        this.fetchExisingCheckout();
     }
 
-    async fetchExisingCheckout(id) {
+    async fetchExisingCheckout() {
+        const { checkout: { id } } = this.state;
         const { postQuery } = this.context;
         const mutation = getCheckoutQueryOfType(FETCH_CHECKOUT)({ id });
         const { checkout } = await postQuery(mutation);
