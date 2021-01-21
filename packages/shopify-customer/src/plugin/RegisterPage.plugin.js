@@ -2,25 +2,28 @@
 import { createElement, lazy, Suspense } from 'react';
 import { Route } from 'react-router';
 
-import CollectionFallbackPage from '../component/CollectionFallbackPage';
+import RegisterFallbackPage from '../component/RegisterFallbackPage';
 
-const CollectionPage = lazy(() => import('../component/CollectionPage'));
+export const RegisterPage = lazy(() => import('../component/RegisterPage'));
 
-const addCollectionPage = (member) => {
-    const COLLECTION_PAGE_POSITION = 2000;
+/** @namespace ShopifyCustomer/Plugin/LoginPage/Plugin Copy/addCartPage */
+export const addCartPage = (member) => {
+    const REGISTER_PAGE_POSITION = 4500;
 
     member.addItemToPosition(
         () => createElement(Route, {
-            path: '/collections/:handle',
+            path: [
+                '/account/register'
+            ],
             exact: true,
             render: (props) => (
                 // eslint-disable-next-line react/jsx-no-bind
-                <Suspense fallback={ <CollectionFallbackPage /> }>
-                    <CollectionPage { ...props } />
+                <Suspense fallback={ <RegisterFallbackPage /> }>
+                    <RegisterPage { ...props } />
                 </Suspense>
             )
         }),
-        COLLECTION_PAGE_POSITION
+        REGISTER_PAGE_POSITION
     );
 
     return member;
@@ -29,7 +32,7 @@ const addCollectionPage = (member) => {
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            _switchRenderList: addCollectionPage
+            _switchRenderList: addCartPage
         }
     }
 };

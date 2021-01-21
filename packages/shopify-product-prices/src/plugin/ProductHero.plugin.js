@@ -5,7 +5,7 @@ import ProductHeroPrice from '../component/ProductHeroPrice';
 const addOptionsRender = (member) => {
     const PRICE_POSITION = 1100;
     // TODO: use Suspense here
-    member.addRendererToPosition(() => createElement(ProductHeroPrice), PRICE_POSITION);
+    member.addItemToPosition(() => createElement(ProductHeroPrice), PRICE_POSITION);
     return member;
 };
 

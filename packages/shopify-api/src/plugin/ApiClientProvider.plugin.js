@@ -3,7 +3,7 @@ import ShopifyApiProvider from '../context/ShopifyApi.provider';
 const addApiClientProvider = (member) => {
     const API_CLIENT_POSITION = 10000;
 
-    member.addRendererToPosition((children) => (
+    member.addItemToPosition((children) => (
         <ShopifyApiProvider>
             { children }
         </ShopifyApiProvider>

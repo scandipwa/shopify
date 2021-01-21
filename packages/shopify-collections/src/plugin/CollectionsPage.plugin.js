@@ -9,7 +9,7 @@ const CollectionsPage = lazy(() => import('../component/CollectionsPage'));
 const addCollectionsPage = (member) => {
     const COLLECTIONS_PAGE_POSITION = 1500;
 
-    member.addRendererToPosition(
+    member.addItemToPosition(
         () => createElement(Route, {
             path: '/collections',
             exact: true,

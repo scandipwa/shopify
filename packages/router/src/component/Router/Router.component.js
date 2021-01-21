@@ -13,9 +13,7 @@ export class RouterComponent extends PureComponent {
 
     _beforeSwitchRenderList = createSortedRenderList([]);
 
-    _switchRenderList = createSortedRenderList([], {
-        renderItem: this.renderRoute.bind(this)
-    });
+    _switchRenderList = createSortedRenderList([]);
 
     _afterSwitchRenderList = createSortedRenderList([]);
 
@@ -24,10 +22,6 @@ export class RouterComponent extends PureComponent {
         this.renderSwitch.bind(this),
         this._afterSwitchRenderList.render
     ]);
-
-    renderRoute({ renderer }) {
-        return renderer();
-    }
 
     renderSwitch() {
         return (

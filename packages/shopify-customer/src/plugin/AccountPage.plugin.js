@@ -2,25 +2,28 @@
 import { createElement, lazy, Suspense } from 'react';
 import { Route } from 'react-router';
 
-import CollectionFallbackPage from '../component/CollectionFallbackPage';
+import AccountFallbackPage from '../component/AccountFallbackPage';
 
-const CollectionPage = lazy(() => import('../component/CollectionPage'));
+const AccountPage = lazy(() => import('../component/AccountPage'));
 
-const addCollectionPage = (member) => {
-    const COLLECTION_PAGE_POSITION = 2000;
+const addCartPage = (member) => {
+    const ACCOUNT_PAGE_POSITION = 5000;
 
     member.addItemToPosition(
         () => createElement(Route, {
-            path: '/collections/:handle',
+            path: [
+                '/account',
+                '/account/:page'
+            ],
             exact: true,
             render: (props) => (
                 // eslint-disable-next-line react/jsx-no-bind
-                <Suspense fallback={ <CollectionFallbackPage /> }>
-                    <CollectionPage { ...props } />
+                <Suspense fallback={ <AccountFallbackPage /> }>
+                    <AccountPage { ...props } />
                 </Suspense>
             )
         }),
-        COLLECTION_PAGE_POSITION
+        ACCOUNT_PAGE_POSITION
     );
 
     return member;
@@ -29,7 +32,7 @@ const addCollectionPage = (member) => {
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            _switchRenderList: addCollectionPage
+            _switchRenderList: addCartPage
         }
     }
 };

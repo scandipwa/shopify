@@ -1,14 +1,16 @@
 {
-    "name": "@scandipwa/shopify-customer",
+    "name": "@scandipwa/form",
     "version": "0.0.0",
     "license": "OSL-3.0",
-    "dependencies": {
-        "@scandipwa/form": "0.0.0"
-    },
+    "main": "index.js",
     "scandipwa": {
         "type": "extension"
     },
     "eslintConfig": {
         "extends": "@scandipwa"
+    },
+    "dependencies": {
+        "@hookform/error-message": "^0.0.5",
+        "react-hook-form": "^6.14.2"
     }
 }

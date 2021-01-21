@@ -2,21 +2,21 @@
 import { createElement, lazy, Suspense } from 'react';
 import { Route } from 'react-router';
 
-import PageFallbackPage from '../component/CartFallbackPage';
+import CartFallbackPage from '../component/CartFallbackPage';
 
-const PagePage = lazy(() => import('../component/CartPage'));
+const CartPage = lazy(() => import('../component/CartPage'));
 
 const addCartPage = (member) => {
     const CART_PAGE_POSITION = 1000;
 
-    member.addRendererToPosition(
+    member.addItemToPosition(
         () => createElement(Route, {
             path: '/cart',
             exact: true,
             render: (props) => (
                 // eslint-disable-next-line react/jsx-no-bind
-                <Suspense fallback={ <PageFallbackPage /> }>
-                    <PagePage { ...props } />
+                <Suspense fallback={ <CartFallbackPage /> }>
+                    <CartPage { ...props } />
                 </Suspense>
             )
         }),

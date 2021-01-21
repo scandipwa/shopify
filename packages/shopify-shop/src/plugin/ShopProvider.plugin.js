@@ -3,7 +3,7 @@ import ShopProvider from '../context/Shop.provider';
 const addShopProvider = (member) => {
     const SHOP_POSITION = 9000;
 
-    member.addRendererToPosition((children) => (
+    member.addItemToPosition((children) => (
         <ShopProvider>
             { children }
         </ShopProvider>

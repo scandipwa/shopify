@@ -7,8 +7,8 @@ const addAddToCartAndQuantityRender = (member) => {
     const ADD_TO_CART_POSITION = 1900;
     const QUANTITY_POSITION = 1850;
     // TODO: use Suspense here
-    member.addRendererToPosition(() => createElement(ProductQuantity), QUANTITY_POSITION);
-    member.addRendererToPosition(() => createElement(ProductAddToCart), ADD_TO_CART_POSITION);
+    member.addItemToPosition(() => createElement(ProductQuantity), QUANTITY_POSITION);
+    member.addItemToPosition(() => createElement(ProductAddToCart), ADD_TO_CART_POSITION);
     return member;
 };
 

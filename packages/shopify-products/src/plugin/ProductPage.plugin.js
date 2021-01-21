@@ -9,7 +9,7 @@ const ProductPage = lazy(() => import('../component/ProductPage'));
 const addProductPage = (member) => {
     const PRODUCT_PAGE_POSITION = 5000;
 
-    member.addRendererToPosition(
+    member.addItemToPosition(
         () => createElement(Route, {
             path: [
                 '/products/:handle',

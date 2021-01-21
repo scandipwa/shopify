@@ -1,42 +1,56 @@
-/* eslint-disable no-param-reassign */
-import { Fragment } from 'react';
+/* eslint-disable max-classes-per-file, @scandipwa/scandipwa-guidelines/only-one-class, no-param-reassign */
+
+import { cloneElement, Fragment, isValidElement } from 'react';
 
 export const DEFAULT_POSITION = 1000;
 
-/** @namespace Framework/Util/SortedMap/SortedRenderList */
-export class SortedRenderList {
+/** @namespace Framework/Util/SortedMap/SortedList */
+export class SortedList {
     __construct(array, options = {}) {
         this.options = options;
 
-        this._unsortedArray = array.map((renderer, i) => ({
-            renderer,
+        this._unsortedArray = array.map((item, i) => ({
+            item,
             // start position with 1000
             position: (i + 1) * DEFAULT_POSITION
         }));
     }
 
-    _renderItem({ renderer }, i) {
-        return (
-            // eslint-disable-next-line react/no-array-index-key
-            <Fragment key={ i }>
-                { renderer() }
-            </Fragment>
-        );
+    getSortedArray = () => this._unsortedArray.sort(
+        (a, b) => a.position - b.position
+    ).map(
+        ({ item }) => item
+    );
+
+    addItemToPosition = (item, position = DEFAULT_POSITION) => {
+        this._unsortedArray.push({ position, item });
+    };
+}
+
+/** @namespace Framework/Util/SortedMap/SortedRenderList */
+export class SortedRenderList extends SortedList {
+    _renderItem(item, key) {
+        const child = item();
+
+        if (!isValidElement(child)) {
+            return (
+                <Fragment key={ key }>
+                    { child }
+                </Fragment>
+            );
+        }
+
+        return cloneElement(child, { key });
     }
 
     render = () => {
         const { renderItem = this._renderItem } = this.options;
         return this.getSortedArray().map(renderItem);
     };
-
-    getSortedArray = () => this._unsortedArray.sort(
-        (a, b) => a.position - b.position
-    );
-
-    addRendererToPosition = (renderer, position = DEFAULT_POSITION) => {
-        this._unsortedArray.push({ position, renderer });
-    };
 }
 
 /** @namespace Framework/Util/SortedMap/createSortedRenderList */
 export const createSortedRenderList = (array = [], options) => new SortedRenderList(array, options);
+
+/** @namespace Framework/Util/SortedMap/createSortedList */
+export const createSortedList = (array = [], options) => new SortedList(array, options);
