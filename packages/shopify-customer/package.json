@@ -2,11 +2,22 @@
     "name": "@scandipwa/shopify-customer",
     "version": "0.0.0",
     "license": "OSL-3.0",
+    "peerDependencies": {
+        "@scandipwa/framework": "^0.0.4",
+        "@scandipwa/router": "^0.0.4"
+    },
     "dependencies": {
+        "@scandipwa/graphql": "0.0.0",
+        "@scandipwa/framework": "0.0.4",
+        "@scandipwa/shopify-api": "0.0.0",
         "@scandipwa/form": "0.0.0"
     },
     "scandipwa": {
-        "type": "extension"
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/framework": true,
+            "@scandipwa/router": true
+        }
     },
     "eslintConfig": {
         "extends": "@scandipwa"

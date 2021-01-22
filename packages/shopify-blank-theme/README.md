@@ -3,7 +3,7 @@
 # By priority
 
 - [x] Implement `shop`
-- [ ] Implement `customer`
+- [x] Implement `customer`
 - [ ] Implement `customer-address`
 - [ ] Implement `checkout-customer`
 - [ ] Implement `checkout-web`
