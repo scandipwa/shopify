@@ -3,6 +3,7 @@ import ApiContext from '@scandipwa/shopify-api/src/context/ShopifyApi.context';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+import { processCustomer } from '../api/Customer.processor';
 import getCustomerQueryOfType, {
     CUSTOMER_CREATE, CUSTOMER_GET, CUSTOMER_LOGIN, CUSTOMER_LOGOUT
 } from '../api/Customer.query';
@@ -58,6 +59,7 @@ export class CustomerProvider extends PureComponent {
         const mutation = getCustomerQueryOfType(CUSTOMER_GET)({ token });
         // TODO: handle potential errors
         const { customer } = await postQuery(mutation);
+        processCustomer(customer);
         await this._updateStatePromise({
             customer,
             isCustomerLoading: false

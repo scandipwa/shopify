@@ -65,7 +65,7 @@ export class CustomerQuery extends TypedQuery {
     _getCustomerCreateFields() {
         return [
             // using the same customer query, without the token
-            this.getCustomerField({}),
+            // this.getCustomerField({}),
             this._getCustomerUserErrorsField()
         ];
     }
