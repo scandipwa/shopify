@@ -9,18 +9,42 @@ import {
 } from 'react-hook-form';
 
 /** @namespace Form/Util/WithUseForm/withUseForm */
-export const withUseForm = (Component) => ({ formConfig, ...props }) => {
-    const formProps = useForm(formConfig);
+export const withUseForm = (Component) => {
+    const withComponent = ({ formConfig, ...props }) => {
+        const formProps = useForm(formConfig);
 
-    return createElement(
-        FormProvider,
-        formProps,
-        createElement(Component, { ...formProps, ...props })
-    );
+        return createElement(
+            FormProvider,
+            formProps,
+            createElement(
+                Component,
+                {
+                    useForm: formProps,
+                    ...props
+                }
+            )
+        );
+    };
+
+    withComponent.displayName = 'withUseForm';
+
+    return withComponent;
 };
 
 /** @namespace Form/Util/WithUseForm/withUseFormContext */
-export const withUseFormContext = (Component) => (props) => {
-    const formProps = useFormContext();
-    return createElement(Component, { ...formProps, ...props });
+export const withUseFormContext = (Component) => {
+    const withComponent = (props) => {
+        const formProps = useFormContext();
+        return createElement(
+            Component,
+            {
+                useForm: formProps,
+                ...props
+            }
+        );
+    };
+
+    withComponent.displayName = 'withUseFormContext';
+
+    return withComponent;
 };

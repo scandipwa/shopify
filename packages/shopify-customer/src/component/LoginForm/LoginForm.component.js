@@ -1,8 +1,9 @@
-import Field from '@scandipwa/form/src/component/Field';
 import Form from '@scandipwa/form/src/component/Form';
+import FormError from '@scandipwa/form/src/component/FormError';
+import { withUseFormContext } from '@scandipwa/form/src/util/withUseForm';
 import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import { createElement, PureComponent } from 'react';
 
 /** @namespace ShopifyCustomer/Component/LoginForm/Component/LoginFormComponent */
 export class LoginFormComponent extends PureComponent {
@@ -10,52 +11,44 @@ export class LoginFormComponent extends PureComponent {
         onSubmit: PropTypes.func.isRequired
     };
 
-    formFieldsRenderList = createSortedRenderList([
-        this.renderEmailField.bind(this),
-        this.renderPasswordField.bind(this)
+    contextRenderList = createSortedRenderList([
+        this.renderErrors.bind(this),
+        this.renderFields.bind(this),
+        this.renderSubmit.bind(this)
     ]);
 
-    renderPassword = ({ name, ref, onChange }) => (
-        // TODO: use Input from UI here
-        <input
-          placeholder="Password"
-          autoComplete="password"
-          type="password"
-          name={ name }
-          ref={ ref }
-          // eslint-disable-next-line react/jsx-no-bind
-          onChange={ (e) => onChange(e.target.value) }
-        />
-    );
+    formFieldsRenderList = createSortedRenderList([
+        this.renderEmail.bind(this),
+        this.renderPassword.bind(this)
+    ]);
 
-    renderPasswordField() {
-        return (
-            <Field
-              name="password"
-              renderInput={ this.renderPassword }
-            />
+    renderPassword() {
+        // TODO: use Input from UI here
+        return createElement(
+            withUseFormContext(({ useForm: { register } }) => (
+                <input
+                  placeholder="Password"
+                  autoComplete="password"
+                  type="password"
+                  name="password"
+                  ref={ register }
+                />
+            ))
         );
     }
 
-    renderEmail = ({ name, ref, onChange }) => (
+    renderEmail() {
         // TODO: use Input from UI here
-        <input
-          placeholder="Email"
-          autoComplete="email"
-          type="text"
-          name={ name }
-          ref={ ref }
-          // eslint-disable-next-line react/jsx-no-bind
-          onChange={ (e) => onChange(e.target.value) }
-        />
-    );
-
-    renderEmailField() {
-        return (
-            <Field
-              name="email"
-              renderInput={ this.renderEmail }
-            />
+        return createElement(
+            withUseFormContext(({ useForm: { register } }) => (
+                <input
+                  placeholder="Email"
+                  autoComplete="email"
+                  type="text"
+                  name="email"
+                  ref={ register }
+                />
+            ))
         );
     }
 
@@ -71,13 +64,20 @@ export class LoginFormComponent extends PureComponent {
         );
     }
 
+    renderErrors() {
+        return <FormError />;
+    }
+
+    renderContent() {
+        return this.contextRenderList.render();
+    }
+
     render() {
         const { onSubmit } = this.props;
 
         return (
             <Form onSubmit={ onSubmit }>
-                { this.renderFields() }
-                { this.renderSubmit() }
+                { this.renderContent() }
             </Form>
         );
     }

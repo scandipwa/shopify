@@ -26,6 +26,7 @@ export class CustomerProvider extends PureComponent {
         this.state = {
             token: customerToken || {},
             customer: {},
+            isCustomerLoading: !!customerToken,
             isLoggedIn: !!customerToken
         };
 
@@ -57,23 +58,45 @@ export class CustomerProvider extends PureComponent {
         const mutation = getCustomerQueryOfType(CUSTOMER_GET)({ token });
         // TODO: handle potential errors
         const { customer } = await postQuery(mutation);
-        await this._updateStatePromise({ customer });
+        await this._updateStatePromise({
+            customer,
+            isCustomerLoading: false
+        });
     }
 
     async login(data) {
         const { postMutation } = this.context;
         const mutation = getCustomerQueryOfType(CUSTOMER_LOGIN)(data);
-        // TODO: handle potential errors
-        const { customerAccessTokenCreate: token } = await postMutation(mutation);
-        await this._updateStatePromise({ token, isLoggedIn: true });
-        await this.fetchExisingCustomer();
+        const {
+            customerAccessTokenCreate: {
+                customerAccessToken: token,
+                customerUserErrors
+            }
+        } = await postMutation(mutation);
+
+        if (token) {
+            BrowserDatabase.setItem(CUSTOMER_TOKEN_FROM_STORAGE, token);
+            await this._updateStatePromise({ token, isLoggedIn: true });
+            await this.fetchExisingCustomer();
+        }
+
+        if (customerUserErrors?.length) {
+            throw customerUserErrors;
+        }
     }
 
     async register(data) {
         const { postMutation } = this.context;
         const mutation = getCustomerQueryOfType(CUSTOMER_CREATE)(data);
         // TODO: handle potential errors
-        await postMutation(mutation);
+        const {
+            customerCreate: { customerUserErrors }
+        } = await postMutation(mutation);
+
+        if (customerUserErrors?.length) {
+            throw customerUserErrors;
+        }
+
         const { email, password } = data;
         await this.login({ email, password });
     }
@@ -94,6 +117,7 @@ export class CustomerProvider extends PureComponent {
     getContextValue() {
         const {
             customer,
+            isCustomerLoading,
             isLoggedIn
         } = this.state;
 
@@ -102,6 +126,7 @@ export class CustomerProvider extends PureComponent {
             logout: this.logout.bind(this),
             register: this.register.bind(this),
             refresh: this.fetchExisingCustomer.bind(this),
+            isCustomerLoading,
             customer,
             isLoggedIn
         };

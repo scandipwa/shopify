@@ -1,1 +1,1 @@
-export { default } from './RegisterPage.component';
+export { default } from './RegisterPage.container';

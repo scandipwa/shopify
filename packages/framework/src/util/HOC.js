@@ -44,6 +44,8 @@ export class HigherOrderComponent extends PureComponent {
 }
 
 /** @namespace Framework/Util/HOC/withHOC */
-export const withHOC = (HOC, componentOrComponentMap) => (
-    (props) => createElement(HOC, { ...props, componentOrComponentMap })
-);
+export const withHOC = (HOC, componentOrComponentMap) => {
+    const withComponent = (props) => createElement(HOC, { ...props, componentOrComponentMap });
+    withComponent.displayName = 'withHOC';
+    return withComponent;
+};

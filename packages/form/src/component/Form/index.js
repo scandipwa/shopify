@@ -1,1 +1,1 @@
-export { default } from './Form.component';
+export { default } from './Form.container';

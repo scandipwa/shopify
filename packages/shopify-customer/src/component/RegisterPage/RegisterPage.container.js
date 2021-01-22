@@ -2,10 +2,10 @@ import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC
 import { history } from '@scandipwa/router/src/component/Router/Router.component';
 
 import CustomerContext from '../../context/Customer.context';
-import LoginFormComponent from './LoginForm.component';
+import RegisterPageComponent from './RegisterPage.component';
 
-/** @namespace ShopifyCustomer/Component/LoginForm/Container/LoginFormContainer */
-export class LoginFormContainer extends HigherOrderComponent {
+/** @namespace ShopifyCustomer/Component/RegisterPage/Container/RegisterPageContainer */
+export class RegisterPageContainer extends HigherOrderComponent {
     static contextType = CustomerContext;
 
     containerFunctions = {
@@ -44,10 +44,10 @@ export class LoginFormContainer extends HigherOrderComponent {
     }
 
     async onSubmit(data, useFormProps) {
-        const { login } = this.context;
+        const { register } = this.context;
 
         try {
-            await login(data);
+            await register(data);
             this.onSubmitSuccess();
         } catch (e) {
             this.onError(e, useFormProps);
@@ -55,4 +55,4 @@ export class LoginFormContainer extends HigherOrderComponent {
     }
 }
 
-export default withHOC(LoginFormContainer, LoginFormComponent);
+export default withHOC(RegisterPageContainer, RegisterPageComponent);

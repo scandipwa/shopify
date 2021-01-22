@@ -1,10 +1,10 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/jsx-no-props-destruction */
 import { ErrorMessage } from '@hookform/error-message';
-// import { createSortedList } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 import { Controller } from 'react-hook-form';
 
+import { UseFormType } from '../../type/Form.type';
 import { withUseFormContext } from '../../util/withUseForm';
 
 /** @namespace Form/Component/Field/Component/FieldComponent */
@@ -16,7 +16,7 @@ export class FieldComponent extends PureComponent {
         renderInput: PropTypes.func,
         name: PropTypes.string.isRequired,
         rules: PropTypes.shape({}),
-        errors: PropTypes.shape({}).isRequired
+        useForm: UseFormType.isRequired
     };
 
     static defaultProps = {
@@ -56,7 +56,7 @@ export class FieldComponent extends PureComponent {
 
     renderError() {
         const {
-            errors,
+            useForm: { errors },
             renderError,
             name
         } = this.props;
