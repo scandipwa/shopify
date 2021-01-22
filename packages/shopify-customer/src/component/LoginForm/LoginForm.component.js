@@ -23,7 +23,7 @@ export class LoginFormComponent extends PureComponent {
     ]);
 
     renderPassword() {
-        // TODO: use Input from UI here
+        // TODO: use Input from UI here (via Field)
         return createElement(
             withUseFormContext(({ useForm: { register } }) => (
                 <input
@@ -38,7 +38,7 @@ export class LoginFormComponent extends PureComponent {
     }
 
     renderEmail() {
-        // TODO: use Input from UI here
+        // TODO: use Input from UI here (via Field)
         return createElement(
             withUseFormContext(({ useForm: { register } }) => (
                 <input
