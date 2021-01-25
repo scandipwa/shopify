@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import FieldForm from '@scandipwa/form/src/component/FieldForm';
 import { withUseForm } from '@scandipwa/form/src/util/withUseForm';
 
@@ -13,6 +15,15 @@ export class LoginFormComponent extends FieldForm {
     //         render: this.renderPassword.bind(this)
     //     }
     // ];
+
+    __construct(...args) {
+        super.__construct(...args);
+
+        console.log({ 
+            'instanceof FieldForm': this instanceof FieldForm,
+            this: this
+        });
+    }
 
     renderEmail({ name, ref }) {
         return (
