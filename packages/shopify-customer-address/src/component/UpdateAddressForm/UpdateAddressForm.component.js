@@ -5,8 +5,6 @@ import AddressForm from '../AddressForm';
 
 /** @namespace ShopifyCustomer-Address/Component/UpdateAddressForm/Component/UpdateAddressFormComponent */
 export class UpdateAddressFormComponent extends PureComponent {
-    static whyDidYouRender = true;
-
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
         formConfig: PropTypes.shape({}).isRequired

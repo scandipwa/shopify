@@ -13,8 +13,6 @@ export class AddressFormComponent extends PureComponent {
         renderActions: PropTypes.func.isRequired
     };
 
-    static whyDidYouRender = true;
-
     contextRenderList = createSortedRenderList([
         this.renderErrors.bind(this),
         this.renderFields.bind(this),

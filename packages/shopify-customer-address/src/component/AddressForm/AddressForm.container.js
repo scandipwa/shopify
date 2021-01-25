@@ -5,8 +5,6 @@ import AddressFormComponent from './AddressForm.component';
 
 /** @namespace ShopifyCustomer-Address/Component/AddressForm/Container/AddressFormContainer */
 export class AddressFormContainer extends HigherOrderComponent {
-    static whyDidYouRender = true;
-
     static propTypes = {
         ...HigherOrderComponent.propTypes,
         formConfig: PropTypes.shape({}),

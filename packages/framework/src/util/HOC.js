@@ -41,6 +41,13 @@ export class HigherOrderComponent extends PureComponent {
             }
 
             try {
+                // TODO: check if simply comparing the values does improve the accuracy
+                // JSON stringify is kinda-slow, investigate if we can do better?
+                // Most probably we do not need this, the question is how not to
+                // create the same object over-and-over again with containerProps?
+                // V8 however prefers JSON.stringify over destruction...
+                // Need to dig into this later!
+
                 if (JSON.stringify(value) !== JSON.stringify(memorizedValue)) {
                     this._memorizedProps[key] = value;
                 }
