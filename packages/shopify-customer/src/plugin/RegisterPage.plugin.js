@@ -6,8 +6,7 @@ import RegisterFallbackPage from '../component/RegisterFallbackPage';
 
 export const RegisterPage = lazy(() => import('../component/RegisterPage'));
 
-/** @namespace ShopifyCustomer/Plugin/LoginPage/Plugin Copy/addCartPage */
-export const addCartPage = (member) => {
+export const addRegisterPage = (member) => {
     const REGISTER_PAGE_POSITION = 4500;
 
     member.addItemToPosition(
@@ -17,7 +16,6 @@ export const addCartPage = (member) => {
             ],
             exact: true,
             render: (props) => (
-                // eslint-disable-next-line react/jsx-no-bind
                 <Suspense fallback={ <RegisterFallbackPage /> }>
                     <RegisterPage { ...props } />
                 </Suspense>
@@ -32,7 +30,7 @@ export const addCartPage = (member) => {
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            _switchRenderList: addCartPage
+            _switchRenderList: addRegisterPage
         }
     }
 };

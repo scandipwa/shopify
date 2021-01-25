@@ -13,25 +13,9 @@ export class LoginFormContainer extends HigherOrderComponent {
     };
 
     onError(customerUserErrors, { setError }) {
-        const formMessages = [];
-
-        customerUserErrors.forEach((customerError) => {
-            const {
-                field,
-                message
-            } = customerError;
-
-            if (!field) {
-                formMessages.push(message);
-                return;
-            }
-
-            // No need to clear them (assosiated)
-            setError(field, {
-                type: 'manual',
-                message
-            });
-        });
+        const formMessages = customerUserErrors.map(
+            ({ message }) => message
+        );
 
         setError('form', {
             type: 'manual',
@@ -46,12 +30,12 @@ export class LoginFormContainer extends HigherOrderComponent {
     async onSubmit(data, useFormProps) {
         const { login } = this.context;
 
-        try {
-            await login(data);
-            this.onSubmitSuccess();
-        } catch (e) {
-            this.onError(e, useFormProps);
-        }
+        login(data).then(
+            /** @namespace ShopifyCustomer/Component/LoginForm/Container/login/then */
+            (res) => this.onSubmitSuccess(res),
+            /** @namespace ShopifyCustomer/Component/LoginForm/Container/login/then */
+            (e) => this.onError(e, useFormProps)
+        );
     }
 }
 

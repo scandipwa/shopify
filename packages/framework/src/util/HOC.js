@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
@@ -9,6 +10,8 @@ export class HigherOrderComponent extends PureComponent {
             PropTypes.func
         ]).isRequired
     };
+
+    _memorizedProps = {};
 
     containerFunctions = {};
 
@@ -24,6 +27,32 @@ export class HigherOrderComponent extends PureComponent {
         return Component;
     }
 
+    _compareMemorizedProps(newProps) {
+        const entries = Object.entries(newProps);
+
+        // eslint-disable-next-line fp/no-let
+        for (let i = 0; i < entries.length; i++) {
+            const [key, value] = entries[i];
+            const memorizedValue = this._memorizedProps[key];
+
+            if (!memorizedValue) {
+                this._memorizedProps[key] = value;
+                continue;
+            }
+
+            try {
+                if (JSON.stringify(value) !== JSON.stringify(memorizedValue)) {
+                    this._memorizedProps[key] = value;
+                }
+            } catch (e) {
+                // if the object was not serilizable - just force set new value
+                this._memorizedProps[key] = value;
+            }
+
+            // in all other cases keep the object unchanged
+        }
+    }
+
     render() {
         const { componentOrComponentMap: Component } = this.props;
 
@@ -34,11 +63,18 @@ export class HigherOrderComponent extends PureComponent {
             );
         }
 
+        const newProps = {
+            ...this.containerFunctions,
+            ...this.containerProps()
+        };
+
+        // this function is used to memorize the result of
+        // containerProps and containerFunctions
+        this._compareMemorizedProps(newProps);
+
         return (
-            <Component
-              { ...this.containerFunctions }
-              { ...this.containerProps() }
-            />
+            // eslint-disable-next-line @scandipwa/scandipwa-guidelines/jsx-no-props-destruction
+            <Component { ...this._memorizedProps } />
         );
     }
 }

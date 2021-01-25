@@ -34,12 +34,13 @@ export class CustomerAddressQuery extends TypedQuery {
             'address1',
             'address2',
             'city',
-            'countryCodeV2',
-            'provinceCode',
+            'country',
+            'province',
             'zip',
             'phone',
             new Field('formatted')
                 .addArgument('withName', 'Boolean', true)
+                .addArgument('withCompany', 'Boolean', true)
         ];
     }
 

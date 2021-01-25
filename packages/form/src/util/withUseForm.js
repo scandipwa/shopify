@@ -5,12 +5,13 @@ import { createElement } from 'react';
 import {
     FormProvider,
     useForm,
-    useFormContext
+    useFormContext,
+    useWatch
 } from 'react-hook-form';
 
 /** @namespace Form/Util/WithUseForm/withUseForm */
 export const withUseForm = (Component) => {
-    const withComponent = ({ formConfig, ...props }) => {
+    const withComponent = ({ formConfig = {}, ...props }) => {
         const formProps = useForm(formConfig);
 
         return createElement(
@@ -45,6 +46,25 @@ export const withUseFormContext = (Component) => {
     };
 
     withComponent.displayName = 'withUseFormContext';
+
+    return withComponent;
+};
+
+/** @namespace Form/Util/WithUseForm/withUseWatch */
+export const withUseWatch = (Component) => {
+    const withComponent = ({ watchConfig = {}, ...props }) => {
+        const formProps = useWatch(watchConfig);
+
+        return createElement(
+            Component,
+            {
+                useWatch: formProps,
+                ...props
+            }
+        );
+    };
+
+    withComponent.displayName = 'withUseWatch';
 
     return withComponent;
 };

@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "@scandipwa/scandipwa-scripts": "^2.2.1",
+        "@scandipwa/why-did-you-render": "0.0.0",
         "@scandipwa/shopify-api": "0.0.0",
         "@scandipwa/shopify-shop": "0.0.0",
         "@scandipwa/shopify-pages": "0.0.0",
@@ -26,6 +27,7 @@
         "themeAlias": "Blank",
         "type": "theme",
         "extensions": {
+            "@scandipwa/why-did-you-render": true,
             "@scandipwa/shopify-api": true,
             "@scandipwa/shopify-shop": true,
             "@scandipwa/shopify-pages": true,

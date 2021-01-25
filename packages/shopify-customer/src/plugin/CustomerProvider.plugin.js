@@ -1,6 +1,6 @@
 import CustomerProvider from '../context/Customer.provider';
 
-const addCheckoutProvider = (member) => {
+const addCustomerProvider = (member) => {
     const CUSTOMER_POSITION = 2000;
 
     member.addItemToPosition((children) => (
@@ -15,7 +15,7 @@ const addCheckoutProvider = (member) => {
 export default {
     'Framework/Component/App/Component/AppComponent': {
         'member-property': {
-            contextProvidersRenderList: addCheckoutProvider
+            contextProvidersRenderList: addCustomerProvider
         }
     }
 };

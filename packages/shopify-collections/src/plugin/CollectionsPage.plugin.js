@@ -14,7 +14,6 @@ const addCollectionsPage = (member) => {
             path: '/collections',
             exact: true,
             render: (props) => (
-                // eslint-disable-next-line react/jsx-no-bind
                 <Suspense fallback={ <CollectionsFallbackPage /> }>
                     <CollectionsPage { ...props } />
                 </Suspense>

@@ -1,0 +1,37 @@
+import PropTypes from 'prop-types';
+import { PureComponent } from 'react';
+
+import AddressForm from '../AddressForm';
+
+/** @namespace ShopifyCustomer-Address/Component/UpdateAddressForm/Component/UpdateAddressFormComponent */
+export class UpdateAddressFormComponent extends PureComponent {
+    static whyDidYouRender = true;
+
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+        formConfig: PropTypes.shape({}).isRequired
+    };
+
+    renderActions = () => (
+        <button type="submit">
+            Update Address
+        </button>
+    );
+
+    render() {
+        const {
+            onSubmit,
+            formConfig
+        } = this.props;
+
+        return (
+            <AddressForm
+              onSubmit={ onSubmit }
+              formConfig={ formConfig }
+              renderActions={ this.renderActions }
+            />
+        );
+    }
+}
+
+export default UpdateAddressFormComponent;

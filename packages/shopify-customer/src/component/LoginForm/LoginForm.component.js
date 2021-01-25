@@ -14,7 +14,7 @@ export class LoginFormComponent extends PureComponent {
     contextRenderList = createSortedRenderList([
         this.renderErrors.bind(this),
         this.renderFields.bind(this),
-        this.renderSubmit.bind(this)
+        this.renderActions.bind(this)
     ]);
 
     formFieldsRenderList = createSortedRenderList([
@@ -56,7 +56,7 @@ export class LoginFormComponent extends PureComponent {
         return this.formFieldsRenderList.render();
     }
 
-    renderSubmit() {
+    renderActions() {
         return (
             <button type="submit">
                 Sign In

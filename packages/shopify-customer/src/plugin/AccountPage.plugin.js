@@ -17,7 +17,6 @@ const addCartPage = (member) => {
             ],
             exact: true,
             render: (props) => (
-                // eslint-disable-next-line react/jsx-no-bind
                 <Suspense fallback={ <AccountFallbackPage /> }>
                     <AccountPage { ...props } />
                 </Suspense>

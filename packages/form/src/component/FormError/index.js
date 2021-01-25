@@ -1,1 +1,1 @@
-export { default } from './FormError.component';
+export { default } from './FormError.container';

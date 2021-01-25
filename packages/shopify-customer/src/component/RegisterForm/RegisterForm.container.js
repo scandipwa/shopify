@@ -2,10 +2,10 @@ import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC
 import { history } from '@scandipwa/router/src/component/Router/Router.component';
 
 import CustomerContext from '../../context/Customer.context';
-import RegisterPageComponent from './RegisterPage.component';
+import RegisterFormComponent from './RegisterForm.component';
 
-/** @namespace ShopifyCustomer/Component/RegisterPage/Container/RegisterPageContainer */
-export class RegisterPageContainer extends HigherOrderComponent {
+/** @namespace ShopifyCustomer/Component/RegisterForm/Container/RegisterFormContainer */
+export class RegisterFormContainer extends HigherOrderComponent {
     static contextType = CustomerContext;
 
     containerFunctions = {
@@ -13,25 +13,9 @@ export class RegisterPageContainer extends HigherOrderComponent {
     };
 
     onError(customerUserErrors, { setError }) {
-        const formMessages = [];
-
-        customerUserErrors.forEach((customerError) => {
-            const {
-                field,
-                message
-            } = customerError;
-
-            if (!field) {
-                formMessages.push(message);
-                return;
-            }
-
-            // No need to clear them (assosiated)
-            setError(field, {
-                type: 'manual',
-                message
-            });
-        });
+        const formMessages = customerUserErrors.map(
+            ({ message }) => message
+        );
 
         setError('form', {
             type: 'manual',
@@ -55,4 +39,4 @@ export class RegisterPageContainer extends HigherOrderComponent {
     }
 }
 
-export default withHOC(RegisterPageContainer, RegisterPageComponent);
+export default withHOC(RegisterFormContainer, RegisterFormComponent);

@@ -6,7 +6,7 @@ import LoginFallbackPage from '../component/LoginFallbackPage';
 
 const LoginPage = lazy(() => import('../component/LoginPage'));
 
-const addCartPage = (member) => {
+const addLoginPage = (member) => {
     const LOGIN_PAGE_POSITION = 4500;
 
     member.addItemToPosition(
@@ -16,7 +16,6 @@ const addCartPage = (member) => {
             ],
             exact: true,
             render: (props) => (
-                // eslint-disable-next-line react/jsx-no-bind
                 <Suspense fallback={ <LoginFallbackPage /> }>
                     <LoginPage { ...props } />
                 </Suspense>
@@ -31,7 +30,7 @@ const addCartPage = (member) => {
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            _switchRenderList: addCartPage
+            _switchRenderList: addLoginPage
         }
     }
 };

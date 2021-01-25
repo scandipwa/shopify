@@ -2,24 +2,26 @@
 import { createElement, lazy, Suspense } from 'react';
 import { Route } from 'react-router';
 
-import FrontPageFallbackPage from '../component/FrontPageFallbackPage';
+import AddressesFallbackPage from '../component/AddressesFallbackPage';
 
-const FrontPagePage = lazy(() => import('../component/FrontPagePage'));
+const AddressesPage = lazy(() => import('../component/AddressesPage'));
 
-const addFrontPage = (member) => {
-    const FRONT_PAGE_POSITION = 3000;
+const addAddressesPage = (member) => {
+    const ADDRESSES_PAGE_POSITION = 4500;
 
     member.addItemToPosition(
         () => createElement(Route, {
-            path: '/',
+            path: [
+                '/account/addresses'
+            ],
             exact: true,
             render: (props) => (
-                <Suspense fallback={ <FrontPageFallbackPage /> }>
-                    <FrontPagePage { ...props } />
+                <Suspense fallback={ <AddressesFallbackPage /> }>
+                    <AddressesPage { ...props } />
                 </Suspense>
             )
         }),
-        FRONT_PAGE_POSITION
+        ADDRESSES_PAGE_POSITION
     );
 
     return member;
@@ -28,7 +30,7 @@ const addFrontPage = (member) => {
 export default {
     'Router/Component/Router/Component/RouterComponent': {
         'member-property': {
-            _switchRenderList: addFrontPage
+            _switchRenderList: addAddressesPage
         }
     }
 };

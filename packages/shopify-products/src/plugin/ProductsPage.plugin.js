@@ -16,7 +16,6 @@ const addProductsPage = (member) => {
             ],
             exact: true,
             render: (props) => (
-                // eslint-disable-next-line react/jsx-no-bind
                 <Suspense fallback={ <ProductsFallbackPage /> }>
                     <ProductsPage { ...props } />
                 </Suspense>
