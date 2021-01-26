@@ -7,7 +7,7 @@
         "build": "scandipwa-scripts build"
     },
     "dependencies": {
-        "@scandipwa/scandipwa-scripts": "^2.2.3",
+        "@scandipwa/scandipwa-scripts": "^2.2.4",
         "@scandipwa/shopify-api": "0.0.0",
         "@scandipwa/shopify-checkout": "0.0.0",
         "@scandipwa/shopify-checkout-line-items": "0.0.0",

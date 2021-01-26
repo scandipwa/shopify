@@ -1,4 +1,5 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC';
+import { history } from '@scandipwa/router/src/component/Router/Router.component';
 
 import CustomerContext from '../../context/Customer.context';
 import AccountPageComponent from './AccountPage.component';
@@ -17,7 +18,7 @@ export class AccountPageContainer extends HigherOrderComponent {
         const { isLoggedIn } = this.context;
 
         if (!isLoggedIn) {
-            history.pushState('/account/login');
+            history.push('/account/login');
         }
     }
 }

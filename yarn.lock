@@ -2431,10 +2431,10 @@
     noop-loader "^1.0.0"
     null-loader "^4.0.1"
 
-"@scandipwa/scandipwa-scripts@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@scandipwa/scandipwa-scripts/-/scandipwa-scripts-2.2.3.tgz#0da15890c6a7263be06d21ec7637407e34b4c09a"
-  integrity sha512-MDUESbuXuFlWsByhncokokNfE9yxQ5t5glsJg2bGQ8fpSdLqDWlaU9yV/m7T0Big9nleVNj6fBe21spCYZPxYA==
+"@scandipwa/scandipwa-scripts@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@scandipwa/scandipwa-scripts/-/scandipwa-scripts-2.2.4.tgz#a3f53893522732f9e43961268a2d3f77764acd9b"
+  integrity sha512-TcEE240YEpULenLX3cMgYYuxte/QbFsMs5TaML2ojFWnv/c6euOzTFEvTmB0MBDxlXaGy0WnvZDcLi7UN3wwbQ==
   dependencies:
     "@scandipwa/craco" "0.1.1"
     "@scandipwa/eslint-config" "0.1.12"

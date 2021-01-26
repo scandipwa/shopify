@@ -12,30 +12,14 @@ export class RegisterFormContainer extends HigherOrderComponent {
         onSubmit: this.onSubmit.bind(this)
     };
 
-    onError(customerUserErrors, { setError }) {
-        const formMessages = customerUserErrors.map(
-            ({ message }) => message
-        );
-
-        setError('form', {
-            type: 'manual',
-            message: formMessages.join('. ')
-        });
-    }
-
     onSubmitSuccess() {
         history.push('/account');
     }
 
-    async onSubmit(data, useFormProps) {
+    async onSubmit(data) {
         const { register } = this.context;
-
-        try {
-            await register(data);
-            this.onSubmitSuccess();
-        } catch (e) {
-            this.onError(e, useFormProps);
-        }
+        await register(data);
+        this.onSubmitSuccess(data);
     }
 }
 

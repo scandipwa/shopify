@@ -12,30 +12,14 @@ export class LoginFormContainer extends HigherOrderComponent {
         onSubmit: this.onSubmit.bind(this)
     };
 
-    onError(customerUserErrors, { setError }) {
-        const formMessages = customerUserErrors.map(
-            ({ message }) => message
-        );
-
-        setError('form', {
-            type: 'manual',
-            message: formMessages.join('. ')
-        });
-    }
-
     onSubmitSuccess() {
         history.push('/account');
     }
 
-    async onSubmit(data, useFormProps) {
+    async onSubmit(data) {
         const { login } = this.context;
-
-        login(data).then(
-            /** @namespace ShopifyCustomer/Component/LoginForm/Container/login/then */
-            (res) => this.onSubmitSuccess(res),
-            /** @namespace ShopifyCustomer/Component/LoginForm/Container/login/then */
-            (e) => this.onError(e, useFormProps)
-        );
+        await login(data);
+        this.onSubmitSuccess(data);
     }
 }
 

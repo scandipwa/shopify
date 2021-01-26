@@ -53,6 +53,21 @@ export class CustomerProvider extends PureComponent {
         });
     }
 
+    checkForUserErrors(parentField) {
+        const { customerUserErrors } = parentField;
+
+        if (!customerUserErrors?.length) {
+            // ignore if no errors found
+            return;
+        }
+
+        const customerUserError = customerUserErrors.map(
+            ({ message }) => message
+        ).join('. ');
+
+        throw new Error(customerUserError);
+    }
+
     async fetchExisingCustomer() {
         const { token: { accessToken: token } } = this.state;
         const { postQuery } = this.context;
@@ -69,36 +84,27 @@ export class CustomerProvider extends PureComponent {
     async login(data) {
         const { postMutation } = this.context;
         const mutation = getCustomerQueryOfType(CUSTOMER_LOGIN)(data);
-        const {
-            customerAccessTokenCreate: {
-                customerAccessToken: token,
-                customerUserErrors
-            }
-        } = await postMutation(mutation);
 
-        if (token) {
-            BrowserDatabase.setItem(CUSTOMER_TOKEN_FROM_STORAGE, token);
-            await this._updateStatePromise({ token, isLoggedIn: true });
-            await this.fetchExisingCustomer();
-        }
+        // check for errors, throw if needed
+        const { customerAccessTokenCreate } = await postMutation(mutation);
+        this.checkForUserErrors(customerAccessTokenCreate);
 
-        if (customerUserErrors?.length) {
-            throw customerUserErrors;
-        }
+        // asumming there were no erros and token is present
+        const { customerAccessToken: token } = customerAccessTokenCreate;
+        BrowserDatabase.setItem(CUSTOMER_TOKEN_FROM_STORAGE, token);
+        await this._updateStatePromise({ token, isLoggedIn: true });
+        await this.fetchExisingCustomer();
     }
 
     async register(data) {
         const { postMutation } = this.context;
         const mutation = getCustomerQueryOfType(CUSTOMER_CREATE)(data);
-        // TODO: handle potential errors
-        const {
-            customerCreate: { customerUserErrors }
-        } = await postMutation(mutation);
 
-        if (customerUserErrors?.length) {
-            throw customerUserErrors;
-        }
+        // check for errors, throw if needed
+        const { customerCreate } = await postMutation(mutation);
+        this.checkForUserErrors(customerCreate);
 
+        // reuse data from regitration form
         const { email, password } = data;
         await this.login({ email, password });
     }

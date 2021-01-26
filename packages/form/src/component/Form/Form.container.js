@@ -17,9 +17,31 @@ export class FormContainer extends PureComponent {
         onSubmit: () => {}
     };
 
-    onSubmit = (data) => {
-        const { onSubmit, useForm } = this.props;
-        onSubmit(data, useForm);
+    onSubmit = async (data) => {
+        const {
+            onSubmit,
+            useForm,
+            useForm: { setError }
+        } = this.props;
+
+        try {
+            await onSubmit(data, useForm);
+        } catch (e) {
+            // In case you want to handle errors differently, implement the
+            // try ... catch block around your onSubmit functions!
+            if (e instanceof Error) {
+                setError('form', {
+                    type: 'manual',
+                    message: e.message
+                });
+            } else {
+                // handle non Error errors
+                setError('form', {
+                    type: 'manual',
+                    message: e.toString()
+                });
+            }
+        }
     };
 
     renderContent() {
