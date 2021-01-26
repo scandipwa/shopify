@@ -4,7 +4,7 @@ import { CheckoutLineItemType } from '../../api/CheckoutLineItems.type';
 import LineItemsProvider from '../../context/LineItems.provider';
 import LineItemComponent from './LineItem.component';
 
-/** @namespace ShopifyCheckout-Line-Items/Component/LineItem/Container/LineItemContainer */
+/** @namespace ShopifyCheckoutLineItems/Component/LineItem/Container/LineItemContainer */
 export class LineItemContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,

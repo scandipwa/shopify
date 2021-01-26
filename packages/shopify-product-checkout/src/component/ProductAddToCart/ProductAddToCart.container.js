@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import ProductAddToCartComponent from './ProductAddToCart.component';
 
-/** @namespace ShopifyProduct-Checkout/Component/ProductAddToCart/Container/ProductAddToCartContainer */
+/** @namespace ShopifyProductCheckout/Component/ProductAddToCart/Container/ProductAddToCartContainer */
 export class ProductAddToCartContainer extends HigherOrderComponent {
     static propTypes = {
         [ProductContext.displayName]: PropTypes.shape({

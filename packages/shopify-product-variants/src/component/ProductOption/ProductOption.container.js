@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import ProductOptionComponent from './ProductOption.component';
 
-/** @namespace ShopifyProduct-Variants/Component/ProductOption/Container/ProductOptionContainer */
+/** @namespace ShopifyProductVariants/Component/ProductOption/Container/ProductOptionContainer */
 export class ProductOptionContainer extends HigherOrderComponent {
     static contextType = ProductContext;
 

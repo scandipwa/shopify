@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AddressFormComponent from './AddressForm.component';
 
-/** @namespace ShopifyCustomer-Address/Component/AddressForm/Container/AddressFormContainer */
+/** @namespace ShopifyCustomerAddress/Component/AddressForm/Container/AddressFormContainer */
 export class AddressFormContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,
@@ -48,7 +48,7 @@ export class AddressFormContainer extends HigherOrderComponent {
         const { onSubmit, onError } = this.props;
 
         onSubmit(data, useFormProps).catch(
-            /** @namespace ShopifyCustomer-Address/Component/AddressForm/Container/onSubmit/catch */
+            /** @namespace ShopifyCustomerAddress/Component/AddressForm/Container/onSubmit/catch */
             (e) => onError(e, useFormProps)
         );
     }

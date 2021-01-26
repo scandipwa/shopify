@@ -10,7 +10,7 @@ export const ADD_LINE_ITEMS = 'add';
 export const REMOVE_LINE_ITEMS = 'remove';
 export const UPDATE_LINE_ITEMS = 'update';
 
-/** @namespace ShopifyCheckout-Line-Items/Api/CheckoutLineItems/Query/CheckoutLineItemsQuery */
+/** @namespace ShopifyCheckoutLineItems/Api/CheckoutLineItems/Query/CheckoutLineItemsQuery */
 export class CheckoutLineItemsQuery extends TypedQuery {
     typeMap = {
         [CHECKOUT_LINE_ITEMS]: this.getCheckoutLineItemsField.bind(this),

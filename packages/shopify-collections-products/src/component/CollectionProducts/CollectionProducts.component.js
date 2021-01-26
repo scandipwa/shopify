@@ -6,7 +6,7 @@ import { PureComponent } from 'react';
 import { collectionProductsResponseProcessor } from '../../api/CollectionProducts.processor';
 import CollectionProductsFallback from '../CollectionProductsFallback';
 
-/** @namespace ShopifyCollections-Products/Component/CollectionProducts/Component/CollectionProductsComponent */
+/** @namespace ShopifyCollectionsProducts/Component/CollectionProducts/Component/CollectionProductsComponent */
 export class CollectionProductsComponent extends PureComponent {
     static propTypes = {
         getQuery: PropTypes.func.isRequired

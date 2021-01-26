@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { CustomerAddressType } from '../../api/CustomerAddress.type';
 
-/** @namespace ShopifyCustomer-Address/Component/FormattedAddress/Component/FormattedAddressComponent */
+/** @namespace ShopifyCustomerAddress/Component/FormattedAddress/Component/FormattedAddressComponent */
 export class FormattedAddressComponent extends PureComponent {
     static propTypes = {
         address: CustomerAddressType.isRequired

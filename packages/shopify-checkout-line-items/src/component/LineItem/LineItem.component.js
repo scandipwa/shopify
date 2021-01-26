@@ -6,7 +6,7 @@ import LineItemsContext from '../../context/LineItems.context';
 import LineItemPrice from '../LineItemPrice';
 import LineItemQuantity from '../LineItemQuantity';
 
-/** @namespace ShopifyCheckout-Line-Items/Component/LineItem/Component/LineItemComponent */
+/** @namespace ShopifyCheckoutLineItems/Component/LineItem/Component/LineItemComponent */
 export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 

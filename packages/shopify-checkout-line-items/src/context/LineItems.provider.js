@@ -6,7 +6,7 @@ import { PureComponent } from 'react';
 import { CheckoutLineItemType } from '../api/CheckoutLineItems.type';
 import LineItemsContext from './LineItems.context';
 
-/** @namespace ShopifyCheckout-Line-Items/Context/LineItems/Provider/LineItemsProvider */
+/** @namespace ShopifyCheckoutLineItems/Context/LineItems/Provider/LineItemsProvider */
 export class LineItemsProvider extends PureComponent {
     static contextType = CheckoutContext;
 

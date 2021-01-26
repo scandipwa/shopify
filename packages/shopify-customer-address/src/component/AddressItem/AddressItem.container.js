@@ -4,7 +4,7 @@ import CustomerContext from '@scandipwa/shopify-customer/src/context/Customer.co
 import { CustomerAddressType } from '../../api/CustomerAddress.type';
 import AddressItemComponent from './AddressItem.component';
 
-/** @namespace ShopifyCustomer-Address/Component/AddressItem/Container/AddressItemContainer */
+/** @namespace ShopifyCustomerAddress/Component/AddressItem/Container/AddressItemContainer */
 export class AddressItemContainer extends HigherOrderComponent {
     static propTypes = {
         address: CustomerAddressType.isRequired

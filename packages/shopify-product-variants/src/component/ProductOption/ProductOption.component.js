@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-/** @namespace ShopifyProduct-Variants/Component/ProductOption/Component/ProductOptionComponent */
+/** @namespace ShopifyProductVariants/Component/ProductOption/Component/ProductOptionComponent */
 export class ProductOptionComponent extends PureComponent {
     static propTypes = {
         onChange: PropTypes.func.isRequired,

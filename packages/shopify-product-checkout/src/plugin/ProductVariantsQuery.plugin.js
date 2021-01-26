@@ -6,7 +6,7 @@ const addVariantFields = (args, callback) => [
 ];
 
 export default {
-    'ShopifyProduct-Variants/Api/ProductVariants/Query/ProductVariantsQuery': {
+    'ShopifyProductVariants/Api/ProductVariants/Query/ProductVariantsQuery': {
         'member-function': {
             _getVariantFields: addVariantFields
         }

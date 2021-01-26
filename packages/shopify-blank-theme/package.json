@@ -7,21 +7,21 @@
         "build": "scandipwa-scripts build"
     },
     "dependencies": {
-        "@scandipwa/scandipwa-scripts": "^2.2.1",
-        "@scandipwa/why-did-you-render": "0.0.0",
+        "@scandipwa/scandipwa-scripts": "^2.2.3",
         "@scandipwa/shopify-api": "0.0.0",
-        "@scandipwa/shopify-shop": "0.0.0",
-        "@scandipwa/shopify-pages": "0.0.0",
-        "@scandipwa/shopify-collections": "0.0.0",
-        "@scandipwa/shopify-collections-products": "0.0.0",
-        "@scandipwa/shopify-products": "0.0.0",
-        "@scandipwa/shopify-product-variants": "0.0.0",
-        "@scandipwa/shopify-product-prices": "0.0.0",
-        "@scandipwa/shopify-product-checkout": "0.0.0",
         "@scandipwa/shopify-checkout": "0.0.0",
         "@scandipwa/shopify-checkout-line-items": "0.0.0",
+        "@scandipwa/shopify-collections": "0.0.0",
+        "@scandipwa/shopify-collections-products": "0.0.0",
         "@scandipwa/shopify-customer": "0.0.0",
-        "@scandipwa/shopify-customer-address": "0.0.0"
+        "@scandipwa/shopify-customer-address": "0.0.0",
+        "@scandipwa/shopify-pages": "0.0.0",
+        "@scandipwa/shopify-product-checkout": "0.0.0",
+        "@scandipwa/shopify-product-prices": "0.0.0",
+        "@scandipwa/shopify-product-variants": "0.0.0",
+        "@scandipwa/shopify-products": "0.0.0",
+        "@scandipwa/shopify-shop": "0.0.0",
+        "@scandipwa/why-did-you-render": "0.0.0"
     },
     "scandipwa": {
         "themeAlias": "Blank",

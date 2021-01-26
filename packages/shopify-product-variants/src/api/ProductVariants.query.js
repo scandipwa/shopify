@@ -1,7 +1,7 @@
 import { Field } from '@scandipwa/graphql';
 import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
-/** @namespace ShopifyProduct-Variants/Api/ProductVariants/Query/ProductVariantsQuery */
+/** @namespace ShopifyProductVariants/Api/ProductVariants/Query/ProductVariantsQuery */
 export class ProductVariantsQuery {
     _getVariantFields() {
         return [

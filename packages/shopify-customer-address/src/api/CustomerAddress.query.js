@@ -9,7 +9,7 @@ export const ADDRESS_CREATE = 'address_create';
 export const ADDERSS_UPDATE = 'address_update';
 export const ADDRESS_DELETE = 'address_delete';
 
-/** @namespace ShopifyCustomer-Address/Api/CustomerAddress/Query/CustomerAddressQuery */
+/** @namespace ShopifyCustomerAddress/Api/CustomerAddress/Query/CustomerAddressQuery */
 export class CustomerAddressQuery extends TypedQuery {
     typeMap = {
         [ADDRESS_GET]: this.getCustomerAddressField.bind(this),

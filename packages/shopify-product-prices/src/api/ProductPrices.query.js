@@ -1,6 +1,6 @@
 import { Field } from '@scandipwa/graphql';
 
-/** @namespace ShopifyProduct-Prices/Api/ProductPrices/Query/ProductPricesQuery */
+/** @namespace ShopifyProductPrices/Api/ProductPrices/Query/ProductPricesQuery */
 export class ProductPricesQuery {
     _getPriceFields() {
         return [

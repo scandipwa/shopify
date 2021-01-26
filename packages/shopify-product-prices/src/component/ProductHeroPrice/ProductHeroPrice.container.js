@@ -3,7 +3,7 @@ import ProductContext from '@scandipwa/shopify-products/src/context/Products.con
 
 import ProductHeroPriceComponent from './ProductHeroPrice.component';
 
-/** @namespace ShopifyProduct-Prices/Component/ProductHeroPrice/Container/ProductHeroPriceContainer */
+/** @namespace ShopifyProductPrices/Component/ProductHeroPrice/Container/ProductHeroPriceContainer */
 export class ProductHeroPriceContainer extends HigherOrderComponent {
     static contextType = ProductContext;
 

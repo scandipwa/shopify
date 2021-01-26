@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import LineItem from '../LineItem';
 import LineItemFallback from '../LineItemFallback';
 
-/** @namespace ShopifyCheckout-Line-Items/Component/LineItems/Component/LineItemsComponent */
+/** @namespace ShopifyCheckoutLineItems/Component/LineItems/Component/LineItemsComponent */
 export class LineItemsComponent extends PureComponent {
     static contextType = CheckoutContext;
 

@@ -1,2 +1,2 @@
-/** @namespace ShopifyCustomer-Address/Api/CustomerAddreess/Processor/processAddress */
+/** @namespace ShopifyCustomerAddress/Api/CustomerAddreess/Processor/processAddress */
 export const processAddress = () => {};

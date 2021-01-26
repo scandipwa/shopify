@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import ProductOption from '../ProductOption';
 
-/** @namespace ShopifyProduct-Variants/Component/ProductOptions/Component/ProductOptionsComponent */
+/** @namespace ShopifyProductVariants/Component/ProductOptions/Component/ProductOptionsComponent */
 export class ProductOptionsComponent extends PureComponent {
     static contextType = ProductContext;
 
