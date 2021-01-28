@@ -41,12 +41,12 @@ module.exports = () => {
             // eslint-disable-next-line fp/no-delete
             delete config.module.rules[0].exclude;
             // eslint-disable-next-line fp/no-delete
-            delete config.module.rules[0].include;
+            // delete config.module.rules[0].include;
 
-            // config.module.rules[0].include.push(
-            //     // [BABEL] unknown: Preset /* your preset */ requires a filename to be set when babel is called directly
-            //     ...extensions.map(({ packagePath }) => packagePath)
-            // );
+            config.module.rules[0].include.push(
+                // [BABEL] unknown: Preset /* your preset */ requires a filename to be set when babel is called directly
+                ...extensions.map(({ packagePath }) => packagePath)
+            );
 
             // Add FallbackPlugin
             // config.resolve.plugins.push(new FallbackPlugin({ sources }));
