@@ -1,0 +1,42 @@
+{
+    "name": "shopify-nextjs-theme",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "scandipwa": {
+        "type": "theme",
+        "extensions": {
+            "@scandipwa/nextjs-extension": true,
+            "@scandipwa/nextjs-extensibility": true
+        }
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    },
+    "license": "OSL-3.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@scandipwa/nextjs-extensibility": "0.0.0",
+        "@scandipwa/nextjs-extension": "0.0.0",
+        "next": "10.0.5",
+        "react": "17.0.1",
+        "react-dom": "17.0.1"
+    }
+}

@@ -23,6 +23,17 @@
                 "BROWSER": "none"
             },
             "cwd": "${workspaceFolder}/packages/shopify-blank-theme"
+        },
+        {
+            "command": "npm run dev",
+            "name": "NextJS dev",
+            "request": "launch",
+            "type": "node-terminal",
+            "env": {
+                "NODE_OPTIONS": "--inspect",
+                "PORT": "3333"
+            },
+            "cwd": "${workspaceFolder}/next-packages/shopify-nextjs-theme"
         }
     ]
 }

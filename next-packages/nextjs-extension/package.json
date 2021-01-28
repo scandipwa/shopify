@@ -1,0 +1,27 @@
+{
+    "name": "@scandipwa/nextjs-extension",
+    "description": "NextJS extension",
+    "version": "0.0.0",
+    "scandipwa": {
+        "type": "extension"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    },
+    "license": "OSL-3.0",
+    "publishConfig": {
+        "access": "public"
+    }
+}
