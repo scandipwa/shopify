@@ -1,5 +1,5 @@
-import { Field } from '../Query/Field.ts';
-import { prepareRequest, QUERY_TYPE } from '../Query/prepareDocument.ts';
+import { Field } from '../Query/Field';
+import { prepareRequest, QUERY_TYPE } from '../Query/prepareDocument';
 import { executePost } from './Request';
 
 /** @namespace Graphql/Util/Request/Query/prepareQuery */

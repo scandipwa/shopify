@@ -5,8 +5,11 @@
  */
 import generateConfig from './generateConfig';
 
-export const extensions = [
-    /** INJECT__HOOK */
-];
+export const extensions = [];
+
+console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
+console.log(process.env.SCANDI_PLUGINS);
+console.log(process.env.SCANDI_PLUGINS.map((pathname) => require(pathname)));
+console.log('VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV');
 
 export default generateConfig(extensions);

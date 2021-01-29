@@ -1,5 +1,5 @@
-import { Field } from '../Query/Field.ts';
-import { MUTATION_TYPE, prepareRequest } from '../Query/prepareDocument.ts';
+import { Field } from '../Query/Field';
+import { MUTATION_TYPE, prepareRequest } from '../Query/prepareDocument';
 import { executePost } from './Request';
 
 /** @namespace Graphql/Util/Request/Mutation/prepareMutation */

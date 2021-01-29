@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';
 
-/** @namespace ShopifyPages/Component/PagePage/Component/PagePageComponent */
+/** @namespace ShopifyNextjsPages/Component/PagePage/Component/PagePageComponent */
 export class PagePageComponent extends PureComponent {
     static propTypes = {
         page: PageType.isRequired

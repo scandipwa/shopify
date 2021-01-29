@@ -1,3 +1,4 @@
+/* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 /* eslint-disable max-classes-per-file */
 import generateGetHandler from './lib/handlers/generateGetHandler';
 

@@ -1,5 +1,5 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC';
-import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnection';
+import HandleConnection from '@scandipwa/shopify-nextjs-api/src/component/HandleConnection';
 import PropTypes from 'prop-types';
 
 import { processPageByHandleResponse } from '../../api/Page.processor';
@@ -9,7 +9,7 @@ import PageFallbackPage from '../PageFallbackPage';
 import PagePageComponent from './PagePage.component';
 import { PAGE_COMPONENT_PAGE, PAGE_FALLBACK_PAGE } from './PagePage.config';
 
-/** @namespace ShopifyPages/Component/PagePage/Container/PagePageContainer */
+/** @namespace ShopifyNextjsPages/Component/PagePage/Container/PagePageContainer */
 export class PagePageContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,

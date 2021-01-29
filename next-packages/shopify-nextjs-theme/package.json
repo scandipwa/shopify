@@ -9,7 +9,7 @@
     "scandipwa": {
         "type": "theme",
         "extensions": {
-            "@scandipwa/nextjs-extension": true,
+            "@scandipwa/shopify-nextjs-pages": true,
             "@scandipwa/nextjs-extensibility": true
         }
     },
@@ -26,15 +26,21 @@
         ]
     },
     "eslintConfig": {
-        "extends": "@scandipwa"
+        "extends": "@scandipwa",
+        "ignorePatterns": [
+            "build/**/*"
+        ]
     },
     "license": "OSL-3.0",
     "publishConfig": {
         "access": "public"
     },
     "dependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
         "@scandipwa/nextjs-extensibility": "0.0.0",
-        "@scandipwa/nextjs-extension": "0.0.0",
+        "@scandipwa/shopify-nextjs-pages": "0.0.0",
+        "babel-loader": "^8.2.2",
         "next": "10.0.5",
         "react": "17.0.1",
         "react-dom": "17.0.1"

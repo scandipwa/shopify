@@ -1,3 +1,4 @@
+/* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 import generateApplyHandler from './lib/handlers/generateApplyHandler';
 import generateConstructHandler from './lib/handlers/generateConstructHandler';
 import generateGetHandler from './lib/handlers/generateGetHandler';
@@ -29,7 +30,7 @@ const getNamespacesFromMiddlewarable = (Middlewarable) => Middlewarable.prototyp
  * @param {Function} Middlewarable
  * @param {string} namespace
  */
-function middleware(Middlewarable, namespace) {
+export default (Middlewarable, namespace) => {
     addNamespaceToMiddlewarable(Middlewarable, namespace);
 
     const handler = {
@@ -47,6 +48,4 @@ function middleware(Middlewarable, namespace) {
 
     // TODO check if class
     return applyClassWrappers(proxy);
-}
-
-export default middleware;
+};

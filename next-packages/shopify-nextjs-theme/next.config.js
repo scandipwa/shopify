@@ -6,8 +6,9 @@
 // const FallbackPlugin = require('@scandipwa/webpack-fallback-plugin');
 // const { sources } = require('@scandipwa/scandipwa-scripts/lib/sources');
 // const url = require('url');
-// const path = require('path');
+const path = require('path');
 const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
+const allExtensionImports = require('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-loader');
 
 module.exports = () => {
     // const abstractStyle = FallbackPlugin.getFallbackPathname('src/style/abstract/_abstract.scss');
@@ -28,7 +29,8 @@ module.exports = () => {
                 new webpack.DefinePlugin({
                     'process.env': {
                         REBEM_MOD_DELIM: JSON.stringify('_'),
-                        REBEM_ELEM_DELIM: JSON.stringify('-')
+                        REBEM_ELEM_DELIM: JSON.stringify('-'),
+                        SCANDI_PLUGINS: JSON.stringify(allExtensionImports)
                     }
                 })
             ]);
@@ -39,106 +41,97 @@ module.exports = () => {
 
             // Allow everything to be processed by babel
             // eslint-disable-next-line fp/no-delete
-            delete config.module.rules[0].exclude;
+            // delete config.module.rules[0].exclude;
             // eslint-disable-next-line fp/no-delete
             // delete config.module.rules[0].include;
 
-            config.module.rules[0].include.push(
-                // [BABEL] unknown: Preset /* your preset */ requires a filename to be set when babel is called directly
-                ...extensions.map(({ packagePath }) => packagePath)
-            );
-
-            // Add FallbackPlugin
-            // config.resolve.plugins.push(new FallbackPlugin({ sources }));
-
-            // Allow importing .style files without specifying the extension
-            // config.resolve.extensions.push('.scss');
-
-            // if (fs.existsSync(abstractStyle)) {
-            //     config.module.rules.push({
-            //         enforce: 'pre',
-            //         test: /\.scss$/,
-            //         loader: 'sass-resources-loader',
-            //         options: {
-            //             resources: abstractStyle
-            //         }
-            //     });
-            // }
-
-            // ===================================
-            // Extensibility imports
-
-            // TODO:
-            // - patched to include GlobalThis (THIS IS NOT REAL IN NODE)
-            // - pathced no imports in entry
-            // - possibly pre-compile runtime-modules
-            // (NextJS) does not support optional chaining
-
-            // if (!imports) {
-            //     return [
-            //         injectableCode,
-            //         source
-            //     ].join('');
-            // }
+            // const extensionPaths = extensions.map(({ packagePath }) => packagePath);
+            // config.module.rules[0].include.push(...extensionPaths);
 
             config.plugins.forEach((plugin) => {
                 if (plugin instanceof webpack.ProvidePlugin) {
                     plugin.definitions.middleware = [
-                        require.resolve('@scandipwa/nextjs-extensibility/middleware'),
+                        '@scandipwa/nextjs-extensibility/middleware',
                         'default'
                     ];
 
                     plugin.definitions.Extensible = [
-                        require.resolve('@scandipwa/nextjs-extensibility/Extensible'),
+                        '@scandipwa/nextjs-extensibility/Extensible',
                         'default'
                     ];
 
                     plugin.definitions.ScandiPlugins = [
-                        require.resolve('@scandipwa/nextjs-extensibility/runtime-helpers/index.js'),
+                        '@scandipwa/nextjs-extensibility/runtime-helpers',
                         'default'
                     ];
                 }
             });
 
-            config.module.rules.push({
-                test: require.resolve('@scandipwa/nextjs-extensibility/runtime-helpers/index.js'),
-                loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-loader')
+            const PATH_DELIMITER = '[\\\\/]'; // match 2 antislashes or one slash
+            const safePath = (module) => module.split('/').join(PATH_DELIMITER);
+
+            config.resolve.symlinks = false;
+
+            const extensionPaths = [
+                ...extensions.map(({ packagePath }) => new RegExp(packagePath)),
+                ...extensions.map(({ packageName }) => new RegExp(safePath(packageName)))
+            ];
+
+            if (Array.isArray(config.externals)) {
+                config.externals = config.externals.map((external) => {
+                    if (typeof external !== 'function') {
+                        return external;
+                    }
+
+                    return (ctx, req, cb) => {
+                        return extensionPaths.filter(Boolean).find((include) => (req.startsWith('.')
+                            ? new RegExp(include).test(path.resolve(ctx, req))
+                            : new RegExp(include).test(req)))
+                            ? cb()
+                            : external(ctx, req, cb);
+                    };
+                });
+            }
+
+            config.module.rules.unshift({
+                test: /\.+(js|jsx|mjs|ts|tsx)$/,
+                // loader: defaultLoaders.babel,
+                include: (pathToTest) => {
+                    const isParsed = extensionPaths.some((extensionPath) => extensionPath.test(pathToTest));
+
+                    // if (isParsed) {
+                    //     console.log('PARSING: ', pathToTest);
+                    // }
+
+                    return isParsed;
+                },
+                loader: 'babel-loader',
+                options: {
+                    sourceType: 'module',
+                    presets: [
+                        [
+                            'babel-preset-react-app',
+                            {
+                                runtime: 'classic'
+                            }
+                        ]
+                    ],
+                    plugins: [
+                        '@scandipwa/nextjs-extensibility/build-config/babel-plugin-middleware-decorator',
+                        '@babel/plugin-transform-arrow-functions',
+                        '@babel/plugin-transform-async-to-generator'
+                    ]
+                }
+
             });
 
-            // Trying to prove module with extnesions
-            // if (typeof config.entry === 'function') {
-            //     const entrypoints = process.binding('util').getPromiseDetails(config.entry())[1];
+            // So the middleware is coming from define, inside, it is using the ScandiPlugins
+            // ScandiPlugins require parser bellow
 
-            //     const allPath = Object.entries(entrypoints)
-            //         .filter(([key]) => !(key.includes('react') || key.includes('polyfills')))
-            //         .map((([_, value]) => (
-            //             Array.isArray(value) ? value[1] : value)
-            //         ));
-
-            //     const test = allPath
-            //         .filter(
-            //             Boolean
-            //         ).map(
-            //             (testCondition) => {
-            //                 const temp = path.resolve(testCondition);
-            //                 const { pathname } = url.parse(temp);
-            //                 return pathname;
-            //             }
-            //         );
-
-            //     if (test.length) {
-            //         config.module.rules.push({
-            //             test,
-            //             loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-helper-loader')
-            //         });
-            //     }
-            // } else {
-            //     config.module.rules.push({
-            //         test: config.entry,
-            //         loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-helper-loader')
-            //     });
-            // }
-
+            // config.module.rules.unshift({
+            //     test: new RegExp('@scandipwa/nextjs-extensibility/runtime-helpers'),
+            //     loader: '@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-loader'
+            // });
             // ===================================
 
             // Important: return the modified config
@@ -147,3 +140,8 @@ module.exports = () => {
         distDir: 'build'
     };
 };
+
+// Add new babel loader => "Identifier 'React' has already been declared"
+// Add new babel loader + pass in only expression in plugin => "Cannot use import statement outside a module"
+// Default loader + pass in only expression in plugin => "Cannot use import statement outside a module"
+// Default loader => "Cannot use import statement outside a module"

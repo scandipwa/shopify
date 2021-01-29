@@ -49,36 +49,32 @@ const getExtensionImports = (pathname) => {
         return [];
     }
 
-    return findPluginFiles(pathname).map((pluginFile) => `require('${pluginFile}').default`);
+    return findPluginFiles(pathname);
 };
 
-module.exports = function injectImports(source) {
-    const rootExtensionImports = getExtensionImports(
-        path.join(
-            process.cwd(),
+const rootExtensionImports = getExtensionImports(
+    path.join(
+        process.cwd(),
+        'src',
+        'plugin'
+    )
+);
+
+const allExtensionImports = extensions.reduce(
+    (acc, { packagePath }) => {
+        const pluginDirectory = path.join(
+            packagePath,
             'src',
             'plugin'
-        )
-    );
+        );
 
-    const allExtensionImports = extensions.reduce(
-        (acc, { packagePath }) => {
-            const pluginDirectory = path.join(
-                packagePath,
-                'src',
-                'plugin'
-            );
+        if (!fs.existsSync(pluginDirectory)) {
+            return acc;
+        }
 
-            if (!fs.existsSync(pluginDirectory)) {
-                return acc;
-            }
+        return acc.concat(getExtensionImports(pluginDirectory));
+    },
+    rootExtensionImports
+);
 
-            return acc.concat(getExtensionImports(pluginDirectory));
-        },
-        rootExtensionImports
-    );
-
-    const importString = allExtensionImports.join(',\n');
-
-    return source.replace('/** INJECT__HOOK */', importString);
-};
+module.exports = allExtensionImports;

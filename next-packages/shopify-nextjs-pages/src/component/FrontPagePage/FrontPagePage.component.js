@@ -2,7 +2,13 @@ import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap'
 
 import { PagePageComponent } from '../PagePage/PagePage.component';
 
-/** @namespace ShopifyPages/Component/FrontPagePage/Component/FrontPagePageComponent */
+console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+console.log(ScandiPlugins);
+console.log(middleware);
+console.log(Extensible);
+console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+
+/** @namespace ShopifyNextjsPages/Component/FrontPagePage/Component/FrontPagePageComponent */
 export class FrontPagePageComponent extends PagePageComponent {
     sortedRenderList = createSortedRenderList([
         this.renderBody.bind(this)

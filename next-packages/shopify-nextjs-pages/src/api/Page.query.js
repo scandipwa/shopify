@@ -1,9 +1,9 @@
 import { Field } from '@scandipwa/graphql';
-import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/util/TypedQuery';
+import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-nextjs-api/src/util/TypedQuery';
 
 export const SINGLE_PAGE = 'single';
 
-/** @namespace ShopifyPages/Api/Page/Query/PageQuery */
+/** @namespace ShopifyNextjsPages/Api/Page/Query/PageQuery */
 export class PageQuery extends TypedQuery {
     typeMap = {
         [SINGLE_PAGE]: this.getPageByHandleField.bind(this)

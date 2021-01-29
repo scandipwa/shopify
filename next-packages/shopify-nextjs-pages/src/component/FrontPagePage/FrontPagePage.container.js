@@ -6,7 +6,13 @@ import { PagePageContainer } from '../PagePage/PagePage.container';
 import FrontPagePageComponent from './FrontPagePage.component';
 import { FRONT_PAGE_HANDLE } from './FrontPagePage.config';
 
-/** @namespace ShopifyPages/Component/FrontPagePage/Container/FrontPagePageContainer */
+console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');
+console.log(ScandiPlugins);
+console.log(middleware);
+console.log(Extensible);
+console.log('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO');
+
+/** @namespace ShopifyNextjsPages/Component/FrontPagePage/Container/FrontPagePageContainer */
 export class FrontPagePageContainer extends PagePageContainer {
     getPageFromHistoryState() {
         return undefined;

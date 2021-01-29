@@ -2,6 +2,12 @@
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
+console.log('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP');
+console.log(ScandiPlugins);
+console.log(middleware);
+console.log(Extensible);
+console.log('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP');
+
 /** @namespace Framework/Util/HOC/HigherOrderComponent */
 export class HigherOrderComponent extends PureComponent {
     static propTypes = {
