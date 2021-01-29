@@ -49,32 +49,34 @@ const getExtensionImports = (pathname) => {
         return [];
     }
 
-    return findPluginFiles(pathname);
+    return findPluginFiles(pathname).map((pluginFile) => `require('${pluginFile}').default`);
 };
 
-const rootExtensionImports = getExtensionImports(
-    path.join(
-        process.cwd(),
-        'src',
-        'plugin'
-    )
-);
-
-const allExtensionImports = extensions.reduce(
-    (acc, { packagePath }) => {
-        const pluginDirectory = path.join(
-            packagePath,
+module.exports = function getAllExtensionImports() {
+    const rootExtensionImports = getExtensionImports(
+        path.join(
+            process.cwd(),
             'src',
             'plugin'
-        );
+        )
+    );
 
-        if (!fs.existsSync(pluginDirectory)) {
-            return acc;
-        }
+    const allExtensionImports = extensions.reduce(
+        (acc, { packagePath }) => {
+            const pluginDirectory = path.join(
+                packagePath,
+                'src',
+                'plugin'
+            );
 
-        return acc.concat(getExtensionImports(pluginDirectory));
-    },
-    rootExtensionImports
-);
+            if (!fs.existsSync(pluginDirectory)) {
+                return acc;
+            }
 
-module.exports = allExtensionImports;
+            return acc.concat(getExtensionImports(pluginDirectory));
+        },
+        rootExtensionImports
+    );
+
+    return allExtensionImports.join(',\n');
+};

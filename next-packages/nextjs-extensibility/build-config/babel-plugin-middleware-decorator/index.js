@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 /* eslint-disable new-cap */
 // TODO: comment
@@ -87,7 +88,7 @@ const isMustProcessNamespace = (state) => {
 };
 
 module.exports = (options) => {
-    const { types, parse, transformSync } = options;
+    const { types, parse } = options;
 
     return {
         name: 'middleware-decorators',
@@ -99,13 +100,17 @@ module.exports = (options) => {
                 }
 
                 const namespace = getNamespaceFromPath(path);
+
                 if (!namespace) {
                     return;
                 }
 
                 path.replaceWith(
                     types.callExpression(
-                        types.identifier('middleware'),
+                        types.memberExpression(
+                            types.identifier('ExtUtils'),
+                            types.identifier('middleware')
+                        ),
                         [path.node, types.stringLiteral(namespace)]
                     )
                 );
@@ -126,7 +131,10 @@ module.exports = (options) => {
 
                 init.replaceWith(
                     types.callExpression(
-                        types.identifier('middleware'),
+                        types.memberExpression(
+                            types.identifier('ExtUtils'),
+                            types.identifier('middleware')
+                        ),
                         [init.node, types.stringLiteral(namespace)]
                     )
                 );
@@ -151,7 +159,10 @@ module.exports = (options) => {
                 );
 
                 const middlewaredFunctionExpression = types.callExpression(
-                    types.identifier('middleware'),
+                    types.memberExpression(
+                        types.identifier('ExtUtils'),
+                        types.identifier('middleware')
+                    ),
                     [functionExpression, types.stringLiteral(namespace)]
                 );
 
@@ -177,7 +188,10 @@ module.exports = (options) => {
 
                 const superClass = path.get('superClass');
                 const superExpression = types.callExpression(
-                    types.Identifier('Extensible'),
+                    types.memberExpression(
+                        types.identifier('ExtUtils'),
+                        types.Identifier('Extensible')
+                    ),
                     [types.Identifier(superClass.node ? superClass.node.name : '')]
                 );
 
@@ -193,7 +207,10 @@ module.exports = (options) => {
                 path.get('id').node.name = newName.name;
 
                 const wrappedInMiddeware = types.callExpression(
-                    types.identifier('middleware'),
+                    types.memberExpression(
+                        types.identifier('ExtUtils'),
+                        types.identifier('middleware')
+                    ),
                     [newName, types.stringLiteral(namespace.trim())]
                 );
 

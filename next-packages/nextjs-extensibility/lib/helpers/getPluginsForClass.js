@@ -1,3 +1,5 @@
+import ImportedPlugins from '../../runtime-helpers'
+
 /* eslint-disable no-undef */
 /**
  * Get `class` plugins for provided namespaces' outer one (last assigned)
@@ -10,7 +12,7 @@ export const withNamespace = (namespaces) => {
     const outerNamespace = namespaces[namespaces.length - 1];
 
     try {
-        return ScandiPlugins[outerNamespace].class || [];
+        return ImportedPlugins[outerNamespace].class || [];
     } catch (e) {
         return [];
     }

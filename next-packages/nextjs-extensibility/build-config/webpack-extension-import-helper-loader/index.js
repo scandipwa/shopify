@@ -1,5 +1,6 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
-const path = require('path');
+// const path = require('path');
+const getAllExtensionImports = require('../webpack-extension-import-loader');
 
 /**
  * This will import the neighboring runtime-helpers into the application
@@ -7,8 +8,8 @@ const path = require('path');
  * But it will occur before ReactDOM.render()
  */
 module.exports = function injectImports(source) {
-    const injectablePath = path.resolve(__dirname, '..', '..', 'runtime-helpers');
-    const injectableCode = `import '${injectablePath}';\n`;
+    // const injectablePath = path.resolve(__dirname, '..', '..', 'runtime-helpers');
+    const injectableCode = `ExtUtils.setPlugins([${ getAllExtensionImports() }]);\n`;
 
     const importMatcher = /^import .+$/gm;
     const imports = source.match(importMatcher);

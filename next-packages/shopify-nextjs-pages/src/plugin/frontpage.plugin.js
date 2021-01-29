@@ -1,10 +1,9 @@
-import FrontPagePage from '../component/FrontPagePage';
+/* eslint-disable import/first */
+console.log('=====================================');
+console.log(ExtUtils);
+console.log('END OF =====================================');
 
-console.log('||||||||||||||||||||||||||||||||||');
-console.log(ScandiPlugins);
-console.log(middleware);
-console.log(Extensible);
-console.log('||||||||||||||||||||||||||||||||||');
+import FrontPagePage from '../component/FrontPagePage';
 
 const renderFrontPage = () => (
     <FrontPagePage />
@@ -15,7 +14,3 @@ export default {
         function: renderFrontPage
     }
 };
-
-/* eslint-disable @scandipwa/scandipwa-guidelines/derived-class-names */
-/* eslint-disable @scandipwa/scandipwa-guidelines/only-one-class */
-/* eslint-disable max-classes-per-file */
