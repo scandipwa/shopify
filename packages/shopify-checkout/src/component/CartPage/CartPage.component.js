@@ -7,22 +7,10 @@ import CheckoutContext from '../../context/Checkout.context';
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
-    sortedRenderList = createSortedRenderList([
-        this.renderGoToCheckout.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderList([]);
 
     renderContent() {
         return this.sortedRenderList.render();
-    }
-
-    renderGoToCheckout() {
-        const { checkout: { webUrl } } = this.context;
-
-        return (
-            <a href={ webUrl }>
-                Go to checkout
-            </a>
-        );
     }
 
     render() {
