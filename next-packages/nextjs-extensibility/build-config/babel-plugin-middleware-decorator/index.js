@@ -11,7 +11,15 @@ const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
 const allowedPaths = [
     ...getParentThemePaths(),
     process.cwd(),
-    ...extensions.map(({ packagePath }) => packagePath)
+    ...extensions.map(({ packageName }) => {
+        const isWin = process && (process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE));
+
+        if (!isWin) {
+            return packageName;
+        }
+
+        return packageName.replace('/', '\\');
+    })
 ].reduce((acc, pathname) => [
     ...acc,
     path.join(pathname, 'src'),

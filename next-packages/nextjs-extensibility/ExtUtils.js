@@ -387,9 +387,9 @@ class ExtUtils {
 
         const { name } = BaseClass;
         const {
-        // Generate unique cache identities as default value
-            [cacheIdentityKey]: cacheIdentity = Symbol(`Cache Identity ${name}`)
-        } = BaseClass;
+            // Generate unique cache identities as default value
+            value: cacheIdentity = Symbol(`Cache Identity ${name}`)
+        } = Object.getOwnPropertyDescriptor(BaseClass, cacheIdentityKey) || {};
 
         const getGetHandler = (__namespaces__) => this.generateGetHandler('instance', __namespaces__);
 
@@ -427,8 +427,6 @@ class ExtUtils {
     middleware(Middlewarable, namespace) {
         addNamespaceToMiddlewarable(Middlewarable, namespace);
 
-        console.log('middlewaring: ', namespace);
-
         const handler = {
             // Get handler for members - intercepts `get` calls, meant for class static members
             get: this.generateGetHandler('class', this.getNamespacesFromMiddlewarable(Middlewarable)),
@@ -448,19 +446,5 @@ class ExtUtils {
 }
 
 const utils = new ExtUtils();
-
-// console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
-// console.log(utils);
-// console.log('END OF HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH');
-
-// const extensions = [
-//     /** INJECT__HOOK */
-// ];
-
-// utils.plugins = generateConfig(extensions);
-
-// console.log('=====================================');
-// console.log(utils);
-// console.log('END OF =====================================');
 
 export default utils;
