@@ -11,6 +11,7 @@
         "@scandipwa/shopify-api": "0.0.0",
         "@scandipwa/shopify-checkout": "0.0.0",
         "@scandipwa/shopify-checkout-line-items": "0.0.0",
+        "@scandipwa/shopify-checkout-web": "0.0.0",
         "@scandipwa/shopify-collections": "0.0.0",
         "@scandipwa/shopify-collections-products": "0.0.0",
         "@scandipwa/shopify-customer": "0.0.0",
@@ -38,6 +39,7 @@
             "@scandipwa/shopify-product-prices": true,
             "@scandipwa/shopify-product-checkout": true,
             "@scandipwa/shopify-checkout": true,
+            "@scandipwa/shopify-checkout-web": true,
             "@scandipwa/shopify-checkout-line-items": true,
             "@scandipwa/shopify-customer": true,
             "@scandipwa/shopify-customer-address": true
