@@ -1,4 +1,4 @@
-import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC';
+import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
 import HandleConnection from '@scandipwa/shopify-nextjs-api/src/component/HandleConnection';
 import PropTypes from 'prop-types';
 
@@ -43,6 +43,8 @@ export class PagePageContainer extends HigherOrderComponent {
     };
 
     render() {
+        console.log('render page container!');
+
         return (
             <HandleConnection
               handle={ this.getPageHandle() }

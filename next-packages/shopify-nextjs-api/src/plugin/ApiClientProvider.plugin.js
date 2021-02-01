@@ -13,7 +13,7 @@ const addApiClientProvider = (member) => {
 };
 
 export default {
-    'Framework/Component/App/Component/AppComponent': {
+    'NextjsFramework/Component/App/Component/AppComponent': {
         'member-property': {
             contextProvidersRenderList: addApiClientProvider
         }

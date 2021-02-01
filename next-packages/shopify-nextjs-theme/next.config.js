@@ -84,6 +84,18 @@ module.exports = () => {
             // Important: return the modified config
             return config;
         },
+        webpackDevMiddleware(config) {
+            // const ignored = config.watchOptions.ignored.filter(
+            //     (regexp) => /[\\/]node_modules[\\/]/.test(regexp)
+            // ).concat(excludes);
+
+            // config.watchOptions.ignored = ignored;
+
+            // TODO: add smarted watch options
+            // console.log(config);
+
+            return config;
+        },
         distDir: 'build'
     };
 };

@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable @scandipwa/scandipwa-guidelines/jsx-no-props-destruction */
+import AppComponent from '@scandipwa/nextjs-framework/src/component/App/App.component';
 
 /** @namespace ShopifyNextjsTheme/Pages/_app/App */
 export const App = ({ Component, pageProps }) => (
-    <div className="App">
+    <AppComponent>
         <Component { ...pageProps } />
-    </div>
+    </AppComponent>
 );
 
 export default App;

@@ -425,23 +425,30 @@ class ExtUtils {
     }
 
     middleware(Middlewarable, namespace) {
-        addNamespaceToMiddlewarable(Middlewarable, namespace);
+        try {
+            addNamespaceToMiddlewarable(Middlewarable, namespace);
 
-        const handler = {
-            // Get handler for members - intercepts `get` calls, meant for class static members
-            get: this.generateGetHandler('class', this.getNamespacesFromMiddlewarable(Middlewarable)),
+            const handler = {
+                // Get handler for members - intercepts `get` calls, meant for class static members
+                get: this.generateGetHandler('class', this.getNamespacesFromMiddlewarable(Middlewarable)),
 
-            // Apply handler for functions - intercepts function calls
-            apply: this.generateApplyHandler(this.getNamespacesFromMiddlewarable(Middlewarable)),
+                // Apply handler for functions - intercepts function calls
+                apply: this.generateApplyHandler(this.getNamespacesFromMiddlewarable(Middlewarable)),
 
-            // Construct handler for classes - intercepts `new` operator calls, changes properties
-            construct: this.generateConstructHandler(this.getNamespacesFromMiddlewarable(Middlewarable))
-        };
+                // Construct handler for classes - intercepts `new` operator calls, changes properties
+                construct: this.generateConstructHandler(this.getNamespacesFromMiddlewarable(Middlewarable))
+            };
 
-        const proxy = new Proxy(Middlewarable, handler);
+            const proxy = new Proxy(Middlewarable, handler);
 
-        // TODO check if class
-        return applyClassWrappers(proxy);
+            // TODO check if class
+            return applyClassWrappers(proxy);
+        } catch (e) {
+            console.log(`Failed to apply middleware to: ${ Middlewarable } (${ namespace }).`);
+            console.log(e);
+
+            return Middlewarable;
+        }
     }
 }
 

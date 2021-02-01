@@ -42,6 +42,8 @@ export class ShopifyApiProvider extends PureComponent {
     render() {
         const { children } = this.props;
 
+        console.log('render context!');
+
         return (
             <ShopifyAPIContext.Provider value={ this.getContextValue() }>
                 { children }

@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';

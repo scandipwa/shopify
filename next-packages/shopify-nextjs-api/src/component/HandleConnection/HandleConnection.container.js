@@ -30,6 +30,8 @@ export class HandleConnectionContainer extends PureComponent {
 
         const { defaultNode } = props;
 
+        console.log('construct handle!');
+
         this.state = {
             node: defaultNode,
             isLoading: !Object.keys(defaultNode).length,
@@ -58,26 +60,28 @@ export class HandleConnectionContainer extends PureComponent {
             responseProcessor
         } = this.props;
 
-        const { postQuery } = this.context;
+        console.log(this.context);
 
-        try {
-            const response = await postQuery(queryGetter({ handle }));
-            const node = responseProcessor(response);
+        // const { postQuery } = this.context;
 
-            this.setState({
-                node,
-                isLoading: false,
-                isError: false
-            });
-        } catch (e) {
-            // TODO: use logger
-            console.error(e);
+        // try {
+        //     const response = await postQuery(queryGetter({ handle }));
+        //     const node = responseProcessor(response);
 
-            this.setState({
-                isLoading: false,
-                isError: true
-            });
-        }
+        //     this.setState({
+        //         node,
+        //         isLoading: false,
+        //         isError: false
+        //     });
+        // } catch (e) {
+        //     // TODO: use logger
+        //     console.error(e);
+
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: true
+        //     });
+        // }
     }
 
     render() {
@@ -90,6 +94,8 @@ export class HandleConnectionContainer extends PureComponent {
             node,
             isLoading
         } = this.state;
+
+        console.log('render handle!');
 
         if (isLoading) {
             return renderNodePlaceholder();

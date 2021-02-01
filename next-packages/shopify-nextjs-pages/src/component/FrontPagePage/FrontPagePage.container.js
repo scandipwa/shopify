@@ -1,4 +1,4 @@
-import { withHOC } from '@scandipwa/framework/src/util/HOC';
+import { withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
 
 import FrontPageFallbackPage from '../FrontPageFallbackPage';
 import { PAGE_COMPONENT_PAGE, PAGE_FALLBACK_PAGE } from '../PagePage/PagePage.config';

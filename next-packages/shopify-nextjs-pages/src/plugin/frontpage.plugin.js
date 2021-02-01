@@ -1,8 +1,12 @@
-import FrontPagePage from '../component/FrontPagePage';
+import FrontPagePageComponent from '../component/FrontPagePage/FrontPagePage.component';
 
-const renderFrontPage = () => (
-    <FrontPagePage />
-);
+const renderFrontPage = (args) => {
+    const [{ page }] = args;
+
+    return (
+        <FrontPagePageComponent />
+    );
+};
 
 export default {
     'ShopifyNextjsTheme/Pages/Index/Index': {
