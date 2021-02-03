@@ -39,7 +39,7 @@ export class CollectionPageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              handle={ this.getCollectionHandle() }
+              queryArgs={ { handle: this.getCollectionHandle() } }
               defaultNode={ this.getCollectionFromHistoryState() }
               renderNode={ this.renderCollectionComponent }
               renderNodePlaceholder={ this.renderCollectionPlaceholder }

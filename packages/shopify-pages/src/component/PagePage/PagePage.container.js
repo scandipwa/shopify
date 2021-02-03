@@ -39,7 +39,7 @@ export class PagePageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              handle={ this.getPageHandle() }
+              queryArgs={ { handle: this.getPageHandle() } }
               defaultNode={ this.getPageFromHistoryState() }
               renderNode={ this.renderPageComponent }
               renderNodePlaceholder={ this.renderPagePlaceholder }

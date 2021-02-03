@@ -46,7 +46,7 @@ export class ProductPageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              handle={ this.getProductHandle() }
+              queryArgs={ { handle: this.getProductHandle() } }
               defaultNode={ this.getProductFromHistoryState() }
               renderNode={ this.renderProductProvider }
               renderNodePlaceholder={ this.renderProductPlaceholder }
