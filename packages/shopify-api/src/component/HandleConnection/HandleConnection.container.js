@@ -25,6 +25,15 @@ export class HandleConnectionContainer extends PureComponent {
         this.getNodeByHandler();
     }
 
+    componentDidUpdate({ queryArgs: prevQueryArgs }) {
+        const { queryArgs } = this.props;
+
+        // TODO: Investigate if there's a faster way to handle this
+        if (JSON.stringify(queryArgs) !== JSON.stringify(prevQueryArgs)) {
+            this.getNodeByHandler();
+        }
+    }
+
     __construct(props) {
         super.__construct(props);
 

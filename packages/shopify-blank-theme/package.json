@@ -18,10 +18,10 @@
         "@scandipwa/shopify-customer-address": "0.0.0",
         "@scandipwa/shopify-pages": "0.0.0",
         "@scandipwa/shopify-product-checkout": "0.0.0",
-        "@scandipwa/shopify-product-recommendations": "0.0.0",
         "@scandipwa/shopify-product-prices": "0.0.0",
         "@scandipwa/shopify-product-tags": "0.0.0",
         "@scandipwa/shopify-product-variants": "0.0.0",
+        "@scandipwa/shopify-product-recommendations": "0.0.0",
         "@scandipwa/shopify-products": "0.0.0",
         "@scandipwa/shopify-shop": "0.0.0",
         "@scandipwa/why-did-you-render": "0.0.0"

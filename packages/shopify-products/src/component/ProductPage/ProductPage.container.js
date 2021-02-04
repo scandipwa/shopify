@@ -52,7 +52,6 @@ export class ProductPageContainer extends HigherOrderComponent {
               renderNodePlaceholder={ this.renderProductPlaceholder }
               queryGetter={ getProductsQueryOfType(SINGLE_PRODUCT) }
               responseProcessor={ processProductByHandleResponse }
-
             />
         );
     }
