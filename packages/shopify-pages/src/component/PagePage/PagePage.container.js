@@ -21,9 +21,11 @@ export class PagePageContainer extends HigherOrderComponent {
         return history?.location?.state?.page;
     }
 
-    getPageHandle() {
+    getQueryArgs() {
         const { match: { params: { handle } } } = this.props;
-        return handle;
+        return {
+            handle
+        };
     }
 
     renderPagePlaceholder = () => {
@@ -39,7 +41,7 @@ export class PagePageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              queryArgs={ { handle: this.getPageHandle() } }
+              queryArgs={ this.getQueryArgs() }
               defaultNode={ this.getPageFromHistoryState() }
               renderNode={ this.renderPageComponent }
               renderNodePlaceholder={ this.renderPagePlaceholder }

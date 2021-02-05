@@ -13,10 +13,12 @@ import { PRODUCT_RECOMMENDATIONS_COMPONENT, PRODUCT_RECOMMENDATIONS_FALLBACK } f
 export class ProductRecommendationsContainer extends HigherOrderComponent {
     static contextType = ProductsContext;
 
-    getProductId() {
+    getQueryArgs() {
         const { product: { id } } = this.context;
 
-        return id;
+        return {
+            productId: id
+        };
     }
 
     renderProductRecommendationsPlaceholder = () => {
@@ -32,7 +34,7 @@ export class ProductRecommendationsContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              queryArgs={ { productId: this.getProductId() } }
+              queryArgs={ this.getQueryArgs() }
               renderNode={ this.renderProductRecommendationsComponent }
               renderNodePlaceholder={ this.renderProductRecommendationsPlaceholder }
               queryGetter={ getProductQueryForType(PRODUCT_RECOMMENDATIONS) }
