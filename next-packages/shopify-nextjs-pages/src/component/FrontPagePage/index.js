@@ -1,1 +1,1 @@
-export { default } from './FrontPagePage.container';
+export { default } from './FrontPagePage.component';

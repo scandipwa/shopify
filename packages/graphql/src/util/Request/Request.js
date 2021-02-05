@@ -1,5 +1,3 @@
-export const GRAPHQL_URI = process.env.REACT_APP_GRAPHQL_ENDPOINT || '/graphql';
-
 /** @namespace Graphql/Util/Request/processHeaders */
 export const processHeaders = (headers, { headers: additionalHeaders = {} }) => ({
     ...headers,
@@ -7,7 +5,7 @@ export const processHeaders = (headers, { headers: additionalHeaders = {} }) => 
 });
 
 /** @namespace Graphql/Util/Request/processEndpoint */
-export const processEndpoint = ({ endpoint = GRAPHQL_URI }) => endpoint;
+export const processEndpoint = ({ endpoint }) => endpoint;
 
 /** @namespace Graphql/Util/Request/postFetch */
 export const postFetch = (query, variables, options = {}) => fetch(
