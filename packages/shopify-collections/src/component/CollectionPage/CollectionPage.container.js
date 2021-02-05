@@ -21,9 +21,11 @@ export class CollectionPageContainer extends HigherOrderComponent {
         return history?.location?.state?.collection;
     }
 
-    getCollectionHandle() {
+    getQueryArgs() {
         const { match: { params: { handle } } } = this.props;
-        return handle;
+        return {
+            handle
+        };
     }
 
     renderCollectionPlaceholder = () => {
@@ -39,7 +41,7 @@ export class CollectionPageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              queryArgs={ { handle: this.getCollectionHandle() } }
+              queryArgs={ this.getQueryArgs() }
               defaultNode={ this.getCollectionFromHistoryState() }
               renderNode={ this.renderCollectionComponent }
               renderNodePlaceholder={ this.renderCollectionPlaceholder }
