@@ -44,10 +44,12 @@ module.exports = () => {
                 ...extensions.map(({ packageName }) => new RegExp(safePath(packageName)))
             ];
 
+            // Allow processing extension code (outside of main folder)
             // eslint-disable-next-line fp/no-delete
             delete config.module.rules[0].exclude;
             config.module.rules[0].include.push(...extensionPaths);
 
+            // Inject "ExtUtils" to global code
             config.plugins.forEach((plugin) => {
                 if (plugin instanceof webpack.ProvidePlugin) {
                     plugin.definitions.ExtUtils = [
@@ -75,9 +77,27 @@ module.exports = () => {
                 });
             }
 
+            // Inject plugins into "ExtUtils"
             config.module.rules.push({
                 test: new RegExp('_app'),
                 loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-helper-loader')
+            });
+
+            const babelConfigFile = path.join(__dirname, 'babel.config.js');
+
+            // Use custom babel config file
+            config.module.rules.forEach((rule) => {
+                if (rule.use) {
+                    if (Array.isArray(rule.use)) {
+                        const babelLoader = rule.use.find((use) => typeof use === 'object' && use.loader === 'next-babel-loader');
+
+                        if (babelLoader && babelLoader.options) {
+                            babelLoader.options.configFile = babelConfigFile;
+                        }
+                    } else if (rule.use.loader === 'next-babel-loader') {
+                        rule.use.options.configFile = babelConfigFile;
+                    }
+                }
             });
             // ===================================
 

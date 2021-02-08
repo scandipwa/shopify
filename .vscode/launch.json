@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Launch NextJS scripts",
+            "program": "${workspaceFolder}/next-packages/nextjs-scripts/bin/nextjs-scripts.js",
+            "args": [
+                "dev", "--port", "3000"
+            ],
+            "cwd": "${workspaceFolder}/next-packages/shopify-nextjs-theme",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "command": "npm start",
             "name": "Run npm start",
             "request": "launch",

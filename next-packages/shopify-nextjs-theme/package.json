@@ -11,6 +11,10 @@
         "extensions": {
             "@scandipwa/shopify-nextjs-pages": true,
             "@scandipwa/nextjs-extensibility": true
+        },
+        "nextPages": {
+            "index": "server",
+            "pages/[handle]": "server"
         }
     },
     "browserslist": {

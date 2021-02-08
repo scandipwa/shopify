@@ -14,4 +14,4 @@ const scriptMap = {
 };
 
 const script = args[0];
-scriptMap[script](script);
+scriptMap[script](script, args.slice(1));
