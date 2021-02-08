@@ -2,7 +2,7 @@
     "name": "shopify-nextjs-theme",
     "version": "0.0.1",
     "scripts": {
-        "dev": "next dev",
+        "dev": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start"
     },
