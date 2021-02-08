@@ -2,6 +2,8 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 
 const runNextJS = require('../lib/nextjs');
+const logger = require('@scandipwa/scandipwa-dev-utils/logger');
+
 // const linkExtensions = require('../lib/link-extensions');
 
 const args = process.argv.slice(2);
@@ -14,4 +16,14 @@ const scriptMap = {
 };
 
 const script = args[0];
-scriptMap[script](script, args.slice(1));
+const scriptToRun = scriptMap[script];
+
+if (!scriptToRun) {
+    logger.error(
+        `The command ${ logger.style.command(script) } is not supported by ${ logger.style.misc('scandipwa-scripts') }.`
+    );
+
+    return;
+}
+
+scriptToRun(script, args.slice(1));

@@ -10,6 +10,10 @@
         "type": "extension",
         "extensions": {
             "@scandipwa/shopify-nextjs-api": true
+        },
+        "nextPages": {
+            "index": "server",
+            "pages/[handle]": "server"
         }
     },
     "eslintConfig": {
