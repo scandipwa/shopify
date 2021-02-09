@@ -8,3 +8,4 @@
 - [ ] Integrate fallback mechanism
 - [ ] Refactor code to have separate requests
 - [ ] Refactor code to use NextJS API
+- [ ] Document current implementation
