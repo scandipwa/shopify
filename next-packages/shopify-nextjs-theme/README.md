@@ -1,23 +1,10 @@
-# Descision
+# ScandiPWA x NextJS Shopify plan
 
-## React router issues. Next will not work it.
+# By priority
 
-**Workaround**:
-
-- https://colinhacks.com/essays/building-a-spa-with-nextjs
-
-But this solution eliminates pre-rendering idea, as instead of Router we return `null` on server.
-
-> We must remove router from code :C
-
-## Routing is static
-
-Yes, routing is baed on file-system. This means, we would need to develop an abstraction over it to map slugs to scripts.
-
-**Maybe, these help**:
-
-- https://github.com/fridays/next-routes
-
-## Webpack configs have to be adjusted again!
-
-Seems like the webpack configurations for NextJS must be adjusted again, like we did it for CRA.
+**Extensiblity x Support**:
+- [ ] Implement dynamic generated pages (for extensions)
+- [ ] Implement page copying into generated from original theme (in case you starting with existing app)
+- [ ] Integrate fallback mechanism
+- [ ] Refactor code to have separate requests
+- [ ] Refactor code to use NextJS API
