@@ -7,10 +7,13 @@
 const path = require('path');
 const { getParentThemePaths } = require('@scandipwa/scandipwa-dev-utils/parent-theme');
 const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
+const getPackagePath = require('@scandipwa/scandipwa-dev-utils/package-path');
 
 const allowedPaths = [
     ...getParentThemePaths(),
     process.cwd(),
+    // force generated scripts
+    getPackagePath('@scandipwa/nextjs-scripts'),
     ...extensions.map(({ packageName }) => {
         const isWin = process && (process.platform === 'win32' || /^(msys|cygwin)$/.test(process.env.OSTYPE));
 

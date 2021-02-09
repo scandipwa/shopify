@@ -11,27 +11,8 @@ module.exports = function injectImports(source) {
     // const injectablePath = path.resolve(__dirname, '..', '..', 'runtime-helpers');
     const injectableCode = `ExtUtils.setPlugins([${ getAllExtensionImports() }]);\n`;
 
-    const importMatcher = /^import .+$/gm;
-    const imports = source.match(importMatcher);
-
-    if (!imports) {
-        return [
-            injectableCode,
-            source
-        ].join('');
-    }
-
-    const firstImport = imports[0];
-    const firstImportPosition = source.indexOf(firstImport);
-
-    const codeBeforeInjectable = source.slice(0, firstImportPosition);
-    const codeAfterInjectable = source.slice(firstImportPosition);
-
-    const injectedCode = [
-        codeBeforeInjectable,
+    return [
         injectableCode,
-        codeAfterInjectable
+        source
     ].join('');
-
-    return injectedCode;
 };

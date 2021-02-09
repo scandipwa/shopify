@@ -40,6 +40,10 @@ module.exports = () => {
             const safePath = (module) => module.split('/').join(PATH_DELIMITER);
 
             const extensionPaths = [
+                // allow current (generated) folder to be processed
+                new RegExp(safePath('@scandipwa/nextjs-scripts')),
+                new RegExp(__dirname),
+                // keep all extensions though
                 ...extensions.map(({ packagePath }) => new RegExp(packagePath)),
                 ...extensions.map(({ packageName }) => new RegExp(safePath(packageName)))
             ];
@@ -79,7 +83,8 @@ module.exports = () => {
 
             // Inject plugins into "ExtUtils"
             config.module.rules.push({
-                test: new RegExp('_app'),
+                // so we inject into all pages, but root
+                test: /[\\/]src[\\/]pages[\\/][^_]/,
                 loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-helper-loader')
             });
 
