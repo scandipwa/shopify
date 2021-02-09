@@ -1,9 +1,7 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC';
 import { HistoryType, MatchType } from '@scandipwa/router/src/type/Router.type';
-import HandleConnection from '@scandipwa/shopify-api/src/component/HandleConnection';
 
-import { processProductByHandleResponse } from '../../api/Products.processor';
-import getProductsQueryOfType, { SINGLE_PRODUCT } from '../../api/Products.query';
+import { requestProductByHandle } from '../../api/Product.request';
 import ProductProvider from '../../context/Products.provider';
 import ProductFallbackPage from '../ProductFallbackPage';
 import { PRODUCT_COMPONENT_PAGE, PRODUCT_FALLBACK_PAGE } from './PagePage.config';
@@ -17,9 +15,23 @@ export class ProductPageContainer extends HigherOrderComponent {
         history: HistoryType.isRequired
     };
 
-    getProductFromHistoryState() {
-        const { history } = this.props;
-        return history?.location?.state?.product;
+    __construct(props) {
+        super.__construct(props);
+
+        this.state = {
+            product: null
+        };
+    }
+
+    componentDidMount() {
+        this.requestProduct();
+    }
+
+    async requestProduct() {
+        const handle = this.getProductHandle();
+        const product = await requestProductByHandle(handle);
+
+        this.setState({ product });
     }
 
     getProductHandle() {
@@ -44,17 +56,11 @@ export class ProductPageContainer extends HigherOrderComponent {
     };
 
     render() {
-        return (
-            <HandleConnection
-              handle={ this.getProductHandle() }
-              defaultNode={ this.getProductFromHistoryState() }
-              renderNode={ this.renderProductProvider }
-              renderNodePlaceholder={ this.renderProductPlaceholder }
-              queryGetter={ getProductsQueryOfType(SINGLE_PRODUCT) }
-              responseProcessor={ processProductByHandleResponse }
+        const { product } = this.state;
 
-            />
-        );
+        return product
+            ? this.renderProductProvider(product)
+            : this.renderProductPlaceholder();
     }
 }
 
