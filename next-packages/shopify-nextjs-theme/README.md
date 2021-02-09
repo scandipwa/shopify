@@ -3,7 +3,8 @@
 # By priority
 
 **Extensiblity x Support**:
-- [ ] Implement dynamic generated pages (for extensions)
+- [x] Implement extension mechanism
+- [x] Implement dynamic generated pages (for extensions)
 - [ ] Implement page copying into generated from original theme (in case you starting with existing app)
 - [ ] Integrate fallback mechanism
 - [ ] Refactor code to have separate requests
