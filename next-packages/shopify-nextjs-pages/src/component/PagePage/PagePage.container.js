@@ -1,5 +1,6 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
 import DefaultFallback from 'next/error';
+import PropTypes from 'prop-types';
 
 import { PageType } from '../../api/Page.type';
 import PagePageComponent from './PagePage.component';
@@ -9,7 +10,8 @@ import { PAGE_COMPONENT, PAGE_FALLBACK } from './PagePage.config';
 export class PagePageContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,
-        page: PageType
+        page: PageType,
+        error: PropTypes.bool
     };
 
     static defaultProps = {
@@ -28,9 +30,10 @@ export class PagePageContainer extends HigherOrderComponent {
     };
 
     render() {
-        const { page } = this.props;
+        const { page, error } = this.props;
 
-        if (!page) {
+        // TODO: Separate 404 from API request errors
+        if (!page || error) {
             return this.renderPageFallback();
         }
 
