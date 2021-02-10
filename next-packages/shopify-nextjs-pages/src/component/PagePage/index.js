@@ -1,1 +1,1 @@
-export { default } from './PagePage.component';
+export { default } from './PagePage.container';
