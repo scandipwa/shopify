@@ -7,7 +7,7 @@ import ApiContext from '../../context/ShopifyApi.context';
 export class HandleConnectionContainer extends PureComponent {
     static propTypes = {
         defaultNode: PropTypes.shape({}),
-        handle: PropTypes.string.isRequired,
+        queryArgs: PropTypes.shape({}).isRequired,
         renderNode: PropTypes.func.isRequired,
         renderNodePlaceholder: PropTypes.func.isRequired,
         queryGetter: PropTypes.func.isRequired,
@@ -23,6 +23,15 @@ export class HandleConnectionContainer extends PureComponent {
     componentDidMount() {
         // even if the page is in state, update the data
         this.getNodeByHandler();
+    }
+
+    componentDidUpdate({ queryArgs: prevQueryArgs }) {
+        const { queryArgs } = this.props;
+
+        // TODO: Investigate if there's a faster way to handle this
+        if (JSON.stringify(queryArgs) !== JSON.stringify(prevQueryArgs)) {
+            this.getNodeByHandler();
+        }
     }
 
     __construct(props) {
@@ -53,7 +62,7 @@ export class HandleConnectionContainer extends PureComponent {
 
     async getNodeByHandler() {
         const {
-            handle,
+            queryArgs,
             queryGetter,
             responseProcessor
         } = this.props;
@@ -61,7 +70,7 @@ export class HandleConnectionContainer extends PureComponent {
         const { postQuery } = this.context;
 
         try {
-            const response = await postQuery(queryGetter({ handle }));
+            const response = await postQuery(queryGetter(queryArgs));
             const node = responseProcessor(response);
 
             this.setState({
