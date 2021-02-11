@@ -1,6 +1,6 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
+import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
 import DefaultFallback from 'next/error';
-import PropTypes from 'prop-types';
 
 import { PageType } from '../../api/Page.type';
 import PagePageComponent from './PagePage.component';
@@ -11,7 +11,7 @@ export class PagePageContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,
         page: PageType,
-        error: PropTypes.bool
+        responseData: ResponseDataType
     };
 
     static defaultProps = {
@@ -24,17 +24,16 @@ export class PagePageContainer extends HigherOrderComponent {
         return <Component page={ page } />;
     };
 
-    renderPageFallback = () => {
+    renderPageFallback = (errorCode) => {
         const Fallback = this._getComponentByKey(PAGE_FALLBACK);
-        return <Fallback statusCode={ 404 } />;
+        return <Fallback statusCode={ errorCode } />;
     };
 
     render() {
-        const { page, error } = this.props;
+        const { page, responseData: { errorCode } } = this.props;
 
-        // TODO: Separate 404 from API request errors
-        if (!page || error) {
-            return this.renderPageFallback();
+        if (!page || errorCode) {
+            return this.renderPageFallback(errorCode);
         }
 
         return this.renderPageComponent();

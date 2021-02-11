@@ -1,4 +1,5 @@
 import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
+import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
 
 import { PageType } from '../../api/Page.type';
 import { PagePageComponent } from '../PagePage/PagePage.component';
@@ -6,7 +7,8 @@ import { PagePageComponent } from '../PagePage/PagePage.component';
 /** @namespace ShopifyNextjsPages/Component/FrontPagePage/Component/FrontPagePageComponent */
 export class FrontPagePageComponent extends PagePageComponent {
     static propTypes = {
-        page: PageType
+        page: PageType,
+        responseData: ResponseDataType
     };
 
     sortedRenderList = createSortedRenderList([
@@ -18,9 +20,9 @@ export class FrontPagePageComponent extends PagePageComponent {
     }
 
     render() {
-        const { page } = this.props;
+        const { page, responseData: { errorCode } } = this.props;
 
-        if (!page) {
+        if (!page || errorCode) {
             return this.renderDefaultFrontpage();
         }
 
