@@ -10,6 +10,7 @@
         "type": "theme",
         "extensions": {
             "@scandipwa/shopify-nextjs-pages": true,
+            "@scandipwa/shopify-nextjs-collections": true,
             "@scandipwa/nextjs-extensibility": true
         }
     },
@@ -38,6 +39,7 @@
     "dependencies": {
         "@scandipwa/nextjs-scripts": "0.0.0",
         "@scandipwa/nextjs-extensibility": "0.0.0",
-        "@scandipwa/shopify-nextjs-pages": "0.0.0"
+        "@scandipwa/shopify-nextjs-pages": "0.0.0",
+        "@scandipwa/shopify-nextjs-collections": "0.0.0"
     }
 }
