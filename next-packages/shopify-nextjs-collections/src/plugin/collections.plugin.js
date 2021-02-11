@@ -1,10 +1,9 @@
 /* eslint-disable no-param-reassign */
+import { INTERNAL_SERVER_ERROR_CODE, NOT_FOUND_ERROR_CODE } from '@scandipwa/shopify-nextjs-api/src/util/responseCodes';
+
 import { requestCollection, requestCollections } from '../api/Collections.request';
 import CollectionPageComponent from '../component/CollectionPage';
 import CollectionsPageComponent from '../component/CollectionsPage';
-
-const NOT_FOUND_ERROR_CODE = 404;
-const INTERNAL_SERVER_ERROR_CODE = 400;
 
 const getServerSidePropsHandle = async ([{ query: { handle }, res }]) => {
     try {

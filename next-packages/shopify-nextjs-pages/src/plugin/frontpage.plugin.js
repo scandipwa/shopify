@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+import { INTERNAL_SERVER_ERROR_CODE, NOT_FOUND_ERROR_CODE } from '@scandipwa/shopify-nextjs-api/src/util/responseCodes';
+
 import { requestPage } from '../api/Page.request';
 import FrontPagePageComponent from '../component/FrontPagePage';
 
@@ -9,15 +11,15 @@ const getServerSideProps = async ([{ res }]) => {
         const page = await requestPage(FRONT_PAGE_HANDLE);
 
         if (!page) {
-            res.statusCode = 404;
-            const responseData = { errorCode: 404 };
+            res.statusCode = NOT_FOUND_ERROR_CODE;
+            const responseData = { errorCode: NOT_FOUND_ERROR_CODE };
 
             return { props: { page: null, responseData } };
         }
 
         return { props: { page } };
     } catch (error) {
-        const responseData = { errorCode: 400 };
+        const responseData = { errorCode: INTERNAL_SERVER_ERROR_CODE };
         return { props: { page: null, responseData } };
     }
 };

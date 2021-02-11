@@ -1,0 +1,2 @@
+export const NOT_FOUND_ERROR_CODE = 404;
+export const INTERNAL_SERVER_ERROR_CODE = 400;
