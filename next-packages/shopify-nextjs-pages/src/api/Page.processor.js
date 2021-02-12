@@ -1,2 +1,2 @@
-/** @namespace ShopifyPages/Api/Page/Processor/processPageByHandleResponse */
+/** @namespace ShopifyNextjsPages/Api/Page/Processor/processPageByHandleResponse */
 export const processPageByHandleResponse = ({ pageByHandle }) => pageByHandle;

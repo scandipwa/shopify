@@ -6,13 +6,11 @@ export class PaginatedConnectionComponent extends PureComponent {
     static propTypes = {
         renderNextPageButton: PropTypes.func,
         renderPrevPageButton: PropTypes.func,
-        renderPlaceholder: PropTypes.func.isRequired,
         renderPage: PropTypes.func.isRequired,
         onNextPageClick: PropTypes.func.isRequired,
         onPrevPageClick: PropTypes.func.isRequired,
         isHasNextPage: PropTypes.bool.isRequired,
         isHasPrevPage: PropTypes.bool.isRequired,
-        isLoading: PropTypes.bool.isRequired,
         nodes: PropTypes.arrayOf(PropTypes.shape({})).isRequired
     };
 
@@ -20,12 +18,6 @@ export class PaginatedConnectionComponent extends PureComponent {
         renderNextPageButton: null,
         renderPrevPageButton: null
     };
-
-    renderPlaceholder() {
-        const { renderPlaceholder } = this.props;
-
-        return renderPlaceholder();
-    }
 
     renderDefaultNextButton() {
         const { onNextPageClick } = this.props;
@@ -84,19 +76,18 @@ export class PaginatedConnectionComponent extends PureComponent {
             return null;
         }
 
+        if (!renderPrevPageButton) {
+            return this.renderDefaultPrevButton();
+        }
+
         return renderPrevPageButton(onPrevPageClick);
     }
 
     renderPage() {
         const {
             nodes,
-            isLoading,
             renderPage
         } = this.props;
-
-        if (isLoading) {
-            return this.renderPlaceholder();
-        }
 
         return renderPage(nodes);
     }

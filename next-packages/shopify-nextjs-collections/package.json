@@ -1,0 +1,23 @@
+{
+    "name": "@scandipwa/shopify-nextjs-collections",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "dependencies": {
+        "@scandipwa/shopify-nextjs-api": "0.0.0",
+        "@scandipwa/nextjs-framework": "0.0.0"
+    },
+    "scandipwa": {
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/shopify-nextjs-api": true,
+            "@scandipwa/nextjs-framework": true
+        },
+        "nextPages": {
+            "collections/[handle]": "server",
+            "collections": "server"
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}

@@ -1,14 +1,31 @@
+/* eslint-disable no-param-reassign */
+import { INTERNAL_SERVER_ERROR_CODE, NOT_FOUND_ERROR_CODE } from '@scandipwa/shopify-nextjs-api/src/util/responseCodes';
+
 import { requestPage } from '../api/Page.request';
 import PagePageComponent from '../component/PagePage';
 
-const getServerSideProps = async ([{ query: { handle } }]) => {
-    const page = await requestPage(handle);
-    return { props: { page } };
+const getServerSideProps = async ([{ query: { handle }, res }]) => {
+    try {
+        const page = await requestPage(handle);
+
+        if (!page) {
+            res.statusCode = NOT_FOUND_ERROR_CODE;
+            const responseData = { errorCode: NOT_FOUND_ERROR_CODE };
+
+            return { props: { page: null, responseData } };
+        }
+
+        return { props: { page } };
+    } catch (error) {
+        const responseData = { errorCode: INTERNAL_SERVER_ERROR_CODE };
+        return { props: { page: null, responseData } };
+    }
 };
 
-const PagesHandle = ([{ page }]) => (
+const PagesHandle = ([{ page, responseData = {} }]) => (
     <PagePageComponent
       page={ page }
+      responseData={ responseData }
     />
 );
 

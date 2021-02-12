@@ -34,7 +34,7 @@ export class PagePageComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.renderBody();
+        return this.sortedRenderList.render();
     }
 
     render() {

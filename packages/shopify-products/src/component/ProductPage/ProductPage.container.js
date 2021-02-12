@@ -22,9 +22,11 @@ export class ProductPageContainer extends HigherOrderComponent {
         return history?.location?.state?.product;
     }
 
-    getProductHandle() {
+    getQueryArgs() {
         const { match: { params: { handle } } } = this.props;
-        return handle;
+        return {
+            handle
+        };
     }
 
     renderProductProvider = (node) => (
@@ -46,13 +48,12 @@ export class ProductPageContainer extends HigherOrderComponent {
     render() {
         return (
             <HandleConnection
-              handle={ this.getProductHandle() }
+              queryArgs={ this.getQueryArgs() }
               defaultNode={ this.getProductFromHistoryState() }
               renderNode={ this.renderProductProvider }
               renderNodePlaceholder={ this.renderProductPlaceholder }
               queryGetter={ getProductsQueryOfType(SINGLE_PRODUCT) }
               responseProcessor={ processProductByHandleResponse }
-
             />
         );
     }
