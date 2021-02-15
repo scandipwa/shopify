@@ -6,7 +6,7 @@ import { CollectionType } from '../../api/Collections.type';
 import CollectionPageComponent from './CollectionPage.component';
 import { COLLECTION_COMPONENT_PAGE, COLLECTION_FALLBACK_PAGE } from './CollectionPage.config';
 
-/** @namespace ShopifyCollections/Component/CollectionPage/Container/CollectionPageContainer */
+/** @namespace ShopifyNextjsCollections/Component/CollectionPage/Container/CollectionPageContainer */
 export class CollectionPageContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,

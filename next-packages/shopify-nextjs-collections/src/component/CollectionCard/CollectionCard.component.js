@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
 
-/** @namespace ShopifyCollections/Component/CollectionCard/Component/CollectionCardComponent */
+/** @namespace ShopifyNextjsCollections/Component/CollectionCard/Component/CollectionCardComponent */
 export class CollectionCardComponent extends PureComponent {
     static propTypes = {
         collection: CollectionType.isRequired

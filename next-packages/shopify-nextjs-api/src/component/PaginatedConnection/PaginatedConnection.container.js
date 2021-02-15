@@ -13,7 +13,7 @@ export class PaginatedConnectionContainer extends PureComponent {
         // eslint-disable-next-line react/forbid-prop-types
         renderPrevPageButton: PropTypes.any,
         renderPage: PropTypes.func.isRequired,
-        paginatedResponse: PropTypes.shape(paginatedResponseType).isRequired,
+        paginatedResponse: paginatedResponseType.isRequired,
         // eslint-disable-next-line react/forbid-prop-types
         router: PropTypes.any.isRequired
     };
