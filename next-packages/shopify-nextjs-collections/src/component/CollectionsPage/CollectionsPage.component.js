@@ -28,7 +28,7 @@ export class CollectionsPageComponent extends PureComponent {
 
         return (
             <PaginatedConnection
-              paginatedNode={ collectionsResponse }
+              paginatedResponse={ collectionsResponse }
               renderPage={ this.renderPage }
             />
         );

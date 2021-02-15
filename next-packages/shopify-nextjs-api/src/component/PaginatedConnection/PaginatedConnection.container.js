@@ -13,7 +13,7 @@ export class PaginatedConnectionContainer extends PureComponent {
         // eslint-disable-next-line react/forbid-prop-types
         renderPrevPageButton: PropTypes.any,
         renderPage: PropTypes.func.isRequired,
-        paginatedNode: PropTypes.shape(paginatedResponseType).isRequired,
+        paginatedResponse: PropTypes.shape(paginatedResponseType).isRequired,
         // eslint-disable-next-line react/forbid-prop-types
         router: PropTypes.any.isRequired
     };
@@ -30,7 +30,7 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     hasNextPage() {
         const {
-            paginatedNode: {
+            paginatedResponse: {
                 pageInfo: {
                     hasNextPage
                 }
@@ -42,7 +42,7 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     hasPrevPage() {
         const {
-            paginatedNode: {
+            paginatedResponse: {
                 pageInfo: {
                     hasPreviousPage
                 }
@@ -67,13 +67,13 @@ export class PaginatedConnectionContainer extends PureComponent {
     }
 
     getNodes = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         return edges.map(({ node }) => node);
     };
 
     getFirstCursor = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         if (!edges.length) {
             return null;
@@ -83,7 +83,7 @@ export class PaginatedConnectionContainer extends PureComponent {
     };
 
     getLastCursor = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         if (!edges.length) {
             return null;
