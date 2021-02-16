@@ -1,16 +1,12 @@
-import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
-import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
-import Fallback from '@scandipwa/shopify-nextjs-api/src/component/Fallback';
+import { withFallback } from '@scandipwa/shopify-nextjs-api/src/util/withFallback';
+import { PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
-import CollectionPageComponent from './CollectionPage.component';
-import { COLLECTION_COMPONENT_PAGE, COLLECTION_FALLBACK_PAGE } from './CollectionPage.config';
+import CollectionPage from './CollectionPage.component';
 
 /** @namespace ShopifyNextjsCollections/Component/CollectionPage/Container/CollectionPageContainer */
-export class CollectionPageContainer extends HigherOrderComponent {
+export class CollectionPageContainer extends PureComponent {
     static propTypes = {
-        ...HigherOrderComponent.propTypes,
-        responseData: ResponseDataType.isRequired,
         collection: CollectionType
     };
 
@@ -18,28 +14,14 @@ export class CollectionPageContainer extends HigherOrderComponent {
         collection: null
     };
 
-    renderCollectionFallback = (errorCode) => {
-        const Fallback = this._getComponentByKey(COLLECTION_FALLBACK_PAGE);
-        return <Fallback statusCode={ errorCode } />;
-    };
-
-    renderCollectionComponent = (node) => {
-        const Component = this._getComponentByKey(COLLECTION_COMPONENT_PAGE);
-        return <Component collection={ node } />;
+    renderCollectionComponent = () => {
+        const { collection } = this.props;
+        return <CollectionPage collection={ collection } />;
     };
 
     render() {
-        const { collection, responseData: { errorCode } } = this.props;
-
-        if (!collection || errorCode) {
-            return this.renderCollectionFallback(errorCode);
-        }
-
-        return this.renderCollectionComponent(collection);
+        return this.renderCollectionComponent();
     }
 }
 
-export default withHOC(CollectionPageContainer, {
-    [COLLECTION_COMPONENT_PAGE]: CollectionPageComponent,
-    [COLLECTION_FALLBACK_PAGE]: Fallback
-});
+export default withFallback(CollectionPageContainer);
