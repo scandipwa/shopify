@@ -5,6 +5,8 @@
 
 const path = require('path');
 const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
+const { getParentThemeSources } = require('@scandipwa/scandipwa-dev-utils/parent-theme');
+const FallbackPlugin = require('@scandipwa/webpack-fallback-plugin');
 
 module.exports = () => {
     // const abstractStyle = FallbackPlugin.getFallbackPathname('src/style/abstract/_abstract.scss');
@@ -64,6 +66,16 @@ module.exports = () => {
             });
 
             config.resolve.symlinks = false;
+
+            config.resolve.plugins.push(
+                // Integrate the fallback plugin
+                new FallbackPlugin({
+                    sources: {
+                        project: process.cwd(),
+                        ...getParentThemeSources()
+                    }
+                })
+            );
 
             if (Array.isArray(config.externals)) {
                 config.externals = config.externals.map((external) => {
