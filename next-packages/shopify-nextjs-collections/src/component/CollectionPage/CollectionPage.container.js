@@ -1,6 +1,6 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
 import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
-import DefaultFallback from 'next/error';
+import Fallback from '@scandipwa/shopify-nextjs-api/src/component/Fallback';
 
 import { CollectionType } from '../../api/Collections.type';
 import CollectionPageComponent from './CollectionPage.component';
@@ -41,5 +41,5 @@ export class CollectionPageContainer extends HigherOrderComponent {
 
 export default withHOC(CollectionPageContainer, {
     [COLLECTION_COMPONENT_PAGE]: CollectionPageComponent,
-    [COLLECTION_FALLBACK_PAGE]: DefaultFallback
+    [COLLECTION_FALLBACK_PAGE]: Fallback
 });

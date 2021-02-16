@@ -1,6 +1,6 @@
 import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
 import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
-import DefaultFallback from 'next/error';
+import Fallback from '@scandipwa/shopify-nextjs-api/src/component/Fallback';
 
 import { PageType } from '../../api/Page.type';
 import PagePageComponent from './PagePage.component';
@@ -42,5 +42,5 @@ export class PagePageContainer extends HigherOrderComponent {
 
 export default withHOC(PagePageContainer, {
     [PAGE_COMPONENT]: PagePageComponent,
-    [PAGE_FALLBACK]: DefaultFallback
+    [PAGE_FALLBACK]: Fallback
 });
