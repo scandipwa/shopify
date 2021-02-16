@@ -3,7 +3,7 @@ import { postQuery } from '@scandipwa/shopify-nextjs-api/src/api/request';
 import { processCollectionByHandleResponse, processCollectionsResponse } from './Collections.processor';
 import getCollectionQueryOfType, { PAGINATED_COLLECTIONS, SINGLE_COLLECTION } from './Collections.query';
 
-/** @namespace ShopifyCollections/Api/Collections/Request/requestCollection */
+/** @namespace ShopifyNextjsCollections/Api/Collections/Request/requestCollection */
 export const requestCollection = async (handle) => {
     const queryGetter = getCollectionQueryOfType(SINGLE_COLLECTION);
     const responseProcessor = processCollectionByHandleResponse;
@@ -12,7 +12,7 @@ export const requestCollection = async (handle) => {
     return collection;
 };
 
-/** @namespace ShopifyCollections/Api/Collections/Request/requestCollections */
+/** @namespace ShopifyNextjsCollections/Api/Collections/Request/requestCollections */
 export const requestCollections = async ({
     first, last, before, after
 }) => {

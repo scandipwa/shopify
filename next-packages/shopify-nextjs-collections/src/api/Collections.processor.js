@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-/** @namespace ShopifyCollections/Api/Collections/Processor/processCollection */
+/** @namespace ShopifyNextjsCollections/Api/Collections/Processor/processCollection */
 export const processCollection = (collection) => {
     const { handle } = collection;
 
@@ -9,12 +9,12 @@ export const processCollection = (collection) => {
     };
 };
 
-/** @namespace ShopifyCollections/Api/Collections/Processor/processCollectionsResponse */
+/** @namespace ShopifyNextjsCollections/Api/Collections/Processor/processCollectionsResponse */
 export const processCollectionsResponse = ({ collections }) => {
     const { edges } = collections;
     edges.forEach(({ node }) => processCollection(node));
     return collections;
 };
 
-/** @namespace ShopifyCollections/Api/Collections/Processor/processCollectionByHandleResponse */
+/** @namespace ShopifyNextjsCollections/Api/Collections/Processor/processCollectionByHandleResponse */
 export const processCollectionByHandleResponse = ({ collectionByHandle }) => collectionByHandle;
