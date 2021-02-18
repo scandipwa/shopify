@@ -4,10 +4,10 @@ import { processCollectionByHandleResponse, processCollectionsResponse } from '.
 import getCollectionQueryOfType, { PAGINATED_COLLECTIONS, SINGLE_COLLECTION } from './Collections.query';
 
 /** @namespace ShopifyNextjsCollections/Api/Collections/Request/requestCollection */
-export const requestCollection = async (handle) => {
+export const requestCollection = async (queryArgs) => {
     const queryGetter = getCollectionQueryOfType(SINGLE_COLLECTION);
     const responseProcessor = processCollectionByHandleResponse;
-    const response = await postQuery(queryGetter({ handle }));
+    const response = await postQuery(queryGetter(queryArgs));
     const collection = responseProcessor(response);
     return collection;
 };

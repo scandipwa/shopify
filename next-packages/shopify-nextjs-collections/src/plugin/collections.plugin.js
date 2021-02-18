@@ -9,9 +9,9 @@ import { requestCollection, requestCollections } from '../api/Collections.reques
 import CollectionPageComponent from '../component/CollectionPage';
 import CollectionsPageComponent from '../component/CollectionsPage';
 
-const getServerSidePropsHandle = async ([{ query: { handle }, res }]) => {
+const getServerSidePropsHandle = async ([{ query, res }]) => {
     try {
-        const collection = await requestCollection(handle);
+        const collection = await requestCollection(query);
 
         if (!collection) {
             return handleError(res, NOT_FOUND_ERROR_CODE, { collection: null });

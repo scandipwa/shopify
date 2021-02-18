@@ -1,0 +1,24 @@
+{
+    "name": "@scandipwa/shopify-nextjs-collections-products",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "peerDependencies": {
+        "@scandipwa/shopify-nextjs-collections": "^0.0.0"
+    },
+    "dependencies": {
+        "@scandipwa/graphql": "0.0.0",
+        "@scandipwa/shopify-nextjs-products": "0.0.0",
+        "@scandipwa/shopify-nextjs-api": "0.0.0"
+    },
+    "scandipwa": {
+        "type": "extension",
+        "extension": {
+            "@scandipwa/graphql": true,
+            "@scandipwa/shopify-nextjs-products": true,
+            "@scandipwa/shopify-nextjs-api": true
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}
