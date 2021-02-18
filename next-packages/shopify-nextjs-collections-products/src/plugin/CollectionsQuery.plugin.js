@@ -3,7 +3,8 @@ import { addPaginationArguments } from '@scandipwa/shopify-nextjs-api/src/util/a
 import { ProductsQuery } from '@scandipwa/shopify-nextjs-products/src/api/Products.query';
 
 const addCollectionProductsFields = (args, callback) => {
-    console.log('addCollectionProductsFields');
+    console.log('It works!');
+
     const COLLECTION_PRODUCTS_PAGE_SIZE = 10;
     // Assume that the first argument will contain pagination data
     // TODO: Check if there is a more consistent way of doing this
