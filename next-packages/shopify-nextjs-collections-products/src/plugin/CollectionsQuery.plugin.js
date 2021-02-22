@@ -2,17 +2,20 @@ import { Field } from '@scandipwa/graphql';
 import { addPaginationArguments } from '@scandipwa/shopify-nextjs-api/src/util/applyPagination';
 import { ProductsQuery } from '@scandipwa/shopify-nextjs-products/src/api/Products.query';
 
-const addCollectionProductsFields = (args, callback) => {
-    console.log('It works!');
+export const COLLECTION_PRODUCTS_BEFORE_KEY = 'productsBefore';
+export const COLLECTION_PRODUCTS_AFTER_KEY = 'productsAfter';
 
-    const COLLECTION_PRODUCTS_PAGE_SIZE = 10;
+const addCollectionProductsFields = (args, callback) => {
+    const COLLECTION_PRODUCTS_PAGE_SIZE = 1;
     // Assume that the first argument will contain pagination data
-    // TODO: Check if there is a more consistent way of doing this
-    const [{ products = {} }] = args;
-    const { before, after } = products;
+    const [{
+        [COLLECTION_PRODUCTS_BEFORE_KEY]: before,
+        [COLLECTION_PRODUCTS_AFTER_KEY]: after
+    }] = args;
     const initialFields = callback(...args);
+    const productQueryInstance = new ProductsQuery();
     const productsField = new Field('products')
-        .addFieldList(ProductsQuery._getProductsField());
+        .addFieldList(productQueryInstance._getProductsFields());
 
     const paginatedProductsField = addPaginationArguments({
         first: COLLECTION_PRODUCTS_PAGE_SIZE,

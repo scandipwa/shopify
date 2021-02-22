@@ -12,6 +12,9 @@ export class PaginatedConnectionContainer extends PureComponent {
         renderNextPageButton: PropTypes.any,
         // eslint-disable-next-line react/forbid-prop-types
         renderPrevPageButton: PropTypes.any,
+        // Allow to change the name of before/after query params
+        beforeParamName: PropTypes.string,
+        afterParamName: PropTypes.string,
         renderPage: PropTypes.func.isRequired,
         paginatedResponse: paginatedResponseType.isRequired,
         // eslint-disable-next-line react/forbid-prop-types
@@ -20,7 +23,9 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     static defaultProps = {
         renderNextPageButton: null,
-        renderPrevPageButton: null
+        renderPrevPageButton: null,
+        beforeParamName: 'before',
+        afterParamName: 'after'
     };
 
     containerFunctions = {
@@ -52,18 +57,44 @@ export class PaginatedConnectionContainer extends PureComponent {
         return hasPreviousPage;
     }
 
-    onNextPageClick() {
-        const { router } = this.props;
-        const lastCursor = this.getLastCursor();
+    getQueryParams(params) {
+        const queryParams = Object.entries(params).reduce((urlParams, keyValuePair) => {
+            const [key, value] = keyValuePair;
 
-        router.push(`${ router.pathname }?after=${ lastCursor }`);
+            if (typeof value !== 'undefined') {
+                urlParams.set(key, value);
+            }
+
+            return urlParams;
+        }, new URLSearchParams());
+
+        return queryParams.toString();
+    }
+
+    onNextPageClick() {
+        const { router, afterParamName, beforeParamName } = this.props;
+        const lastCursor = this.getLastCursor();
+        const queryParams = {
+            ...router.query,
+            [afterParamName]: lastCursor,
+            // Clear value from previous query if present
+            [beforeParamName]: undefined
+        };
+
+        router.push(`${ router.pathname }?${ this.getQueryParams(queryParams) }`);
     }
 
     onPrevPageClick() {
-        const { router } = this.props;
+        const { router, beforeParamName, afterParamName } = this.props;
         const firstCursor = this.getFirstCursor();
+        const queryParams = {
+            ...router.query,
+            [beforeParamName]: firstCursor,
+            // Clear value from previous query if present
+            [afterParamName]: undefined
+        };
 
-        router.push(`${ router.pathname }?before=${ firstCursor }`);
+        router.push(`${ router.pathname }?${ this.getQueryParams(queryParams) }`);
     }
 
     getNodes = () => {

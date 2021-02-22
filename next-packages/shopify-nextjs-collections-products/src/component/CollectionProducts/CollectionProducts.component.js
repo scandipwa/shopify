@@ -1,12 +1,14 @@
 import PaginatedConnection from '@scandipwa/shopify-nextjs-api/src/component/PaginatedConnection';
+import { ProductsResponseType } from '@scandipwa/shopify-nextjs-products/src/api/Products.type';
 import ProductCard from '@scandipwa/shopify-nextjs-products/src/component/ProductCard';
-import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
+
+import { COLLECTION_PRODUCTS_AFTER_KEY, COLLECTION_PRODUCTS_BEFORE_KEY } from '../../plugin/CollectionsQuery.plugin';
 
 /** @namespace ShopifyCollectionsProducts/Component/CollectionProducts/Component/CollectionProductsComponent */
 export class CollectionProductsComponent extends PureComponent {
     static propTypes = {
-        collectionProductsResponse: PropTypes.number.isRequired
+        productsResponse: ProductsResponseType.isRequired
     };
 
     renderCard = (product, i) => (
@@ -19,12 +21,14 @@ export class CollectionProductsComponent extends PureComponent {
     renderPage = (nodes) => nodes.map(this.renderCard);
 
     renderContent() {
-        const { collectionProductsResponse } = this.props;
+        const { productsResponse } = this.props;
 
         return (
             <PaginatedConnection
               renderPage={ this.renderPage }
-              paginatedResponse={ collectionProductsResponse }
+              paginatedResponse={ productsResponse }
+              beforeParamName={ COLLECTION_PRODUCTS_BEFORE_KEY }
+              afterParamName={ COLLECTION_PRODUCTS_AFTER_KEY }
             />
         );
     }

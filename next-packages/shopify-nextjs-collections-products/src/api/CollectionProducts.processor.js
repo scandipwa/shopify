@@ -9,5 +9,5 @@ export const processCollectionProducts = ({ collectionByHandle }) => {
         processProduct(node);
     });
 
-    return products;
+    return collectionByHandle;
 };
