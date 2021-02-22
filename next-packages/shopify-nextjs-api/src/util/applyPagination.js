@@ -2,8 +2,6 @@
 export const addPaginationArguments = ({
     first, last, before, after, field
 }) => {
-    // Similar code is going to be used for other modules
-    // We might want to define it as a helper for further reusage
     if (first && after) {
         field
             .addArgument('after', 'String', after)

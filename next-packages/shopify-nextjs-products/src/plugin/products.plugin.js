@@ -9,9 +9,9 @@ import { requestProduct, requestProducts } from '../api/Products.request';
 import ProductPageComponent from '../component/ProductPage';
 import ProductsPageComponent from '../component/ProductsPage';
 
-const getServerSidePropsHandle = async ([{ query: { handle }, res }]) => {
+const getServerSidePropsHandle = async ([{ query, res }]) => {
     try {
-        const product = await requestProduct(handle);
+        const product = await requestProduct(query);
 
         if (!product) {
             return handleError(res, NOT_FOUND_ERROR_CODE, { product: null });
@@ -23,13 +23,12 @@ const getServerSidePropsHandle = async ([{ query: { handle }, res }]) => {
     }
 };
 
-const getServerSidePropsPaginated = async ([{ query: { after, before }, res }]) => {
+const getServerSidePropsPaginated = async ([{ query, res }]) => {
     const PRODUCTS_PAGE_SIZE = 10;
 
     try {
         const productsResponse = await requestProducts({
-            after,
-            before,
+            ...query,
             last: PRODUCTS_PAGE_SIZE,
             first: PRODUCTS_PAGE_SIZE
         });

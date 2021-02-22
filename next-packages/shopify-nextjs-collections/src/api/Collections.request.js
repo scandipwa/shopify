@@ -13,14 +13,10 @@ export const requestCollection = async (queryArgs) => {
 };
 
 /** @namespace ShopifyNextjsCollections/Api/Collections/Request/requestCollections */
-export const requestCollections = async ({
-    first, last, before, after
-}) => {
+export const requestCollections = async (queryArgs) => {
     const queryGetter = getCollectionQueryOfType(PAGINATED_COLLECTIONS);
     const responseProcessor = processCollectionsResponse;
-    const response = await postQuery(queryGetter({
-        first, last, after, before
-    }));
+    const response = await postQuery(queryGetter(queryArgs));
     const collections = responseProcessor(response);
     return collections;
 };

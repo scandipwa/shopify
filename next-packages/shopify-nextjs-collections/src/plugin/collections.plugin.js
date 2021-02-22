@@ -23,13 +23,12 @@ const getServerSidePropsHandle = async ([{ query, res }]) => {
     }
 };
 
-const getServerSidePropsPaginated = async ([{ query: { after, before }, res }]) => {
+const getServerSidePropsPaginated = async ([{ query, res }]) => {
     const COLLECTIONS_PAGE_SIZE = 10;
 
     try {
         const collectionsResponse = await requestCollections({
-            after,
-            before,
+            ...query,
             last: COLLECTIONS_PAGE_SIZE,
             first: COLLECTIONS_PAGE_SIZE
         });
