@@ -11,5 +11,4 @@ export const CollectionType = PropTypes.shape({
 });
 
 export const CollectionEdgeType = getPaginatedEdgeForNodeType(CollectionType);
-
 export const CollectionsResponseType = getPaginatedResponseForEdgeType(CollectionEdgeType);

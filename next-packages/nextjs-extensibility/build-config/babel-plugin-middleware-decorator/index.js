@@ -1,4 +1,4 @@
-/* eslint-disable max-lines */
+/* eslint-disable */
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 /* eslint-disable new-cap */
 // TODO: comment
@@ -22,7 +22,8 @@ const allowedPaths = [
         }
 
         return packageName.replace('/', '\\');
-    })
+    }),
+    ...extensions.map(({ packagePath }) => packagePath)
 ].reduce((acc, pathname) => [
     ...acc,
     path.join(pathname, 'src'),

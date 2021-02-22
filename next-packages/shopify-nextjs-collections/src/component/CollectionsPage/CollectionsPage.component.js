@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import { CollectionsResponseType } from '../../api/Collections.type';
 import CollectionCard from '../CollectionCard';
 
-/** @namespace ShopifyCollections/Component/CollectionsPage/Component/CollectionsPageComponent */
+/** @namespace ShopifyNextjsCollections/Component/CollectionsPage/Component/CollectionsPageComponent */
 export class CollectionsPageComponent extends PureComponent {
     static propTypes = {
         collectionsResponse: CollectionsResponseType
@@ -28,7 +28,7 @@ export class CollectionsPageComponent extends PureComponent {
 
         return (
             <PaginatedConnection
-              paginatedNode={ collectionsResponse }
+              paginatedResponse={ collectionsResponse }
               renderPage={ this.renderPage }
             />
         );

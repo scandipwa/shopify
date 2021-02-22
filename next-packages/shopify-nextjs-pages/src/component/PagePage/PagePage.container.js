@@ -1,17 +1,13 @@
-import { HigherOrderComponent, withHOC } from '@scandipwa/nextjs-framework/src/util/HOC';
-import { ResponseDataType } from '@scandipwa/shopify-nextjs-api/src/api/types';
-import DefaultFallback from 'next/error';
+import { withFallback } from '@scandipwa/shopify-nextjs-api/src/util/withFallback';
+import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';
 import PagePageComponent from './PagePage.component';
-import { PAGE_COMPONENT, PAGE_FALLBACK } from './PagePage.config';
 
 /** @namespace ShopifyNextjsPages/Component/PagePage/Container/PagePageContainer */
-export class PagePageContainer extends HigherOrderComponent {
+export class PagePageContainer extends PureComponent {
     static propTypes = {
-        ...HigherOrderComponent.propTypes,
-        page: PageType,
-        responseData: ResponseDataType
+        page: PageType
     };
 
     static defaultProps = {
@@ -20,27 +16,12 @@ export class PagePageContainer extends HigherOrderComponent {
 
     renderPageComponent = () => {
         const { page } = this.props;
-        const Component = this._getComponentByKey(PAGE_COMPONENT);
-        return <Component page={ page } />;
-    };
-
-    renderPageFallback = (errorCode) => {
-        const Fallback = this._getComponentByKey(PAGE_FALLBACK);
-        return <Fallback statusCode={ errorCode } />;
+        return <PagePageComponent page={ page } />;
     };
 
     render() {
-        const { page, responseData: { errorCode } } = this.props;
-
-        if (!page || errorCode) {
-            return this.renderPageFallback(errorCode);
-        }
-
         return this.renderPageComponent();
     }
 }
 
-export default withHOC(PagePageContainer, {
-    [PAGE_COMPONENT]: PagePageComponent,
-    [PAGE_FALLBACK]: DefaultFallback
-});
+export default withFallback(PagePageContainer);

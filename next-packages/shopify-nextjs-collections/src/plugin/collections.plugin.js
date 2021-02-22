@@ -1,52 +1,45 @@
 /* eslint-disable no-param-reassign */
-import { INTERNAL_SERVER_ERROR_CODE, NOT_FOUND_ERROR_CODE } from '@scandipwa/shopify-nextjs-api/src/util/responseCodes';
+import {
+    BAD_REQUEST_ERROR_CODE,
+    handleError,
+    NOT_FOUND_ERROR_CODE
+} from '@scandipwa/shopify-nextjs-api/src/util/responseHandler';
 
 import { requestCollection, requestCollections } from '../api/Collections.request';
 import CollectionPageComponent from '../component/CollectionPage';
 import CollectionsPageComponent from '../component/CollectionsPage';
 
-const getServerSidePropsHandle = async ([{ query: { handle }, res }]) => {
+const getServerSidePropsHandle = async ([{ query, res }]) => {
     try {
-        const collection = await requestCollection(handle);
+        const collection = await requestCollection(query);
 
         if (!collection) {
-            res.statusCode = NOT_FOUND_ERROR_CODE;
-            const responseData = { errorCode: NOT_FOUND_ERROR_CODE };
-
-            return { props: { collection: null, responseData } };
+            return handleError(res, NOT_FOUND_ERROR_CODE, { collection: null });
         }
 
         return { props: { collection } };
     } catch (error) {
-        const responseData = { errorCode: INTERNAL_SERVER_ERROR_CODE };
-
-        return { collection: null, responseData };
+        return handleError(res, BAD_REQUEST_ERROR_CODE, { collection: null });
     }
 };
 
-const getServerSidePropsPaginated = async ([{ query: { after, before }, res }]) => {
+const getServerSidePropsPaginated = async ([{ query, res }]) => {
     const COLLECTIONS_PAGE_SIZE = 10;
 
     try {
         const collectionsResponse = await requestCollections({
-            after,
-            before,
+            ...query,
             last: COLLECTIONS_PAGE_SIZE,
             first: COLLECTIONS_PAGE_SIZE
         });
 
         if (!collectionsResponse) {
-            res.statusCode = NOT_FOUND_ERROR_CODE;
-            const responseData = { errorCode: NOT_FOUND_ERROR_CODE };
-
-            return { props: { collectionsResponse: null, responseData } };
+            return handleError(res, NOT_FOUND_ERROR_CODE, { collectionsResponse: null });
         }
 
         return { props: { collectionsResponse } };
     } catch (error) {
-        const responseData = { errorCode: INTERNAL_SERVER_ERROR_CODE };
-
-        return { props: { collectionsResponse: null, responseData } };
+        return handleError(res, BAD_REQUEST_ERROR_CODE, { collectionsResponse: null });
     }
 };
 

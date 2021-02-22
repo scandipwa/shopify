@@ -12,15 +12,20 @@ export class PaginatedConnectionContainer extends PureComponent {
         renderNextPageButton: PropTypes.any,
         // eslint-disable-next-line react/forbid-prop-types
         renderPrevPageButton: PropTypes.any,
+        // Allow to change the name of before/after query params
+        beforeParamName: PropTypes.string,
+        afterParamName: PropTypes.string,
         renderPage: PropTypes.func.isRequired,
-        paginatedNode: PropTypes.shape(paginatedResponseType).isRequired,
+        paginatedResponse: paginatedResponseType.isRequired,
         // eslint-disable-next-line react/forbid-prop-types
         router: PropTypes.any.isRequired
     };
 
     static defaultProps = {
         renderNextPageButton: null,
-        renderPrevPageButton: null
+        renderPrevPageButton: null,
+        beforeParamName: 'before',
+        afterParamName: 'after'
     };
 
     containerFunctions = {
@@ -30,7 +35,7 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     hasNextPage() {
         const {
-            paginatedNode: {
+            paginatedResponse: {
                 pageInfo: {
                     hasNextPage
                 }
@@ -42,7 +47,7 @@ export class PaginatedConnectionContainer extends PureComponent {
 
     hasPrevPage() {
         const {
-            paginatedNode: {
+            paginatedResponse: {
                 pageInfo: {
                     hasPreviousPage
                 }
@@ -52,28 +57,54 @@ export class PaginatedConnectionContainer extends PureComponent {
         return hasPreviousPage;
     }
 
-    onNextPageClick() {
-        const { router } = this.props;
-        const lastCursor = this.getLastCursor();
+    getQueryParams(params) {
+        const queryParams = Object.entries(params).reduce((urlParams, keyValuePair) => {
+            const [key, value] = keyValuePair;
 
-        router.push(`${ router.pathname }?after=${ lastCursor }`);
+            if (typeof value !== 'undefined') {
+                urlParams.set(key, value);
+            }
+
+            return urlParams;
+        }, new URLSearchParams());
+
+        return queryParams.toString();
+    }
+
+    onNextPageClick() {
+        const { router, afterParamName, beforeParamName } = this.props;
+        const lastCursor = this.getLastCursor();
+        const queryParams = {
+            ...router.query,
+            [afterParamName]: lastCursor,
+            // Clear value from previous query if present
+            [beforeParamName]: undefined
+        };
+
+        router.push(`${ router.pathname }?${ this.getQueryParams(queryParams) }`);
     }
 
     onPrevPageClick() {
-        const { router } = this.props;
+        const { router, beforeParamName, afterParamName } = this.props;
         const firstCursor = this.getFirstCursor();
+        const queryParams = {
+            ...router.query,
+            [beforeParamName]: firstCursor,
+            // Clear value from previous query if present
+            [afterParamName]: undefined
+        };
 
-        router.push(`${ router.pathname }?before=${ firstCursor }`);
+        router.push(`${ router.pathname }?${ this.getQueryParams(queryParams) }`);
     }
 
     getNodes = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         return edges.map(({ node }) => node);
     };
 
     getFirstCursor = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         if (!edges.length) {
             return null;
@@ -83,7 +114,7 @@ export class PaginatedConnectionContainer extends PureComponent {
     };
 
     getLastCursor = () => {
-        const { paginatedNode: { edges } } = this.props;
+        const { paginatedResponse: { edges } } = this.props;
 
         if (!edges.length) {
             return null;
