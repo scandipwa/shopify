@@ -3,8 +3,8 @@ import { postMutation as originalPostMutation, postQuery as originalPostQuery } 
 /** @namespace ShopifyNextjsApi/Api/Request/getConfig */
 export const getConfig = () => ({
     // TODO: use ENV VARS
-    token: 'bfc8ba27782c28b3e25dd4034bcea59d',
-    domain: 'https://nextjs-test-store.myshopify.com/api/graphql'
+    token: 'be9aebb10d5e83f81026058ea5ad1d76',
+    domain: 'https://scandipwa1.myshopify.com/api/graphql'
 });
 
 /** @namespace ShopifyNextjsApi/Api/Request/getFormattedOptions */
