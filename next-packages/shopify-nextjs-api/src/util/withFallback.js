@@ -1,18 +1,15 @@
+import NextPageContext from '@scandipwa/nextjs-framework/src/context/NextPage.context';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-import { ResponseDataType } from '../api/types';
 import Fallback from '../component/Fallback';
 
 /** @namespace ShopifyNextjsApi/Util/WithFallback/FallbackContainer */
 export class FallbackContainer extends PureComponent {
-    static propTypes = {
-        responseData: ResponseDataType,
-        component: PropTypes.func.isRequired
-    };
+    static contextType = NextPageContext;
 
-    static defaultProps = {
-        responseData: {}
+    static propTypes = {
+        component: PropTypes.func.isRequired
     };
 
     renderFallback(errorCode) {
@@ -24,7 +21,8 @@ export class FallbackContainer extends PureComponent {
     }
 
     render() {
-        const { component: Component, responseData: { errorCode } } = this.props;
+        const { props: { responseData: { errorCode } } } = this.context;
+        const { component: Component } = this.props;
 
         if (errorCode) {
             return this.renderFallback(errorCode);
