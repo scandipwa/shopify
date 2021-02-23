@@ -16,7 +16,9 @@
         "extends": "@scandipwa",
         "ignorePatterns": [
             "**/node_modules/**",
-            "**/build/**"
+            "**/build/**",
+            "next-packages/scandipwa-extensibility",
+            "next-packages/scandipwa-dev-utils"
         ]
     },
     "workspaces": [

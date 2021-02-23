@@ -4,15 +4,14 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 
 const path = require('path');
-const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
+const configInjector = require('@scandipwa/scandipwa-extensibility/build-config/util');
+const getIncludePaths = require('@scandipwa/scandipwa-extensibility/build-config/util/common/get-include-paths');
 
 module.exports = () => {
     // const abstractStyle = FallbackPlugin.getFallbackPathname('src/style/abstract/_abstract.scss');
 
     return {
         webpack: (config, { webpack }) => {
-            // console.log(config);
-
             config.plugins.push(...[
             // In development mode, provide simple translations and React
                 new webpack.ProvidePlugin({
@@ -36,35 +35,17 @@ module.exports = () => {
             // EXTENSIBILITY SPECIFIC FEATURES
             // ===================================
 
-            const PATH_DELIMITER = '[\\\\/]'; // match 2 antislashes or one slash
-            const safePath = (module) => module.split('/').join(PATH_DELIMITER);
-
-            const extensionPaths = [
-                // allow current (generated) folder to be processed
-                new RegExp(safePath('@scandipwa/nextjs-scripts')),
-                new RegExp(__dirname),
-                // keep all extensions though
-                ...extensions.map(({ packagePath }) => new RegExp(packagePath)),
-                ...extensions.map(({ packageName }) => new RegExp(safePath(packageName)))
-            ];
-
-            // Allow processing extension code (outside of main folder)
-            // eslint-disable-next-line fp/no-delete
-            delete config.module.rules[0].exclude;
-            config.module.rules[0].include.push(...extensionPaths);
-
-            // Inject "ExtUtils" to global code
-            config.plugins.forEach((plugin) => {
-                if (plugin instanceof webpack.ProvidePlugin) {
-                    plugin.definitions.ExtUtils = [
-                        '@scandipwa/nextjs-extensibility/ExtUtils',
-                        'default'
-                    ];
-                }
+            configInjector.injectWebpackConfig(config, {
+                webpack,
+                entryMatcher: /[\\/]src[\\/]pages[\\/][^_]/
             });
 
-            config.resolve.symlinks = false;
+            // * Next-specific plugin system stuff
 
+            // * This fixes "Cannot use import statement outside a module"
+            // ? is this a breaking change? should we move it to @scandipwa/extensibility?
+            // TODO investigate
+            const extensionPaths = getIncludePaths();
             if (Array.isArray(config.externals)) {
                 config.externals = config.externals.map((external) => {
                     if (typeof external !== 'function') {
@@ -80,13 +61,6 @@ module.exports = () => {
                     };
                 });
             }
-
-            // Inject plugins into "ExtUtils"
-            config.module.rules.push({
-                // so we inject into all pages, but root
-                test: /[\\/]src[\\/]pages[\\/][^_]/,
-                loader: require.resolve('@scandipwa/nextjs-extensibility/build-config/webpack-extension-import-helper-loader')
-            });
 
             const babelConfigFile = path.join(__dirname, 'babel.config.js');
 

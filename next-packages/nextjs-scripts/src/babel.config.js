@@ -15,7 +15,7 @@ module.exports = {
     plugins: [
         // ===================================
         // Extensibility imports
-        '@scandipwa/nextjs-extensibility/build-config/babel-plugin-middleware-decorator',
+        '@scandipwa/scandipwa-extensibility/build-config/babel-plugin-middleware-decorator',
         '@babel/plugin-transform-arrow-functions',
         '@babel/plugin-transform-async-to-generator'
         // ===================================
