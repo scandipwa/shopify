@@ -6,6 +6,7 @@ import NextPageContext from './NextPage.context';
 /** @namespace NextjsFramework/Context/NextPage/Provider/NextPageProvider */
 export class NextPageProvider extends PureComponent {
     static propTypes = {
+        // TODO: Figure out a way to dinamically declare prop types
         props: PropTypes.shape({}).isRequired,
         children: PropTypes.node.isRequired
     };

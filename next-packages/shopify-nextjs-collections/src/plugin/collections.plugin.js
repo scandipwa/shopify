@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import NextPageProvider from '@scandipwa/nextjs-framework/src/context/NextPage.provider';
 import {
     BAD_REQUEST_ERROR_CODE,
     handleError,
@@ -44,17 +45,15 @@ const getServerSidePropsPaginated = async ([{ query, res }]) => {
 };
 
 const CollectionsHandle = ([{ collection, responseData = {} }]) => (
-    <CollectionPageComponent
-      collection={ collection }
-      responseData={ responseData }
-    />
+    <NextPageProvider props={ { collection, responseData } }>
+        <CollectionPageComponent />
+    </NextPageProvider>
 );
 
 const CollectionsPaginated = ([{ collectionsResponse, responseData = {} }]) => (
-    <CollectionsPageComponent
-      collectionsResponse={ collectionsResponse }
-      responseData={ responseData }
-    />
+    <NextPageProvider props={ { collectionsResponse, responseData } }>
+        <CollectionsPageComponent />
+    </NextPageProvider>
 );
 
 export default {

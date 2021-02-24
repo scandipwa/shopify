@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import NextPageProvider from '@scandipwa/nextjs-framework/src/context/NextPage.provider';
 import {
     BAD_REQUEST_ERROR_CODE,
     handleError,
@@ -23,10 +24,9 @@ const getServerSideProps = async ([{ query: { handle }, res }]) => {
 };
 
 const PagesHandle = ([{ page, responseData = {} }]) => (
-    <PagePageComponent
-      page={ page }
-      responseData={ responseData }
-    />
+    <NextPageProvider props={ { page, responseData } }>
+        <PagePageComponent />
+    </NextPageProvider>
 );
 
 export default {

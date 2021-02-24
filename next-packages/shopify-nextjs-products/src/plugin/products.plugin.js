@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import NextPageProvider from '@scandipwa/nextjs-framework/src/context/NextPage.provider';
 import {
     BAD_REQUEST_ERROR_CODE,
     handleError,
@@ -44,17 +45,15 @@ const getServerSidePropsPaginated = async ([{ query, res }]) => {
 };
 
 const ProductsHandle = ([{ product, responseData = {} }]) => (
-    <ProductPageComponent
-      product={ product }
-      responseData={ responseData }
-    />
+    <NextPageProvider props={ { product, responseData } }>
+        <ProductPageComponent />
+    </NextPageProvider>
 );
 
 const ProductsPaginated = ([{ productsResponse, responseData = {} }]) => (
-    <ProductsPageComponent
-      productsResponse={ productsResponse }
-      responseData={ responseData }
-    />
+    <NextPageProvider props={ { productsResponse, responseData } }>
+        <ProductsPageComponent />
+    </NextPageProvider>
 );
 
 export default {
