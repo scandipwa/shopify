@@ -1,15 +1,5 @@
 const logger = require('@scandipwa/scandipwa-dev-utils/logger');
 
-/* eslint-disable no-param-reassign */
-const getWebpack = (cwds = [__dirname]) => {
-    try {
-        const webpack = require.resolve('webpack', { paths: cwds });
-        return require(webpack);
-    } catch (err) {
-        return null;
-    }
-}
-
 const extUtilsDefinition = {
     ExtUtils: [
         '@scandipwa/scandipwa-extensibility/ExtUtils',
@@ -17,7 +7,12 @@ const extUtilsDefinition = {
     ]
 };
 
-// Provide ExtUtils globally
+/**
+ * Provide ExtUtils globally
+ *
+ * @param {object} webpackConfig
+ * @param {object} webpack
+ */
 const provideGlobals = (webpackConfig, webpack) => {
     const providePlugin = webpackConfig.plugins.find(
         (one) => one instanceof webpack.ProvidePlugin
@@ -26,7 +21,7 @@ const provideGlobals = (webpackConfig, webpack) => {
     // Handle plugin already defined
     if (providePlugin) {
         Object.assign(providePlugin.definitions, extUtilsDefinition);
-        
+
     // Handle not defined -> define
     } else {
         if (!webpack) {

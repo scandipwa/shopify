@@ -11,9 +11,10 @@ const defaultOptions = {
 };
 
 /**
- * 
- * @param {any} webpackConfig 
- * @param {import('@scandipwa/scandipwa-extensibility').WebpackInjectorConfig} providedOptions 
+ * Inject webpack configuration with necessary things for the e11y package
+ *
+ * @param {any} webpackConfig
+ * @param {import('@scandipwa/scandipwa-extensibility').WebpackInjectorConfig} providedOptions
  */
 const injectWebpackConfig = (
     webpackConfig,

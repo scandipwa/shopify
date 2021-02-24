@@ -14,5 +14,6 @@ export interface WebpackInjectorConfig {
     entryMatcher: string | function | RegExp,
 
     // Instance of webpack that the application uses
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     webpack: any
 }

@@ -30,7 +30,7 @@ const locateExtensionFile = (condition) => {
     }
 
     return false;
-}
+};
 
 const babelLoaderMatcher = /babel-loader/;
 const isUsableBabel = (usable) => babelLoaderMatcher.test(usable) || babelLoaderMatcher.test(usable.loader);
@@ -46,14 +46,15 @@ const isBabel = (rule) => {
 
     if (Array.isArray(rule.use)) {
         return !!rule.use.find(isUsableBabel);
-    } else {
-        return isUsableBabel(rule.use);
     }
-}
+
+    return isUsableBabel(rule.use);
+};
 
 const getBabelRules = (rules) => {
     const acc = [];
 
+    // eslint-disable-next-line no-restricted-syntax
     for (const rule of rules) {
         if (rule.oneOf) {
             acc.push(...getBabelRules(rule.oneOf));
@@ -70,11 +71,11 @@ const getBabelRules = (rules) => {
 /**
  * Ensure extensions' files to be transpiled by babel
  * Ensure the project itself to be transpiled by babel
- * 
- * @param {object} webpackConfig 
- * @param {boolean} isDisableExcludeWarning 
+ *
+ * @param {object} webpackConfig
+ * @param {boolean} isDisableExcludeWarning
  */
-const enforceIncludeExtensions = (webpackConfig, isDisableExcludeWarning) => {
+const enforceIncludeExtensions = (webpackConfig) => {
     const babelRules = getBabelRules(webpackConfig.module.rules);
 
     // Handle nothing being transpiled by babel
@@ -99,7 +100,7 @@ const enforceIncludeExtensions = (webpackConfig, isDisableExcludeWarning) => {
             'Please, make sure all the extensions are transpiled by babel',
             'Otherwise, the additional syntax will not be available',
             'You may disable this message by providing the following option to the injector options:',
-            logger.style.code(`\t"disableExcludeWarning": true`)
+            logger.style.code('\t"disableExcludeWarning": true')
         );
 
         return webpackConfig;
@@ -116,7 +117,7 @@ const enforceIncludeExtensions = (webpackConfig, isDisableExcludeWarning) => {
             `Plese make sure that it is transpiled by babel: ${logger.style.file(excludedExtensionFile)}`,
             'You will not see this message when all the extension files are transpiled by Babel.'
         );
-        
+
         process.exit(1);
     }
 
