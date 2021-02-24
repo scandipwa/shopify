@@ -1,18 +1,12 @@
+import NextPageContext from '@scandipwa/nextjs-framework/src/context/NextPage.context';
 import PaginatedConnection from '@scandipwa/shopify-nextjs-api/src/component/PaginatedConnection';
 import { PureComponent } from 'react';
 
-import { ProductsResponseType } from '../../api/Products.type';
 import ProductCard from '../ProductCard';
 
 /** @namespace ShopifyNextjsProducts/Component/ProductsPage/Component/ProductsPageComponent */
 export class ProductsPageComponent extends PureComponent {
-    static propTypes = {
-        productsResponse: ProductsResponseType
-    };
-
-    static defaultProps = {
-        productsResponse: null
-    };
+    static contextType = NextPageContext;
 
     renderCard = (product, i) => (
         <ProductCard
@@ -24,7 +18,7 @@ export class ProductsPageComponent extends PureComponent {
     renderPage = (nodes) => nodes.map(this.renderCard);
 
     renderContent = () => {
-        const { productsResponse } = this.props;
+        const { props: { productsResponse } } = this.context;
 
         return (
             <PaginatedConnection

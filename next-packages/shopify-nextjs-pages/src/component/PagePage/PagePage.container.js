@@ -1,21 +1,15 @@
+import NextPageContext from '@scandipwa/nextjs-framework/src/context/NextPage.context';
 import { withFallback } from '@scandipwa/shopify-nextjs-api/src/util/withFallback';
 import { PureComponent } from 'react';
 
-import { PageType } from '../../api/Page.type';
 import PagePageComponent from './PagePage.component';
 
 /** @namespace ShopifyNextjsPages/Component/PagePage/Container/PagePageContainer */
 export class PagePageContainer extends PureComponent {
-    static propTypes = {
-        page: PageType
-    };
-
-    static defaultProps = {
-        page: null
-    };
+    static contextType = NextPageContext;
 
     renderPageComponent = () => {
-        const { page } = this.props;
+        const { props: { page } } = this.context;
         return <PagePageComponent page={ page } />;
     };
 
