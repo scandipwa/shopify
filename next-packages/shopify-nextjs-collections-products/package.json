@@ -16,6 +16,9 @@
             "@scandipwa/graphql": true,
             "@scandipwa/shopify-nextjs-products": true,
             "@scandipwa/shopify-nextjs-api": true
+        },
+        "nextPages": {
+            "collections/[handle]/products/[productHandle]": "server"
         }
     },
     "eslintConfig": {
