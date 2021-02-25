@@ -2,6 +2,7 @@
     "name": "@scandipwa/shopify-nextjs-product-variants",
     "version": "0.0.0",
     "license": "OSL-3.0",
+    "typings": "./src/typings/index.d.ts",
     "peerDependencies": {
         "@scandipwa/shopify-nextjs-products": "^0.0.0"
     },
