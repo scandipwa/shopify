@@ -3,6 +3,7 @@
     "description": "Framework extension for ScandiPWA.",
     "version": "0.0.0",
     "license": "OSL-3.0",
+    "typings": "./src/typings/index.d.ts",
     "dependencies": {
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
@@ -16,5 +17,8 @@
     },
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.2"
     }
 }

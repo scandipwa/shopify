@@ -2,10 +2,11 @@
     "name": "@scandipwa/shopify-nextjs-products",
     "version": "0.0.0",
     "license": "OSL-3.0",
+    "typings": "./src/typings/index.d.ts",
     "dependencies": {
         "@scandipwa/nextjs-framework": "0.0.0",
         "@scandipwa/graphql": "0.0.0",
-        "@scandipwa/shopify-nextjs-api": "0.0.0"        
+        "@scandipwa/shopify-nextjs-api": "0.0.0"
     },
     "scandipwa": {
         "type": "extension",
