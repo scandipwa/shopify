@@ -1,4 +1,4 @@
-![ScandiPWA](https://user-images.githubusercontent.com/29531824/101024697-24d42880-357d-11eb-868d-6577919e96e3.png)
+# Shopify
 
 The next-generation modular front-end for Shopify. Fast. Reliable. Extensible.
 

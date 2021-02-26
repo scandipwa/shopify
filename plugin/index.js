@@ -61,14 +61,13 @@ class Plugin {
         };
 
         const type = getPluginType();
-        const formattedExample = example.replace(/\n/gm, '\n                ');
 
         if (type === 'function' || type === 'class') {
             return [
                 '```javascript',
                 '{',
                 `    '${ namespace }': {`,
-                `        '${ type }': ${ formattedExample }`,
+                `        '${ type }': ${ example.replace(/\n/gm, '\n            ') }`,
                 '    }',
                 '}',
                 '```'
@@ -80,12 +79,30 @@ class Plugin {
             '{',
             `    '${ namespace }': {`,
             `        '${ type }': {`,
-            `            '${ doc.name }': ${ formattedExample }`,
+            `            '${ doc.name }': ${ example.replace(/\n/gm, '\n                ') }`,
             '        }',
             '    }',
             '}',
             '```'
         ];
+    }
+
+    _addNotice(content) {
+        return content + [
+            '\n',
+            '{% hint style="danger" %}',
+            '### **This page is automatically generated** \n',
+            'All modification will be erased during the next deployment. If you intend to modify the contents, please refer to the source-code.',
+            '{% endhint %}'
+        ].join('\n');
+    }
+
+    _capitalize(s) {
+        if (typeof s !== 'string') {
+            return '';
+        }
+
+        return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
     _getContentForDoc(doc, importPath, namespace) {
@@ -98,10 +115,10 @@ class Plugin {
 
         const content = [];
 
-        content.push(description, '\n');
+        content.push(`**Description:** ${description} \n`);
 
         if (examples.length > 0) {
-            content.push('**Usage examples** \n');
+            content.push('**Usage examples:** \n');
 
             examples.forEach((example) => {
                 const replacedExample = example.replace(/%filename%/gm, importPath);
@@ -117,7 +134,7 @@ class Plugin {
 
             switch (tagName) {
             case '@namespace': {
-                content.push('**Namespace**', '```javascript', tagValue, '```');
+                content.push(`**Namespace**: \`${tagValue}\` \n`);
                 namespace = tagValue;
                 break;
             }
@@ -136,15 +153,13 @@ class Plugin {
         });
 
         if (extensionPoint || extensionExample) {
-            content.push('**Common extension point** \n', extensionPoint);
+            content.push(`**🔮 Common extension point:** ${extensionPoint} \n`);
             content.push(...this._getExtensibilityContent(doc, namespace, extensionExample));
         }
 
         switch (kind) {
         case 'class': {
             const subDocs = this._findClassDocs(doc, importPath);
-
-            content.push('**Methods and properties**', '\n');
 
             for (let i = 0; i < subDocs.length; i++) {
                 const subDoc = subDocs[i];
@@ -154,8 +169,8 @@ class Plugin {
                 }
 
                 const type = `${ subDoc.static ? 'static ' : '' }${ subDoc.async ? 'async ' : '' }${ subDoc.kind }`;
-                content.push(`- *${ type }* \`${ subDoc.name }\``, '\n');
-                content.push(this._getContentForDoc(subDoc, importPath, namespace).map((e) => `    ${e}`).join('\n'));
+                content.push(`### ${ this._capitalize(type) } \`${ subDoc.name }\``, '\n');
+                content.push(this._getContentForDoc(subDoc, importPath, namespace).join('\n'));
             }
 
             break;
@@ -258,7 +273,7 @@ class Plugin {
                         continue;
                     }
 
-                    content.push(`### *${ doc.kind }* \`${ doc.name }\``);
+                    content.push(`## ${ this._capitalize(doc.kind) } \`${ doc.name }\``);
                     const relativeImportPath = doc.importPath.split(path.sep).slice(3).join(path.sep);
                     const importPath = `${ modulePackage.name }/${ relativeImportPath }`;
 
@@ -269,7 +284,6 @@ class Plugin {
                     );
 
                     content.push(...this._getContentForDoc(doc, importPath));
-                    content.push('---');
                 }
 
                 if (content.length <= 1) {
@@ -277,24 +291,11 @@ class Plugin {
                 }
 
                 writeFile(
-                    path.join('packages', modulePath, 'structure.md'),
-                    content.join('\n')
+                    path.join('generated', modulePath, 'structure.md'),
+                    this._addNotice(content.join('\n'))
                 );
 
-                const packageReadmePath = path.join('packages', modulePath, 'README.md');
-
-                const allMDs = glob.sync('*.md', {
-                    cwd: realPathname
-                });
-
-                if (allMDs) {
-                    allMDs.forEach((MDName) => {
-                        copyFile(
-                            path.join(realPathname, MDName),
-                            path.join('packages', modulePath, MDName)
-                        );
-                    });
-                }
+                const packageReadmePath = path.join('generated', modulePath, 'README.md');
 
                 try {
                     copyFile(
@@ -304,10 +305,10 @@ class Plugin {
                 } catch (e) {
                     writeFile(
                         packageReadmePath,
-                        [
-                            `# ${ modulePackage.name }`,
-                            'This module has not description yet! Create `README.md` to replace this file.'
-                        ].join('\n')
+                        this._addNotice([
+                            `# ${ modulePath }`,
+                            `This module has not description yet! Create \`README.md\` in \`${ modulePackage.name }\` to replace this file.`
+                        ].join('\n'))
                     );
                 }
             }
