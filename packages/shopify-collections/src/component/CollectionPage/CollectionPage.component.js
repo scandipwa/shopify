@@ -3,12 +3,22 @@ import { PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
 
-/** @namespace ShopifyCollections/Component/CollectionPage/Component/CollectionPageComponent */
+/**
+ * Collection page component
+ * @namespace ShopifyCollections/Component/CollectionPage/Component/CollectionPageComponent */
 export class CollectionPageComponent extends PureComponent {
     static propTypes = {
         collection: CollectionType.isRequired
     };
 
+    /**
+     * A list of render methods used by collection page
+     * @extPoint Inject render methods to be displayed on collection page
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(<MyComponent />);
+     *     return member;
+     * }
+     */
     sortedRenderList = createSortedRenderList([
         this.renderImage.bind(this),
         this.renderTitle.bind(this),

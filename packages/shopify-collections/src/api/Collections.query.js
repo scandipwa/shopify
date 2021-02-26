@@ -2,7 +2,19 @@ import { Field } from '@scandipwa/graphql';
 import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/util/TypedQuery';
 
+/**
+ * A type of `CollectionsQuery` associated with `getCollectionsField` function.
+ * @example // Returns getter of paginated collections query
+ * import getCollectionQueryByType, { PAGINATED_COLLECTIONS } from '%filename%';
+ * const queryGetter = getCollectionQueryByType(PAGINATED_COLLECTIONS);
+ */
 export const PAGINATED_COLLECTIONS = 'paginated';
+/**
+ * A type of `CollectionsQuery` associated with `getCollectionByHandleField` function.
+ * @example // Returns getter of single collection query
+ * import getCollectionQueryByType, { SINGLE_COLLECTION } from '%filename%';
+ * const queryGetter = getCollectionQueryByType(SINGLE_COLLECTION);
+ */
 export const SINGLE_COLLECTION = 'single';
 
 /** @namespace ShopifyCollections/Api/Collections/Query/CollectionsQuery */
@@ -12,6 +24,11 @@ export class CollectionsQuery extends TypedQuery {
         [SINGLE_COLLECTION]: this.getCollectionByHandleField.bind(this)
     };
 
+    /**
+     * A function which returns an array of collection fields.
+     * @extPoint Use it to add collection child fields (products, for example)
+     * @extExample (args, callback) => [...callback(...args), 'newField']
+     */
     _getCollectionFields() {
         return [
             'description',
@@ -45,6 +62,10 @@ export class CollectionsQuery extends TypedQuery {
         ];
     }
 
+    /**
+     * General collection list field getter [returns edges]
+     * @param {{before: String, after: String, first: Number}} queryArguments
+     */
     getCollectionsField({ first, after, before }) {
         return new Field('collections')
             .addFieldList(this._getCollectionsFields())
@@ -53,6 +74,10 @@ export class CollectionsQuery extends TypedQuery {
             .addArgument('first', 'Int', first);
     }
 
+    /**
+     * General collection field getter (by handle) [returns node]
+     * @param {{handle: String}} queryArguments
+     */
     getCollectionByHandleField({ handle }) {
         return new Field('collectionByHandle')
             .addArgument('handle', 'String!', handle)

@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom';
 
 import { CollectionType } from '../../api/Collections.type';
 
-/** @namespace ShopifyCollections/Component/CollectionCard/Component/CollectionCardComponent */
+/**
+ * The collection card (preview) component
+ * @namespace ShopifyCollections/Component/CollectionCard/Component/CollectionCardComponent */
 export class CollectionCardComponent extends PureComponent {
     static propTypes = {
         collection: CollectionType.isRequired
     };
 
+    /**
+     * A list of render methods used by collection card
+     * @extPoint Inject render methods to be displayed on collection card
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(<MyComponent />);
+     *     return member;
+     * }
+     */
     sortedRenderList = createSortedRenderList([
         this.renderImage.bind(this),
         this.renderTitle.bind(this),
