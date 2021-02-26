@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import ProductOption from '../ProductOption';
 
-/** @namespace ShopifyProductVariants/Component/ProductOptions/Component/ProductOptionsComponent */
+/**
+ * Product Options Component. Used to display multiple Product Options
+ * @namespace ShopifyProductVariants/Component/ProductOptions/Component/ProductOptionsComponent */
 export class ProductOptionsComponent extends PureComponent {
     static contextType = ProductContext;
 
