@@ -5,7 +5,7 @@
         "eslint": "eslint ./packages --resolve-plugins-relative-to . --cache --no-error-on-unmatched-pattern --ext .js,.ts,.tsx",
         "postinstall": "lerna bootstrap",
         "clean": "lerna clean --yes",
-        "docs": "rm -rf docs && esdoc"
+        "docs": "esdoc"
     },
     "devDependencies": {
         "@scandipwa/eslint-config": "^0.1.12",
