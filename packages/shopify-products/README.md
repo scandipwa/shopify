@@ -8,5 +8,5 @@ This module implements support for Shopify collections.
 3. Presentational and Container components to render UI elements for products.
 
 ## Extensions
-1. Adds and resolves `/products/[handle]` routes.
+1. Adds and resolves `/products/[handle]` and `collections/[collectionHandle]/products/[handle]` routes.
 2. Adds and resolves `/products` route.
