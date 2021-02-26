@@ -4,10 +4,19 @@ import { Link } from 'react-router-dom';
 
 import ProductContext from '../../context/Products.context';
 
-/** @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
+/**
+ * The product card (preview) component
+ * @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
+    /**
+     * A list of render methods used by product card
+     * @extPoint Inject render methods to be displayed on product card
+     * @extExample (member, instance) => {
+     *     return <MyComponent />
+     * }
+     */
     sortedRenderList = createSortedRenderList([
         this.renderImage.bind(this),
         this.renderTitle.bind(this)

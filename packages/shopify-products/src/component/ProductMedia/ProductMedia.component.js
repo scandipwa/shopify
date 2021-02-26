@@ -2,7 +2,10 @@ import { PureComponent } from 'react';
 
 import ProductContext from '../../context/Products.context';
 
-/** @namespace ShopifyProducts/Component/ProductMedia/Component/ProductMediaComponent */
+/**
+ * Product media (gallery) component
+ * @namespace ShopifyProducts/Component/ProductMedia/Component/ProductMediaComponent
+ */
 export class ProductMediaComponent extends PureComponent {
     static contextType = ProductContext;
 

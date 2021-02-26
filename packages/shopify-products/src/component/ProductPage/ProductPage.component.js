@@ -2,7 +2,10 @@ import { PureComponent } from 'react';
 
 import ProductHero from '../ProductHero';
 
-/** @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent */
+/**
+ * Product page component
+ * @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent
+ */
 export class ProductPageComponent extends PureComponent {
     renderMainSection() {
         return (
@@ -10,6 +13,14 @@ export class ProductPageComponent extends PureComponent {
         );
     }
 
+    /**
+     * A list of sections (rendered) used by product page
+     * @extPoint Inject renders to be displayed in product page
+     * @extExample (args, callback) => ([
+     *     ...callback(...args),
+     *     <MySection />
+     * ])
+     */
     renderSections() {
         return [
             this.renderMainSection()

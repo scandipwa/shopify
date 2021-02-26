@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ESDoc",
+            "request": "launch",
+            "runtimeArgs": [
+                "esdoc"
+            ],
+            "runtimeExecutable": "yarn",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "name": "Launch NextJS scripts",
             "program": "${workspaceFolder}/next-packages/nextjs-scripts/bin/nextjs-scripts.js",
             "args": [
@@ -47,6 +59,7 @@
                 "PORT": "3333"
             },
             "cwd": "${workspaceFolder}/next-packages/shopify-nextjs-theme"
-        }
+        },
+
     ]
 }

@@ -4,10 +4,20 @@ import { PureComponent } from 'react';
 import ProductContext from '../../context/Products.context';
 import ProductMedia from '../ProductMedia';
 
-/** @namespace ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent */
+/**
+ * The product hero (summary) component (usually on the top of Product page)
+ * @namespace ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent
+ */
 export class ProductHeroComponent extends PureComponent {
     static contextType = ProductContext;
 
+    /**
+     * A list of render methods used by product hero
+     * @extPoint Inject render methods to be displayed in product hero
+     * @extExample (member, instance) => {
+     *     return <MyComponent />
+     * }
+     */
     sortedRenderList = createSortedRenderList([
         this.renderTitle.bind(this),
         this.renderDescription.bind(this)

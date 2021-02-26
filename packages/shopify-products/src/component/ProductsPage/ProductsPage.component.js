@@ -6,7 +6,10 @@ import { processProductsResponse } from '../../api/Products.processor';
 import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '../../api/Products.query';
 import ProductsFallbackPage from '../ProductsFallbackPage';
 
-/** @namespace ShopifyProducts/Component/ProductsPage/Component/ProductsPageComponent */
+/**
+ * Product listing page component
+ * @namespace ShopifyProducts/Component/ProductsPage/Component/ProductsPageComponent
+ */
 export class ProductsPageComponent extends PureComponent {
     renderCard = (product, i) => (
         <ProductCard
