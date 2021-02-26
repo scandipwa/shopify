@@ -4,7 +4,10 @@ import { ProductType } from '../../api/Products.type';
 import ProductProvider from '../../context/Products.provider';
 import ProductCardComponent from './ProductCard.component';
 
-/** @namespace ShopifyProducts/Component/ProductCard/Container/ProductCardContainer */
+/**
+ * The product card (preview) container, used to provide a product context to all children components
+ * @namespace ShopifyProducts/Component/ProductCard/Container/ProductCardContainer
+ */
 export class ProductCardContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,

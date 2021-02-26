@@ -4,13 +4,22 @@
     "scripts": {
         "eslint": "eslint ./packages --resolve-plugins-relative-to . --cache --no-error-on-unmatched-pattern --ext .js,.ts,.tsx",
         "postinstall": "lerna bootstrap",
-        "clean": "lerna clean --yes"
+        "clean": "lerna clean --yes",
+        "docs": "rm -rf docs && esdoc"
     },
     "devDependencies": {
         "@scandipwa/eslint-config": "^0.1.12",
         "eslint": "^7.11.0",
         "husky": "^4.3.0",
-        "lerna": "^3.22.1"
+        "lerna": "^3.22.1",
+        "esdoc": "^1.1.0",
+        "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+        "esdoc-external-ecmascript-plugin": "^1.0.0",
+        "esdoc-jsx-plugin": "^1.0.0",
+        "esdoc-lint-plugin": "^1.0.2",
+        "esdoc-publish-markdown-plugin": "^1.1.0",
+        "esdoc-standard-plugin": "^1.0.0",
+        "taffydb": "^2.7.3"
     },
     "husky": {
         "hooks": {

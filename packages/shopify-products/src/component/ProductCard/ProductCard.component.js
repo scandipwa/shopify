@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import ProductContext from '../../context/Products.context';
 
-/** @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
+/**
+ * The product card (preview) component
+ * @namespace ShopifyProducts/Component/ProductCard/Component/ProductCardComponent */
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 

@@ -6,10 +6,10 @@
         "@scandipwa/framework": "^0.0.4"
     },
     "dependencies": {
-        "@scandipwa/router": "0.0.4",
         "@scandipwa/framework": "0.0.4",
         "@scandipwa/graphql": "0.0.0",
-        "@scandipwa/shopify-api": "0.0.0"        
+        "@scandipwa/router": "0.0.4",
+        "@scandipwa/shopify-api": "0.0.0"
     },
     "scandipwa": {
         "type": "extension",

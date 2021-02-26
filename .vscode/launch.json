@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "ESDoc",
+            "request": "launch",
+            "runtimeArgs": [
+                "esdoc"
+            ],
+            "runtimeExecutable": "yarn",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+        {
             "command": "npm start",
             "name": "Run npm start",
             "request": "launch",

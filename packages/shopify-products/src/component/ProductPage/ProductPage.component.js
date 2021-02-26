@@ -3,7 +3,10 @@ import { PureComponent } from 'react';
 
 import ProductHero from '../ProductHero';
 
-/** @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent */
+/**
+ * Product page component
+ * @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent
+ */
 export class ProductPageComponent extends PureComponent {
     sortedRenderMap = createSortedRenderMap({
         productPageMainSection: this.renderMainSection.bind(this)
