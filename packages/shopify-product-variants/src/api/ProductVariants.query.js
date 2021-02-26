@@ -1,8 +1,15 @@
 import { Field } from '@scandipwa/graphql';
 import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
-/** @namespace ShopifyProductVariants/Api/ProductVariants/Query/ProductVariantsQuery */
+/**
+ * Product variants query declaration.
+ * @namespace ShopifyProductVariants/Api/ProductVariants/Query/ProductVariantsQuery */
 export class ProductVariantsQuery {
+    /**
+     * A function which returns an array of product variant fields
+     * @extPoint Add more variant fields to the query (price, metafields, etc.)
+     * @extExample (args, callback) => [...callback(...args), 'newField']
+     */
     _getVariantFields() {
         return [
             'id',
@@ -45,12 +52,19 @@ export class ProductVariantsQuery {
         ];
     }
 
+    /**
+     * Getter for product variants [returns edges]
+     * @param {{first: Number}} queryArguments
+     */
     getVariantsField({ first }) {
         return new Field('variants')
             .addArgument('first', 'Int', first)
             .addFieldList(this._getVariantsFields());
     }
 
+    /**
+     * Getter for variant options [returns edges]
+     */
     getOptionsField() {
         const PRODUCT_OPTIONS_COUNT = 100;
 
