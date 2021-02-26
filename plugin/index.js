@@ -9,6 +9,7 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 const { taffy } = require('taffydb');
 const path = require('path');
+const glob = require('glob');
 
 class Plugin {
     onHandleDocs(ev) {
@@ -17,7 +18,7 @@ class Plugin {
 
     onPublish(ev) {
         this._option = ev.data.option || {};
-        this._exec(this._docs, ev.data.writeFile, ev.data.copyDir, ev.data.readFile);
+        this._exec(this._docs, ev.data.writeFile, ev.data.copyFile);
     }
 
     _find(...cond) {
@@ -167,7 +168,7 @@ class Plugin {
         return content;
     }
 
-    _exec(tags, writeFile) {
+    _exec(tags, writeFile, copyFile) {
         this._data = taffy(tags);
         this._tags = tags;
 
@@ -215,24 +216,27 @@ class Plugin {
         const modulePaths = Array.from(moduleDirs.keys()).sort((a, b) => (a > b ? 1 : -1));
 
         modulePaths.forEach((modulePath) => {
+            const realPathname = path.join(
+                __dirname,
+                '..',
+                'packages',
+                modulePath
+            );
+
             const modulePackage = require(
                 path.join(
-                    __dirname,
-                    '..',
-                    'packages',
-                    modulePath,
+                    realPathname,
                     'package.json'
                 )
             );
 
-            const content = [`# ${ modulePackage.name }`];
+            const content = ['# Internal structure'];
 
             const dirDocs = moduleDirs.get(modulePath);
             const dirPaths = Array.from(dirDocs.keys()).sort((a, b) => (a > b ? 1 : -1));
 
-            dirPaths.forEach((dirPath) => {
-                // content.push(`## ${ dirPath.split(path.sep).slice(2).join(path.sep) }`);
-
+            for (let k = 0; k < dirPaths.length; k++) {
+                const dirPath = dirPaths[k];
                 const docs = dirDocs.get(dirPath);
 
                 const sortedDocs = docs.sort((a, b) => {
@@ -268,10 +272,45 @@ class Plugin {
                     content.push('---');
                 }
 
-                if (content.length > 1) {
-                    writeFile(`${ modulePath }.md`, content.join('\n'));
+                if (content.length <= 1) {
+                    continue;
                 }
-            });
+
+                writeFile(
+                    path.join('packages', modulePath, 'structure.md'),
+                    content.join('\n')
+                );
+
+                const packageReadmePath = path.join('packages', modulePath, 'README.md');
+
+                const allMDs = glob.sync('*.md', {
+                    cwd: realPathname
+                });
+
+                if (allMDs) {
+                    allMDs.forEach((MDName) => {
+                        copyFile(
+                            path.join(realPathname, MDName),
+                            path.join('packages', modulePath, MDName)
+                        );
+                    });
+                }
+
+                try {
+                    copyFile(
+                        path.join(realPathname, 'README.md'),
+                        packageReadmePath
+                    );
+                } catch (e) {
+                    writeFile(
+                        packageReadmePath,
+                        [
+                            `# ${ modulePackage.name }`,
+                            'This module has not description yet! Create `README.md` to replace this file.'
+                        ].join('\n')
+                    );
+                }
+            }
         });
     }
 }
