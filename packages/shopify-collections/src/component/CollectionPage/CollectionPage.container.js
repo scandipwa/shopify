@@ -8,7 +8,9 @@ import CollectionFallbackPage from '../CollectionFallbackPage';
 import CollectionPageComponent from './CollectionPage.component';
 import { COLLECTION_COMPONENT_PAGE, COLLECTION_FALLBACK_PAGE } from './CollectionPage.config';
 
-/** @namespace ShopifyCollections/Component/CollectionPage/Container/CollectionPageContainer */
+/**
+ * Collection page container. Used to prepare the data and request the collection
+ * @namespace ShopifyCollections/Component/CollectionPage/Container/CollectionPageContainer */
 export class CollectionPageContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,
@@ -21,6 +23,14 @@ export class CollectionPageContainer extends HigherOrderComponent {
         return history?.location?.state?.collection;
     }
 
+    /**
+     * Getter for product query arguments
+     * @extPoint Inject additional arguments into collection query
+     * @extExample (args, callback) => ({
+     *     ...callback(...args),
+     *     myArgument: 'myValue'
+     * })
+     */
     getQueryArgs() {
         const { match: { params: { handle } } } = this.props;
         return {

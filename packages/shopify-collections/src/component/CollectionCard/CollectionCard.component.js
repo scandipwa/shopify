@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { CollectionType } from '../../api/Collections.type';
 
-/** @namespace ShopifyCollections/Component/CollectionCard/Component/CollectionCardComponent */
+/**
+ * The collection card (preview) component
+ * @namespace ShopifyCollections/Component/CollectionCard/Component/CollectionCardComponent */
 export class CollectionCardComponent extends PureComponent {
     static propTypes = {
         collection: CollectionType.isRequired

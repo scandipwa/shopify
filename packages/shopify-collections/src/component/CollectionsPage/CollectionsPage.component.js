@@ -6,7 +6,9 @@ import getCollectionsQueryOfType, { PAGINATED_COLLECTIONS } from '../../api/Coll
 import CollectionCard from '../CollectionCard';
 import CollectionsFallbackPage from '../CollectionsFallbackPage';
 
-/** @namespace ShopifyCollections/Component/CollectionsPage/Component/CollectionsPageComponent */
+/**
+ * Product listing page component
+ * @namespace ShopifyCollections/Component/CollectionsPage/Component/CollectionsPageComponent */
 export class CollectionsPageComponent extends PureComponent {
     renderCards = (collection, i) => (
         <CollectionCard
