@@ -14,7 +14,8 @@ export class ProductCardComponent extends PureComponent {
      * A list of render methods used by product card
      * @extPoint Inject render methods to be displayed on product card
      * @extExample (member, instance) => {
-     *     return <MyComponent />
+     *     member.addItemToPosition(<MyComponent />);
+     *     return member;
      * }
      */
     sortedRenderList = createSortedRenderList([
