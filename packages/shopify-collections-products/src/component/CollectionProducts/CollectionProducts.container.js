@@ -5,7 +5,9 @@ import { withRouter } from 'react-router';
 import getCollectionProductsQueryOfType, { SINGLE_PRODUCT_COLLECTION } from '../../api/CollectionProducts.query';
 import CollectionProductsComponent from './CollectionProducts.component';
 
-/** @namespace ShopifyCollectionsProducts/Component/CollectionProducts/Container/CollectionProductsContainer */
+/**
+ * Collection Products container. Used to prepare the data to perform a collection-products request
+ * @namespace ShopifyCollectionsProducts/Component/CollectionProducts/Container/CollectionProductsContainer */
 export class CollectionProductsContainer extends HigherOrderComponent {
     static propTypes = {
         match: MatchType.isRequired

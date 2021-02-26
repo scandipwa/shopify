@@ -1,7 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { processProduct } from '@scandipwa/shopify-products/src/api/Products.processor';
 
-/** @namespace ShopifyCollectionsProducts/Api/CollectionProducts/Processor/processCollectionProduct */
+/**
+ * Single collection product processor. Returns void, instead it modifies the passed argument.
+ * @namespace ShopifyCollectionsProducts/Api/CollectionProducts/Processor/processCollectionProduct */
 export const processCollectionProduct = (product, collectionHandle) => {
     const { handle } = product;
 
@@ -13,7 +15,9 @@ export const processCollectionProduct = (product, collectionHandle) => {
     };
 };
 
-/** @namespace ShopifyCollectionsProducts/Api/CollectionProducts/Processor/collectionProductsResponseProcessor */
+/**
+ * Processess products within collections. Returns void, instead it modifies the passed argument.
+ * @namespace ShopifyCollectionsProducts/Api/CollectionProducts/Processor/collectionProductsResponseProcessor */
 export const collectionProductsResponseProcessor = ({ collectionByHandle }) => {
     const { products, handle } = collectionByHandle;
     const { edges } = products;
