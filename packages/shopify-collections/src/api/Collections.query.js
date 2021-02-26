@@ -17,7 +17,10 @@ export const PAGINATED_COLLECTIONS = 'paginated';
  */
 export const SINGLE_COLLECTION = 'single';
 
-/** @namespace ShopifyCollections/Api/Collections/Query/CollectionsQuery */
+/**
+ * A general collection and collection-list query declaration. This class is not intended to be used directly, instead prefer using "Typed Query" exported as default from this file.
+ * Thus, you can use it with direct import, however the `this.currentType` won't be set, and it will be impossible distinguish if the collection was requested as a list or as a single collection.
+ * @namespace ShopifyCollections/Api/Collections/Query/CollectionsQuery */
 export class CollectionsQuery extends TypedQuery {
     typeMap = {
         [PAGINATED_COLLECTIONS]: this.getCollectionsField.bind(this),
