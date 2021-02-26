@@ -291,11 +291,11 @@ class Plugin {
                 }
 
                 writeFile(
-                    path.join('generated', modulePath, 'structure.md'),
+                    path.join('packages', modulePath, 'structure.md'),
                     this._addNotice(content.join('\n'))
                 );
 
-                const packageReadmePath = path.join('generated', modulePath, 'README.md');
+                const packageReadmePath = path.join('packages', modulePath, 'README.md');
 
                 try {
                     copyFile(
