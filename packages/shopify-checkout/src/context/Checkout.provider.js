@@ -9,7 +9,9 @@ import CheckoutContext from './Checkout.context';
 
 export const CHECKOUT_FROM_STORAGE = 'shopify_checkout';
 
-/** @namespace ShopifyCheckout/Context/Checkout/Provider/CheckoutProvider */
+/**
+ * Provider class for Checkout Context. Used to make checkout data available to every component in the app
+ * @namespace ShopifyCheckout/Context/Checkout/Provider/CheckoutProvider */
 export class CheckoutProvider extends PureComponent {
     static contextType = ApiContext;
 
@@ -66,6 +68,14 @@ export class CheckoutProvider extends PureComponent {
         this.setState({ checkout, isCheckoutProcessStarted: true });
     }
 
+    /**
+     * A function which returns an object that will be visible in the Checkout Context
+     * @extPoint Add more fields to Checkout Context outside of Shopify API
+     * @extExample (args, callback) => ({
+     *      ...args,
+     *      isEligibleForCheckout: isUserLoggedIn
+     * })
+     */
     getContextValue() {
         const {
             checkout,

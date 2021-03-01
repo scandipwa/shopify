@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import CheckoutContext from '../../context/Checkout.context';
 
-/** @namespace ShopifyCheckout/Component/CartPage/Component/CartPageComponent */
+/**
+ * Cart page component
+ * @namespace ShopifyCheckout/Component/CartPage/Component/CartPageComponent */
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
