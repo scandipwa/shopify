@@ -9,7 +9,9 @@ import ProductRecommendationsFallback from '../ProductRecommendationsFallback';
 import ProductRecommendations from './ProductRecommendations.component';
 import { PRODUCT_RECOMMENDATIONS_COMPONENT, PRODUCT_RECOMMENDATIONS_FALLBACK } from './ProductRecommendations.config';
 
-/** @namespace ShopifyProductRecommendations/Component/ProductRecommendations/Container/ProductRecommendationsContainer */
+/**
+ * Product Recommendations container. Used to connect with Products Context and declare fallback component.
+ * @namespace ShopifyProductRecommendations/Component/ProductRecommendations/Container/ProductRecommendationsContainer */
 export class ProductRecommendationsContainer extends HigherOrderComponent {
     static contextType = ProductsContext;
 
