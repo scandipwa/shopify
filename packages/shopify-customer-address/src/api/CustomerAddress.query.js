@@ -3,13 +3,45 @@ import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/util/TypedQuery';
 import { CustomerQuery } from '@scandipwa/shopify-customer/src/api/Customer.query';
 
+/**
+ * A type of `CustomerAddressQuery` associated with `getCustomerAddressField` function.
+ * @example // Returns getter of customer address get query
+ * import getCustomerAddressQueryByType, { ADDRESS_GET } from '%filename%';
+ * const queryGetter = getCustomerAddressQueryByType(ADDRESS_GET);
+ */
 export const ADDRESS_GET = 'address';
+/**
+ * A type of `CustomerAddressQuery` associated with `getCustomerDefaultAddressField` function.
+ * @example // Returns getter of default customer address get query
+ * import getCustomerAddressQueryByType, { DEFAULT_ADDRESS_GET } from '%filename%';
+ * const queryGetter = getCustomerAddressQueryByType(DEFAULT_ADDRESS_GET);
+ */
 export const DEFAULT_ADDRESS_GET = 'default_address';
+/**
+ * A type of `CustomerAddressQuery` associated with `getCustomerAddressCreateField` function.
+ * @example // Returns getter of customer address create mutation
+ * import getCustomerAddressQueryByType, { ADDRESS_CREATE } from '%filename%';
+ * const queryGetter = getCustomerAddressQueryByType(ADDRESS_CREATE);
+ */
 export const ADDRESS_CREATE = 'address_create';
+/**
+ * A type of `CustomerAddressQuery` associated with `getCustomerAddressUpdateField` function.
+ * @example // Returns getter of customer address update mutation
+ * import getCustomerAddressQueryByType, { ADDERSS_UPDATE } from '%filename%';
+ * const queryGetter = getCustomerAddressQueryByType(ADDERSS_UPDATE);
+ */
 export const ADDERSS_UPDATE = 'address_update';
+/**
+ * A type of `CustomerAddressQuery` associated with `getCustomerAddressDeleteField` function.
+ * @example // Returns getter of customer address create mutation
+ * import getCustomerAddressQueryByType, { ADDRESS_DELETE } from '%filename%';
+ * const queryGetter = getCustomerAddressQueryByType(ADDRESS_DELETE);
+ */
 export const ADDRESS_DELETE = 'address_delete';
 
-/** @namespace ShopifyCustomerAddress/Api/CustomerAddress/Query/CustomerAddressQuery */
+/**
+ * Customer address query declaration. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * @namespace ShopifyCustomerAddress/Api/CustomerAddress/Query/CustomerAddressQuery */
 export class CustomerAddressQuery extends TypedQuery {
     typeMap = {
         [ADDRESS_GET]: this.getCustomerAddressField.bind(this),
@@ -25,6 +57,11 @@ export class CustomerAddressQuery extends TypedQuery {
         ];
     }
 
+    /**
+     * Function that returns the list of address fields.
+     * @extPoint Add new fields to address query
+     * @extExample (args, callback) => [...callback(...args), 'newField']
+     */
     _getAddressFields() {
         return [
             'id',
@@ -84,6 +121,10 @@ export class CustomerAddressQuery extends TypedQuery {
         return [customerQuery._getCustomerUserErrorsField()];
     }
 
+    /**
+     * Field getter for default customer address update [returns node]
+     * @param {{id: String, token: String}} queryArguments
+     */
     getCustomerDefaultAddressUpdateField({ id, token }) {
         return new Field('customerDefaultAddressUpdate')
             .addArgument('customerAccessToken', 'String!', token)
@@ -91,6 +132,10 @@ export class CustomerAddressQuery extends TypedQuery {
             .addFieldList(this._getCustomerDefaultAddressUpdateField());
     }
 
+    /**
+     * Filed getter for customer address update [returns node]
+     * @param {{id: String, token: String, address: any}} queryArguments
+     */
     getCustomerAddressUpdateField({ id, token, address }) {
         return new Field('customerAddressUpdate')
             .addArgument('customerAccessToken', 'String!', token)
@@ -99,6 +144,10 @@ export class CustomerAddressQuery extends TypedQuery {
             .addFieldList(this._getCustomerAddressUpdateField());
     }
 
+    /**
+     * Field getter for customer address deletion [returns node]
+     * @param {{id: String, token: String}} queryArguments
+     */
     getCustomerAddressDeleteField({ id, token }) {
         return new Field('customerAddressDelete')
             .addArgument('customerAccessToken', 'String!', token)
@@ -106,6 +155,10 @@ export class CustomerAddressQuery extends TypedQuery {
             .addFieldList(this._getCustomerAddressDeleteFields());
     }
 
+    /**
+     * Field getter for customer address creation [returns node]
+     * @param {{token: String, address: any}} queryArguments
+     */
     getCustomerAddressCreateField({ address, token }) {
         return new Field('customerAddressCreate')
             .addArgument('customerAccessToken', 'String!', token)
@@ -113,6 +166,9 @@ export class CustomerAddressQuery extends TypedQuery {
             .addFieldList(this._getCustomerAddressCreateFields());
     }
 
+    /**
+     * Field getter for a list of customer addresses [returns edges]
+     */
     getCustomerAddressField() {
         const ADDRESS_AMOUNT = 100;
 
@@ -121,6 +177,9 @@ export class CustomerAddressQuery extends TypedQuery {
             .addFieldList(this._getCustomerAddresssFields());
     }
 
+    /**
+     * Field getter for default customer address [returns node]
+     */
     getCustomerDefaultAddressField() {
         return new Field('defaultAddress').addFieldList(
             this._getCustomerDefaultAddressFields()

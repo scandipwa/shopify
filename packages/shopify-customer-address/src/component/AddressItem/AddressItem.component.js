@@ -5,7 +5,9 @@ import { CustomerAddressType } from '../../api/CustomerAddress.type';
 import FormattedAddress from '../FormattedAddress';
 import UpdateAddressForm from '../UpdateAddressForm';
 
-/** @namespace ShopifyCustomerAddress/Component/AddressItem/Component/AddressItemComponent */
+/**
+ * Address item component
+ * @namespace ShopifyCustomerAddress/Component/AddressItem/Component/AddressItemComponent */
 export class AddressItemComponent extends PureComponent {
     static propTypes = {
         onEditClick: PropTypes.func.isRequired,

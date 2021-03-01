@@ -5,7 +5,9 @@ import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-/** @namespace ShopifyCustomerAddress/Component/AddressForm/Component/AddressFormComponent */
+/**
+ * Address form component
+ * @namespace ShopifyCustomerAddress/Component/AddressForm/Component/AddressFormComponent */
 export class AddressFormComponent extends PureComponent {
     static propTypes = {
         formConfig: PropTypes.shape({}).isRequired,
