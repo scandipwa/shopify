@@ -15,7 +15,7 @@ export class CollectionPageComponent extends PureComponent {
      * A list of render methods used by collection page
      * @extPoint Inject render methods to be displayed on collection page
      * @extExample (member, instance) => {
-     *     member.addItemToPosition(<MyComponent />);
+     *     member.addItemToPosition(() => <MyComponent />);
      *     return member;
      * }
      */
