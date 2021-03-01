@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import LineItemContext from '../../context/LineItems.context';
 
-/** @namespace ShopifyCheckoutLineItems/Component/LineItemPrice/Component/LineItemPriceComponent */
+/**
+ * Line item price component
+ * @namespace ShopifyCheckoutLineItems/Component/LineItemPrice/Component/LineItemPriceComponent */
 export class LineItemPriceComponent extends PureComponent {
     static contextType = LineItemContext;
 

@@ -3,7 +3,9 @@ import { HigherOrderComponent, withHOC } from '@scandipwa/framework/src/util/HOC
 import LineItemContext from '../../context/LineItems.context';
 import LineItemQuantityComponent from './LineItemQuantity.component';
 
-/** @namespace ShopifyCheckoutLineItems/Component/LineItemQuantity/Container/LineItemQuantityContainer */
+/**
+ * Conainer for line item block. Used to define event handlers and other logic.
+ * @namespace ShopifyCheckoutLineItems/Component/LineItemQuantity/Container/LineItemQuantityContainer */
 export class LineItemQuantityContainer extends HigherOrderComponent {
     static contextType = LineItemContext;
 

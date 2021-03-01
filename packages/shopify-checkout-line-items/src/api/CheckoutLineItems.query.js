@@ -5,12 +5,38 @@ import { CheckoutQuery } from '@scandipwa/shopify-checkout/src/api/Checkout.quer
 import { ProductVariantsQuery } from '@scandipwa/shopify-product-variants/src/api/ProductVariants.query';
 import { ProductsQuery } from '@scandipwa/shopify-products/src/api/Products.query';
 
+/**
+ * A type of `CheckoutLineItemsQuery` associated with `getCheckoutLineItemsField` function.
+ * @example // Returns getter of checkout line item fields.
+ * import getCheckoutLineItemsQueryByType, { CHECKOUT_LINE_ITEMS } from '%filename%';
+ * const queryGetter = getCheckoutLineItemsQueryByType(CHECKOUT_LINE_ITEMS);
+ */
 export const CHECKOUT_LINE_ITEMS = 'checkout';
+/**
+ * A type of `CheckoutLineItemsQuery` associated with `getLineItemsAddField` function.
+ * @example // Returns getter of add checkout line item mutation fields.
+ * import getCheckoutLineItemsQueryByType, { ADD_LINE_ITEMS } from '%filename%';
+ * const queryGetter = getCheckoutLineItemsQueryByType(ADD_LINE_ITEMS);
+ */
 export const ADD_LINE_ITEMS = 'add';
+/**
+ * A type of `CheckoutLineItemsQuery` associated with `getLineItemsRemoveField` function.
+ * @example // Returns getter of remove checkout line item mutation fields.
+ * import getCheckoutLineItemsQueryByType, { REMOVE_LINE_ITEMS } from '%filename%';
+ * const queryGetter = getCheckoutLineItemsQueryByType(REMOVE_LINE_ITEMS);
+ */
 export const REMOVE_LINE_ITEMS = 'remove';
+/**
+ * A type of `CheckoutLineItemsQuery` associated with `getLineItemsUpdateField` function.
+ * @example // Returns getter of update checkout line item mutation fields.
+ * import getCheckoutLineItemsQueryByType, { UPDATE_LINE_ITEMS } from '%filename%';
+ * const queryGetter = getCheckoutLineItemsQueryByType(UPDATE_LINE_ITEMS);
+ */
 export const UPDATE_LINE_ITEMS = 'update';
 
-/** @namespace ShopifyCheckoutLineItems/Api/CheckoutLineItems/Query/CheckoutLineItemsQuery */
+/**
+ * Query declaration for Checkout line items. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * @namespace ShopifyCheckoutLineItems/Api/CheckoutLineItems/Query/CheckoutLineItemsQuery */
 export class CheckoutLineItemsQuery extends TypedQuery {
     typeMap = {
         [CHECKOUT_LINE_ITEMS]: this.getCheckoutLineItemsField.bind(this),
@@ -88,6 +114,10 @@ export class CheckoutLineItemsQuery extends TypedQuery {
         return [this._getCheckoutField()];
     }
 
+    /**
+     * Remove line items from checkout mutation getter [returns node]
+     * @param {{checkoutId: String, lineItemsIds: String[]}} queryArguments
+     */
     getLineItemsRemoveField({ checkoutId, lineItemsIds }) {
         return new Field('checkoutLineItemsRemove')
             .addArgument('lineItemIds', '[ID!]!', lineItemsIds)
@@ -95,6 +125,10 @@ export class CheckoutLineItemsQuery extends TypedQuery {
             .addFieldList(this._getLineItemsRemoveFields());
     }
 
+    /**
+     * Add line items to checkout mutation getter [returns node]
+     * @param {{checkoutId: String, lineItems: any[]}} queryArguments
+     */
     getLineItemsAddField({ checkoutId, lineItems }) {
         return new Field('checkoutLineItemsAdd')
             .addArgument('lineItems', '[CheckoutLineItemInput!]!', lineItems)
@@ -102,6 +136,10 @@ export class CheckoutLineItemsQuery extends TypedQuery {
             .addFieldList(this._getLineItemsAddFields());
     }
 
+    /**
+     * Update line items in checkout mutation getter [returns node]
+     * @param {{checkoutId: String, lineItems: any[]}} queryArguments
+     */
     getLineItemsUpdateField({ checkoutId, lineItems }) {
         return new Field('checkoutLineItemsUpdate')
             .addArgument('lineItems', '[CheckoutLineItemUpdateInput!]!', lineItems)
@@ -109,6 +147,9 @@ export class CheckoutLineItemsQuery extends TypedQuery {
             .addFieldList(this._getLineItemsUpdateFields());
     }
 
+    /**
+     * Get line items in checkout query getter [returns node]
+     */
     getCheckoutLineItemsField() {
         const LINE_ITEMS_COUNT = 100;
 
