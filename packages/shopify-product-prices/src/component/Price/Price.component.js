@@ -4,7 +4,9 @@ import { PureComponent } from 'react';
 
 import { PRICE_TEMPLATE } from './Price.config';
 
-/** @namespace ShopifyProductPrices/Component/Price/Component/PriceComponent */
+/**
+ * Product Price component.
+ * @namespace ShopifyProductPrices/Component/Price/Component/PriceComponent */
 export class PriceComponent extends PureComponent {
     static contextType = ShopContext;
 

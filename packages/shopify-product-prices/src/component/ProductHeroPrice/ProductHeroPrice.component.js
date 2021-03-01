@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 import { ProductPriceType } from '../../api/ProductPrices.type';
 import ProductPrice from '../Price';
 
-/** @namespace ShopifyProductPrices/Component/ProductHeroPrice/Component/ProductHeroPriceComponent */
+/**
+ * Product Hero Price component.
+ * @namespace ShopifyProductPrices/Component/ProductHeroPrice/Component/ProductHeroPriceComponent */
 export class ProductHeroPriceComponent extends PureComponent {
     static propTypes = {
         price: ProductPriceType.isRequired,

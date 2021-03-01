@@ -4,7 +4,9 @@ import { PureComponent } from 'react';
 import { ProductPriceType } from '../../api/ProductPrices.type';
 import ProductPrice from '../Price';
 
-/** @namespace ShopifyProductPrices/Component/ProductCardPrice/Component/ProductCardPriceComponent */
+/**
+ * Product Card Price component.
+ * @namespace ShopifyProductPrices/Component/ProductCardPrice/Component/ProductCardPriceComponent */
 export class ProductCardPriceComponent extends PureComponent {
     static propTypes = {
         isStartingFrom: PropTypes.bool.isRequired,

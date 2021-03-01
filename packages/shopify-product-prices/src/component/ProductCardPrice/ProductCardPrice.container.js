@@ -3,7 +3,9 @@ import ProductContext from '@scandipwa/shopify-products/src/context/Products.con
 
 import ProductCardPriceComponent from './ProductCardPrice.component';
 
-/** @namespace ShopifyProductPrices/Component/ProductCardPrice/Container/ProductCardPriceContainer */
+/**
+ * Product Card Price Conatiner. Used to connect with the Product Context and pass calculated properties down to Product Card Price component.
+ * @namespace ShopifyProductPrices/Component/ProductCardPrice/Container/ProductCardPriceContainer */
 export class ProductCardPriceContainer extends HigherOrderComponent {
     static contextType = ProductContext;
 
