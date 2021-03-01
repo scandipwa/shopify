@@ -3,10 +3,20 @@ import { PureComponent } from 'react';
 
 import CheckoutContext from '../../context/Checkout.context';
 
-/** @namespace ShopifyCheckout/Component/CartPage/Component/CartPageComponent */
+/**
+ * Cart page component
+ * @namespace ShopifyCheckout/Component/CartPage/Component/CartPageComponent */
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
+    /**
+     * The list of sections to be displayed on the cart page
+     * @extPoint Display new sections on the cart page
+     * @extExample (member, instance) => {
+     *      member.addItemToPosition(() => <MyCartSection />);
+     *      return member;
+     * }
+     */
     sortedRenderList = createSortedRenderList([]);
 
     renderContent() {
