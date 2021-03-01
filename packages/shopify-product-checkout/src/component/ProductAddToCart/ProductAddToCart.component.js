@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-/** @namespace ShopifyProductCheckout/Component/ProductAddToCart/Component/ProductAddToCartComponent */
+/**
+ * Product add to cart component.
+ * @namespace ShopifyProductCheckout/Component/ProductAddToCart/Component/ProductAddToCartComponent */
 export class ProductAddToCartComponent extends PureComponent {
     static propTypes = {
         isVisible: PropTypes.bool.isRequired,
