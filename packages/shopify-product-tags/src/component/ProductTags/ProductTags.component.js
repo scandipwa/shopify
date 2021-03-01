@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import ProductTag from '../ProductTag';
 
-/** @namespace ShopifyProductTags/Component/ProductTags/Component/ProductTagsComponent */
+/**
+ * Product tags component. Used to render multiple product tags.
+ * @namespace ShopifyProductTags/Component/ProductTags/Component/ProductTagsComponent */
 export class ProductTagsComponent extends PureComponent {
     static contextType = ProductContext;
 

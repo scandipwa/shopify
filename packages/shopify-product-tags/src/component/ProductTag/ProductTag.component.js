@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-/** @namespace ShopifyProductTags/Component/ProductTag/Component/ProductTagComponent */
+/**
+ * Product Tag component
+ * @namespace ShopifyProductTags/Component/ProductTag/Component/ProductTagComponent */
 export class ProductTagComponent extends PureComponent {
     static propTypes = {
         label: PropTypes.string.isRequired
