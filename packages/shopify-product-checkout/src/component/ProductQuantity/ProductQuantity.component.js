@@ -2,7 +2,9 @@ import ProductContext from '@scandipwa/shopify-products/src/context/Products.con
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-/** @namespace ShopifyProductCheckout/Component/ProductQuantity/Component/ProductQuantityComponent */
+/**
+ * Product quantity component.
+ * @namespace ShopifyProductCheckout/Component/ProductQuantity/Component/ProductQuantityComponent */
 export class ProductQuantityComponent extends PureComponent {
     static contextType = ProductContext;
 
