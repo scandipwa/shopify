@@ -5,7 +5,9 @@ import AddressesFallbackPage from '../AddressesFallbackPage';
 import AddressItem from '../AddressItem';
 import CreateAddressForm from '../CreateAddressForm';
 
-/** @namespace ShopifyCustomerAddress/Component/AddressesPage/Component/AddressesPageComponent */
+/**
+ * Addresses page component.
+ * @namespace ShopifyCustomerAddress/Component/AddressesPage/Component/AddressesPageComponent */
 export class AddressesPageComponent extends PureComponent {
     static contextType = CustomerContext;
 

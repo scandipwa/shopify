@@ -4,7 +4,9 @@ import CustomerContext from '@scandipwa/shopify-customer/src/context/Customer.co
 import { CustomerAddressType } from '../../api/CustomerAddress.type';
 import UpdateAddressFormComponent from './UpdateAddressForm.component';
 
-/** @namespace ShopifyCustomerAddress/Component/UpdateAddressForm/Container/UpdateAddressFormContainer */
+/**
+ * Update address form container. Used to connect to Customer Context and declare event handlers
+ * @namespace ShopifyCustomerAddress/Component/UpdateAddressForm/Container/UpdateAddressFormContainer */
 export class UpdateAddressFormContainer extends HigherOrderComponent {
     static PropTypes = {
         ...HigherOrderComponent.propTypes,

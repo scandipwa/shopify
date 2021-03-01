@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import AddressFormComponent from './AddressForm.component';
 
-/** @namespace ShopifyCustomerAddress/Component/AddressForm/Container/AddressFormContainer */
+/**
+ * Address form container. Used to declare handler function and format props from parent component to pass down to Address Form component.
+ * @namespace ShopifyCustomerAddress/Component/AddressForm/Container/AddressFormContainer */
 export class AddressFormContainer extends HigherOrderComponent {
     static propTypes = {
         ...HigherOrderComponent.propTypes,

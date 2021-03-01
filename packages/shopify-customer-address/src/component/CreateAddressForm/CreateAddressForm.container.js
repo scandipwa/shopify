@@ -3,7 +3,9 @@ import CustomerContext from '@scandipwa/shopify-customer/src/context/Customer.co
 
 import CreateAddressFormComponent from './CreateAddressForm.component';
 
-/** @namespace ShopifyCustomerAddress/Component/CreateAddressForm/Container/CreateAddressFormContainer */
+/**
+ * Create address form container. Used to connect to Customer Context and declare event handlers
+ * @namespace ShopifyCustomerAddress/Component/CreateAddressForm/Container/CreateAddressFormContainer */
 export class CreateAddressFormContainer extends HigherOrderComponent {
     static contextType = CustomerContext;
 

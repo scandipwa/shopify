@@ -5,7 +5,9 @@ import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap'
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-/** @namespace ShopifyCustomerAddress/Component/AddressForm/Component/AddressFormComponent */
+/**
+ * Address form component
+ * @namespace ShopifyCustomerAddress/Component/AddressForm/Component/AddressFormComponent */
 export class AddressFormComponent extends PureComponent {
     static propTypes = {
         formConfig: PropTypes.shape({}).isRequired,
@@ -13,12 +15,28 @@ export class AddressFormComponent extends PureComponent {
         renderActions: PropTypes.func.isRequired
     };
 
+    /**
+     * A list of render methods used by address form component
+     * @extPoint Inject render methods to be displayed in address form component
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyComponent />);
+     *     return member;
+     * }
+     */
     contextRenderList = createSortedRenderList([
         this.renderErrors.bind(this),
         this.renderFields.bind(this),
         this.renderActions.bind(this)
     ]);
 
+    /**
+     * A list of render methods used by the address form
+     * @extPoint Inject render methods to be displayed in the address form
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyField />);
+     *     return member;
+     * }
+     */
     formFieldsRenderList = createSortedRenderList([
         this.renderFirstName.bind(this),
         this.renderLastName.bind(this),

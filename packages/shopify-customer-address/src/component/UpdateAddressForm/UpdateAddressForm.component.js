@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import AddressForm from '../AddressForm';
 
-/** @namespace ShopifyCustomerAddress/Component/UpdateAddressForm/Component/UpdateAddressFormComponent */
+/**
+ * Update address form component
+ * @namespace ShopifyCustomerAddress/Component/UpdateAddressForm/Component/UpdateAddressFormComponent */
 export class UpdateAddressFormComponent extends PureComponent {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired,
