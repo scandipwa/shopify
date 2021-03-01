@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import RegisterForm from '../RegisterForm';
 
-/** @namespace ShopifyCustomer/Component/RegisterPage/Component/RegisterPageComponent */
+/**
+ * Login page component.
+ * @namespace ShopifyCustomer/Component/RegisterPage/Component/RegisterPageComponent */
 export class RegisterPageComponent extends PureComponent {
     renderForm() {
         return (

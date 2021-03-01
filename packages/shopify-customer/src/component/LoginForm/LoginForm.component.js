@@ -5,18 +5,36 @@ import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap'
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-/** @namespace ShopifyCustomer/Component/LoginForm/Component/LoginFormComponent */
+/**
+ * Login form component
+ * @namespace ShopifyCustomer/Component/LoginForm/Component/LoginFormComponent */
 export class LoginFormComponent extends PureComponent {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired
     };
 
+    /**
+     * A list of render methods used by login form component
+     * @extPoint Inject render methods to be displayed in login form
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyComponent />);
+     *     return member;
+     * }
+     */
     contextRenderList = createSortedRenderList([
         this.renderErrors.bind(this),
         this.renderFields.bind(this),
         this.renderActions.bind(this)
     ]);
 
+    /**
+     * A list of field render methods used by the login form
+     * @extPoint Inject field render methods to be displayed in the login form
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyField />);
+     *     return member;
+     * }
+     */
     formFieldsRenderList = createSortedRenderList([
         this.renderEmail.bind(this),
         this.renderPassword.bind(this)

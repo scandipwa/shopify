@@ -11,7 +11,9 @@ import CustomerContext from './Customer.context';
 
 export const CUSTOMER_TOKEN_FROM_STORAGE = 'shopify_customer_token';
 
-/** @namespace ShopifyCustomer/Context/Customer/Provider/CustomerProvider */
+/**
+ * Provider class Customer Context. Used to make customer data available to all children components.
+ * @namespace ShopifyCustomer/Context/Customer/Provider/CustomerProvider */
 export class CustomerProvider extends PureComponent {
     static contextType = ApiContext;
 
@@ -122,6 +124,14 @@ export class CustomerProvider extends PureComponent {
         });
     }
 
+    /**
+     * A function which returns an object that will be visible in the Customer Context
+     * @extPoint Add more fields to Customer Context.
+     * @extExample (args, callback, instance) => ({
+     *      ...args,
+     *      isCustomerLoggedIn
+     * })
+     */
     getContextValue() {
         const {
             customer,

@@ -3,10 +3,20 @@ import { PureComponent } from 'react';
 
 import CustomerContext from '../../context/Customer.context';
 
-/** @namespace ShopifyCustomer/Component/AccountDetails/Component/AccountDetailsComponent */
+/**
+ * Account details component
+ * @namespace ShopifyCustomer/Component/AccountDetails/Component/AccountDetailsComponent */
 export class AccountDetailsComponent extends PureComponent {
     static contextType = CustomerContext;
 
+    /**
+     * A list of render methods used by account details component
+     * @extPoint Inject render methods to be displayed in account details
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyComponent />);
+     *     return member;
+     * }
+     */
     detailsRenderList = createSortedRenderList([
         this.renderNameSurname.bind(this)
     ]);

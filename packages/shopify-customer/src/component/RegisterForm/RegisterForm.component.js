@@ -11,12 +11,28 @@ export class RegisterFormComponent extends PureComponent {
         onSubmit: PropTypes.func.isRequired
     };
 
+    /**
+     * A list of render methods used by register form component
+     * @extPoint Inject render methods to be displayed in register form
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyComponent />);
+     *     return member;
+     * }
+     */
     contextRenderList = createSortedRenderList([
         this.renderErrors.bind(this),
         this.renderFields.bind(this),
         this.renderActions.bind(this)
     ]);
 
+    /**
+     * A list of field render methods used by the register form
+     * @extPoint Inject field render methods to be displayed in the register form
+     * @extExample (member, instance) => {
+     *     member.addItemToPosition(() => <MyField />);
+     *     return member;
+     * }
+     */
     formFieldsRenderList = createSortedRenderList([
         this.renderFirstName.bind(this),
         this.renderLastName.bind(this),
