@@ -4,7 +4,9 @@ import { history } from '@scandipwa/router/src/component/Router/Router.component
 import CustomerContext from '../../context/Customer.context';
 import AccountPageComponent from './AccountPage.component';
 
-/** @namespace ShopifyCustomer/Component/AccountPage/Container/AccountPageContainer */
+/**
+ * Account page container. Used to setup a redirect in case user is not logged in.
+ * @namespace ShopifyCustomer/Component/AccountPage/Container/AccountPageContainer */
 export class AccountPageContainer extends HigherOrderComponent {
     static contextType = CustomerContext;
 

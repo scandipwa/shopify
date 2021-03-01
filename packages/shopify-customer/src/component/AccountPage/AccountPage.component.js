@@ -5,7 +5,9 @@ import CustomerContext from '../../context/Customer.context';
 import AccountDetails from '../AccountDetails';
 import AccountFallbackPage from '../AccountFallbackPage';
 
-/** @namespace ShopifyCustomer/Component/AccountPage/Component/AccountPageComponent */
+/**
+ * Account page component
+ * @namespace ShopifyCustomer/Component/AccountPage/Component/AccountPageComponent */
 export class AccountPageComponent extends PureComponent {
     static contextType = CustomerContext;
 

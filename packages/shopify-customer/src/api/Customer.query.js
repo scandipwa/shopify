@@ -1,12 +1,38 @@
 import { Field } from '@scandipwa/graphql';
 import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/util/TypedQuery';
 
+/**
+ * A type of `CustomerQuery` associated with `getCustomerField` function.
+ * @example // Returns getter of customer get query
+ * import getCustomerQueryByType, { CUSTOMER_GET } from '%filename%';
+ * const queryGetter = getCustomerQueryByType(CUSTOMER_GET);
+ */
 export const CUSTOMER_GET = 'customer';
+/**
+ * A type of `CustomerQuery` associated with `getCustomerCreateField` function.
+ * @example // Returns getter of customer create mutation
+ * import getCustomerQueryByType, { CUSTOMER_CREATE } from '%filename%';
+ * const queryGetter = getCustomerQueryByType(CUSTOMER_CREATE);
+ */
 export const CUSTOMER_CREATE = 'customer_create';
+/**
+ * A type of `CustomerQuery` associated with `getCustomerAccessTokenCreateField` function.
+ * @example // Returns getter of customer login query
+ * import getCustomerQueryByType, { CUSTOMER_LOGIN } from '%filename%';
+ * const queryGetter = getCustomerQueryByType(CUSTOMER_LOGIN);
+ */
 export const CUSTOMER_LOGIN = 'customer_login';
+/**
+ * A type of `CustomerQuery` associated with `getCustomerAccessTokenDeleteField` function.
+ * @example // Returns getter of customer logout mutation
+ * import getCustomerQueryByType, { CUSTOMER_LOGOUT } from '%filename%';
+ * const queryGetter = getCustomerQueryByType(CUSTOMER_LOGOUT);
+ */
 export const CUSTOMER_LOGOUT = 'customer_logout';
 
-/** @namespace ShopifyCustomer/Api/Customer/Query/CustomerQuery */
+/**
+ * Customer query declaration. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * @namespace ShopifyCustomer/Api/Customer/Query/CustomerQuery */
 export class CustomerQuery extends TypedQuery {
     typeMap = {
         [CUSTOMER_GET]: this.getCustomerField.bind(this),
@@ -28,6 +54,11 @@ export class CustomerQuery extends TypedQuery {
             .addFieldList(this._getCustomerUserErrorsFields());
     }
 
+    /**
+    * Function that returns the list of customer fields.
+    * @extPoint Add new fields to customer query
+    * @extExample (args, callback) => [...callback(...args), 'newField']
+    */
     _getCustomerFields() {
         return [
             'id',
@@ -73,6 +104,9 @@ export class CustomerQuery extends TypedQuery {
     // TODO: handle customer recover
     // TODO: handle customer active
 
+    /**
+     * Customer create field getter [returns node]
+     */
     getCustomerCreateField(input) {
         // use this query to request customer account creation
         return new Field('customerCreate')
@@ -80,6 +114,10 @@ export class CustomerQuery extends TypedQuery {
             .addFieldList(this._getCustomerCreateFields());
     }
 
+    /**
+     * Field getter for access token removal [returns node]
+     * @param {{token: String}} queryArguments
+     */
     getCustomerAccessTokenDeleteField({ token }) {
         // use this query to logout from customer account
         return new Field('customerAccessTokenDelete')
@@ -87,6 +125,9 @@ export class CustomerQuery extends TypedQuery {
             .addFieldList(this._getCustomerAccessTokenDeleteFields());
     }
 
+    /**
+     * Field getter for access token creation [returns node]
+     */
     getCustomerAccessTokenCreateField(input) {
         // use this query to login into customer account
         return new Field('customerAccessTokenCreate')
@@ -94,6 +135,10 @@ export class CustomerQuery extends TypedQuery {
             .addFieldList(this._getCustomerAccessTokenCreateFields());
     }
 
+    /**
+     * Field getter for customer get [returns node]
+     * @param {{token: String}} queryArguments
+     */
     getCustomerField({ token }) {
         // get customer account data
         return new Field('customer')

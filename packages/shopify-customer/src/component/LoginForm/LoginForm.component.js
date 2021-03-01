@@ -5,7 +5,9 @@ import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
-/** @namespace ShopifyCustomer/Component/LoginForm/Component/LoginFormComponent */
+/**
+ * Login form component
+ * @namespace ShopifyCustomer/Component/LoginForm/Component/LoginFormComponent */
 export class LoginFormComponent extends PureComponent {
     static propTypes = {
         onSubmit: PropTypes.func.isRequired

@@ -3,7 +3,9 @@ import { PureComponent } from 'react';
 
 import CustomerContext from '../../context/Customer.context';
 
-/** @namespace ShopifyCustomer/Component/AccountDetails/Component/AccountDetailsComponent */
+/**
+ * Account details component
+ * @namespace ShopifyCustomer/Component/AccountDetails/Component/AccountDetailsComponent */
 export class AccountDetailsComponent extends PureComponent {
     static contextType = CustomerContext;
 

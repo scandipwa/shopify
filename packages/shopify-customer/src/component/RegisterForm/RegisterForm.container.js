@@ -4,7 +4,9 @@ import { history } from '@scandipwa/router/src/component/Router/Router.component
 import CustomerContext from '../../context/Customer.context';
 import RegisterFormComponent from './RegisterForm.component';
 
-/** @namespace ShopifyCustomer/Component/RegisterForm/Container/RegisterFormContainer */
+/**
+ * Reginster form container. Used to define handlers for form operations.
+ * @namespace ShopifyCustomer/Component/RegisterForm/Container/RegisterFormContainer */
 export class RegisterFormContainer extends HigherOrderComponent {
     static contextType = CustomerContext;
 
