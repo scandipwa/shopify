@@ -4,7 +4,9 @@ import { PureComponent } from 'react';
 
 import { ProductRecommendationType } from '../../api/ProductRecommendations.type';
 
-/** @namespace ShopifyProductRecommendations/Component/ProductRecommendations/Component/ProductRecommendationsComponent */
+/**
+ * Product Recommendations component.
+ * @namespace ShopifyProductRecommendations/Component/ProductRecommendations/Component/ProductRecommendationsComponent */
 export class ProductRecommendationsComponent extends PureComponent {
     static propTypes = {
         products: PropTypes.arrayOf(ProductRecommendationType).isRequired
