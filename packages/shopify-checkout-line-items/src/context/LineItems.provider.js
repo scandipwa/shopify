@@ -6,7 +6,9 @@ import { PureComponent } from 'react';
 import { CheckoutLineItemType } from '../api/CheckoutLineItems.type';
 import LineItemsContext from './LineItems.context';
 
-/** @namespace ShopifyCheckoutLineItems/Context/LineItems/Provider/LineItemsProvider */
+/**
+ * Provider class for Line Items Context. Used to make line item data available to all children components.
+ * @namespace ShopifyCheckoutLineItems/Context/LineItems/Provider/LineItemsProvider */
 export class LineItemsProvider extends PureComponent {
     static contextType = CheckoutContext;
 
@@ -51,6 +53,14 @@ export class LineItemsProvider extends PureComponent {
         removeLineItemById(id);
     }
 
+    /**
+     * A function which returns an object that will be visible in the Line Item Context
+     * @extPoint Add more fields to Line Item Context.
+     * @extExample (args, callback, instance) => ({
+     *      ...args,
+     *      isLineItemLoaded: !!instance.props.lineItem
+     * })
+     */
     getContextValue() {
         const {
             product

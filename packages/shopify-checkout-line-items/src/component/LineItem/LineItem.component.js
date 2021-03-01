@@ -6,10 +6,20 @@ import LineItemsContext from '../../context/LineItems.context';
 import LineItemPrice from '../LineItemPrice';
 import LineItemQuantity from '../LineItemQuantity';
 
-/** @namespace ShopifyCheckoutLineItems/Component/LineItem/Component/LineItemComponent */
+/**
+ * Line Item component
+ * @namespace ShopifyCheckoutLineItems/Component/LineItem/Component/LineItemComponent */
 export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 
+    /**
+     * The list of elements to be displayed in the line item block
+     * @extPoint Display new element in the line items block
+     * @extExample (member, instance) => {
+     *      member.addItemToPosition(() => <MyCartSection />);
+     *      return member;
+     * }
+     */
     sortedRenderList = createSortedRenderList([
         this.renderDelete.bind(this),
         this.renderImage.bind(this),
