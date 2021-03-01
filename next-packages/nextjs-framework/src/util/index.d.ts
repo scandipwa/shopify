@@ -1,5 +1,5 @@
 import './SortedMap';
 
-declare namespace NextJSFramework {
+declare namespace ScandiPWA.NextJSFramework {
     namespace Util {}
 }

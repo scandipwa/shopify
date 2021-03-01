@@ -48,6 +48,7 @@ export class ProductHeroComponent extends PureComponent {
     }
 
     render() {
+        console.log(this.context);
         return (
             <section
               block="ProductHero"

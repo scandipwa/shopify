@@ -1,26 +1,27 @@
-/* eslint-disable @scandipwa/scandipwa-guidelines/use-namespace */
 /// <reference types="react" />
 
-declare namespace ShopifyNextJSProducts.Context {
-    namespace ProductsProvider {
-        export interface ProductProviderProps {
-            children: React.ReactNode
-            product: NextJSFramework.Context.NextPageContext.ProductType
-        }
+declare namespace ScandiPWA.ShopifyNextJSProducts.Context.Provider {
+    interface ProductProviderProps {
+        product: ScandiPWA.NextJSFramework.Context.NextPage.ProductType
+    }
 
-        export interface ProductProviderState {
-            myOriginalState: string
-        }
+    interface ProductProviderState {
+        myOriginalState: string
+    }
 
-        export class ProductsProvider extends React.PureComponent<ProductProviderProps, ProductProviderState> {
-            getContextValue(): NextJSFramework.Context.NextPageContext.ProductType
+    class ProductsProvider extends React.PureComponent<ProductProviderProps, ProductProviderState> {
+        getContextValue(): ScandiPWA.NextJSFramework.Context.NextPage.ProductType
 
-            render(): JSX.Element
-        }
+        render(): JSX.Element
     }
 }
 
 declare module '@scandipwa/shopify-nextjs-products/src/context/Products.provider' {
-    export import ProductsProvider = ShopifyNextJSProducts.Context.ProductsProvider.ProductsProvider
-    export default ShopifyNextJSProducts.Context.ProductsProvider.ProductsProvider;
+    export import ProductsProvider = ScandiPWA.ShopifyNextJSProducts.Context.Provider.ProductsProvider;
+
+    export default ProductsProvider;
 }
+
+// export import ProductsProvider = ScandiPWA.ShopifyNextJSProducts.Context.Provider.ProductsProvider;
+
+// export default ProductsProvider;

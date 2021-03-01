@@ -1,4 +1,3 @@
 import '../context';
 
-declare namespace ShopifyNextJSProducts {
-}
+export namespace ScandiPWA.ShopifyNextJSProducts {}

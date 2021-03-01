@@ -1,5 +1,3 @@
 import './NextPage.context';
 
-declare namespace NextJSFramework {
-    namespace Context {}
-}
+declare namespace ScandiPWA.NextJSFramework.Context {}

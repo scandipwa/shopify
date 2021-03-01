@@ -1,14 +1,13 @@
 /// <reference types="react" />
 
-declare namespace ShopifyNextJSProducts.Context {
-    namespace ProductsContext {
-        export interface ProductsType {
-            product?: NextJSFramework.Context.NextPageContext.ProductType
-        }
-        export const ProductsContextType: React.Context<ProductsType>;
+ScandiPWA.NextJSFramework
+declare namespace ScandiPWA.ShopifyNextJSProducts.Context.Products {
+    export interface ProductsType {
+        product?: ScandiPWA.NextJSFramework.Context.NextPage.ProductType
     }
+    export const ProductsContextType: React.Context<ProductsType>;
 }
 
 declare module '@scandipwa/shopify-nextjs-products/src/context/Products.context' {
-    export default ShopifyNextJSProducts.Context.ProductsContext.ProductsContextType;
+    export default ScandiPWA.ShopifyNextJSProducts.Context.Products.ProductsContextType;
 }

@@ -11,7 +11,7 @@ interface ProductVariantType {
     selectedOptions: ProductSelectedOption[]
 }
 
-declare namespace ShopifyNextJSProducts.Context.ProductsProvider {
+declare namespace ScandiPWA.ShopifyNextJSProducts.Context.Provider {
     interface ProductProviderState {
         isHasOptions: boolean
         isHasOnlyOneVariant: boolean

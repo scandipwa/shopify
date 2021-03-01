@@ -39,3 +39,8 @@ declare module '@scandipwa/nextjs-framework/src/util/SortedMap' {
     export import createSortedRenderList = NextJSFramework.Util.createSortedRenderList
     export import createSortedList = NextJSFramework.Util.createSortedList
 }
+
+export import SortedList = NextJSFramework.Util.SortedList
+export import SortedRenderList = NextJSFramework.Util.SortedRenderList
+export import createSortedRenderList = NextJSFramework.Util.createSortedRenderList
+export import createSortedList = NextJSFramework.Util.createSortedList
