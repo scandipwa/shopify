@@ -1,5 +1,6 @@
 import NextPageContext from '@scandipwa/nextjs-framework/src/context/NextPage.context';
 import PaginatedConnection from '@scandipwa/shopify-nextjs-api/src/component/PaginatedConnection';
+import Button from '@virtual-module/ui/src/component/Button';
 import { PureComponent } from 'react';
 
 import CollectionCard from '../CollectionCard';
@@ -31,6 +32,9 @@ export class CollectionsPageComponent extends PureComponent {
     render() {
         return (
             <div block="CollectionsPage">
+                <Button type="text" isPrimary={ false }>
+                    Hello, world!
+                </Button>
                 { this.renderContent() }
             </div>
         );

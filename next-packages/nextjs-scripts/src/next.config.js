@@ -6,7 +6,7 @@
 const path = require('path');
 const extensions = require('@scandipwa/scandipwa-dev-utils/extensions');
 const { getParentThemeSources } = require('@scandipwa/scandipwa-dev-utils/parent-theme');
-const FallbackPlugin = require('@scandipwa/webpack-fallback-plugin');
+const FallbackPlugin = require('@scandipwa/nextjs-webpack-fallback-plugin');
 
 module.exports = () => {
     // const abstractStyle = FallbackPlugin.getFallbackPathname('src/style/abstract/_abstract.scss');
@@ -117,6 +117,8 @@ module.exports = () => {
                 }
             });
             // ===================================
+
+            config.resolve.extensions.push('.ts', '.tsx');
 
             // Important: return the modified config
             return config;

@@ -1,0 +1,15 @@
+{
+    "name": "@scandipwa/ui-api",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "main": "index.ts",
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "dependencies": {
+        "@types/history": "^4.7.8"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "@scandipwa/nextjs-webpack-fallback-plugin",
+    "description": "Webpack fallback plugin used by CSA.",
+    "version": "1.2.0",
+    "main": "index.js",
+    "license": "OSL-3.0",
+    "files": [
+        "/lib"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "8405342bb1f56fc23bbd63d06a02f635c57884c4"
+}
