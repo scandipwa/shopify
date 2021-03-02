@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-/** @namespace ShopifyApi/Component/PaginatedConnection/Component/PaginatedConnectionComponent */
+/**
+ * Paginated connection component. Used to render the pagination structure (prev, next arrows) and the page data.
+ * @namespace ShopifyApi/Component/PaginatedConnection/Component/PaginatedConnectionComponent */
 export class PaginatedConnectionComponent extends PureComponent {
     static propTypes = {
         renderNextPageButton: PropTypes.func,
