@@ -3,7 +3,10 @@ import { PureComponent } from 'react';
 
 import ApiContext from '../../context/ShopifyApi.context';
 
-/** @namespace ShopifyApi/Component/HandleConnection/Container/HandleConnectionContainer */
+/**
+ * Handle connection container. Should be used in the code to retrieve and render the data from the Shopify Storefront API.
+ * This component should be used to work with single entities, PaginatedConnection should be used for processing lists of entities.
+ * @namespace ShopifyApi/Component/HandleConnection/Container/HandleConnectionContainer */
 export class HandleConnectionContainer extends PureComponent {
     static propTypes = {
         defaultNode: PropTypes.shape({}),

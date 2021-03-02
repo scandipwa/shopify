@@ -5,7 +5,11 @@ import { PureComponent } from 'react';
 import ApiContext from '../../context/ShopifyApi.context';
 import PaginatedConnectionComponent from './PaginatedConnection.component';
 
-/** @namespace ShopifyApi/Component/PaginatedConnection/Container/PaginatedConnectionContainer */
+/**
+ * Paginated connection container. Should be used in the code to retrieve and render the data from Shopify Storefront API.
+ * This component should be used to work with lists of entities that support Shopify pagination. To retrieve and render single entities use HandleConnection.
+ * Used to make a request to Shopify Storefront API, define event handlers, and utilize the pagination data from Shopify response.
+ * @namespace ShopifyApi/Component/PaginatedConnection/Container/PaginatedConnectionContainer */
 export class PaginatedConnectionContainer extends PureComponent {
     static contextType = ApiContext;
 
