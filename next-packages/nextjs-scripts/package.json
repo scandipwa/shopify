@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@scandipwa/scandipwa-dev-utils": "^0.0.20",
+        "@scandipwa/webpack-fallback-plugin": "^1.2.0",
         "chokidar": "^3.5.1",
         "cross-spawn": "^7.0.3",
         "debounce": "^1.2.0",
