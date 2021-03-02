@@ -1,24 +1,23 @@
-/* eslint-disable @scandipwa/scandipwa-guidelines/use-namespace */
-/// <reference types="react" />
+import React from 'react';
 
-declare namespace ScandiPWA.NextJSFramework.Context.NextPage.Provider {
+import { ProductType } from './NextPage.context';
+
+declare module '@scandipwa/nextjs-framework/src/context/NextPage.provider' {
     export interface NextPageProviderProps {
         children: React.ReactNode
-        product: ScandiPWA.NextJSFramework.Context.NextPage.
+        product: ProductType
     }
 
     export interface NextPageProviderState {
         myOriginalState: string
     }
 
+    // eslint-disable-next-line @scandipwa/scandipwa-guidelines/use-namespace
     export class NextPageProvider extends React.PureComponent<NextPageProviderProps, NextPageProviderState> {
-        getContextValue(): ScandiPWA.NextJSFramework.Context.NextPage.ProductType
+        getContextValue(): ProductType
 
         render(): JSX.Element
     }
 }
 
-declare module '@scandipwa/nextjs-framework/src/context/NextPage.provider' {
-    export import NextPageProvider = ScandiPWA.NextJSFramework.Context.NextPage.Provider.NextPageProvider
-    export default ScandiPWA.NextJSFramework.Context.NextPage.Provider.NextPageProvider;
-}
+export default NextPageProvider;

@@ -1,6 +1,6 @@
-/// <reference types="react" />
+import React from 'react';
 
-declare namespace ScandiPWA.NextJSFramework.Context.NextPage {
+declare module '@scandipwa/nextjs-framework/src/context/NextPage.context' {
     export interface ProductType {
         id: string
         title: string
@@ -14,10 +14,7 @@ declare namespace ScandiPWA.NextJSFramework.Context.NextPage {
         }
     }
     export const nextPageContext: React.Context<NextPageType>;
+
 }
 
-declare module '@scandipwa/nextjs-framework/src/context/NextPage.context' {
-    export default ScandiPWA.NextJSFramework.Context.NextPage.nextPageContext;
-}
-
-// export default ScandiPWA.NextJSFramework.Context.NextPage.nextPageContext;
+export default nextPageContext;
