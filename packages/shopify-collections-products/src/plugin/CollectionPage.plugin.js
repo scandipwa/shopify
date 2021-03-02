@@ -6,22 +6,21 @@ const CollectionProducts = lazy(() => import('../component/CollectionProducts'))
 
 const renderProductList = () => (
     <Suspense
-      key="collection-products"
       fallback={ <CollectionProductsFallback /> }
     >
         <CollectionProducts />
     </Suspense>
 );
 
-const afterRenderContent = (args, callback) => [
-    callback(...args),
-    renderProductList()
-];
+const addProductList = (member) => {
+    member.addItem({ item: renderProductList, key: 'collection-products' });
+    return member;
+};
 
 export default {
     'ShopifyCollections/Component/CollectionPage/Component/CollectionPageComponent': {
-        'member-function': {
-            renderContent: afterRenderContent
+        'member-property': {
+            sortedRenderList: addProductList
         }
     }
 };
