@@ -27,6 +27,15 @@ export class AppContainer extends HigherOrderComponent {
 
         functionsToRun.forEach((func) => func());
     }
+
+    render() {
+        const {
+            componentOrComponentMap: App,
+            children
+        } = this.props;
+
+        return <App>{ children }</App>;
+    }
 }
 
 export default withHOC(AppContainer, AppComponent);

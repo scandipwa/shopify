@@ -1,3 +1,4 @@
+import App from '@scandipwa/nextjs-framework/src/component/App';
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
@@ -20,9 +21,11 @@ export class NextPageProvider extends PureComponent {
         const { children } = this.props;
 
         return (
-            <NextPageContext.Provider value={ this.getContextValue() }>
-                { children }
-            </NextPageContext.Provider>
+            <App>
+                <NextPageContext.Provider value={ this.getContextValue() }>
+                    { children }
+                </NextPageContext.Provider>
+            </App>
         );
     }
 }
