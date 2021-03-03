@@ -1,7 +1,7 @@
 import Form from '@scandipwa/form/src/component/Form';
 import FormError from '@scandipwa/form/src/component/FormError';
 import { withUseFormContext } from '@scandipwa/form/src/util/withUseForm';
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
@@ -13,24 +13,24 @@ export class AddressFormComponent extends PureComponent {
         renderActions: PropTypes.func.isRequired
     };
 
-    contextRenderList = createSortedRenderList([
-        this.renderErrors.bind(this),
-        this.renderFields.bind(this),
-        this.renderActions.bind(this)
-    ]);
+    contextRenderList = createSortedRenderMap({
+        addressFormErrors: this.renderErrors.bind(this),
+        addressFormFields: this.renderFields.bind(this),
+        addressFormActions: this.renderActions.bind(this)
+    });
 
-    formFieldsRenderList = createSortedRenderList([
-        this.renderFirstName.bind(this),
-        this.renderLastName.bind(this),
-        this.renderCompany.bind(this),
-        this.renderAddress1.bind(this),
-        this.renderAddress2.bind(this),
-        this.renderCity.bind(this),
-        this.renderCountry.bind(this),
-        this.renderProvinceCode.bind(this),
-        this.renderZip.bind(this),
-        this.renderPhone.bind(this)
-    ]);
+    formFieldsRenderList = createSortedRenderMap({
+        addressFormFirstName: this.renderFirstName.bind(this),
+        addressFormLastName: this.renderLastName.bind(this),
+        addressFormCompany: this.renderCompany.bind(this),
+        addressFormAddress1: this.renderAddress1.bind(this),
+        addressFormAddress2: this.renderAddress2.bind(this),
+        addressFormCity: this.renderCity.bind(this),
+        addressFormCountry: this.renderCountry.bind(this),
+        addressFormProvinceCode: this.renderProvinceCode.bind(this),
+        addressFormZip: this.renderZip.bind(this),
+        addressFormPhone: this.renderPhone.bind(this)
+    });
 
     renderFirstName() {
         // TODO: use Input from UI here (via Field)

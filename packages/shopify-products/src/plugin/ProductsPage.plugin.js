@@ -9,7 +9,7 @@ const ProductsPage = lazy(() => import('../component/ProductsPage'));
 const addProductsPage = (member) => {
     const PRODUCTS_PAGE_POSITION = 1000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: [
                 '/collections/all'
@@ -21,6 +21,7 @@ const addProductsPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerProductsPage',
         PRODUCTS_PAGE_POSITION
     );
 

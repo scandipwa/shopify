@@ -9,7 +9,7 @@ export const RegisterPage = lazy(() => import('../component/RegisterPage'));
 export const addRegisterPage = (member) => {
     const REGISTER_PAGE_POSITION = 4500;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: [
                 '/account/register'
@@ -21,6 +21,7 @@ export const addRegisterPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerRegisterPage',
         REGISTER_PAGE_POSITION
     );
 

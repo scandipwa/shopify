@@ -9,7 +9,7 @@ const AccountPage = lazy(() => import('../component/AccountPage'));
 const addCartPage = (member) => {
     const ACCOUNT_PAGE_POSITION = 5000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: [
                 '/account',
@@ -22,6 +22,7 @@ const addCartPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerAccountPage',
         ACCOUNT_PAGE_POSITION
     );
 

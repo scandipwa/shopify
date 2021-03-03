@@ -1,18 +1,22 @@
 import { PureComponent } from 'react';
 
-import { createSortedList, createSortedRenderList } from '../../util/SortedMap';
+import { createSortedMap, createSortedRenderMap } from '../../util/SortedMap';
 
 /** @namespace Framework/Component/App/Component/AppComponent */
 export class AppComponent extends PureComponent {
-    rootComponentsRenderList = createSortedRenderList([]);
+    rootComponentsRenderList = createSortedRenderMap({});
 
-    contextProvidersRenderList = createSortedList([]);
+    contextProvidersRenderList = createSortedMap({});
 
     renderContextProviders() {
-        return this.contextProvidersRenderList.getSortedArray().reduce(
+        return Array.from(this.contextProvidersRenderList.getSortedMap(), ([, { item }]) => item).reduce(
             (acc, renderer) => renderer(acc),
             [this.rootComponentsRenderList.render()]
         );
+        // return this.contextProvidersRenderList.getSortedArray().reduce(
+        //     (acc, renderer) => renderer(acc),
+        //     [this.rootComponentsRenderList.render()]
+        // );
     }
 
     render() {

@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';
@@ -9,10 +9,10 @@ export class PagePageComponent extends PureComponent {
         page: PageType.isRequired
     };
 
-    sortedRenderList = createSortedRenderList([
-        this.renderTitle.bind(this),
-        this.renderBody.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        pageTitle: this.renderTitle.bind(this),
+        pageBody: this.renderBody.bind(this)
+    });
 
     renderBody() {
         const { page: { body } } = this.props;

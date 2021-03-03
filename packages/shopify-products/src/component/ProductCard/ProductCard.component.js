@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,10 +8,10 @@ import ProductContext from '../../context/Products.context';
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderList = createSortedRenderList([
-        this.renderImage.bind(this),
-        this.renderTitle.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        productImage: this.renderImage.bind(this),
+        productTitle: this.renderTitle.bind(this)
+    });
 
     renderImage() {
         const { product: { images: [{ src, alt }] = [] } } = this.context;

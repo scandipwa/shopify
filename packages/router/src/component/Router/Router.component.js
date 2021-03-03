@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { createBrowserHistory } from 'history';
 import { PureComponent } from 'react';
 import { Router as ReactRouter } from 'react-router';
@@ -11,17 +11,17 @@ export class RouterComponent extends PureComponent {
     static propTypes = {
     };
 
-    _beforeSwitchRenderList = createSortedRenderList([]);
+    _beforeSwitchRenderList = createSortedRenderMap({});
 
-    _switchRenderList = createSortedRenderList([]);
+    _switchRenderList = createSortedRenderMap({});
 
-    _afterSwitchRenderList = createSortedRenderList([]);
+    _afterSwitchRenderList = createSortedRenderMap({});
 
-    contentRenderList = createSortedRenderList([
-        this._beforeSwitchRenderList.render,
-        this.renderSwitch.bind(this),
-        this._afterSwitchRenderList.render
-    ]);
+    contentRenderList = createSortedRenderMap({
+        routerBeforeSwitch: this._beforeSwitchRenderList.render,
+        routerRenderSwitch: this.renderSwitch.bind(this),
+        routerAfterSwitch: this._afterSwitchRenderList.render
+    });
 
     renderSwitch() {
         return (

@@ -9,7 +9,7 @@ const PagePage = lazy(() => import('../component/PagePage'));
 const addPagePage = (member) => {
     const PAGE_PAGE_POSITION = 4000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: '/pages/:handle',
             exact: true,
@@ -20,6 +20,7 @@ const addPagePage = (member) => {
             </Suspense>
             )
         }),
+        'routerPagePage',
         PAGE_PAGE_POSITION
     );
 

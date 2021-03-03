@@ -9,7 +9,7 @@ const CollectionsPage = lazy(() => import('../component/CollectionsPage'));
 const addCollectionsPage = (member) => {
     const COLLECTIONS_PAGE_POSITION = 1500;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: '/collections',
             exact: true,
@@ -19,6 +19,7 @@ const addCollectionsPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerCollectionsPage',
         COLLECTIONS_PAGE_POSITION
     );
 

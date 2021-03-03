@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ export class CollectionCardComponent extends PureComponent {
         collection: CollectionType.isRequired
     };
 
-    sortedRenderList = createSortedRenderList([
-        this.renderImage.bind(this),
-        this.renderTitle.bind(this),
-        this.renderDescription.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        collectionCardImage: this.renderImage.bind(this),
+        collectionCardTitle: this.renderTitle.bind(this),
+        collectionCardDescription: this.renderDescription.bind(this)
+    });
 
     renderImage() {
         const { collection: { image } } = this.props;

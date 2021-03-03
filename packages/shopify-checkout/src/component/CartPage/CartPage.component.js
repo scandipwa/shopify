@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import CheckoutContext from '../../context/Checkout.context';
@@ -7,7 +7,7 @@ import CheckoutContext from '../../context/Checkout.context';
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
-    sortedRenderList = createSortedRenderList([]);
+    sortedRenderList = createSortedRenderMap({});
 
     renderContent() {
         return this.sortedRenderList.render();

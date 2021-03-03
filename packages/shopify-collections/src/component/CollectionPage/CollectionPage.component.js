@@ -1,4 +1,4 @@
-import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap2';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import { CollectionType } from '../../api/Collections.type';
