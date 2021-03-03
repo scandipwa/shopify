@@ -13,7 +13,7 @@ const renderProductList = () => (
 );
 
 const addProductList = (member) => {
-    member.addItem({ item: renderProductList, key: 'collection-products' });
+    member.addItem(renderProductList, 'collection-products');
     return member;
 };
 
