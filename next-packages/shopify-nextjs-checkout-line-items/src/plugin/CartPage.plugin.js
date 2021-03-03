@@ -10,7 +10,7 @@ const addAddToCartAndQuantityRender = (member) => {
 };
 
 export default {
-    'ShopifyeNextjsCheckout/Component/CartPage/Component/CartPageComponent': {
+    'ShopifyNextjsCheckout/Component/CartPage/Component/CartPageComponent': {
         'member-property': {
             sortedRenderList: addAddToCartAndQuantityRender
         }

@@ -17,6 +17,11 @@ export class LineItemsComponent extends PureComponent {
 
     renderItems = () => {
         const { checkout: { lineItems } } = this.context;
+
+        if (!lineItems) {
+            return null;
+        }
+
         return lineItems.map(this.renderItem);
     };
 

@@ -17,6 +17,7 @@
             "@scandipwa/shopify-nextjs-product-checkout": true,
             "@scandipwa/shopify-nextjs-checkout": true,
             "@scandipwa/shopify-nextjs-checkout-line-items": true,
+            "@scandipwa/shopify-nextjs-checkout-web": true,
             "@scandipwa/nextjs-extensibility": true
         }
     },
@@ -52,6 +53,7 @@
         "@scandipwa/shopify-nextjs-collections-products": "0.0.0",
         "@scandipwa/shopify-nextjs-product-checkout": "0.0.0",
         "@scandipwa/shopify-nextjs-checkout": "0.0.0",
-        "@scandipwa/shopify-nextjs-checkout-line-items": "0.0.0"
+        "@scandipwa/shopify-nextjs-checkout-line-items": "0.0.0",
+        "@scandipwa/shopify-nextjs-checkout-web": "0.0.0"
     }
 }

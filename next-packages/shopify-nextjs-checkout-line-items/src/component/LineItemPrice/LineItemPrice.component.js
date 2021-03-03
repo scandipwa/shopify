@@ -14,7 +14,7 @@ export class LineItemPriceComponent extends PureComponent {
                 price: {
                     amount,
                     currencyCode
-                }
+                } = {}
             }
         } = this.context;
 

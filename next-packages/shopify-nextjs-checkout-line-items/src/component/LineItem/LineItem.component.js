@@ -52,7 +52,7 @@ export class LineItemComponent extends PureComponent {
     }
 
     renderTitle() {
-        const { product: { title, linkTo } } = this.context;
+        const { product: { title, linkTo: { pathname } } } = this.context;
 
         if (!title) {
             return null;
@@ -60,7 +60,7 @@ export class LineItemComponent extends PureComponent {
 
         // TODO: use Typography component here
         return (
-            <Link to={ linkTo } block="LineItem">
+            <Link href={ pathname } block="LineItem">
                 <h2>{ title }</h2>
             </Link>
         );

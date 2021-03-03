@@ -14,8 +14,6 @@ export class CartPageComponent extends PureComponent {
     }
 
     render() {
-        console.log('***', this);
-
         return (
             <div block="CartPage">
                 { this.renderContent() }

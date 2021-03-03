@@ -1,3 +1,5 @@
+import { postMutation } from '@scandipwa/shopify-nextjs-api/src/api/request';
+
 import getCheckoutLineItemsQueryOfType, {
     ADD_LINE_ITEMS,
     REMOVE_LINE_ITEMS,
@@ -6,8 +8,6 @@ import getCheckoutLineItemsQueryOfType, {
 
 const addFieldsToContext = (args, callback, instance) => {
     const fields = callback(...args);
-
-    console.log('***', 'test');
 
     return {
         ...fields,
@@ -36,7 +36,6 @@ const addAddVariantToCartFunction = async (args, callback, instance) => {
         }]
     };
 
-    const { postMutation } = instance.context;
     const mutation = getCheckoutLineItemsQueryOfType(ADD_LINE_ITEMS)(queryParams);
     const { checkoutLineItemsAdd: { checkout } } = await postMutation(mutation);
     instance.updateCheckout(checkout);
@@ -50,7 +49,6 @@ const addRemoveLineItemByIdFunction = async (args, callback, instance) => {
     const { checkout: { id: checkoutId } } = instance.state;
     const queryParams = { checkoutId, lineItemsIds: [lineItemId] };
 
-    const { postMutation } = instance.context;
     const mutation = getCheckoutLineItemsQueryOfType(REMOVE_LINE_ITEMS)(queryParams);
     const { checkoutLineItemsRemove: { checkout } } = await postMutation(mutation);
     instance.updateCheckout(checkout);
@@ -70,7 +68,6 @@ const addUpdateLineItemQtyByIdFunction = async (args, callback, instance) => {
         }]
     };
 
-    const { postMutation } = instance.context;
     const mutation = getCheckoutLineItemsQueryOfType(UPDATE_LINE_ITEMS)(queryParams);
     const { checkoutLineItemsUpdate: { checkout } } = await postMutation(mutation);
     instance.updateCheckout(checkout);
