@@ -29,8 +29,6 @@ export class ProductAddToCartComponent extends PureComponent {
     render() {
         const { isVisible } = this.props;
 
-        console.log('***', this.props);
-
         if (!isVisible) {
             return null;
         }

@@ -12,7 +12,7 @@ export class ProductQuantityContainer extends HigherOrderComponent {
     };
 
     onChange({ target: { value } }) {
-        const { updateQuantity } = this.props;
+        const { updateQuantity } = this.context;
         updateQuantity(+value);
     }
 }
