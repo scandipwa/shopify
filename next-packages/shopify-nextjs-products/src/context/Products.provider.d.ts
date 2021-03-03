@@ -1,8 +1,9 @@
-/// <reference types="react" />
+import { ProductType } from '@scandipwa/nextjs-framework/src/context/NextPage.context';
+import React from 'react';
 
-declare namespace ScandiPWA.ShopifyNextJSProducts.Context.Provider {
+declare module '@scandipwa/shopify-nextjs-products/src/context/Products.provider' {
     interface ProductProviderProps {
-        product: ScandiPWA.NextJSFramework.Context.NextPage.ProductType
+        product: ProductType
     }
 
     interface ProductProviderState {
@@ -10,18 +11,10 @@ declare namespace ScandiPWA.ShopifyNextJSProducts.Context.Provider {
     }
 
     class ProductsProvider extends React.PureComponent<ProductProviderProps, ProductProviderState> {
-        getContextValue(): ScandiPWA.NextJSFramework.Context.NextPage.ProductType
+        getContextValue(): ProductType
 
         render(): JSX.Element
     }
 }
 
-declare module '@scandipwa/shopify-nextjs-products/src/context/Products.provider' {
-    export import ProductsProvider = ScandiPWA.ShopifyNextJSProducts.Context.Provider.ProductsProvider;
-
-    export default ProductsProvider;
-}
-
-// export import ProductsProvider = ScandiPWA.ShopifyNextJSProducts.Context.Provider.ProductsProvider;
-
-// export default ProductsProvider;
+export default ProductsProvider;
