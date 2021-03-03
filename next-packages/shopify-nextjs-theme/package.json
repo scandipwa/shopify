@@ -13,6 +13,7 @@
             "@scandipwa/shopify-nextjs-collections": true,
             "@scandipwa/shopify-nextjs-products": true,
             "@scandipwa/shopify-nextjs-product-variants": true,
+            "@scandipwa/shopify-nextjs-product-tags": true,
             "@scandipwa/shopify-nextjs-collections-products": true,
             "@scandipwa/nextjs-extensibility": true
         }
@@ -45,6 +46,7 @@
         "@scandipwa/shopify-nextjs-pages": "0.0.0",
         "@scandipwa/shopify-nextjs-products": "0.0.0",
         "@scandipwa/shopify-nextjs-product-variants": "0.0.0",
+        "@scandipwa/shopify-nextjs-product-tags": "0.0.0",
         "@scandipwa/shopify-nextjs-collections": "0.0.0",
         "@scandipwa/shopify-nextjs-collections-products": "0.0.0"
     }
