@@ -9,7 +9,7 @@ const CartPage = lazy(() => import('../component/CartPage'));
 const addCartPage = (member) => {
     const CART_PAGE_POSITION = 1000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: '/cart',
             exact: true,
@@ -19,6 +19,7 @@ const addCartPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerCartPage',
         CART_PAGE_POSITION
     );
 

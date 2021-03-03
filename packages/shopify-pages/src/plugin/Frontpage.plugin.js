@@ -9,7 +9,7 @@ const FrontPagePage = lazy(() => import('../component/FrontPagePage'));
 const addFrontPage = (member) => {
     const FRONT_PAGE_POSITION = 3000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: '/',
             exact: true,
@@ -19,6 +19,7 @@ const addFrontPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerFrontPage',
         FRONT_PAGE_POSITION
     );
 

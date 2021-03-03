@@ -4,7 +4,7 @@ import Router from '../component/Router';
 
 const addRouterRootComponent = (member) => {
     const ROUTER_POSITION = 1000;
-    member.addItemToPosition(() => createElement(Router), ROUTER_POSITION);
+    member.addItem(() => createElement(Router), 'appRouterRoot', ROUTER_POSITION);
     return member;
 };
 

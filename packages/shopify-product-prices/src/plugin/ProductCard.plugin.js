@@ -5,7 +5,7 @@ import ProductCardPrice from '../component/ProductCardPrice';
 const addPriceRender = (member) => {
     const PRICE_POSITION = 2500;
     // TODO: use Suspense here
-    member.addItemToPosition(() => createElement(ProductCardPrice), PRICE_POSITION);
+    member.addItem(() => createElement(ProductCardPrice), 'productCardPrice', PRICE_POSITION);
     return member;
 };
 

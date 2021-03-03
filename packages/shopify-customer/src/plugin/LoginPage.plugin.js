@@ -9,7 +9,7 @@ const LoginPage = lazy(() => import('../component/LoginPage'));
 const addLoginPage = (member) => {
     const LOGIN_PAGE_POSITION = 4500;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: [
                 '/account/login'
@@ -21,6 +21,7 @@ const addLoginPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerLoginPage',
         LOGIN_PAGE_POSITION
     );
 

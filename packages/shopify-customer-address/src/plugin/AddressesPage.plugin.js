@@ -9,7 +9,7 @@ const AddressesPage = lazy(() => import('../component/AddressesPage'));
 const addAddressesPage = (member) => {
     const ADDRESSES_PAGE_POSITION = 4500;
 
-    member.addItemToPosition(
+    member.addItem(
         () => createElement(Route, {
             path: [
                 '/account/addresses'
@@ -21,6 +21,7 @@ const addAddressesPage = (member) => {
                 </Suspense>
             )
         }),
+        'routerAddressPage',
         ADDRESSES_PAGE_POSITION
     );
 

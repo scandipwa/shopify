@@ -6,7 +6,11 @@ const CheckoutWebButton = lazy(() => import('../component/CheckoutWebButton'));
 
 const checkoutWebButtonRender = (member) => {
     const CHECKOUT_WEB_BUTTON_POSITION = 501;
-    member.addItemToPosition(() => createElement(CheckoutWebButton), CHECKOUT_WEB_BUTTON_POSITION);
+    member.addItem(
+        () => createElement(CheckoutWebButton),
+        'cartPageCheckoutWeb',
+        CHECKOUT_WEB_BUTTON_POSITION
+    );
 
     return member;
 };

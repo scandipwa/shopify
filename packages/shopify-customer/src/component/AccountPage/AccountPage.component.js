@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import CustomerContext from '../../context/Customer.context';
@@ -9,9 +9,9 @@ import AccountFallbackPage from '../AccountFallbackPage';
 export class AccountPageComponent extends PureComponent {
     static contextType = CustomerContext;
 
-    contentRenderList = createSortedRenderList([
-        this.renderAccountDetails.bind(this)
-    ]);
+    contentRenderList = createSortedRenderMap({
+        accountPageAccountDetails: this.renderAccountDetails.bind(this)
+    });
 
     renderAccountDetails() {
         return (

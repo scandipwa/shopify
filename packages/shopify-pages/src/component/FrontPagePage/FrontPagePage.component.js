@@ -1,12 +1,12 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 
 import { PagePageComponent } from '../PagePage/PagePage.component';
 
 /** @namespace ShopifyPages/Component/FrontPagePage/Component/FrontPagePageComponent */
 export class FrontPagePageComponent extends PagePageComponent {
-    sortedRenderList = createSortedRenderList([
-        this.renderBody.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        frontPageBody: this.renderBody.bind(this)
+    });
 
     renderDefaultFrontpage() {
         return 'default frontpage!';

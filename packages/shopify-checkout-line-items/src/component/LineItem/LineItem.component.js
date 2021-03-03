@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -10,13 +10,13 @@ import LineItemQuantity from '../LineItemQuantity';
 export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 
-    sortedRenderList = createSortedRenderList([
-        this.renderDelete.bind(this),
-        this.renderImage.bind(this),
-        this.renderTitle.bind(this),
-        this.renderPrice.bind(this),
-        this.renderQuantity.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        lineItemDelete: this.renderDelete.bind(this),
+        lineItemImage: this.renderImage.bind(this),
+        lineItemTitle: this.renderTitle.bind(this),
+        lineItemPrice: this.renderPrice.bind(this),
+        lineItemQuantity: this.renderQuantity.bind(this)
+    });
 
     renderDelete() {
         const { remove } = this.context;

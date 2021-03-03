@@ -1,7 +1,7 @@
 import Form from '@scandipwa/form/src/component/Form';
 import FormError from '@scandipwa/form/src/component/FormError';
 import { withUseFormContext } from '@scandipwa/form/src/util/withUseForm';
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import PropTypes from 'prop-types';
 import { createElement, PureComponent } from 'react';
 
@@ -11,18 +11,18 @@ export class RegisterFormComponent extends PureComponent {
         onSubmit: PropTypes.func.isRequired
     };
 
-    contextRenderList = createSortedRenderList([
-        this.renderErrors.bind(this),
-        this.renderFields.bind(this),
-        this.renderActions.bind(this)
-    ]);
+    contextRenderList = createSortedRenderMap({
+        registerFormErrors: this.renderErrors.bind(this),
+        registerFormFields: this.renderFields.bind(this),
+        registerFormActions: this.renderActions.bind(this)
+    });
 
-    formFieldsRenderList = createSortedRenderList([
-        this.renderFirstName.bind(this),
-        this.renderLastName.bind(this),
-        this.renderEmail.bind(this),
-        this.renderPassword.bind(this)
-    ]);
+    formFieldsRenderList = createSortedRenderMap({
+        registerFormFirstName: this.renderFirstName.bind(this),
+        registerFormLastName: this.renderLastName.bind(this),
+        registerFormEmail: this.renderEmail.bind(this),
+        registerFormPassword: this.renderPassword.bind(this)
+    });
 
     renderLastName() {
         // TODO: use Input from UI here

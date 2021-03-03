@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import CustomerContext from '../../context/Customer.context';
@@ -7,9 +7,9 @@ import CustomerContext from '../../context/Customer.context';
 export class AccountDetailsComponent extends PureComponent {
     static contextType = CustomerContext;
 
-    detailsRenderList = createSortedRenderList([
-        this.renderNameSurname.bind(this)
-    ]);
+    detailsRenderList = createSortedRenderMap({
+        accountDetailsNameSurname: this.renderNameSurname.bind(this)
+    });
 
     renderNameSurname() {
         // TODO: move to separate module ?
