@@ -5,13 +5,14 @@ import CollectionProductsComponent from '../component/CollectionProducts/Collect
 export const addCollectionProducts = (member, instance) => {
     const COLLECTION_PRODUCTS_POSITION = 4000;
 
-    member.addItemToPosition(
+    member.addItem(
         () => {
             const { collection } = instance.props;
             const { products: productsResponse } = collection;
 
             return createElement(CollectionProductsComponent, { productsResponse });
         },
+        'collectionPageProducts',
         COLLECTION_PRODUCTS_POSITION
     );
 

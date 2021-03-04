@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/nextjs-framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import ProductContext from '../../context/Products.context';
@@ -8,10 +8,10 @@ import ProductMedia from '../ProductMedia';
 export class ProductHeroComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderList = createSortedRenderList([
-        this.renderTitle.bind(this),
-        this.renderDescription.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        productHeroTitle: this.renderTitle.bind(this),
+        productHeroDescription: this.renderDescription.bind(this)
+    });
 
     renderMedia() {
         return (

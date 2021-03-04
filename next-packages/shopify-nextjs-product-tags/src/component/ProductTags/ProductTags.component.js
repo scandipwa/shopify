@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 import ProductContext from '../../../../shopify-nextjs-products/src/context/Products.context';
 import ProductTag from '../ProductTag';
 
-/** @namespace ShopifyNextJsProductTags/Component/ProductTags/Component/ProductTagsComponent */
+/** @namespace ShopifyNextjsProductTags/Component/ProductTags/Component/ProductTagsComponent */
 export class ProductTagsComponent extends PureComponent {
     static contextType = ProductContext;
 

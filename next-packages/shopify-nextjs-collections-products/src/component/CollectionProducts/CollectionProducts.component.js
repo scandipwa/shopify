@@ -5,7 +5,7 @@ import { PureComponent } from 'react';
 
 import { COLLECTION_PRODUCTS_AFTER_KEY, COLLECTION_PRODUCTS_BEFORE_KEY } from '../../plugin/CollectionsQuery.plugin';
 
-/** @namespace ShopifyCollectionsProducts/Component/CollectionProducts/Component/CollectionProductsComponent */
+/** @namespace ShopifyNextjsCollectionsProducts/Component/CollectionProducts/Component/CollectionProductsComponent */
 export class CollectionProductsComponent extends PureComponent {
     static propTypes = {
         productsResponse: ProductsResponseType.isRequired
