@@ -73,7 +73,7 @@ export class SortedMap {
      * @param {String} key
      */
     _isKeyUnique(key) {
-        return !!this._unsortedMap.get(key);
+        return !this._unsortedMap.get(key);
     }
 
     /**
