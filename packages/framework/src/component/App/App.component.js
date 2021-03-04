@@ -13,10 +13,6 @@ export class AppComponent extends PureComponent {
             (acc, renderer) => renderer(acc),
             [this.rootComponentsRenderList.render()]
         );
-        // return this.contextProvidersRenderList.getSortedArray().reduce(
-        //     (acc, renderer) => renderer(acc),
-        //     [this.rootComponentsRenderList.render()]
-        // );
     }
 
     render() {
