@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { createSortedList } from '../../util/SortedMap';
+import { createSortedRenderMap } from '../../util/SortedMap';
 
 /** @namespace NextjsFramework/Component/App/Component/AppComponent */
 export class AppComponent extends PureComponent {
@@ -9,12 +9,12 @@ export class AppComponent extends PureComponent {
         children: PropTypes.node.isRequired
     };
 
-    contextProvidersRenderList = createSortedList([]);
+    contextProvidersRenderList = createSortedRenderMap({});
 
     renderContextProviders() {
-        return this.contextProvidersRenderList.getSortedArray().reduce(
+        return Array.from(this.contextProvidersRenderList.getSortedMap(), ([, { item }]) => item).reduce(
             (acc, renderer) => renderer(acc),
-            [this.renderRootComponent()]
+            [this.rootComponentsRenderList.render()]
         );
     }
 

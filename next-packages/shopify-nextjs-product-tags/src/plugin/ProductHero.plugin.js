@@ -4,7 +4,7 @@ import { createElement } from 'react';
 const ProductTags = dynamic(() => import('../component/ProductTags'));
 
 const addProductTagsToHero = (member) => {
-    member.addItemToPosition(() => createElement(ProductTags));
+    member.addItem(() => createElement(ProductTags), 'productHeroTags');
 
     return member;
 };

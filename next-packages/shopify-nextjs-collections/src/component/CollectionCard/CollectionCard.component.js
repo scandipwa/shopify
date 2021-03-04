@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/nextjs-framework/src/util/SortedMap';
 import Link from 'next/link';
 import { PureComponent } from 'react';
 
@@ -10,11 +10,11 @@ export class CollectionCardComponent extends PureComponent {
         collection: CollectionType.isRequired
     };
 
-    sortedRenderList = createSortedRenderList([
-        this.renderImage.bind(this),
-        this.renderTitle.bind(this),
-        this.renderDescription.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        collectionCardImage: this.renderImage.bind(this),
+        collectionCardTitle: this.renderTitle.bind(this),
+        collectionCardDescription: this.renderDescription.bind(this)
+    });
 
     renderImage() {
         const { collection: { image } } = this.props;

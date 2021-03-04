@@ -1,5 +1,5 @@
 import NextPageContext from '@scandipwa/nextjs-framework/src/context/NextPage.context';
-import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/nextjs-framework/src/util/SortedMap';
 
 import { PagePageComponent } from '../PagePage/PagePage.component';
 
@@ -7,9 +7,9 @@ import { PagePageComponent } from '../PagePage/PagePage.component';
 export class FrontPagePageComponent extends PagePageComponent {
     static contextType = NextPageContext;
 
-    sortedRenderList = createSortedRenderList([
-        this.renderBody.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        frontPageBody: this.renderBody.bind(this)
+    });
 
     renderDefaultFrontpage() {
         return 'default frontpage!';

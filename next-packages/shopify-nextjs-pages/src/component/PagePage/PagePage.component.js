@@ -1,4 +1,4 @@
-import { createSortedRenderList } from '@scandipwa/nextjs-framework/src/util/SortedMap';
+import { createSortedRenderMap } from '@scandipwa/nextjs-framework/src/util/SortedMap';
 import { PureComponent } from 'react';
 
 import { PageType } from '../../api/Page.type';
@@ -9,10 +9,10 @@ export class PagePageComponent extends PureComponent {
         page: PageType.isRequired
     };
 
-    sortedRenderList = createSortedRenderList([
-        this.renderTitle.bind(this),
-        this.renderBody.bind(this)
-    ]);
+    sortedRenderList = createSortedRenderMap({
+        pagePageTitle: this.renderTitle.bind(this),
+        pagePageBody: this.renderBody.bind(this)
+    });
 
     renderBody() {
         const { page: { body } } = this.props;
