@@ -2,12 +2,12 @@ import MaterialAccordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { AccordionProps } from '@scandipwa/ui-api';
+import { AccordionProps, AccordionState } from '@virtual-module/ui/src/component/Accordion/Accordion.component';
 import { PureComponent } from 'react';
 
 /** @namespace Materialui/Component/Accordion/Component/AccordionComponent */
-export class AccordionComponent extends PureComponent<AccordionProps> {
-    renderDetails() {
+export class AccordionComponent extends PureComponent<AccordionProps, AccordionState> {
+    renderDetails(): JSX.Element {
         const { details } = this.props;
 
         return (
@@ -17,7 +17,7 @@ export class AccordionComponent extends PureComponent<AccordionProps> {
         );
     }
 
-    renderSummary() {
+    renderSummary(): JSX.Element {
         const { summary } = this.props;
 
         return (
@@ -29,7 +29,7 @@ export class AccordionComponent extends PureComponent<AccordionProps> {
         );
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <MaterialAccordion className="Accordion">
                 { this.renderSummary() }
@@ -39,4 +39,4 @@ export class AccordionComponent extends PureComponent<AccordionProps> {
     }
 }
 
-export default Accordion;
+export default AccordionComponent;

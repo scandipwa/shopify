@@ -1,17 +1,26 @@
 import { Variant as VariantProp } from '@material-ui/core/styles/createTypography';
 import MaterialTypography from '@material-ui/core/Typography';
-import { TypographyProps } from '@scandipwa/ui-api';
+import {
+    TypographyProps,
+    TypographyState
+} from '@virtual-module/ui/src/component/Typography';
 import { PureComponent } from 'react';
 
+declare module '@virtual-module/ui/src/component/Typography' {
+    interface TypographyProps {
+        type: string
+    }
+}
+
 /** @namespace Materialui/Component/Typography/Container/TypographyContainer */
-export class TypographyContainer extends PureComponent<TypographyProps> {
+export class TypographyContainer extends PureComponent<TypographyProps, TypographyState> {
     static defaultProps = {
         type: 'body'
     };
 
     containerFunctions = {};
 
-    containerProps = () => {
+    containerProps = (): Omit<TypographyProps, 'type'> & { variant: VariantProp } => {
         const {
             children,
             component
@@ -31,11 +40,11 @@ export class TypographyContainer extends PureComponent<TypographyProps> {
         case 'body':
             return 'body1';
         default:
-            return type;
+            return type as VariantProp;
         }
     }
 
-    render() {
+    render(): JSX.Element {
         const { type } = this.props;
 
         return (
