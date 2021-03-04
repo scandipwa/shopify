@@ -201,10 +201,10 @@ module.exports = (options) => {
                 const superClass = path.get('superClass');
                 const superExpression = types.callExpression(
                     types.memberExpression(
-                        types.identifier('ExtUtils'),
-                        types.Identifier('Extensible')
+                      types.identifier('ExtUtils'),
+                      types.Identifier('Extensible')
                     ),
-                    [types.Identifier(superClass.node ? superClass.node.name : '')]
+                    [(superClass && superClass.node) || types.Identifier('')]
                 );
 
                 if (!superClass.node) {
