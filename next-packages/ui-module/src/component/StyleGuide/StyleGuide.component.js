@@ -1,4 +1,4 @@
-import { TypographyContainer } from '@virtual-module/ui/src/component/Typography';
+import TypographyContainer from '@virtual-module/ui/src/component/Typography';
 import React from 'react';
 
 /** @namespace ShopifyNextjsuiModule/Component/StyleGuide/Component/StyleGuideComponent */

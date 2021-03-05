@@ -1,7 +1,6 @@
 {
-    "name": "@virtual-module/ui",
+    "name": "@types/virtual-module__ui",
     "version": "0.0.0",
-    "license": "OSL-3.0",
     "typings": "./index.d.ts",
     "eslintConfig": {
         "extends": "@scandipwa",

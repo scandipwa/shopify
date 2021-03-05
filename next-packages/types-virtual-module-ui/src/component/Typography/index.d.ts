@@ -1,0 +1,1 @@
+export { default, TypographyProps, TypographyState } from './Typography.container'

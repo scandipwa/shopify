@@ -5,7 +5,7 @@
         "@scandipwa/shopify-nextjs-api": "0.0.0",
         "@scandipwa/graphql": "0.0.0",
         "@scandipwa/material-ui": "0.0.0",
-        "@virtual-module/ui": "0.0.0"
+        "@types/virtual-module__ui": "0.0.0"
     },
     "scandipwa": {
         "type": "extension",
