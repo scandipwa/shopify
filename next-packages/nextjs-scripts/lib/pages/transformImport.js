@@ -1,5 +1,6 @@
 /* eslint-disable @scandipwa/scandipwa-guidelines/export-level-one */
 const babel = require('@babel/core');
+const logger = require('@scandipwa/scandipwa-dev-utils/logger');
 
 function transformImports(code, transformer) {
     const parts = [];
@@ -27,9 +28,19 @@ function transformImports(code, transformer) {
                         ) {
                             return;
                         }
+                        const sourceArg = node.arguments[0];
+                        if (sourceArg.type !== 'StringLiteral') {
+                            const warningCode = logger.style.code(code.substring(node.start, node.end));
+                            logger.warn(
+                                `Critical dependency found: "${ warningCode }".`,
+                                'It is not recommended to import modules in such a manner, it may not work as expected.'
+                            );
+
+                            return;
+                        }
                         parts.push({
-                            start: node.arguments[0].start,
-                            end: node.arguments[0].end
+                            start: sourceArg.start,
+                            end: sourceArg.end
                         });
                     }
                 }
