@@ -7,7 +7,9 @@ const kill = require('tree-kill');
 const logger = require('@scandipwa/scandipwa-dev-utils/logger');
 const debounce = require('debounce');
 const chokidar = require('chokidar');
-const { getDefinedPages, createMockPages } = require('./pages');
+const getDefinedPages = require('./pages/getDefinedPages');
+const createMockPages = require('./pages/createMockPages');
+const copyPages = require('./pages/copyPages');
 
 const processArgs = (args) => {
     const possibleDir = args[0];
@@ -36,7 +38,10 @@ const processArgs = (args) => {
 
 module.exports = async (script, restArgs) => {
     // TODO: use this dir to resolve pages
-    const { dir, args } = processArgs(restArgs);
+    const {
+        dir,
+        args
+    } = processArgs(restArgs);
     const isProd = script === 'build';
 
     // eslint-disable-next-line fp/no-let
@@ -47,6 +52,7 @@ module.exports = async (script, restArgs) => {
     // Create pages from extensions and themes
     const pages = await getDefinedPages(dir);
     await createMockPages(pages, realDir);
+    await copyPages(dir, realDir);
 
     // Copy .env files
 
@@ -105,7 +111,7 @@ module.exports = async (script, restArgs) => {
         .watch([
             'src/**/*'
         ], {
-        // should we ignore node_modules ?
+            // should we ignore node_modules ?
             ignored: '**/node_modules/**',
             cwd: process.cwd(),
             ignoreInitial: true
