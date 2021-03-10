@@ -20,7 +20,8 @@
     "eslintConfig": {
         "extends": "@scandipwa",
         "ignorePatterns": [
-            "**/node_modules/**"
+            "**/node_modules/**",
+            "packages/shopify-blank-theme/build/**"
         ]
     },
     "workspaces": [
