@@ -50,17 +50,13 @@ function transformImports(code, transformer) {
                 start,
                 end
             } = part;
-            const importSource = code.substring(start, end);
+            const importSource = code.substring(start + 1, end - 1);
             return {
                 lastIndex: end,
                 result: [
                     ...result,
                     code.substring(lastIndex, start),
-                    importSource.replace(/[`'"]([^`'"]+)[`'"]/, (match, value) => {
-                        const resolvedModulePath = transformer(value);
-
-                        return `"${ resolvedModulePath }"`;
-                    })
+                    `"${ transformer(importSource) }"`
                 ]
             };
         }, {

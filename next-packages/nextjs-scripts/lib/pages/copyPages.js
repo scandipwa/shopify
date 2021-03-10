@@ -86,8 +86,7 @@ const copyPages = async (rootDir, projectRoot) => {
                 targetFile
             ];
         })
-        .forEach(([sourceFile,
-            targetFile]) => {
+        .forEach(([sourceFile, targetFile]) => {
             const sourceCode = fs.readFileSync(sourceFile, 'utf-8');
             const transformedSource = transformImports(sourceCode, (value) => {
                 const resolvedPath = require.resolve(value, {
