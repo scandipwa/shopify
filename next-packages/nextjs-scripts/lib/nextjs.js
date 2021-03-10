@@ -7,11 +7,9 @@ const kill = require('tree-kill');
 const logger = require('@scandipwa/scandipwa-dev-utils/logger');
 const debounce = require('debounce');
 const chokidar = require('chokidar');
-const {
-    getDefinedPages,
-    createMockPages,
-    copyPages
-} = require('./pages');
+const getDefinedPages = require('./pages/getDefinedPages');
+const createMockPages = require('./pages/createMockPages');
+const copyPages = require('./pages/copyPages');
 
 const processArgs = (args) => {
     const possibleDir = args[0];
