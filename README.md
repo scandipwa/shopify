@@ -32,7 +32,7 @@ Read more on our approach to modularity in the [documentation](https://scandipwa
 
 ## See it in action
 
-Check the [demo store](placeholder.com)
+Check the [demo store](https://scandipwa-shopify.vercel.app/collections)
 
 ## Licence
 
