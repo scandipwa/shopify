@@ -15,7 +15,7 @@ const addAddToCartAndQuantityRender = (member) => {
 export default {
     'ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent': {
         'member-property': {
-            sortedRenderList: addAddToCartAndQuantityRender
+            sortedRenderMap: addAddToCartAndQuantityRender
         }
     }
 };

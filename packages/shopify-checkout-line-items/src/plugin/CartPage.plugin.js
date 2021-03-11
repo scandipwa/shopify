@@ -12,7 +12,7 @@ const addAddToCartAndQuantityRender = (member) => {
 export default {
     'ShopifyCheckout/Component/CartPage/Component/CartPageComponent': {
         'member-property': {
-            sortedRenderList: addAddToCartAndQuantityRender
+            sortedRenderMap: addAddToCartAndQuantityRender
         }
     }
 };

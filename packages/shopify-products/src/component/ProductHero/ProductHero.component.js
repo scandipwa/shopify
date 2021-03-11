@@ -8,7 +8,7 @@ import ProductMedia from '../ProductMedia';
 export class ProductHeroComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         productHeroTitle: this.renderTitle.bind(this),
         productHeroDescription: this.renderDescription.bind(this)
     });
@@ -44,7 +44,7 @@ export class ProductHeroComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     render() {

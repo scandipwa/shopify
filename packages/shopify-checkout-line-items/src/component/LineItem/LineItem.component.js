@@ -10,7 +10,7 @@ import LineItemQuantity from '../LineItemQuantity';
 export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         lineItemDelete: this.renderDelete.bind(this),
         lineItemImage: this.renderImage.bind(this),
         lineItemTitle: this.renderTitle.bind(this),
@@ -67,7 +67,7 @@ export class LineItemComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     render() {

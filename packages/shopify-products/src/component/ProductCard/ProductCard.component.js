@@ -8,7 +8,7 @@ import ProductContext from '../../context/Products.context';
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         productImage: this.renderImage.bind(this),
         productTitle: this.renderTitle.bind(this)
     });
@@ -36,7 +36,7 @@ export class ProductCardComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     renderLink() {

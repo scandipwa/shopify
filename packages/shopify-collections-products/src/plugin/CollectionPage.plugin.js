@@ -20,7 +20,7 @@ const addProductList = (member) => {
 export default {
     'ShopifyCollections/Component/CollectionPage/Component/CollectionPageComponent': {
         'member-property': {
-            sortedRenderList: addProductList
+            sortedRenderMap: addProductList
         }
     }
 };

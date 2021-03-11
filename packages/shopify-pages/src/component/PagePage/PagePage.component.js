@@ -9,7 +9,7 @@ export class PagePageComponent extends PureComponent {
         page: PageType.isRequired
     };
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         pageTitle: this.renderTitle.bind(this),
         pageBody: this.renderBody.bind(this)
     });
@@ -34,7 +34,7 @@ export class PagePageComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.renderBody();
+        return this.sortedRenderMap.render();
     }
 
     render() {

@@ -10,7 +10,7 @@ export class CollectionCardComponent extends PureComponent {
         collection: CollectionType.isRequired
     };
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         collectionCardImage: this.renderImage.bind(this),
         collectionCardTitle: this.renderTitle.bind(this),
         collectionCardDescription: this.renderDescription.bind(this)
@@ -52,7 +52,7 @@ export class CollectionCardComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     renderLink() {

@@ -1,18 +1,22 @@
+import { createElement } from 'react';
+
 import ProductRecommendations from '../component/ProductRecommendations';
 
-const addProductRecommendationsSection = (args, callback) => {
-    const initialSections = callback(args);
+const addProductRecommendations = (member) => {
+    const PRODUCT_RECOMMENDATIONS_POSITION = 2000;
+    member.addItem(
+        () => createElement(ProductRecommendations),
+        'productPageRecommendations',
+        PRODUCT_RECOMMENDATIONS_POSITION
+    );
 
-    return [
-        ...initialSections,
-        <ProductRecommendations key="recommendations" />
-    ];
+    return member;
 };
 
 export default {
     'ShopifyProducts/Component/ProductPage/Component/ProductPageComponent': {
-        'member-function': {
-            renderSections: addProductRecommendationsSection
+        member: {
+            sortedRenderMap: addProductRecommendations
         }
     }
 };

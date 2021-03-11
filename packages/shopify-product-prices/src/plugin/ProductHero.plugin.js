@@ -12,7 +12,7 @@ const addOptionsRender = (member) => {
 export default {
     'ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent': {
         'member-property': {
-            sortedRenderList: addOptionsRender
+            sortedRenderMap: addOptionsRender
         }
     }
 };

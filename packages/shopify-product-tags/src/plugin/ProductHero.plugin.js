@@ -11,7 +11,7 @@ const addProductTagsToHero = (member) => {
 export default {
     'ShopifyProducts/Component/ProductHero/Component/ProductHeroComponent': {
         'member-property': {
-            sortedRenderList: addProductTagsToHero
+            sortedRenderMap: addProductTagsToHero
         }
     }
 };

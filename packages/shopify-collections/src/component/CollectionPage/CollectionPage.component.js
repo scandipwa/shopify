@@ -9,7 +9,7 @@ export class CollectionPageComponent extends PureComponent {
         collection: CollectionType.isRequired
     };
 
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         collectionImage: this.renderImage.bind(this),
         collectionTitle: this.renderTitle.bind(this),
         collectionDescription: this.renderDescription.bind(this)
@@ -52,7 +52,7 @@ export class CollectionPageComponent extends PureComponent {
     }
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     render() {

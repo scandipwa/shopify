@@ -7,10 +7,10 @@ import CheckoutContext from '../../context/Checkout.context';
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
-    sortedRenderList = createSortedRenderMap({});
+    sortedRenderMap = createSortedRenderMap({});
 
     renderContent() {
-        return this.sortedRenderList.render();
+        return this.sortedRenderMap.render();
     }
 
     render() {

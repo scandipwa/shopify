@@ -18,7 +18,7 @@ const checkoutWebButtonRender = (member) => {
 export default {
     'ShopifyCheckout/Component/CartPage/Component/CartPageComponent': {
         'member-property': {
-            sortedRenderList: checkoutWebButtonRender
+            sortedRenderMap: checkoutWebButtonRender
         }
     }
 };

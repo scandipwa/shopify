@@ -4,7 +4,7 @@ import { PagePageComponent } from '../PagePage/PagePage.component';
 
 /** @namespace ShopifyPages/Component/FrontPagePage/Component/FrontPagePageComponent */
 export class FrontPagePageComponent extends PagePageComponent {
-    sortedRenderList = createSortedRenderMap({
+    sortedRenderMap = createSortedRenderMap({
         frontPageBody: this.renderBody.bind(this)
     });
 

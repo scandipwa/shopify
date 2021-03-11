@@ -12,7 +12,7 @@ const addPriceRender = (member) => {
 export default {
     'ShopifyProducts/Component/ProductCard/Component/ProductCardComponent': {
         'member-property': {
-            sortedRenderList: addPriceRender
+            sortedRenderMap: addPriceRender
         }
     }
 };
