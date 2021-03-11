@@ -12,6 +12,14 @@ import LineItemQuantity from '../LineItemQuantity';
 export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 
+    /**
+     * The list of elements to be displayed in the line item block
+     * @extPoint Display new element in the line items block
+     * @extExample (member, instance) => {
+     *      member.addItem(() => <MyCartSection />, 'someKey');
+     *      return member;
+     * }
+     */
     sortedRenderMap = createSortedRenderMap({
         lineItemDelete: this.renderDelete.bind(this),
         lineItemImage: this.renderImage.bind(this),

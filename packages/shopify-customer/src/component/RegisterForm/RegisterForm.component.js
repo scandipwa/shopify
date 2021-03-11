@@ -11,13 +11,29 @@ export class RegisterFormComponent extends PureComponent {
         onSubmit: PropTypes.func.isRequired
     };
 
-    contextRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by register form component
+     * @extPoint Inject render methods to be displayed in register form
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
+    contentRenderMap = createSortedRenderMap({
         registerFormErrors: this.renderErrors.bind(this),
         registerFormFields: this.renderFields.bind(this),
         registerFormActions: this.renderActions.bind(this)
     });
 
-    formFieldsRenderList = createSortedRenderMap({
+    /**
+     * A list of field render methods used by the register form
+     * @extPoint Inject field render methods to be displayed in the register form
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyField />, 'someKey');
+     *     return member;
+     * }
+     */
+    formFieldsRenderMap = createSortedRenderMap({
         registerFormFirstName: this.renderFirstName.bind(this),
         registerFormLastName: this.renderLastName.bind(this),
         registerFormEmail: this.renderEmail.bind(this),

@@ -9,6 +9,14 @@ import CheckoutContext from '../../context/Checkout.context';
 export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
+    /**
+     * The list of sections to be displayed on the cart page
+     * @extPoint Display new sections on the cart page
+     * @extExample (member, instance) => {
+     *      member.addItem(() => <MyCartSection />, 'someKey');
+     *      return member;
+     * }
+     */
     sortedRenderMap = createSortedRenderMap({});
 
     renderContent() {

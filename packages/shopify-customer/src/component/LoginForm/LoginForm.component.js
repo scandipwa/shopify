@@ -13,13 +13,29 @@ export class LoginFormComponent extends PureComponent {
         onSubmit: PropTypes.func.isRequired
     };
 
-    contextRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by login form component
+     * @extPoint Inject render methods to be displayed in login form
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
+    contentRenderMap = createSortedRenderMap({
         loginFormErrors: this.renderErrors.bind(this),
         loginFormFields: this.renderFields.bind(this),
         loginFormActions: this.renderActions.bind(this)
     });
 
-    formFieldsRenderList = createSortedRenderMap({
+    /**
+     * A list of field render methods used by the login form
+     * @extPoint Inject field render methods to be displayed in the login form
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyField />, 'someKey');
+     *     return member;
+     * }
+     */
+    formFieldsRenderMap = createSortedRenderMap({
         loginFormEmail: this.renderEmail.bind(this),
         loginFormPassword: this.renderPassword.bind(this)
     });

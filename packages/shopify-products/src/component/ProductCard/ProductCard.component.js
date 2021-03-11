@@ -10,6 +10,14 @@ import ProductContext from '../../context/Products.context';
 export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
+    /**
+     * A list of render methods used by product card
+     * @extPoint Inject render methods to be displayed on product card
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
     sortedRenderMap = createSortedRenderMap({
         productImage: this.renderImage.bind(this),
         productTitle: this.renderTitle.bind(this)

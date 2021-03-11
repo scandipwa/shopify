@@ -11,7 +11,15 @@ import AccountFallbackPage from '../AccountFallbackPage';
 export class AccountPageComponent extends PureComponent {
     static contextType = CustomerContext;
 
-    contentRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by account page
+     * @extPoint Inject render methods to be displayed on account page
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
+    contentRenderMap = createSortedRenderMap({
         accountPageAccountDetails: this.renderAccountDetails.bind(this)
     });
 

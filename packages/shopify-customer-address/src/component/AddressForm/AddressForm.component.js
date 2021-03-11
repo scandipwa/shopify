@@ -15,13 +15,29 @@ export class AddressFormComponent extends PureComponent {
         renderActions: PropTypes.func.isRequired
     };
 
-    contextRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by address form component
+     * @extPoint Inject render methods to be displayed in address form component
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
+    contentRenderMap = createSortedRenderMap({
         addressFormErrors: this.renderErrors.bind(this),
         addressFormFields: this.renderFields.bind(this),
         addressFormActions: this.renderActions.bind(this)
     });
 
-    formFieldsRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by the address form
+     * @extPoint Inject render methods to be displayed in the address form
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyField />, 'someKey');
+     *     return member;
+     * }
+     */
+    formFieldsRenderMap = createSortedRenderMap({
         addressFormFirstName: this.renderFirstName.bind(this),
         addressFormLastName: this.renderLastName.bind(this),
         addressFormCompany: this.renderCompany.bind(this),

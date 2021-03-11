@@ -9,7 +9,15 @@ import CustomerContext from '../../context/Customer.context';
 export class AccountDetailsComponent extends PureComponent {
     static contextType = CustomerContext;
 
-    detailsRenderList = createSortedRenderMap({
+    /**
+     * A list of render methods used by account details component
+     * @extPoint Inject render methods to be displayed in account details
+     * @extExample (member, instance) => {
+     *     member.addItem(() => <MyComponent />, 'someKey');
+     *     return member;
+     * }
+     */
+    detailsRenderMap = createSortedRenderMap({
         accountDetailsNameSurname: this.renderNameSurname.bind(this)
     });
 

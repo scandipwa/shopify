@@ -8,6 +8,14 @@ import ProductHero from '../ProductHero';
  * @namespace ShopifyProducts/Component/ProductPage/Component/ProductPageComponent
  */
 export class ProductPageComponent extends PureComponent {
+    /**
+     * The list of sections to be displayed on the product page
+     * @extPoint Display new sections on the cart page
+     * @extExample (member, instance) => {
+     *      member.addItem(() => <MyComponent />, 'someKey');
+     *      return member;
+     * }
+     */
     sortedRenderMap = createSortedRenderMap({
         productPageMainSection: this.renderMainSection.bind(this)
     });
