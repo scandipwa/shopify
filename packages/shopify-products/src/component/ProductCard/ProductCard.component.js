@@ -11,12 +11,8 @@ export class ProductCardComponent extends PureComponent {
     static contextType = ProductContext;
 
     /**
-     * A list of render methods used by product card
-     * @extPoint Inject render methods to be displayed on product card
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by product card.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({
         productImage: this.renderImage.bind(this),

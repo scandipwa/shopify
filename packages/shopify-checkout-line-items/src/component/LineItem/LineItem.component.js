@@ -13,12 +13,8 @@ export class LineItemComponent extends PureComponent {
     static contextType = LineItemsContext;
 
     /**
-     * The list of elements to be displayed in the line item block
-     * @extPoint Display new element in the line items block
-     * @extExample (member, instance) => {
-     *      member.addItem(() => <MyCartSection />, 'someKey');
-     *      return member;
-     * }
+     * The list of elements to be displayed in the line item block.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({
         lineItemDelete: this.renderDelete.bind(this),

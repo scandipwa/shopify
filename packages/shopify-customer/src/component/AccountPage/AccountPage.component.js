@@ -12,12 +12,8 @@ export class AccountPageComponent extends PureComponent {
     static contextType = CustomerContext;
 
     /**
-     * A list of render methods used by account page
-     * @extPoint Inject render methods to be displayed on account page
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by account page.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     contentRenderMap = createSortedRenderMap({
         accountPageAccountDetails: this.renderAccountDetails.bind(this)

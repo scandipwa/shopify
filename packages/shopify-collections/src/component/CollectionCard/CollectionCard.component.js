@@ -13,12 +13,8 @@ export class CollectionCardComponent extends PureComponent {
     };
 
     /**
-     * A list of render methods used by collection card
-     * @extPoint Inject render methods to be displayed on collection card
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyCartSection />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by collection card.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({
         collectionCardImage: this.renderImage.bind(this),

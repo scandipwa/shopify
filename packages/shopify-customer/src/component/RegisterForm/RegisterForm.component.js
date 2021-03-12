@@ -12,12 +12,8 @@ export class RegisterFormComponent extends PureComponent {
     };
 
     /**
-     * A list of render methods used by register form component
-     * @extPoint Inject render methods to be displayed in register form
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by register form component.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     contentRenderMap = createSortedRenderMap({
         registerFormErrors: this.renderErrors.bind(this),
@@ -26,12 +22,8 @@ export class RegisterFormComponent extends PureComponent {
     });
 
     /**
-     * A list of field render methods used by the register form
-     * @extPoint Inject field render methods to be displayed in the register form
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyField />, 'someKey');
-     *     return member;
-     * }
+     * A list of field render methods used by the register form.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     formFieldsRenderMap = createSortedRenderMap({
         registerFormFirstName: this.renderFirstName.bind(this),

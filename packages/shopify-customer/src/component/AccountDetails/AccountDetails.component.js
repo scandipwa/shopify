@@ -10,12 +10,8 @@ export class AccountDetailsComponent extends PureComponent {
     static contextType = CustomerContext;
 
     /**
-     * A list of render methods used by account details component
-     * @extPoint Inject render methods to be displayed in account details
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by account details component.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     detailsRenderMap = createSortedRenderMap({
         accountDetailsNameSurname: this.renderNameSurname.bind(this)

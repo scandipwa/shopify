@@ -16,12 +16,8 @@ export class AddressFormComponent extends PureComponent {
     };
 
     /**
-     * A list of render methods used by address form component
-     * @extPoint Inject render methods to be displayed in address form component
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by address form component.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     contentRenderMap = createSortedRenderMap({
         addressFormErrors: this.renderErrors.bind(this),
@@ -30,12 +26,8 @@ export class AddressFormComponent extends PureComponent {
     });
 
     /**
-     * A list of render methods used by the address form
-     * @extPoint Inject render methods to be displayed in the address form
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyField />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by the address form.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     formFieldsRenderMap = createSortedRenderMap({
         addressFormFirstName: this.renderFirstName.bind(this),

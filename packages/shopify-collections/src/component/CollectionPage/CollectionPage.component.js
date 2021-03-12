@@ -12,12 +12,8 @@ export class CollectionPageComponent extends PureComponent {
     };
 
     /**
-     * A list of render methods used by collection page
-     * @extPoint Inject render methods to be displayed on collection page
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyCartSection />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by collection page.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({
         collectionImage: this.renderImage.bind(this),

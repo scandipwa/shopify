@@ -10,12 +10,8 @@ export class CartPageComponent extends PureComponent {
     static contextType = CheckoutContext;
 
     /**
-     * The list of sections to be displayed on the cart page
-     * @extPoint Display new sections on the cart page
-     * @extExample (member, instance) => {
-     *      member.addItem(() => <MyCartSection />, 'someKey');
-     *      return member;
-     * }
+     * The list of sections to be displayed on the cart page.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({});
 

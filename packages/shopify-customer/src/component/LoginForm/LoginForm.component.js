@@ -14,12 +14,8 @@ export class LoginFormComponent extends PureComponent {
     };
 
     /**
-     * A list of render methods used by login form component
-     * @extPoint Inject render methods to be displayed in login form
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyComponent />, 'someKey');
-     *     return member;
-     * }
+     * A list of render methods used by login form component.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     contentRenderMap = createSortedRenderMap({
         loginFormErrors: this.renderErrors.bind(this),
@@ -28,12 +24,8 @@ export class LoginFormComponent extends PureComponent {
     });
 
     /**
-     * A list of field render methods used by the login form
-     * @extPoint Inject field render methods to be displayed in the login form
-     * @extExample (member, instance) => {
-     *     member.addItem(() => <MyField />, 'someKey');
-     *     return member;
-     * }
+     * A list of field render methods used by the login form.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     formFieldsRenderMap = createSortedRenderMap({
         loginFormEmail: this.renderEmail.bind(this),

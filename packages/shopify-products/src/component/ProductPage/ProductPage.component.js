@@ -9,12 +9,8 @@ import ProductHero from '../ProductHero';
  */
 export class ProductPageComponent extends PureComponent {
     /**
-     * The list of sections to be displayed on the product page
-     * @extPoint Display new sections on the cart page
-     * @extExample (member, instance) => {
-     *      member.addItem(() => <MyComponent />, 'someKey');
-     *      return member;
-     * }
+     * The list of sections to be displayed on the product page.
+     * Read more: [SortedRenderMap](../../solutions/sortedmap-and-sortedrendermap.md)
      */
     sortedRenderMap = createSortedRenderMap({
         productPageMainSection: this.renderMainSection.bind(this)
