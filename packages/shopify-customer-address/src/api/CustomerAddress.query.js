@@ -40,7 +40,8 @@ export const ADDERSS_UPDATE = 'address_update';
 export const ADDRESS_DELETE = 'address_delete';
 
 /**
- * Customer address query declaration. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * Customer address query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyCustomerAddress/Api/CustomerAddress/Query/CustomerAddressQuery */
 export class CustomerAddressQuery extends TypedQuery {
     typeMap = {
@@ -59,8 +60,7 @@ export class CustomerAddressQuery extends TypedQuery {
 
     /**
      * Function that returns the list of address fields.
-     * @extPoint Add new fields to address query
-     * @extExample (args, callback) => [...callback(...args), 'newField']
+     * Read more: [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
      */
     _getAddressFields() {
         return [

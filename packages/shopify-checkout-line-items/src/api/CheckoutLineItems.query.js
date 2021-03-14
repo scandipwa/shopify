@@ -35,7 +35,8 @@ export const REMOVE_LINE_ITEMS = 'remove';
 export const UPDATE_LINE_ITEMS = 'update';
 
 /**
- * Query declaration for Checkout line items. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * Query declaration for Checkout line items.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyCheckoutLineItems/Api/CheckoutLineItems/Query/CheckoutLineItemsQuery */
 export class CheckoutLineItemsQuery extends TypedQuery {
     typeMap = {

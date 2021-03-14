@@ -2,6 +2,7 @@ import { Field } from '@scandipwa/graphql';
 
 /**
  * Product Prices query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller)
  * @namespace ShopifyProductPrices/Api/ProductPrices/Query/ProductPricesQuery */
 export class ProductPricesQuery {
     _getPriceFields() {

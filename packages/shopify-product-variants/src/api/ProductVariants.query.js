@@ -3,12 +3,12 @@ import { getPageInfoField } from '@scandipwa/shopify-api/src/api/query';
 
 /**
  * Product variants query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller)
  * @namespace ShopifyProductVariants/Api/ProductVariants/Query/ProductVariantsQuery */
 export class ProductVariantsQuery {
     /**
-     * A function which returns an array of product variant fields
-     * @extPoint Add more variant fields to the query (price, metafields, etc.)
-     * @extExample (args, callback) => [...callback(...args), 'newField']
+     * A function which returns an array of product variant fields.
+     * Read more [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
      */
     _getVariantFields() {
         return [

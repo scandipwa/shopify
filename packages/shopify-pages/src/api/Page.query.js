@@ -3,7 +3,10 @@ import { mapQueryToType, TypedQuery } from '@scandipwa/shopify-api/src/util/Type
 
 export const SINGLE_PAGE = 'single';
 
-/** @namespace ShopifyPages/Api/Page/Query/PageQuery */
+/**
+ * Page query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
+ * @namespace ShopifyPages/Api/Page/Query/PageQuery */
 export class PageQuery extends TypedQuery {
     typeMap = {
         [SINGLE_PAGE]: this.getPageByHandleField.bind(this)

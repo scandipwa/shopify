@@ -2,12 +2,12 @@ import { Field } from '@scandipwa/graphql';
 
 /**
  *  * Query declarations for shop
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller)
  * @namespace ShopifyShop/Api/Shop/Query/ShopQuery */
 export class ShopQuery {
     /**
      * A function which returns an array of shop fields
-     * @extPoint Use it to add more fields for shop query (payment settings, privacy policy, etc.)
-     * @extExample (args, callback) => [...callback(...args), 'newField']
+     * Read more: [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
      */
     _getShopFields() {
         return [

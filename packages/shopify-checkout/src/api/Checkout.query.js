@@ -16,7 +16,8 @@ export const CREATE_CHECKOUT = 'create';
  */
 export const FETCH_CHECKOUT = 'fetch';
 
-/** Checkout query declaration. Uses "Typed Query" and should not be used directly, instead access its methods using the default export.
+/** Checkout query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyCheckout/Api/Checkout/Query/CheckoutQuery */
 export class CheckoutQuery extends TypedQuery {
     typeMap = {
@@ -26,8 +27,7 @@ export class CheckoutQuery extends TypedQuery {
 
     /**
      * Function that returns an array of checkout fields.
-     * @extPoint Use it to add more fields to the checkout query (email, shippingAddress, etc.)
-     * @extExample (args, callback) => [...callback(...args), 'newField']
+     * Read more: [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
      */
     _getCheckoutFields() {
         return [

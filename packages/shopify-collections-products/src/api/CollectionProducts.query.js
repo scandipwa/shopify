@@ -11,7 +11,8 @@ import getProductsQueryOfType, { PAGINATED_PRODUCTS } from '@scandipwa/shopify-p
 export const SINGLE_PRODUCT_COLLECTION = 'single';
 
 /**
- * Collection-products query declarations. This class is not intended to be used directly, instead prefer using "Typed Query" exported as default from this file.
+ * Collection-products query declarations.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyCollectionsProducts/Api/CollectionProducts/Query/CollectionProductsQuery */
 export class CollectionProductsQuery extends TypedQuery {
     typeMap = {

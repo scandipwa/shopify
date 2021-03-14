@@ -31,7 +31,8 @@ export const CUSTOMER_LOGIN = 'customer_login';
 export const CUSTOMER_LOGOUT = 'customer_logout';
 
 /**
- * Customer query declaration. Uses "Typed Query" and should not be used directly, instea access its methods by using the default export.
+ * Customer query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyCustomer/Api/Customer/Query/CustomerQuery */
 export class CustomerQuery extends TypedQuery {
     typeMap = {
@@ -56,8 +57,7 @@ export class CustomerQuery extends TypedQuery {
 
     /**
     * Function that returns the list of customer fields.
-    * @extPoint Add new fields to customer query
-    * @extExample (args, callback) => [...callback(...args), 'newField']
+     * Read more: [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
     */
     _getCustomerFields() {
         return [

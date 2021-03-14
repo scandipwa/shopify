@@ -19,8 +19,8 @@ export const PAGINATED_PRODUCTS = 'paginated';
 export const SINGLE_PRODUCT = 'single';
 
 /**
- * A general product and product-list query declaration. This class is not intended to be used directly, instead prefer using "Typed Query" exported as default from this file.
- * Thus, you can use it with direct import, however the `this.currentType` won't be set, and it will be impossible distinguish if the product was requested as a list or as a single product.
+ * A general product and product-list query declaration.
+ * Read more: [Query controller](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller), [TypedQuery](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#typedquery)
  * @namespace ShopifyProducts/Api/Products/Query/ProductsQuery
  */
 export class ProductsQuery extends TypedQuery {
@@ -53,8 +53,7 @@ export class ProductsQuery extends TypedQuery {
 
     /**
      * A function which returns an array of product fields.
-     * @extPoint Use it to add product child fields (price, media, etc.)
-     * @extExample (args, callback) => [...callback(...args), 'newField']
+     * Read more: [Extending Query controllers](https://app.gitbook.com/@scandipwa/s/shopify/solutions/query-controller#extension)
      */
     _getProductFields() {
         return [
