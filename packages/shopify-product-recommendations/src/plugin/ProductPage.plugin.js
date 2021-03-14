@@ -15,7 +15,7 @@ const addProductRecommendations = (member) => {
 
 export default {
     'ShopifyProducts/Component/ProductPage/Component/ProductPageComponent': {
-        member: {
+        'member-property': {
             sortedRenderMap: addProductRecommendations
         }
     }

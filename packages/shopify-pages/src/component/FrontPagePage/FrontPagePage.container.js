@@ -12,8 +12,10 @@ export class FrontPagePageContainer extends PagePageContainer {
         return undefined;
     }
 
-    getPageHandle() {
-        return FRONT_PAGE_HANDLE;
+    getQueryArgs() {
+        return {
+            handle: FRONT_PAGE_HANDLE
+        };
     }
 }
 
