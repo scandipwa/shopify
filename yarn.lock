@@ -2586,7 +2586,7 @@
   dependencies:
     "@scandipwa/scandipwa-dev-utils" "0.0.19"
 
-"@scandipwa/webpack-fallback-plugin@1.2.0":
+"@scandipwa/webpack-fallback-plugin@1.2.0", "@scandipwa/webpack-fallback-plugin@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@scandipwa/webpack-fallback-plugin/-/webpack-fallback-plugin-1.2.0.tgz#f0e1fcd19107c52b52a00984cfaafb77008171b0"
   integrity sha512-deWHU7JyhbAumkEH3u73Vkrn4ph4/IspPwXbb6JyUbPZ2M7QhcRoy914XxBMcrIuyGKAH6newgXf21I4jyOR6g==
