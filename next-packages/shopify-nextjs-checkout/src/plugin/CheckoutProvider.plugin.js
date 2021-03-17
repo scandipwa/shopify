@@ -1,0 +1,21 @@
+import CheckoutProvider from '../context/Checkout.provider';
+
+const addCheckoutProvider = (member) => {
+    const CHECKOUT_POSITION = 1000;
+
+    member.addItemToPosition((children) => (
+        <CheckoutProvider>
+            { children }
+        </CheckoutProvider>
+    ), CHECKOUT_POSITION);
+
+    return member;
+};
+
+export default {
+    'NextjsFramework/Component/App/Component/AppComponent': {
+        'member-property': {
+            contextProvidersRenderList: addCheckoutProvider
+        }
+    }
+};

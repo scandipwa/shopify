@@ -65,7 +65,7 @@ module.exports = () => {
                 }
             });
 
-            config.resolve.symlinks = false;
+            config.resolve.symlinks = true;
 
             config.resolve.plugins.push(
                 // Integrate the fallback plugin
