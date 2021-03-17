@@ -1,0 +1,20 @@
+{
+    "name": "@scandipwa/why-did-you-render",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "main": "index.js",
+    "scandipwa": {
+        "type": "extension",
+        "build": {
+            "cracoPlugins": [
+                "build-config/wdyr.js"
+            ]
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    },
+    "dependencies": {
+        "@welldone-software/why-did-you-render": "^6.0.5"
+    }
+}

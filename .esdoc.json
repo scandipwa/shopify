@@ -1,0 +1,22 @@
+{
+    "source": "./packages",
+    "destination": "./docs",
+    "excludes": ["node_modules", "build-config", "plugin"],
+    "plugins": [
+        {
+            "name": "./plugin"
+        },
+        {
+            "name": "esdoc-external-ecmascript-plugin"
+        },
+        {
+            "name": "esdoc-ecmascript-proposal-plugin",
+            "option": {
+                "all": true
+            }
+        },
+        {
+            "name": "esdoc-jsx-plugin"
+        }
+    ]
+}

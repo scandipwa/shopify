@@ -1,0 +1,24 @@
+{
+    "name": "@scandipwa/shopify-product-recommendations",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "peerDependencies": {
+        "@scandipwa/shopify-products": "^0.0.0"
+    },
+    "dependencies": {
+        "@scandipwa/shopify-products": "0.0.0",
+        "@scandipwa/graphql": "0.0.0",
+        "@scandipwa/shopify-api": "0.0.0"        
+    },
+    "scandipwa": {
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/shopify-products": true,
+            "@scandipwa/graphql": true,
+            "@scandipwa/shopify-api": true
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}

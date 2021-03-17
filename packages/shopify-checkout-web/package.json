@@ -1,0 +1,20 @@
+{
+    "name": "@scandipwa/shopify-checkout-web",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "scandipwa": {
+        "type": "extension",
+        "extensions": {
+            "@scandipwa/shopify-checkout": true
+        }
+    },
+    "peerDependencies": {
+        "@scandipwa/shopify-checkout": "^0.0.0"
+    },
+    "dependencies": {
+        "@scandipwa/shopify-checkout": "0.0.0"
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}

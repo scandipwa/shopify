@@ -1,0 +1,40 @@
+{
+    "private": true,
+    "name": "create-scandipwa-app",
+    "scripts": {
+        "eslint": "eslint ./packages --resolve-plugins-relative-to . --cache --no-error-on-unmatched-pattern --ext .js,.ts,.tsx",
+        "postinstall": "lerna bootstrap",
+        "clean": "lerna clean --yes",
+        "docs": "esdoc"
+    },
+    "devDependencies": {
+        "@scandipwa/eslint-config": "^0.1.12",
+        "esdoc": "^1.1.0",
+        "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+        "esdoc-external-ecmascript-plugin": "^1.0.0",
+        "esdoc-jsx-plugin": "^1.0.0",
+        "esdoc-lint-plugin": "^1.0.2",
+        "esdoc-publish-markdown-plugin": "^1.1.0",
+        "esdoc-standard-plugin": "^1.0.0",
+        "eslint": "^7.11.0",
+        "glob": "^7.1.6",
+        "husky": "^4.3.0",
+        "lerna": "^3.22.1",
+        "taffydb": "^2.7.3"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run eslint"
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa",
+        "ignorePatterns": [
+            "**/node_modules/**",
+            "packages/shopify-blank-theme/build/**"
+        ]
+    },
+    "workspaces": [
+        "packages/*"
+    ]
+}

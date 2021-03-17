@@ -1,0 +1,17 @@
+{
+    "name": "@scandipwa/shopify-customer-address",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "peerDependencies": {
+    },
+    "dependencies": {
+    },
+    "scandipwa": {
+        "type": "extension",
+        "extensions": {
+        }
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}

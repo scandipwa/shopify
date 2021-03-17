@@ -1,0 +1,12 @@
+{
+    "name": "@scandipwa/graphql",
+    "version": "0.0.0",
+    "license": "OSL-3.0",
+    "main": "index.js",
+    "scandipwa": {
+        "type": "extension"
+    },
+    "eslintConfig": {
+        "extends": "@scandipwa"
+    }
+}
