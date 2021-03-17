@@ -32,7 +32,20 @@ Read more on our approach to modularity in the [documentation](https://scandipwa
 
 ## See it in action
 
-Check the [demo store](https://scandipwa-shopify.vercel.app/collections)
+> **NOTE**: this is a blank theme, no styles!
+
+| Feature | URL |
+|-|-|
+| All products | https://scandipwa-shopify.vercel.app/collections/all |
+| All collections | https://scandipwa-shopify.vercel.app/collections |
+| Collection page | https://scandipwa-shopify.vercel.app/collections/vans |
+| Product with multiple variants | https://scandipwa-shopify.vercel.app/products/vans-authentic-lo-pro-burgandy-white |
+| Product with a single variant | https://scandipwa-shopify.vercel.app/collections/nike/products/nike-swoosh-pro-flat-peak-cap |
+| Cart | https://scandipwa-shopify.vercel.app/cart |
+| Registration | https://scandipwa-shopify.vercel.app/account/register |
+| Login | https://scandipwa-shopify.vercel.app/account/login |
+| Account | https://scandipwa-shopify.vercel.app/account |
+| CMS Page | https://scandipwa-shopify.vercel.app/pages/hello-world |
 
 ## Licence
 
