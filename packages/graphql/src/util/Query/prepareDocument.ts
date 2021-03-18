@@ -1,4 +1,4 @@
-import { Argument, Field } from './Field';
+import { Argument, FetchedFieldItemType, Field } from './Field';
 
 export const MUTATION_TYPE = 'mutation';
 export const QUERY_TYPE = 'query';
@@ -7,13 +7,17 @@ interface AccArgs {
     [name: string]: Array<[string, string]>
 }
 
-interface GraphQLDocument {
+export interface GraphQLDocument {
     query: string,
     variables: {[name: string]: string}
 }
 
 /** @namespace Graphql/Util/Query/PrepareDocument/prepareFieldString */
-export const prepareFieldString = (rootField: Field, accArgs: AccArgs = {}): string => {
+export const prepareFieldString = <
+    N extends string,
+    RT extends Record<string, FetchedFieldItemType>,
+    F extends Field<N, RT>
+>(rootField: F, accArgs: AccArgs = {}): string => {
     const {
         alias, name, args, children
     } = rootField;
@@ -48,7 +52,11 @@ export const prepareFieldString = (rootField: Field, accArgs: AccArgs = {}): str
 };
 
 /** @namespace Graphql/Util/Query/PrepareDocument/prepareRequest */
-export const prepareRequest = (fields: Array<Field> | Field, type: string): GraphQLDocument => {
+export const prepareRequest = <
+    N extends string,
+    RT extends Record<string, FetchedFieldItemType>,
+    F extends Field<N, RT>
+>(fields: F[], type: string): GraphQLDocument => {
     const fieldsArray = Array.isArray(fields) ? fields : [fields];
 
     if (type !== MUTATION_TYPE && type !== QUERY_TYPE) {
