@@ -1,6 +1,5 @@
 import { FetchedFieldItemType, Field } from './Field';
 
-// TODO
 /** @namespace Graphql/Util/Query/InlineFragment/InlineFragment */
 export class InlineFragment<
     N extends string,
@@ -25,13 +24,12 @@ export class InlineFragment<
         RT & { [K in F['name']]: F['resultTypeHolder'] }
     >;
 
-    addField(field: unknown): unknown {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+    addField(field: any): any {
         if (field instanceof InlineFragment) {
             throw new Error('Cannot add a Fragment on a Fragment!');
         }
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         return super.addField(field);
     }
 

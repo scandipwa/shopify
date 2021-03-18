@@ -20,12 +20,11 @@ export interface IField {
     resultTypeHolder
 }
 
-// TODO
 // Workaround. Should be improved when partial type inference is supported by TS.
 export type FetchedFieldItemType = string | number | null;
 
 // TODO
-// * fragments
+// * throw on non-existent values (remove Record)
 // * returned field typings
 
 /** @namespace Graphql/Util/Query/Field/Field */
@@ -79,6 +78,7 @@ export class Field<
     }
 
     // ! DO NOT REORDER THESE OVERLOADS
+    // ! IT WILL MAKE ME MIX UP INLINEFRAGMENTS WITH FIELDS
     // STRING
     addField<S extends string>(field: S): Field<
         N,
