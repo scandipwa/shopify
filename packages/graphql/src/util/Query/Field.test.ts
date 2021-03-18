@@ -12,8 +12,9 @@ const query = new Field('person')
     ])
     .addField(
         new Field('mother')
+            .setAlias('mum')
             .addField('name')
             .addField('age')
     );
 
-postQuery(query, {}).then((result) => result.mother.age);
+postQuery(query, {}).then((result) => result.mum);

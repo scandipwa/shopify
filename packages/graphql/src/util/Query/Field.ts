@@ -23,7 +23,6 @@ export interface IField {
 export type FetchedFieldItemType = string | number | null;
 
 // TODO
-// * aliases
 // * fragments
 // * returned field typings
 
@@ -32,7 +31,11 @@ export class Field<
     N extends string,
     RT extends Record<string, FetchedFieldItemType> = Record<string, FetchedFieldItemType>
 > implements IField {
-    name: N;
+    /**
+     * Type of name is changeable by setting an alias onto it.
+     * The actual value of name is immutable.
+     */
+    readonly name: N;
 
     alias = '';
 
@@ -47,9 +50,15 @@ export class Field<
         this.name = name;
     }
 
-    setAlias(alias: string): Field<N, RT> {
+    /**
+     * This function will change type of the Field such way that it'll seem that the name has changed.
+     * The name is immutable and therefore will not actually get changed.
+     * This illusion is implemented so that you have proper typings for the queries' return values
+     */
+    setAlias<A extends string>(alias: A): Field<A, RT> {
         this.alias = `${alias}:`;
-        return this;
+
+        return this as unknown as Field<A, RT>;
     }
 
     addArgument(name: string, type: string, value: string): Field<N, RT> {
