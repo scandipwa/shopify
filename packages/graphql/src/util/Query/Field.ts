@@ -30,7 +30,7 @@ export type FetchedFieldItemType = string | number | null;
 /** @namespace Graphql/Util/Query/Field/Field */
 export class Field<
     N extends string,
-    RT extends Record<string, FetchedFieldItemType> = Record<string, FetchedFieldItemType>
+    RT
 > implements IField {
     /**
      * Type of name is changeable by setting an alias onto it.
@@ -78,7 +78,10 @@ export class Field<
     }
 
     // ! DO NOT REORDER THESE OVERLOADS
-    // ! IT WILL MAKE ME MIX UP INLINEFRAGMENTS WITH FIELDS
+    // ! IT WILL MAKE ME MIX UP INLINE FRAGMENTS WITH FIELDS
+    // ERROR
+    addField(arg: never): never;
+
     // STRING
     addField<S extends string>(field: S): Field<
         N,
@@ -86,13 +89,13 @@ export class Field<
     >;
 
     // INLINE FRAGMENT
-    addField<S extends string, F extends InlineFragment<S>>(field: F): Field<
+    addField<S extends string, IRT, F extends InlineFragment<S, IRT>>(field: F): Field<
         N,
         RT & Partial<F['resultTypeHolder']>
     >;
 
     // FIELD
-    addField<S extends string, F extends Field<S>>(field: F): Field<
+    addField<S extends string, IRT, F extends Field<S, IRT>>(field: F): Field<
         N,
         RT & { [K in F['name']]: F['resultTypeHolder'] }
     >;
@@ -116,6 +119,9 @@ export class Field<
         RT & { [K in S]: FetchedFieldItemType }
     > {
         fieldList.forEach(this.addField);
-        return this;
+        return this as unknown as Field<
+            N,
+            RT & { [K in S]: FetchedFieldItemType }
+        >;
     }
 }

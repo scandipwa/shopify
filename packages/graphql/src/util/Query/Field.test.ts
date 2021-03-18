@@ -13,7 +13,11 @@ const mother = new Field('mother')
 
 const lumberjack = new InlineFragment('Male')
     .addField('beard')
-    .addField('moustache');
+    .addField('moustache')
+    .addField(
+        new InlineFragment('Female')
+            .addField('something')
+    );
 
 const inhabitant = person
     .addFieldList([
@@ -32,6 +36,8 @@ const beardedperson = person.addField(lumberjack);
 
 // Simple field test
 person.resultTypeHolder.name;
+// Should throw on this
+person.resultTypeHolder.height;
 
 // FieldList test
 inhabitant.resultTypeHolder.city;
@@ -40,4 +46,4 @@ inhabitant.resultTypeHolder.city;
 son.resultTypeHolder.mother.birthgivingAge;
 
 // Fragment test
-beardedperson.resultTypeHolder.beard;
+beardedperson.resultTypeHolder.moustache;
