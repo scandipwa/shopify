@@ -1,3 +1,5 @@
+import { InlineFragment } from './InlineFragment';
+
 export interface Argument {
     name: string;
     type: string;
@@ -43,6 +45,7 @@ export class Field<
 
     args: Argument[] = [];
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
     resultTypeHolder: RT;
 
     // eslint-disable-next-line @scandipwa/scandipwa-guidelines/use-magic-construct
@@ -75,15 +78,25 @@ export class Field<
         return this;
     }
 
-    addField<S extends string, F extends Field<S>>(field: F): Field<
-        N,
-        RT & { [K in F['name']]: F['resultTypeHolder'] }
-    >;
-
+    // ! DO NOT REORDER THESE OVERLOADS
+    // STRING
     addField<S extends string>(field: S): Field<
         N,
         RT & { [K in S]: FetchedFieldItemType }
     >;
+
+    // INLINE FRAGMENT
+    addField<S extends string, F extends InlineFragment<S>>(field: F): Field<
+        N,
+        RT & Partial<F['resultTypeHolder']>
+    >;
+
+    // FIELD
+    addField<S extends string, F extends Field<S>>(field: F): Field<
+        N,
+        RT & { [K in F['name']]: F['resultTypeHolder'] }
+    >;
+    // !
 
     addField(field: unknown): unknown {
         if (typeof field === 'string') {

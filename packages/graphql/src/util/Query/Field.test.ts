@@ -1,20 +1,43 @@
 /* eslint-disable */
 import { Field } from './Field';
-import { postQuery } from '../Request/Query';
+import { InlineFragment } from './InlineFragment';
 
-const query = new Field('person')
+const person = new Field('person')
     .addField('name')
-    .addField('something')
-    .addField('else')
-    .addFieldList([
-        'age',
-        'occupation'
-    ])
-    .addField(
-        new Field('mother')
-            .setAlias('mum')
-            .addField('name')
-            .addField('age')
-    );
+    .addField('surname');
 
-postQuery(query, {}).then((result) => result.mum);
+const mother = new Field('mother')
+    .addField('name')
+    .addField('surname')
+    .addField('birthgivingAge');
+
+const lumberjack = new InlineFragment('Male')
+    .addField('beard')
+    .addField('moustache');
+
+const inhabitant = person
+    .addFieldList([
+        'nationality',
+        'country',
+        'city'
+    ]);
+
+/** Nesting */
+
+const son = person.addField(mother);
+
+const beardedperson = person.addField(lumberjack);
+
+/** Results */
+
+// Simple field test
+person.resultTypeHolder.name;
+
+// FieldList test
+inhabitant.resultTypeHolder.city;
+
+// Nested field test
+son.resultTypeHolder.mother.birthgivingAge;
+
+// Fragment test
+beardedperson.resultTypeHolder.beard;
