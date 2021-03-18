@@ -24,7 +24,6 @@ export interface IField {
 export type FetchedFieldItemType = string | number | null;
 
 // TODO
-// * throw on non-existent values (remove Record)
 // * returned field typings
 
 /** @namespace Graphql/Util/Query/Field/Field */
