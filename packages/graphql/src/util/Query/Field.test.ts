@@ -34,7 +34,7 @@ const beardedperson = person.addField(lumberjack);
 // Simple field test
 person.resultTypeHolder.surname;
 // Should throw on this
-person.resultTypeHolder.height;
+// person.resultTypeHolder.height;
 
 // FieldList test
 inhabitant.resultTypeHolder.country;
