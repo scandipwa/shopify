@@ -1,3 +1,4 @@
+/* eslint-disable @scandipwa/scandipwa-guidelines/use-magic-construct */
 import { FetchedFieldItemType, Field } from './Field';
 
 /** @namespace Graphql/Util/Query/InlineFragment/InlineFragment */
@@ -5,9 +6,15 @@ export class InlineFragment<
     N extends string,
     RT
 > extends Field<N, RT> {
+    /**
+     * This is against Liskov substitution principle, but we are willing to strictly differentiate
+     * Between InlineFragment and Field. Although they share functionality, they are not interchangeable.
+     */
+    // @ts-expect-error see above
+    public readonly isField = false;
+
     readonly isInlineFragment: boolean = true;
 
-    // eslint-disable-next-line @scandipwa/scandipwa-guidelines/use-magic-construct
     constructor(name: N) {
         super(`... on ${name}` as N);
     }
@@ -20,9 +27,6 @@ export class InlineFragment<
         N,
         RT & { [K in S]: FetchedFieldItemType }
     >;
-
-    // INLINE FRAGMENT
-    addField<A extends string, B>(field: InlineFragment<A, B>): never;
 
     // FIELD
     addField<S extends string, IRT, F extends Field<S, IRT>>(field: F): InlineFragment<
@@ -39,6 +43,7 @@ export class InlineFragment<
         return super.addField(field);
     }
 
+    // @ts-expect-error see comment for isField
     setAlias<A extends string>(alias: A): InlineFragment<A, RT> {
         this.alias = `${alias}:`;
 

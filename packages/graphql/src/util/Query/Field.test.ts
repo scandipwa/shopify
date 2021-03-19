@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { postQuery } from '../Request/Query';
 import { Field } from './Field';
 import { InlineFragment } from './InlineFragment';
 
@@ -13,11 +14,7 @@ const mother = new Field('mother')
 
 const lumberjack = new InlineFragment('Male')
     .addField('beard')
-    .addField('moustache')
-    .addField(
-        new InlineFragment('Female')
-            .addField('something')
-    );
+    .addField('moustache');
 
 const inhabitant = person
     .addFieldList([
@@ -35,15 +32,15 @@ const beardedperson = person.addField(lumberjack);
 /** Results */
 
 // Simple field test
-person.resultTypeHolder.name;
+person.resultTypeHolder.surname;
 // Should throw on this
 person.resultTypeHolder.height;
 
 // FieldList test
-inhabitant.resultTypeHolder.city;
+inhabitant.resultTypeHolder.country;
 
 // Nested field test
-son.resultTypeHolder.mother.birthgivingAge;
+son.resultTypeHolder.mother.name;
 
 // Fragment test
 beardedperson.resultTypeHolder.moustache;

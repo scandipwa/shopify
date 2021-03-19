@@ -1,3 +1,4 @@
+/* eslint-disable @scandipwa/scandipwa-guidelines/use-magic-construct */
 import { InlineFragment } from './InlineFragment';
 
 export interface Argument {
@@ -32,6 +33,12 @@ export class Field<
     RT
 > implements IField {
     /**
+     * This is necessary in order for TS compiler to see clear difference
+     * Between Field and InlineFragment
+     */
+    public readonly isField = true;
+
+    /**
      * Type of name is changeable by setting an alias onto it.
      * The actual value of name is immutable.
      */
@@ -43,10 +50,8 @@ export class Field<
 
     args: Argument[] = [];
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
     resultTypeHolder: RT;
 
-    // eslint-disable-next-line @scandipwa/scandipwa-guidelines/use-magic-construct
     constructor(name: N) {
         this.name = name;
     }
