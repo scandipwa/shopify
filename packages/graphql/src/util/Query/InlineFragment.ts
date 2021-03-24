@@ -50,3 +50,5 @@ export class InlineFragment<
         return this as unknown as InlineFragment<A, RT>;
     }
 }
+
+export default InlineFragment;

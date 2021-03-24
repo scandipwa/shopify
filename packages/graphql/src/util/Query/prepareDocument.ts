@@ -1,8 +1,9 @@
 import { Argument, Field } from './Field';
 
-export const MUTATION_TYPE = 'mutation';
-export const QUERY_TYPE = 'query';
-
+export enum GraphQlRequestType {
+    Mutation,
+    Query
+}
 interface AccArgs {
     [name: string]: Array<[string, string]>
 }
@@ -56,13 +57,8 @@ export const prepareRequest = <
     N extends string,
     RT,
     F extends Field<N, RT>
->(fields: F[], type: string): GraphQLDocument => {
+>(fields: F[], type: GraphQlRequestType): GraphQLDocument => {
     const fieldsArray = Array.isArray(fields) ? fields : [fields];
-
-    if (type !== MUTATION_TYPE && type !== QUERY_TYPE) {
-        // we only support Mutation and Query types
-        throw new Error(`GraphQL document type "${ type }" is not supported.`);
-    }
 
     const variables: {[name: string]: string} = {};
     const accArgs: AccArgs = {};

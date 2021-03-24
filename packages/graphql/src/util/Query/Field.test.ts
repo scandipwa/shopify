@@ -1,6 +1,5 @@
 /* eslint-disable */
-import { postQuery } from '../Request/Query';
-import { Field } from './Field';
+import Client, { Field } from '../../..';
 import { InlineFragment } from './InlineFragment';
 
 const person = new Field('person')

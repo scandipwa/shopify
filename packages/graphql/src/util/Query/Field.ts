@@ -24,9 +24,6 @@ export interface IField {
 // Workaround. Should be improved when partial type inference is supported by TS.
 export type FetchedFieldItemType = string | number | null;
 
-// TODO
-// * returned field typings
-
 /** @namespace Graphql/Util/Query/Field/Field */
 export class Field<
     N extends string,
@@ -129,3 +126,5 @@ export class Field<
         >;
     }
 }
+
+export default Field;
