@@ -27,11 +27,11 @@ export const arrayize = <T>(val: T|T[]): T[] => (Array.isArray(val) ? val : [val
 export class Client {
     protected options?: RequestOptions = defaultOptions;
 
-    protected post = async <
-        N extends string,
-        RT,
-        F extends Field<N, RT>
-    >(rawMutations: F | F[], options: RequestOptions, requestType: GraphQlRequestType) => {
+    protected post = async <N extends string, RT>(
+        rawMutations: Field<N, RT> | Field<N, RT>[],
+        options: RequestOptions,
+        requestType: GraphQlRequestType
+    ) => {
         const fieldArray = arrayize(rawMutations);
 
         const response = await executePost(
@@ -44,9 +44,7 @@ export class Client {
 
         const parsedResponse = this.options.middleware(response);
 
-        return parsedResponse as {
-            [k in N]: Promise<F['resultTypeHolder']>
-        };
+        return parsedResponse as Promise<{[k in N]: RT}>;
     };
 
     setEndpoint = (endpoint: string): void => {
@@ -63,13 +61,13 @@ export class Client {
 
     getOptions = (): RequestOptions => this.options;
 
-    postQuery = <N extends string, RT, F extends Field<N, RT>>(
-        rawQueries: F | F[],
+    postQuery = <N extends string, RT>(
+        rawQueries: Field<N, RT> | Field<N, RT>[],
         options: RequestOptions
     ) => this.post(rawQueries, options, GraphQlRequestType.Query);
 
-    postMutation = <N extends string, RT, F extends Field<N, RT>>(
-        rawMutations: F | F[],
+    postMutation = <N extends string, RT>(
+        rawMutations: Field<N, RT> | Field<N, RT>[],
         options: RequestOptions
     ) => this.post(rawMutations, options, GraphQlRequestType.Mutation);
 }
