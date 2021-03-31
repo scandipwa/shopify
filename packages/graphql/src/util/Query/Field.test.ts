@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Client, { Field } from '../../..';
+import CombinedField from './CombinedField';
 import { InlineFragment } from './InlineFragment';
 
 const person = new Field('person')
@@ -22,24 +23,41 @@ const inhabitant = person
         'city'
     ]);
 
-/** Nesting */
+const car = new Field('car')
+    .addField('name')
+    .addField(
+        new Field('manufacturer')
+            .addFieldList([
+                'name', 
+                'country',     
+                'website'
+            ])
+    )
+    .addFieldList(['power', 'maxSpeed'])
+
+const combined = new CombinedField()
+    .addField(inhabitant)
+    .addField(car);
 
 const son = person.addField(mother);
-
 const beardedperson = person.addField(lumberjack);
 
-/** Results */
+// * Type generation checks *
 
-// Simple field test
-person.resultTypeHolder.surname;
-// Should throw on this
-// person.resultTypeHolder.height;
+person.resultTypeHolder.name; // Simple
+inhabitant.resultTypeHolder.nationality; // FieldList
+son.resultTypeHolder.mother.name; // Nested
+beardedperson.resultTypeHolder.moustache; // Fragment
+// person.resultTypeHolder.height; // Should throw on this
 
-// FieldList test
-inhabitant.resultTypeHolder.country;
+// * Results *
 
-// Nested field test
-son.resultTypeHolder.mother.name;
+/** Query result checks */
+Client.postQuery(beardedperson, {}).then((result) => {
+    result
+});
 
-// Fragment test
-beardedperson.resultTypeHolder.moustache;
+/** Combined query result checks */
+Client.postQuery(combined, {}).then((result) => {
+    result
+});

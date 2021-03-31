@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
-import { Field } from './util/Query/Field';
+import CombinedField from './util/Query/CombinedField';
+import type { Field } from './util/Query/Field';
 import {
     GraphQlRequestType,
     prepareRequest
@@ -20,19 +19,16 @@ export const defaultOptions: RequestOptions = {
     middleware: (response: any) => response
 };
 
-/** @namespace Graphql/Index/arrayize */
-export const arrayize = <T>(val: T|T[]): T[] => (Array.isArray(val) ? val : [val]);
-
 /** @namespace Graphql/Index/Client */
 export class Client {
     protected options?: RequestOptions = defaultOptions;
 
     protected post = async <N extends string, RT>(
-        rawMutations: Field<N, RT> | Field<N, RT>[],
+        rawField: Field<N, RT> | CombinedField<RT>,
         options: RequestOptions,
         requestType: GraphQlRequestType
     ) => {
-        const fieldArray = arrayize(rawMutations);
+        const fieldArray = rawField instanceof CombinedField ? rawField.fields : [rawField];
 
         const response = await executePost(
             prepareRequest(fieldArray, requestType),
@@ -43,6 +39,10 @@ export class Client {
         );
 
         const parsedResponse = this.options.middleware(response);
+
+        if (rawField instanceof CombinedField) {
+            return parsedResponse as Promise<RT>;
+        }
 
         return parsedResponse as Promise<{[k in N]: RT}>;
     };
@@ -61,15 +61,35 @@ export class Client {
 
     getOptions = (): RequestOptions => this.options;
 
-    postQuery = <N extends string, RT>(
-        rawQueries: Field<N, RT> | Field<N, RT>[],
+    // ** Query **
+    postQuery<N extends string, RT>(
+        rawQueries: Field<N, RT>,
         options: RequestOptions
-    ) => this.post(rawQueries, options, GraphQlRequestType.Query);
+    ): Promise<{ [k in N]: RT; }>;
 
-    postMutation = <N extends string, RT>(
-        rawMutations: Field<N, RT> | Field<N, RT>[],
+    postQuery<RT>(
+        rawQueries: CombinedField<RT>,
         options: RequestOptions
-    ) => this.post(rawMutations, options, GraphQlRequestType.Mutation);
+    ): Promise<RT>;
+
+    postQuery(rawQueries, options) {
+        return this.post(rawQueries, options, GraphQlRequestType.Query);
+    }
+
+    // ** Mutation **
+    postMutation<N extends string, RT>(
+        rawMutations: Field<N, RT>,
+        options: RequestOptions
+    ): Promise<{ [k in N]: RT; }>;
+
+    postMutation<RT>(
+        rawMutations: CombinedField<RT>,
+        options: RequestOptions
+    ): Promise<RT>;
+
+    postMutation<N extends string, RT>(rawMutations, options) {
+        return this.post(rawMutations, options, GraphQlRequestType.Mutation)
+    };
 }
 
 export { default as Field } from './util/Query/Field';
